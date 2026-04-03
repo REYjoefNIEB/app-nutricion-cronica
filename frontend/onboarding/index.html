@@ -59,6 +59,8 @@
 
     <!-- Scripts (loaded consecutively, no modules to fix local execution) -->
     <script src="i18n.js"></script>
+    <!-- [LÓGICO BACKEND] Caché local AES-GCM — debe cargar antes de app.js -->
+    <script src="../shared/storage.js"></script>
     <!-- [LÓGICO BACKEND] Inicializa window.NuraFirebase antes de DOMContentLoaded -->
     <script type="module" src="../shared/firebase-config.js"></script>
     <script src="app.js"></script>
