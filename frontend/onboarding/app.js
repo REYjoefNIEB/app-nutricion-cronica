@@ -1,10 +1,12 @@
 // =================================================================
 // [ARQUITECTO VISUAL — sin modificaciones] Lógica de UI e i18n
 // [LÓGICO BACKEND] Submit handler migrado a Firestore — 2026-04-02
+// [AGENTE 01 — Legal & Compliance] Consentimiento Informado — 2026-04-02
 // Aprobado por Auditor Médico — 2026-04-02
 // =================================================================
 const currentLang = 'es';
-const t = translations[currentLang];
+const t  = translations[currentLang];
+const lc = legalContent[currentLang];
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -34,6 +36,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('btn-submit').textContent  = t.submitBtn;
     document.getElementById('footer-text').textContent = t.footerText;
+
+    // ── [AGENTE 01] Inyección de contenido legal ──────────────────
+    document.getElementById('consent-title').textContent    = lc.consentSectionTitle;
+    document.getElementById('disclaimer-title').textContent = lc.disclaimerTitle;
+    document.getElementById('disclaimer-text').textContent  = lc.disclaimerText;
+    document.getElementById('privacy-title').textContent    = lc.privacyTitle;
+    document.getElementById('privacy-text').textContent     = lc.privacyText;
+    document.getElementById('ai-title').textContent         = lc.aiTitle;
+    document.getElementById('ai-text').textContent          = lc.aiText;
+    document.getElementById('label-terms').textContent      = lc.consentTermsLabel;
+    document.getElementById('label-ai-training').textContent = lc.consentAiLabel;
+
+    // Acordeones de texto legal (toggle show/hide)
+    function _setupToggle(btnId, bodyId) {
+        const btn  = document.getElementById(btnId);
+        const body = document.getElementById(bodyId);
+        const span = btn.querySelector('span');
+        btn.addEventListener('click', () => {
+            const isHidden = body.hidden;
+            body.hidden = !isHidden;
+            // Actualiza la etiqueta del botón para accesibilidad
+            btn.setAttribute('aria-expanded', String(isHidden));
+        });
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-controls', bodyId);
+    }
+    _setupToggle('toggle-disclaimer', 'body-disclaimer');
+    _setupToggle('toggle-privacy',    'body-privacy');
+    _setupToggle('toggle-ai',         'body-ai');
+
+    // Habilita el botón submit solo cuando el checkbox obligatorio está marcado
+    const checkTerms = document.getElementById('check-terms');
+    const btnSubmit  = document.getElementById('btn-submit');
+    checkTerms.addEventListener('change', () => {
+        btnSubmit.disabled = !checkTerms.checked;
+    });
+    // ── [FIN AGENTE 01] ───────────────────────────────────────────
 
     // ── [LÓGICO BACKEND] Elemento de error inline ─────────────────
     // Reemplaza el alert() nativo. Inyectado entre el form y el footer
@@ -68,6 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         clearError();
+
+        // [AGENTE 01] Guardia de consentimiento obligatorio
+        if (!document.getElementById('check-terms').checked) {
+            showError(lc.errorTermsRequired);
+            document.getElementById('check-terms').focus();
+            return;
+        }
 
         // 1. Captura de datos del formulario
         const profile = {
@@ -116,6 +162,10 @@ document.addEventListener('DOMContentLoaded', () => {
             //    NOTA: email e displayName permiten identificar registros en la
             //    consola Firebase. Las Security Rules deben garantizar que solo
             //    uid == request.auth.uid pueda leer/escribir su documento.
+            // [AGENTE 01] Objeto legal_consent — estructura canónica auditada.
+            // Guardado como sub-objeto para separación semántica clara en Firestore
+            // y facilitar consultas de cumplimiento (ej. todos los users en v1.x.x).
+            const consentTimestamp = new Date().toISOString();
             const payload = {
                 uid:         user.uid,
                 email:       user.email,
@@ -123,7 +173,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 weight:      profile.weight,
                 height:      profile.height,
                 pathology:   profile.pathology,
-                updatedAt:   new Date().toISOString()
+                legal_consent: {
+                    terms_accepted:     true,
+                    ai_training_opt_in: document.getElementById('check-ai-training').checked,
+                    user_agent:         navigator.userAgent,
+                    legal_version:      LEGAL_VERSION,
+                    accepted_at:        consentTimestamp
+                },
+                updatedAt: consentTimestamp
             };
 
             await setDoc(

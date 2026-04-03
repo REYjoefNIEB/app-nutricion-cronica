@@ -104,6 +104,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (snap.exists()) {
             const firestoreData = { ...snap.data(), _source: 'firestore' };
 
+            // ── [LÓGICO BACKEND] Guardia de Ruta — consentimiento legal ──
+            // Bloqueante: si legal_consent está ausente o la versión no
+            // coincide con LEGAL_VERSION, el usuario debe re-aceptar los
+            // términos vigentes antes de acceder al dashboard.
+            // El caché ya renderizado se deja visible para no generar un
+            // flash de contenido vacío, pero la redirección es inmediata.
+            const lc = firestoreData.legal_consent;
+            if (!lc || lc.legal_version !== LEGAL_VERSION) {
+                console.warn(
+                    '[Dashboard] legal_consent ausente o desactualizado',
+                    { found: lc?.legal_version, required: LEGAL_VERSION }
+                );
+                window.location.href = '../onboarding/index.html';
+                return;
+            }
+            // ── [FIN Guardia de Ruta] ─────────────────────────────────
+
             // Sincronizar caché con datos frescos de Firestore
             await MedicalStorage.updateCache(firestoreData);
 

@@ -105,6 +105,37 @@ document.addEventListener('DOMContentLoaded', () => {
         return errors[code] || 'Ocurrió un error inesperado. Intenta de nuevo.';
     }
 
+    // ── [LÓGICO BACKEND] Verificación de consentimiento legal ─────
+    // Comprueba si el usuario ya aceptó la versión vigente de los términos.
+    // Retorna true  → ir al dashboard.
+    // Retorna false → redirigir a onboarding para re-aceptar.
+    //
+    // Diseño: acepta un objeto `data` ya cargado (Google OAuth, que ya hizo
+    // getDoc) para evitar una segunda lectura de Firestore. Si no se pasa
+    // `data`, hace la lectura ella misma (flujo email/password).
+    async function checkLegalConsent(uid, data = null) {
+        try {
+            let userData = data;
+            if (!userData) {
+                const { doc, getDoc } =
+                    await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
+                const snap = await getDoc(doc(window.NuraFirebase.db, 'users', uid));
+                if (!snap.exists()) return false;
+                userData = snap.data();
+            }
+            // Lee la ruta canónica legal_consent.version.
+            // Si el campo existe y la versión coincide, el resto del objeto
+            // (terms_accepted, timestamp) se asume íntegro — el onboarding
+            // es la única ruta de escritura y ya lo valida.
+            return userData.legal_consent?.legal_version === LEGAL_VERSION;
+        } catch (err) {
+            // Ante cualquier error de lectura, enviar a onboarding por seguridad
+            console.warn('[Auth] checkLegalConsent error — redirigiendo a onboarding:', err.message);
+            return false;
+        }
+    }
+    // ── [FIN checkLegalConsent] ───────────────────────────────────
+
     // ── [LÓGICO BACKEND] Submit handler con Firebase Auth ─────────
     authForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -130,8 +161,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (isLogin) {
                 // ── Flujo Login ──────────────────────────────────
-                await signInWithEmailAndPassword(auth, email, password);
-                window.location.href = '../dashboard/index.html';
+                const credential = await signInWithEmailAndPassword(auth, email, password);
+                // [LÓGICO BACKEND] Verificar que el usuario aceptó la versión
+                // vigente de los términos antes de entrar al dashboard.
+                const hasConsent = await checkLegalConsent(credential.user.uid);
+                window.location.href = hasConsent
+                    ? '../dashboard/index.html'
+                    : '../onboarding/index.html';
 
             } else {
                 // ── Flujo Registro ───────────────────────────────
@@ -189,16 +225,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await signInWithPopup(auth, provider);
 
             // 2. Enrutamiento inteligente — mismo documento que usa onboarding
-            //    exists() → perfil completo → dashboard
-            //    !exists() → primera vez → onboarding
+            //    Reutilizamos el snap para el chequeo legal sin doble lectura.
             const snap = await getDoc(doc(db, 'users', result.user.uid));
 
-            if (snap.exists()) {
-                console.log('[Auth] Google OK — usuario existente. → dashboard');
-                window.location.href = '../dashboard/index.html';
-            } else {
+            if (!snap.exists()) {
+                // Primera vez con Google → onboarding completo
                 console.log('[Auth] Google OK — usuario nuevo. → onboarding');
                 window.location.href = '../onboarding/index.html';
+            } else {
+                // Usuario existente: verificar versión de términos aceptada.
+                // Pasamos los datos ya cargados para evitar una segunda lectura.
+                const hasConsent = await checkLegalConsent(result.user.uid, snap.data());
+                if (hasConsent) {
+                    console.log('[Auth] Google OK — consentimiento vigente. → dashboard');
+                    window.location.href = '../dashboard/index.html';
+                } else {
+                    console.log('[Auth] Google OK — términos desactualizados. → onboarding');
+                    window.location.href = '../onboarding/index.html';
+                }
             }
 
         } catch (err) {
