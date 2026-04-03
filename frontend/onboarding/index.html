@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Médico</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- UI Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="onboarding-card">
+            <div class="header">
+                <h1 id="title"></h1>
+                <p id="subtitle"></p>
+            </div>
+            
+            <form id="onboarding-form">
+                <div class="row">
+                    <div class="form-group">
+                        <label id="label-weight" for="input-weight"></label>
+                        <div class="input-wrapper">
+                            <input type="number" id="input-weight" min="20" max="300" step="0.1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label id="label-height" for="input-height"></label>
+                        <div class="input-wrapper">
+                            <input type="number" id="input-height" min="50" max="250" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label id="label-pathology" for="select-pathology"></label>
+                    <div class="input-wrapper select-wrapper">
+                        <select id="select-pathology" required>
+                            <!-- Options added via JS for i18n support -->
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" id="btn-submit" class="btn-submit"></button>
+            </form>
+            
+            <div class="footer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <span id="footer-text"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts (loaded consecutively, no modules to fix local execution) -->
+    <script src="i18n.js"></script>
+    <!-- [LÓGICO BACKEND] Inicializa window.NuraFirebase antes de DOMContentLoaded -->
+    <script type="module" src="../shared/firebase-config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escáner de Alimentos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="onboarding-card">
+            <div class="header">
+                <h1 id="title"></h1>
+                <p id="subtitle"></p>
+            </div>
+            
+            <!-- Visor de la Cámara -->
+            <div class="scanner-viewfinder">
+                <!-- Esquinas de target -->
+                <div class="corner top-left"></div>
+                <div class="corner top-right"></div>
+                <div class="corner bottom-left"></div>
+                <div class="corner bottom-right"></div>
+                
+                <!-- Laser Animado CSS -->
+                <div id="scanner-laser" class="scanner-laser"></div>
+            </div>
+            
+            <button type="button" id="btn-activate" class="btn-submit"></button>
+            
+            <!-- Panel Analítico Minimizado -->
+            <div id="interaction-panel" class="interaction-panel">
+                <div id="panel-header" class="panel-header">
+                    <span id="panel-title"></span>
+                    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div class="panel-body">
+                    <p id="panel-status" class="panel-muted"></p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Scripts puramente visuales -->
+    <script src="i18n.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Central</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Contenedor Principal Header -->
+        <div class="header">
+            <h1 id="title"></h1>
+            <p id="subtitle"></p>
+        </div>
+        
+        <!-- Tarjeta Principal: Estado Metabólico -->
+        <div class="dashboard-card main-card">
+            <h2 id="card-metabolic-title" class="card-title"></h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <span id="val-weight" class="metric-value"></span>
+                    <span id="label-weight" class="metric-label"></span>
+                </div>
+                <div class="metric-box">
+                    <span id="val-height" class="metric-value"></span>
+                    <span id="label-height" class="metric-label"></span>
+                </div>
+            </div>
+            
+            <div class="bmi-container">
+                <div class="bmi-header">
+                    <span id="bmi-title" class="bmi-title"></span>
+                    <div class="bmi-badge">
+                        <span id="bmi-value" class="bmi-number"></span>
+                        <span id="bmi-status" class="bmi-status-text"></span>
+                    </div>
+                </div>
+                
+                <!-- Medidor visual de gradiente simulado -->
+                <div class="bmi-meter">
+                    <div class="bmi-marker" style="left: 60%;"></div>
+                </div>
+                <div class="bmi-labels">
+                    <span>Bajo</span>
+                    <span>Normal</span>
+                    <span>Alto</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sección Acciones Rápidas -->
+        <div class="actions-container">
+            <a href="../onboarding/index.html" class="action-btn">
+                <div class="action-icon icon-profile">👤</div>
+                <span id="txt-profile" class="action-text"></span>
+                <span class="action-arrow">→</span>
+            </a>
+            
+            <a href="../medications/index.html" class="action-btn">
+                <div class="action-icon icon-meds">💊</div>
+                <span id="txt-meds" class="action-text"></span>
+                <span class="action-arrow">→</span>
+            </a>
+            
+            <a href="../scanner/index.html" class="action-btn">
+                <div class="action-icon icon-scan">🔍</div>
+                <span id="txt-scan" class="action-text"></span>
+                <span class="action-arrow">→</span>
+            </a>
+        </div>
+        
+    </div>
+
+    <!-- Carga Visual de Archivos Estáticos -->
+    <script src="i18n.js"></script>
+    <!-- [LÓGICO BACKEND] Inicializa window.NuraFirebase antes de DOMContentLoaded -->
+    <script type="module" src="../shared/firebase-config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

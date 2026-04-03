@@ -1,0 +1,54 @@
+# =================================================================
+# .gitignore — Nura App (nutricion-cronica)
+# [LÓGICO BACKEND] — 2026-04-02
+# =================================================================
+
+# ── Secretos y variables de entorno ───────────────────────────────
+# NUNCA commitear credenciales de Firebase Admin SDK ni API keys
+# de servicios de backend. firebase-config.js (frontend) puede
+# commitearse: las claves del SDK web son inherentemente públicas
+# y la seguridad se delega a Firebase Security Rules + Auth.
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+service-account*.json
+firebase-admin*.json
+
+# ── Node.js (anticipando futura incorporación de build tools) ─────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+dist/
+build/
+.cache/
+
+# ── Sistema Operativo — Windows ───────────────────────────────────
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# ── Sistema Operativo — macOS ─────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ── IDEs y editores ───────────────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*~
+
+# ── Claude Code ───────────────────────────────────────────────────
+.claude/

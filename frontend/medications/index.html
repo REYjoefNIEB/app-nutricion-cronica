@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Farmacológico</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="onboarding-card">
+            <div class="header">
+                <h1 id="title"></h1>
+                <p id="subtitle"></p>
+            </div>
+            
+            <!-- Buscador Central Prominente -->
+            <form id="search-form" class="search-form">
+                <div class="search-wrapper">
+                    <svg class="search-icon" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <!-- Input adaptado para Search -->
+                    <input type="text" id="input-search" class="search-input" autocomplete="off" required>
+                </div>
+            </form>
+            
+            <!-- Contenedor Visual de Medicamentos estilo Etiquetas/Cards -->
+            <div id="meds-grid" class="meds-grid">
+                <!-- Mockup 1 -->
+                <div class="med-tag">
+                    <span class="med-name" id="mockup-1-text"></span>
+                    <button type="button" class="med-remove" aria-label="Eliminar">&times;</button>
+                </div>
+                <!-- Mockup 2 -->
+                <div class="med-tag">
+                    <span class="med-name" id="mockup-2-text"></span>
+                    <button type="button" class="med-remove" aria-label="Eliminar">&times;</button>
+                </div>
+                <!-- Mockup 3 -->
+                <div class="med-tag">
+                    <span class="med-name" id="mockup-3-text"></span>
+                    <button type="button" class="med-remove" aria-label="Eliminar">&times;</button>
+                </div>
+            </div>
+            
+            <!-- Botón Principal -->
+            <form id="final-form" class="mt-4">
+                <button type="submit" id="btn-save" class="btn-submit"></button>
+            </form>
+            
+        </div>
+    </div>
+
+    <!-- Carga Visual de Archivos Estáticos -->
+    <script src="i18n.js"></script>
+    <!-- [LÓGICO BACKEND] Inicializa window.NuraFirebase antes de DOMContentLoaded -->
+    <script type="module" src="../shared/firebase-config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

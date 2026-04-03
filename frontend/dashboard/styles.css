@@ -1,0 +1,306 @@
+:root {
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  
+  --text-main: #282c34;
+  --text-muted: #5c6370;
+  
+  --primary: #d19a66; 
+  --secondary: #56b6c2; 
+  --success: #98c379; 
+  
+  --purple: #c678dd; 
+  --yellow-strong: #e5c07b; 
+  --orange-strong: #e06c75; 
+  
+  --input-bg: #ffffff;
+  --input-border: #abb2bf;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #111827;
+    --card-bg: #1f2937;
+    --card-border: #374151;
+    
+    --text-main: #f9fafb;
+    --text-muted: #9ca3af;
+    
+    --input-bg: #111827;
+    --input-border: #4b5563;
+    
+    --orange-strong: #e77680;
+    --secondary: #63c9d4;
+    --yellow-strong: #eed08a;
+    --purple: #d18ce4;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(86, 182, 194, 0.08), transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(198, 120, 221, 0.08), transparent 40%);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  padding: 2rem 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.header {
+  margin-bottom: 2rem;
+  animation: fadeDown 0.5s ease-out;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--secondary), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@keyframes fadeDown {
+  0% { opacity: 0; transform: translateY(-15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Tarjeta Principal */
+.dashboard-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s ease;
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.card-title::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 24px;
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+/* Grilla de Métricas Físicas */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.metric-box {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.metric-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--secondary);
+  margin-bottom: 0.25rem;
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Medidor IMC (BMI) */
+.bmi-container {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.bmi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.bmi-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.bmi-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(229, 192, 123, 0.15); /* Yellow tint base */
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+}
+
+.bmi-number {
+  font-weight: 800;
+  color: var(--yellow-strong);
+}
+
+.bmi-status-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--yellow-strong);
+}
+
+.bmi-meter {
+  width: 100%;
+  height: 12px;
+  background: linear-gradient(to right, 
+    var(--secondary) 0%, 
+    var(--secondary) 25%, 
+    var(--success) 45%, 
+    var(--success) 55%, 
+    var(--yellow-strong) 75%, 
+    var(--orange-strong) 100%
+  );
+  border-radius: 6px;
+  position: relative;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.bmi-marker {
+  width: 14px;
+  height: 22px;
+  background: #ffffff;
+  border: 3px solid var(--text-main);
+  border-radius: 6px;
+  position: absolute;
+  top: -5px;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bmi-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Acciones Rápidas */
+.actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: var(--text-main);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.action-btn:hover {
+  transform: translateY(-3px);
+  border-color: var(--secondary);
+  box-shadow: 0 8px 24px rgba(86, 182, 194, 0.15);
+}
+
+.action-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.icon-profile { background: rgba(86, 182, 194, 0.15); }
+.icon-meds { background: rgba(198, 120, 221, 0.15); }
+.icon-scan { background: rgba(209, 154, 102, 0.15); }
+
+.action-text {
+  flex: 1;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.action-arrow {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+
+.action-btn:hover .action-arrow {
+  transform: translateX(4px);
+  color: var(--secondary);
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-color); }
+::-webkit-scrollbar-thumb { background: var(--input-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--yellow-strong); }

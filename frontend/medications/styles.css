@@ -1,0 +1,237 @@
+:root {
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  
+  --text-main: #282c34;
+  --text-muted: #5c6370;
+  
+  --primary: #d19a66; /* Naranja (Strings) */
+  --secondary: #56b6c2; /* Celeste/Cyan (Keys) */
+  --success: #98c379; /* Verde (Valores booleanos) */
+  
+  --purple: #c678dd; /* Morado (Braces/Keywords) */
+  --yellow-strong: #e5c07b; /* Amarillo fuerte (Corcheas) */
+  --orange-strong: #e06c75; /* Naranjo fuerte oscuro/Coral (< >) */
+  
+  --input-bg: #ffffff;
+  --input-border: #abb2bf;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #111827;
+    --card-bg: #1f2937;
+    --card-border: #374151;
+    
+    --text-main: #f9fafb;
+    --text-muted: #9ca3af;
+    
+    --input-bg: #111827;
+    --input-border: #4b5563;
+    
+    --orange-strong: #e77680;
+    --secondary: #63c9d4;
+    --yellow-strong: #eed08a;
+    --purple: #d18ce4;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(circle at 10% 40%, rgba(86, 182, 194, 0.1), transparent 30%),
+    radial-gradient(circle at 90% 60%, rgba(198, 120, 221, 0.1), transparent 30%);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  padding: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  width: 100%;
+  max-width: 550px;
+}
+
+.onboarding-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px -10px rgba(86, 182, 194, 0.15);
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s ease;
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 1.875rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, var(--secondary), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Buscador Prominente */
+.search-form {
+  margin-bottom: 2rem;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1.25rem;
+  color: var(--secondary); /* Celeste */
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+  border-radius: 9999px; /* Forma redondeada de píldora */
+  padding: 1.1rem 1.25rem 1.1rem 3.5rem; /* Padding a la izquierda para el icono */
+  color: var(--text-main);
+  font-size: 1.05rem;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.search-input:focus {
+  border-color: var(--yellow-strong);
+  box-shadow: 0 0 0 4px rgba(229, 192, 123, 0.2);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Grilla de Medicamentos Agregados (Tags Múltiples) */
+.meds-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 2.5rem;
+}
+
+.med-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(86, 182, 194, 0.12); /* Celeste suave opacidad */
+  border: 1px solid rgba(86, 182, 194, 0.3);
+  color: var(--text-main);
+  padding: 0.5rem 0.6rem 0.5rem 1rem;
+  border-radius: 9999px; /* Pill shape */
+  font-size: 0.95rem;
+  font-weight: 500;
+  animation: scaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+@keyframes scaleIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.med-name {
+  line-height: 1;
+}
+
+.med-remove {
+  background: transparent;
+  border: none;
+  color: var(--orange-strong); /* Naranjo oscuro */
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  transition: all 0.2s;
+  padding-bottom: 2px; /* Alineación del aspa HTML */
+}
+
+.med-remove:hover {
+  background: var(--orange-strong);
+  color: #fff;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+/* Botón Final del Flujo */
+.btn-submit {
+  width: 100%;
+  background: var(--orange-strong);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px 0 rgba(224, 108, 117, 0.4);
+}
+
+.btn-submit:hover {
+  background: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(209, 154, 102, 0.4);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+.btn-submit.success {
+  background: var(--success);
+  box-shadow: 0 4px 14px 0 rgba(152, 195, 121, 0.3);
+  color: #fff;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-color); }
+::-webkit-scrollbar-thumb { background: var(--input-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--yellow-strong); }

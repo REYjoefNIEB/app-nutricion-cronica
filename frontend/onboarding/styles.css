@@ -1,0 +1,236 @@
+:root {
+  /* Fondo Claro / Light Mode Base */
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  
+  /* Textos basados en fondo del editor (Dark Gray) */
+  --text-main: #282c34;
+  --text-muted: #5c6370;
+  
+  /* Paleta aportada del editor de código  */
+  --primary: #d19a66; /* Naranja base (Strings) */
+  --secondary: #56b6c2; /* Celeste/Cyan (Keys) */
+  --success: #98c379; /* Verde (Valores booleanos) */
+  
+  /* Nuevos colores solicitados */
+  --purple: #c678dd; /* Morado (Braces/Keywords) */
+  --yellow-strong: #e5c07b; /* Amarillo fuerte (Corcheas/Funciones) */
+  --orange-strong: #e06c75; /* Naranjo fuerte oscuro/Coral (< > tags, Piquito mayor/menor) */
+  
+  --input-bg: #ffffff;
+  --input-border: #abb2bf;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Fondos grises profundos (no negro puro para prevenir fatiga visual) */
+    --bg-color: #111827;
+    --card-bg: #1f2937;
+    --card-border: #374151;
+    
+    /* Ajuste de contraste para máxima legibilidad médica */
+    --text-main: #f9fafb;
+    --text-muted: #9ca3af;
+    
+    /* Campos de formulario */
+    --input-bg: #111827;
+    --input-border: #4b5563;
+    
+    /* Ajuste del botón 'Comenzar' y acentos para no perderse en el fondo oscuro */
+    --orange-strong: #e77680; /* Naranjo un poco más luminoso y contrastante */
+    --secondary: #63c9d4; /* Celeste/Cyan iluminado */
+    --yellow-strong: #eed08a; /* Amarillo encendido para los estados de focus */
+    --purple: #d18ce4; /* Morado contrastado para degradados y flechas */
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(198, 120, 221, 0.12), transparent 25%), /* Brillo Morado */
+    radial-gradient(circle at 85% 30%, rgba(229, 192, 123, 0.15), transparent 25%); /* Brillo Amarillo fuerte */
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+}
+
+.onboarding-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px -10px rgba(198, 120, 221, 0.15); /* Sombra con toques morados */
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s ease;
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.header h1 {
+  font-size: 1.875rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, var(--orange-strong), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--secondary); /* Celeste */
+  transition: color 0.3s;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+input, select {
+  width: 100%;
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+  border-radius: 12px;
+  padding: 0.875rem 1rem;
+  color: var(--text-main);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  appearance: none;
+}
+
+input:focus, select:focus {
+  border-color: var(--yellow-strong); /* Borde Amarillo fuerte en Focus */
+  box-shadow: 0 0 0 3px rgba(229, 192, 123, 0.25);
+}
+
+/* Custom select arrow */
+.select-wrapper::after {
+  content: '▼';
+  font-size: 0.7rem;
+  color: var(--purple); /* Flecha select morada */
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+select option {
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  padding: 10px;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+}
+
+.row .form-group {
+  flex: 1;
+}
+
+.btn-submit {
+  width: 100%;
+  background: var(--orange-strong); /* Naranjo Fuerte (< >) */
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px 0 rgba(224, 108, 117, 0.4);
+}
+
+.btn-submit:hover {
+  background: var(--primary); /* Hover a Naranja medio */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(209, 154, 102, 0.4);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+.btn-submit.success {
+  background: var(--success);
+  box-shadow: 0 4px 14px 0 rgba(152, 195, 121, 0.3);
+  color: #fff;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.footer svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+  color: var(--purple); /* SVG icono morado */
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color); 
+}
+::-webkit-scrollbar-thumb {
+  background: var(--input-border); 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--yellow-strong); 
+}
