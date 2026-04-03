@@ -2,6 +2,7 @@ const translations = {
   es: {
     pageTitle: "Perfil Médico",
     pageSubtitle: "Personaliza tu experiencia médica. Estos datos nos ayudan a adaptar la aplicación a tus necesidades.",
+    birthdateLabel: "Fecha de Nacimiento",
     weightLabel: "Peso (kg)",
     weightPlaceholder: "Ej: 75",
     heightLabel: "Altura (cm)",
@@ -17,11 +18,13 @@ const translations = {
       { value: "obesity", label: "Obesidad" }
     ],
     submitBtn: "Comenzar",
+    exportBtn: "Exportar mis Datos Médicos (JSON)",
     footerText: "Tus datos están protegidos y encriptados."
   },
   en: {
     pageTitle: "Medical Profile",
     pageSubtitle: "Personalize your medical experience. This data helps us tailor the app to your needs.",
+    birthdateLabel: "Birth Date",
     weightLabel: "Weight (kg)",
     weightPlaceholder: "Ex: 75",
     heightLabel: "Height (cm)",
@@ -37,6 +40,7 @@ const translations = {
       { value: "obesity", label: "Obesity" }
     ],
     submitBtn: "Get Started",
+    exportBtn: "Export Medical Data (JSON)",
     footerText: "Your data is protected and encrypted."
   }
 };

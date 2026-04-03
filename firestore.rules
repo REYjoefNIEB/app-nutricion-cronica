@@ -1,0 +1,51 @@
+rules_version = '2';
+
+// =================================================================
+// Nura — Reglas de Seguridad Firestore
+// Cumplimiento: Ley 19.628 (Chile) · GDPR (UE) · HIPAA (EE.UU.)
+// Versión: 1.1.0 — 2026-04-03
+// =================================================================
+//
+// PRINCIPIO DE DISEÑO:
+//   legal_consent es un registro de auditoría inmutable desde el cliente.
+//   Solo el backend (Admin SDK) puede modificarlo si fuera necesario
+//   (ej. registrar un nuevo consentimiento por actualización de términos).
+//   El cliente únicamente puede crearlo en el flujo de onboarding.
+//
+// =================================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Colección principal de usuarios ──────────────────────────
+    match /users/{userId} {
+
+      // Lectura: solo el propietario del documento.
+      allow read: if request.auth != null
+                  && request.auth.uid == userId;
+
+      // Creación: el usuario autenticado crea su propio documento
+      // (flujo de onboarding). Incluye legal_consent en la creación.
+      allow create: if request.auth != null
+                    && request.auth.uid == userId;
+
+      // Actualización: el usuario puede actualizar su propio documento
+      // EXCEPTO el campo legal_consent, que es inmutable desde el cliente
+      // una vez creado. Esto protege la huella de auditoría del consentimiento.
+      allow update: if request.auth != null
+                    && request.auth.uid == userId
+                    && !request.resource.data.diff(resource.data)
+                                           .affectedKeys()
+                                           .hasAny(['legal_consent']);
+
+      // Eliminación: no permitida desde el cliente.
+      // La baja de cuenta se gestiona desde el backend (Admin SDK).
+      allow delete: if false;
+    }
+
+    // ── Denegar acceso a cualquier otra colección ────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

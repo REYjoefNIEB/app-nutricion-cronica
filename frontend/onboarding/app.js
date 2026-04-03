@@ -2,17 +2,51 @@
 // [ARQUITECTO VISUAL — sin modificaciones] Lógica de UI e i18n
 // [LÓGICO BACKEND] Submit handler migrado a Firestore — 2026-04-02
 // [AGENTE 01 — Legal & Compliance] Consentimiento Informado — 2026-04-02
+// [LÓGICO BACKEND] SHA-256 consent hash + banner dinámico — 2026-04-03
 // Aprobado por Auditor Médico — 2026-04-02
 // =================================================================
+
+/**
+ * Genera un hash SHA-256 del contenido textual visible del documento legal.
+ * Se usa como huella de integridad del consentimiento guardada en Firestore.
+ * @returns {Promise<string>} Hash hex de 64 caracteres.
+ */
+async function _hashLegalText() {
+    const legalEl = document.getElementById('legal-document-text');
+    const text    = legalEl ? legalEl.textContent.trim() : '';
+    const encoded = new TextEncoder().encode(text);
+    const hashBuf = await crypto.subtle.digest('SHA-256', encoded);
+    return Array.from(new Uint8Array(hashBuf))
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+}
 const currentLang = 'es';
 const t  = translations[currentLang];
 const lc = legalContent[currentLang];
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ── [LÓGICO BACKEND] Banner dinámico por zona horaria ────────
+    // Si el usuario está en Chile → número de emergencias local (131).
+    // En cualquier otra zona horaria → mensaje genérico internacionalizado.
+    const bannerSpan = document.querySelector('#emergency-banner span');
+    if (bannerSpan) {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        if (tz === 'America/Santiago') {
+            bannerSpan.textContent =
+                'Nura no atiende emergencias. Llama al 131 si estás en crisis.';
+        } else {
+            bannerSpan.textContent =
+                'Nura does not handle emergencies. ' +
+                'Call your local emergency services (e.g. 911) if you are in crisis.';
+        }
+    }
+    // ── [FIN BANNER DINÁMICO] ─────────────────────────────────────
+
     // Inyección de textos (original del Arquitecto, intacto)
     document.getElementById('title').textContent           = t.pageTitle;
     document.getElementById('subtitle').textContent        = t.pageSubtitle;
+    document.getElementById('label-birthdate').textContent = t.birthdateLabel;
     document.getElementById('label-weight').textContent    = t.weightLabel;
     document.getElementById('input-weight').placeholder    = t.weightPlaceholder;
     document.getElementById('label-height').textContent    = t.heightLabel;
@@ -35,28 +69,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('btn-submit').textContent  = t.submitBtn;
+    document.getElementById('btn-export').textContent  = t.exportBtn;
     document.getElementById('footer-text').textContent = t.footerText;
 
+    // ── [AGENTE 04] Exportación de Datos (JSON) ────────────────
+    const btnExport = document.getElementById('btn-export');
+    btnExport.addEventListener('click', async () => {
+        try {
+            const profileData = await MedicalStorage.loadProfile();
+            const exportData = profileData || { error: "No hay datos para exportar." };
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportData, null, 2));
+            const anchor = document.createElement('a');
+            anchor.href = dataStr;
+            anchor.download = "Nura_Exportacion_Medica.json";
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+        } catch (e) {
+            console.error("Error al exportar:", e);
+        }
+    });
+
     // ── [AGENTE 01] Inyección de contenido legal ──────────────────
-    document.getElementById('consent-title').textContent    = lc.consentSectionTitle;
-    document.getElementById('disclaimer-title').textContent = lc.disclaimerTitle;
-    document.getElementById('disclaimer-text').textContent  = lc.disclaimerText;
-    document.getElementById('privacy-title').textContent    = lc.privacyTitle;
-    document.getElementById('privacy-text').textContent     = lc.privacyText;
-    document.getElementById('ai-title').textContent         = lc.aiTitle;
-    document.getElementById('ai-text').textContent          = lc.aiText;
-    document.getElementById('label-terms').textContent      = lc.consentTermsLabel;
+    document.getElementById('consent-title').textContent     = lc.consentSectionTitle;
+    document.getElementById('disclaimer-title').textContent  = lc.disclaimerTitle;
+    document.getElementById('disclaimer-text').textContent   = lc.disclaimerText;
+    document.getElementById('privacy-title').textContent     = lc.privacyTitle;
+    document.getElementById('privacy-text').textContent      = lc.privacyText;
+    document.getElementById('terms-title').textContent       = lc.termsTitle;
+    document.getElementById('terms-text').textContent        = lc.termsText;
+    document.getElementById('ai-title').textContent          = lc.aiTitle;
+    document.getElementById('ai-text').textContent           = lc.aiText;
+    document.getElementById('label-terms').textContent       = lc.consentTermsLabel;
     document.getElementById('label-ai-training').textContent = lc.consentAiLabel;
 
     // Acordeones de texto legal (toggle show/hide)
     function _setupToggle(btnId, bodyId) {
         const btn  = document.getElementById(btnId);
         const body = document.getElementById(bodyId);
-        const span = btn.querySelector('span');
         btn.addEventListener('click', () => {
             const isHidden = body.hidden;
             body.hidden = !isHidden;
-            // Actualiza la etiqueta del botón para accesibilidad
             btn.setAttribute('aria-expanded', String(isHidden));
         });
         btn.setAttribute('aria-expanded', 'false');
@@ -64,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     _setupToggle('toggle-disclaimer', 'body-disclaimer');
     _setupToggle('toggle-privacy',    'body-privacy');
+    _setupToggle('toggle-terms',      'body-terms');
     _setupToggle('toggle-ai',         'body-ai');
 
     // Habilita el botón submit solo cuando el checkbox obligatorio está marcado
@@ -115,8 +169,27 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 1. Captura de datos del formulario
+        // 1. Captura de datos del formulario y validación de edad
+        const birthdateStr = document.getElementById('input-birthdate').value;
+        const birthdate = new Date(birthdateStr);
+        const today = new Date();
+        let age = today.getFullYear() - birthdate.getFullYear();
+        const m = today.getMonth() - birthdate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
+            age--;
+        }
+        
+        if (age < 18) {
+            // BLINDAJE DE DATOS: el bloqueo ocurre aquí, antes de cualquier
+            // llamada a MedicalStorage o Firestore. Ningún dato de un menor
+            // llega al caché local ni a la nube.
+            showError("Debes ser mayor de 18 años para utilizar esta aplicación.");
+            document.getElementById('input-birthdate').focus();
+            return;
+        }
+
         const profile = {
+            birthdate: birthdateStr,
             weight:    parseFloat(document.getElementById('input-weight').value),
             height:    parseInt(document.getElementById('input-height').value, 10),
             pathology: document.getElementById('select-pathology').value
@@ -166,10 +239,16 @@ document.addEventListener('DOMContentLoaded', () => {
             // Guardado como sub-objeto para separación semántica clara en Firestore
             // y facilitar consultas de cumplimiento (ej. todos los users en v1.x.x).
             const consentTimestamp = new Date().toISOString();
+
+            // SHA-256 del texto legal visible — huella de integridad del consentimiento.
+            // Permite auditar en el futuro que el usuario aceptó exactamente esta versión.
+            const legalHash = await _hashLegalText();
+
             const payload = {
                 uid:         user.uid,
                 email:       user.email,
                 displayName: user.displayName || null,
+                birthdate:   profile.birthdate,
                 weight:      profile.weight,
                 height:      profile.height,
                 pathology:   profile.pathology,
@@ -178,7 +257,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     ai_training_opt_in: document.getElementById('check-ai-training').checked,
                     user_agent:         navigator.userAgent,
                     legal_version:      LEGAL_VERSION,
-                    accepted_at:        consentTimestamp
+                    accepted_at:        consentTimestamp,
+                    legal_hash:         legalHash   // SHA-256 del texto legal aceptado
                 },
                 updatedAt: consentTimestamp
             };
