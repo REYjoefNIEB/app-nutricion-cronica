@@ -1,0 +1,1122 @@
+{
+  "erc_estadio_1": {
+    "nombre": "ERC Estadio 1 (TFG >90, daño renal leve)",
+    "cluster": "renal",
+    "fase_de": "insuficiencia_renal_cronica",
+    "clasificacion": "KDIGO",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Control de sodio recomendado desde ERC temprana."
+      },
+      {
+        "feature_ingrediente": ["fosfato","acido fosforico","polifosfato"],
+        "severidad": "moderado",
+        "motivo": "Limitar aditivos con fósforo como prevención."
+      }
+    ]
+  },
+  "erc_estadio_2": {
+    "nombre": "ERC Estadio 2 (TFG 60-89)",
+    "cluster": "renal",
+    "fase_de": "insuficiencia_renal_cronica",
+    "clasificacion": "KDIGO",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Sodio <2g/día recomendado en ERC estadio 2."
+      },
+      {
+        "feature_ingrediente": ["fosfato","acido fosforico","polifosfato","pirofosfato"],
+        "severidad": "moderado",
+        "motivo": "Los aditivos con fósforo aceleran la progresión renal."
+      }
+    ]
+  },
+  "erc_estadio_3a": {
+    "nombre": "ERC Estadio 3a (TFG 45-59)",
+    "cluster": "renal",
+    "fase_de": "insuficiencia_renal_cronica",
+    "clasificacion": "KDIGO",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Restricción de sodio estricta (<2g/día) en ERC 3a."
+      },
+      {
+        "feature_ingrediente": ["fosfato","acido fosforico","polifosfato","pirofosfato"],
+        "severidad": "critico",
+        "motivo": "Los fosfatos agravan la ERC. Fósforo <1000mg/día."
+      },
+      {
+        "feature_ingrediente": ["whey","proteina concentrada","suero de leche"],
+        "severidad": "moderado",
+        "motivo": "Moderar proteínas. Consultar nefrólogo para ajuste (0.8g/kg/día)."
+      }
+    ]
+  },
+  "erc_estadio_3b": {
+    "nombre": "ERC Estadio 3b (TFG 30-44)",
+    "cluster": "renal",
+    "fase_de": "insuficiencia_renal_cronica",
+    "clasificacion": "KDIGO",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Restricción estricta de sodio en ERC 3b."
+      },
+      {
+        "feature_ingrediente": ["fosfato","acido fosforico","polifosfato","pirofosfato"],
+        "severidad": "critico",
+        "motivo": "Fósforo <800mg/día obligatorio."
+      },
+      {
+        "feature_ingrediente": ["potasio","cloruro de potasio"],
+        "severidad": "moderado",
+        "motivo": "Empezar a vigilar potasio en ERC 3b. Control con exámenes."
+      },
+      {
+        "feature_ingrediente": ["whey","proteina concentrada"],
+        "severidad": "critico",
+        "motivo": "Restricción proteica: 0.6-0.8g/kg/día."
+      }
+    ]
+  },
+  "erc_estadio_4": {
+    "nombre": "ERC Estadio 4 (TFG 15-29)",
+    "cluster": "renal",
+    "fase_de": "insuficiencia_renal_cronica",
+    "clasificacion": "KDIGO",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio estricto <1.5g/día en ERC 4."
+      },
+      {
+        "feature_ingrediente": ["fosfato","acido fosforico","polifosfato","pirofosfato"],
+        "severidad": "critico",
+        "motivo": "Fósforo <800mg/día. Los fosfatos son extremadamente peligrosos."
+      },
+      {
+        "feature_ingrediente": ["potasio","cloruro de potasio","platano","banana","naranja","tomate"],
+        "severidad": "critico",
+        "motivo": "PELIGRO: Potasio <2g/día en ERC 4. Riesgo de hipercalemia."
+      },
+      {
+        "feature_ingrediente": ["whey","proteina concentrada"],
+        "severidad": "critico",
+        "motivo": "Proteína estricta: 0.6g/kg/día."
+      }
+    ]
+  },
+  "erc_estadio_5": {
+    "nombre": "ERC Estadio 5 Prediálisis (TFG <15)",
+    "cluster": "renal",
+    "fase_de": "insuficiencia_renal_cronica",
+    "clasificacion": "KDIGO",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio estrictísimo en ERC 5. Riesgo vital."
+      },
+      {
+        "feature_ingrediente": ["fosfato","acido fosforico","polifosfato"],
+        "severidad": "critico",
+        "motivo": "Fósforo debe estar controlado. Peligro de calcificaciones."
+      },
+      {
+        "feature_ingrediente": ["potasio","cloruro de potasio","platano","banana","naranja","tomate","papa","legumbre"],
+        "severidad": "critico",
+        "motivo": "PELIGRO VITAL: Potasio estrictamente limitado. Riesgo de arritmia cardíaca."
+      },
+      {
+        "feature_ingrediente": ["whey","proteina concentrada"],
+        "severidad": "critico",
+        "motivo": "Proteína muy restringida: 0.6g/kg/día o menos."
+      },
+      {
+        "feature_ingrediente": ["liquido","agua","jugo","leche"],
+        "severidad": "moderado",
+        "motivo": "Control de líquidos puede ser necesario. Consultar nefrólogo."
+      }
+    ]
+  },
+  "ic_nyha_1": {
+    "nombre": "Insuficiencia Cardíaca NYHA Clase I (sin síntomas)",
+    "cluster": "cardiovascular",
+    "fase_de": "insuficiencia_cardiaca",
+    "clasificacion": "NYHA",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Control de sodio preventivo en IC clase I. Máximo 2g/día."
+      }
+    ]
+  },
+  "ic_nyha_2": {
+    "nombre": "Insuficiencia Cardíaca NYHA Clase II (síntomas con esfuerzo ordinario)",
+    "cluster": "cardiovascular",
+    "fase_de": "insuficiencia_cardiaca",
+    "clasificacion": "NYHA",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio <2g/día obligatorio en IC clase II."
+      },
+      {
+        "feature_ingrediente": ["cafeina","cafe","guarana","taurina"],
+        "severidad": "moderado",
+        "motivo": "Los estimulantes pueden agravar arritmias."
+      }
+    ]
+  },
+  "ic_nyha_3": {
+    "nombre": "Insuficiencia Cardíaca NYHA Clase III (síntomas con esfuerzo mínimo)",
+    "cluster": "cardiovascular",
+    "fase_de": "insuficiencia_cardiaca",
+    "clasificacion": "NYHA",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio <1.5g/día en IC clase III. Retención de líquidos."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "moderate",
+        "severidad": "moderado",
+        "motivo": "Vigilar sodio moderado también."
+      },
+      {
+        "feature_ingrediente": ["cafeina","cafe","guarana","taurina"],
+        "severidad": "critico",
+        "motivo": "Estimulantes pueden desencadenar arritmias graves."
+      }
+    ]
+  },
+  "ic_nyha_4": {
+    "nombre": "Insuficiencia Cardíaca NYHA Clase IV (síntomas en reposo)",
+    "cluster": "cardiovascular",
+    "fase_de": "insuficiencia_cardiaca",
+    "clasificacion": "NYHA",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio <1.5g/día estricto. Riesgo vital."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "moderate",
+        "severidad": "critico",
+        "motivo": "Incluso sodio moderado es peligroso en NYHA IV."
+      },
+      {
+        "feature_ingrediente": ["cafeina","cafe","guarana","taurina"],
+        "severidad": "critico",
+        "motivo": "Estimulantes contraindicados. Riesgo de arritmia fatal."
+      },
+      {
+        "feature_ingrediente": ["liquido","agua","jugo","sopa"],
+        "severidad": "moderado",
+        "motivo": "Restricción de líquidos <1.5L/día. Consultar cardiólogo."
+      }
+    ]
+  },
+  "cirrosis_child_a": {
+    "nombre": "Cirrosis Child-Pugh A (compensada)",
+    "cluster": "hepatico",
+    "fase_de": "cirrosis",
+    "clasificacion": "Child-Pugh",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Control de sodio preventivo en cirrosis compensada."
+      },
+      {
+        "feature_ingrediente": ["alcohol","cerveza","vino"],
+        "severidad": "critico",
+        "motivo": "Alcohol ABSOLUTAMENTE contraindicado en cirrosis."
+      }
+    ]
+  },
+  "cirrosis_child_b": {
+    "nombre": "Cirrosis Child-Pugh B (moderada)",
+    "cluster": "hepatico",
+    "fase_de": "cirrosis",
+    "clasificacion": "Child-Pugh",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio <2g/día. Riesgo de ascitis."
+      },
+      {
+        "feature_ingrediente": ["alcohol","cerveza","vino"],
+        "severidad": "critico",
+        "motivo": "Alcohol ABSOLUTAMENTE contraindicado."
+      },
+      {
+        "feature_ingrediente": ["hierro","suplemento de hierro"],
+        "severidad": "moderado",
+        "motivo": "El hierro es hepatotóxico en cirrosis avanzada."
+      }
+    ]
+  },
+  "cirrosis_child_c": {
+    "nombre": "Cirrosis Child-Pugh C (severa/descompensada)",
+    "cluster": "hepatico",
+    "fase_de": "cirrosis",
+    "clasificacion": "Child-Pugh",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio estricto <1.5g/día. Ascitis severa."
+      },
+      {
+        "feature_ingrediente": ["alcohol","cerveza","vino"],
+        "severidad": "critico",
+        "motivo": "Alcohol ABSOLUTAMENTE contraindicado."
+      },
+      {
+        "feature_ingrediente": ["proteina","carne","whey","caseina"],
+        "severidad": "moderado",
+        "motivo": "Restricción proteica si hay encefalopatía hepática. Preferir proteínas vegetales."
+      },
+      {
+        "feature_ingrediente": ["hierro","suplemento de hierro"],
+        "severidad": "critico",
+        "motivo": "El hierro es extremadamente hepatotóxico en Child C."
+      }
+    ]
+  },
+  "diabetes_t2_con_nefropatia": {
+    "nombre": "Diabetes T2 con Nefropatía Diabética",
+    "cluster": "metabolico",
+    "fase_de": "diabetes_t2",
+    "clasificacion": "Complicación",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN AZÚCARES. Control glucémico estricto por nefropatía."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio restringido para proteger la función renal."
+      },
+      {
+        "feature_ingrediente": ["fosfato","acido fosforico"],
+        "severidad": "critico",
+        "motivo": "Los fosfatos agravan la nefropatía diabética."
+      },
+      {
+        "feature_ingrediente": ["potasio","cloruro de potasio"],
+        "severidad": "moderado",
+        "motivo": "Vigilar potasio si TFG disminuida."
+      },
+      {
+        "feature_ingrediente": ["whey","proteina concentrada"],
+        "severidad": "moderado",
+        "motivo": "Restricción proteica (0.8g/kg/día) en nefropatía diabética."
+      }
+    ]
+  },
+  "diabetes_t2_con_neuropatia": {
+    "nombre": "Diabetes T2 con Neuropatía Diabética",
+    "cluster": "metabolico",
+    "fase_de": "diabetes_t2",
+    "clasificacion": "Complicación",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Control glucémico ESTRICTO. La hiperglucemia daña nervios."
+      },
+      {
+        "feature_ingrediente": ["alcohol","cerveza","vino"],
+        "severidad": "critico",
+        "motivo": "El alcohol es directamente neurotóxico y empeora neuropatía."
+      },
+      {
+        "feature_ingrediente": ["azucar","jarabe","fructosa","glucosa"],
+        "severidad": "critico",
+        "motivo": "Azúcares simples causan picos glucémicos que dañan nervios."
+      }
+    ]
+  },
+  "diabetes_t2_con_retinopatia": {
+    "nombre": "Diabetes T2 con Retinopatía Diabética",
+    "cluster": "metabolico",
+    "fase_de": "diabetes_t2",
+    "clasificacion": "Complicación",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Control glucémico estricto para frenar daño retiniano."
+      },
+      {
+        "feature_ingrediente": ["azucar","jarabe","fructosa"],
+        "severidad": "critico",
+        "motivo": "Los picos glucémicos aceleran la retinopatía."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Controlar PA para proteger microvasculatura retiniana."
+      }
+    ]
+  },
+  "diabetes_t2_con_gastroparesia": {
+    "nombre": "Diabetes T2 con Gastroparesia",
+    "cluster": "metabolico",
+    "fase_de": "diabetes_t2",
+    "clasificacion": "Complicación",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Control glucémico necesario."
+      },
+      {
+        "feature_sello": "fat",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Las grasas retardan el vaciamiento gástrico. Empeoran gastroparesia."
+      },
+      {
+        "feature_ingrediente": ["fibra insoluble","salvado","semilla"],
+        "severidad": "moderado",
+        "motivo": "La fibra insoluble puede formar bezoares en gastroparesia."
+      }
+    ]
+  },
+  "diabetes_t2_descompensada": {
+    "nombre": "Diabetes T2 Descompensada (HbA1c >9%)",
+    "cluster": "metabolico",
+    "fase_de": "diabetes_t2",
+    "clasificacion": "Complicación",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "PELIGRO: HbA1c >9%. Control glucémico urgente."
+      },
+      {
+        "feature_ingrediente": ["azucar","jarabe","fructosa","glucosa","maltodextrina","dextrosa","sacarosa","miel","panela"],
+        "severidad": "critico",
+        "motivo": "Azúcares añadidos ESTRICTAMENTE prohibidos en diabetes descompensada."
+      },
+      {
+        "feature_ingrediente": ["harina refinada","harina blanca","arroz blanco"],
+        "severidad": "moderado",
+        "motivo": "Carbohidratos refinados empeoran la descompensación."
+      },
+      {
+        "feature_ingrediente": ["alcohol","cerveza","vino"],
+        "severidad": "critico",
+        "motivo": "El alcohol desestabiliza glucemia en diabetes descompensada."
+      }
+    ]
+  },
+  "epoc_gold_1": {
+    "nombre": "EPOC GOLD 1 (Leve, FEV1 ≥80%)",
+    "cluster": "respiratorio",
+    "fase_de": "epoc",
+    "clasificacion": "GOLD",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Control de sodio preventivo en EPOC."
+      }
+    ]
+  },
+  "epoc_gold_2": {
+    "nombre": "EPOC GOLD 2 (Moderado, FEV1 50-79%)",
+    "cluster": "respiratorio",
+    "fase_de": "epoc",
+    "clasificacion": "GOLD",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Sodio agrava retención de líquidos pulmonares."
+      },
+      {
+        "feature_ingrediente": ["gaseosa","bebida carbonatada"],
+        "severidad": "moderado",
+        "motivo": "La carbonatación genera distensión que dificulta respiración."
+      }
+    ]
+  },
+  "epoc_gold_3": {
+    "nombre": "EPOC GOLD 3 (Grave, FEV1 30-49%)",
+    "cluster": "respiratorio",
+    "fase_de": "epoc",
+    "clasificacion": "GOLD",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio estricto en EPOC grave."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Los carbohidratos generan más CO2 que las grasas. Preferir grasas saludables."
+      },
+      {
+        "feature_ingrediente": ["gaseosa","bebida carbonatada"],
+        "severidad": "critico",
+        "motivo": "Contraindicadas en EPOC grave."
+      }
+    ]
+  },
+  "epoc_gold_4": {
+    "nombre": "EPOC GOLD 4 (Muy grave, FEV1 <30%)",
+    "cluster": "respiratorio",
+    "fase_de": "epoc",
+    "clasificacion": "GOLD",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio estrictísimo. Cor pulmonale posible."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "GOLD 4: Carbohidratos generan exceso de CO2. Dieta alta en grasas saludables."
+      },
+      {
+        "feature_ingrediente": ["diet","light","bajo en calorias"],
+        "severidad": "moderado",
+        "motivo": "Caquexia frecuente en GOLD 4. Se necesita alta ingesta calórica."
+      }
+    ]
+  },
+  "crohn_remision": {
+    "nombre": "Enfermedad de Crohn en Remisión",
+    "cluster": "digestivo",
+    "fase_de": "crohn",
+    "clasificacion": "Actividad",
+    "reglas": [
+      {
+        "feature_ingrediente": ["emulsionante","carragenina","polisorbato","carboximetilcelulosa"],
+        "severidad": "moderado",
+        "motivo": "Los emulsionantes pueden mantener inflamación subclínica. Evitar como prevención."
+      }
+    ]
+  },
+  "crohn_brote_leve": {
+    "nombre": "Enfermedad de Crohn — Brote Leve",
+    "cluster": "digestivo",
+    "fase_de": "crohn",
+    "clasificacion": "Actividad",
+    "reglas": [
+      {
+        "feature_ingrediente": ["emulsionante","carragenina","polisorbato","carboximetilcelulosa"],
+        "severidad": "critico",
+        "motivo": "Los emulsionantes agravan la inflamación intestinal en brote."
+      },
+      {
+        "feature_ingrediente": ["fibra insoluble","salvado"],
+        "severidad": "moderado",
+        "motivo": "La fibra insoluble irrita el intestino inflamado."
+      },
+      {
+        "feature_ingrediente": ["lactosa","leche"],
+        "severidad": "moderado",
+        "motivo": "La lactosa se tolera mal durante brotes de Crohn."
+      }
+    ]
+  },
+  "crohn_brote_severo": {
+    "nombre": "Enfermedad de Crohn — Brote Severo",
+    "cluster": "digestivo",
+    "fase_de": "crohn",
+    "clasificacion": "Actividad",
+    "reglas": [
+      {
+        "feature_ingrediente": ["emulsionante","carragenina","polisorbato"],
+        "severidad": "critico",
+        "motivo": "Emulsionantes PROHIBIDOS en brote severo."
+      },
+      {
+        "feature_ingrediente": ["fibra insoluble","salvado","semilla","cascara"],
+        "severidad": "critico",
+        "motivo": "Fibra insoluble contraindicada. Riesgo de obstrucción."
+      },
+      {
+        "feature_ingrediente": ["lactosa","leche"],
+        "severidad": "critico",
+        "motivo": "Lactosa contraindicada en brote severo."
+      },
+      {
+        "feature_ingrediente": ["grasa","frito","aceite"],
+        "severidad": "moderado",
+        "motivo": "Grasas mal toleradas. Preferir dieta baja en residuos."
+      },
+      {
+        "feature_ingrediente": ["alcohol","cerveza","vino"],
+        "severidad": "critico",
+        "motivo": "Alcohol contraindicado en brote severo."
+      }
+    ]
+  },
+  "crohn_posquirurgico": {
+    "nombre": "Enfermedad de Crohn — Post-Quirúrgico",
+    "cluster": "digestivo",
+    "fase_de": "crohn",
+    "clasificacion": "Actividad",
+    "reglas": [
+      {
+        "feature_ingrediente": ["grasa","aceite","manteca"],
+        "severidad": "moderado",
+        "motivo": "Malabsorción de grasas por intestino corto. Tomar con enzimas."
+      },
+      {
+        "feature_ingrediente": ["lactosa","leche"],
+        "severidad": "moderado",
+        "motivo": "Lactosa mal tolerada post-resección ileal."
+      },
+      {
+        "feature_ingrediente": ["oxalato","espinaca","ruibarbo","chocolate"],
+        "severidad": "moderado",
+        "motivo": "Riesgo de cálculos de oxalato por malabsorción de grasas."
+      }
+    ]
+  },
+  "cu_remision": {
+    "nombre": "Colitis Ulcerosa en Remisión",
+    "cluster": "digestivo",
+    "fase_de": "colitis_ulcerosa",
+    "clasificacion": "Mayo Score",
+    "reglas": [
+      {
+        "feature_ingrediente": ["emulsionante","carragenina","polisorbato"],
+        "severidad": "moderado",
+        "motivo": "Evitar emulsionantes como prevención de recaída."
+      }
+    ]
+  },
+  "cu_brote_leve_moderado": {
+    "nombre": "Colitis Ulcerosa — Brote Leve/Moderado",
+    "cluster": "digestivo",
+    "fase_de": "colitis_ulcerosa",
+    "clasificacion": "Mayo Score",
+    "reglas": [
+      {
+        "feature_ingrediente": ["emulsionante","carragenina","polisorbato"],
+        "severidad": "critico",
+        "motivo": "Emulsionantes agravan inflamación colónica."
+      },
+      {
+        "feature_ingrediente": ["sulfito","dioxido de azufre"],
+        "severidad": "critico",
+        "motivo": "Sulfitos desencadenan brotes de colitis."
+      },
+      {
+        "feature_ingrediente": ["fibra insoluble","salvado"],
+        "severidad": "moderado",
+        "motivo": "Fibra insoluble irrita el colon inflamado."
+      }
+    ]
+  },
+  "cu_brote_severo": {
+    "nombre": "Colitis Ulcerosa — Brote Severo",
+    "cluster": "digestivo",
+    "fase_de": "colitis_ulcerosa",
+    "clasificacion": "Mayo Score",
+    "reglas": [
+      {
+        "feature_ingrediente": ["emulsionante","carragenina","polisorbato"],
+        "severidad": "critico",
+        "motivo": "Emulsionantes PROHIBIDOS."
+      },
+      {
+        "feature_ingrediente": ["sulfito","dioxido de azufre"],
+        "severidad": "critico",
+        "motivo": "Sulfitos contraindicados."
+      },
+      {
+        "feature_ingrediente": ["fibra insoluble","salvado","semilla"],
+        "severidad": "critico",
+        "motivo": "Dieta sin residuos durante brote severo."
+      },
+      {
+        "feature_ingrediente": ["lactosa","leche"],
+        "severidad": "critico",
+        "motivo": "Lactosa contraindicada en brote severo."
+      },
+      {
+        "feature_ingrediente": ["alcohol","cerveza","vino"],
+        "severidad": "critico",
+        "motivo": "Alcohol irrita directamente el colon inflamado."
+      }
+    ]
+  },
+  "cancer_tratamiento_temprano": {
+    "nombre": "Cáncer en Tratamiento — Estadio Temprano",
+    "cluster": "oncologico",
+    "fase_de": "cancer_tratamiento",
+    "clasificacion": "Estadio",
+    "reglas": [
+      {
+        "feature_ingrediente": ["pomelo","toronja","grapefruit"],
+        "severidad": "critico",
+        "motivo": "El pomelo interfiere con quimioterapia."
+      },
+      {
+        "feature_ingrediente": ["suplemento herbal","hierba de san juan","equinacea"],
+        "severidad": "moderado",
+        "motivo": "Los suplementos pueden interferir con el tratamiento."
+      },
+      {
+        "feature_ingrediente": ["crudo","sashimi","ceviche"],
+        "severidad": "moderado",
+        "motivo": "Riesgo de infección por neutropenia. Cocinar bien los alimentos."
+      }
+    ]
+  },
+  "cancer_metastasico": {
+    "nombre": "Cáncer Metastásico en Tratamiento",
+    "cluster": "oncologico",
+    "fase_de": "cancer_tratamiento",
+    "clasificacion": "Estadio",
+    "reglas": [
+      {
+        "feature_ingrediente": ["pomelo","toronja","grapefruit"],
+        "severidad": "critico",
+        "motivo": "Pomelo interfiere con múltiples fármacos oncológicos."
+      },
+      {
+        "feature_ingrediente": ["crudo","sashimi","ceviche","huevo crudo"],
+        "severidad": "critico",
+        "motivo": "PELIGRO: Alimentos crudos con riesgo alto de infección."
+      },
+      {
+        "feature_ingrediente": ["suplemento herbal","hierba de san juan"],
+        "severidad": "critico",
+        "motivo": "Suplementos herbales contraindicados con quimioterapia avanzada."
+      },
+      {
+        "feature_ingrediente": ["diet","light","bajo en calorias"],
+        "severidad": "moderado",
+        "motivo": "Se necesita alta ingesta calórica. Riesgo de caquexia."
+      }
+    ]
+  },
+  "cancer_remision_vigilancia": {
+    "nombre": "Cáncer en Remisión / Vigilancia",
+    "cluster": "oncologico",
+    "fase_de": "cancer_tratamiento",
+    "clasificacion": "Estadio",
+    "reglas": [
+      {
+        "feature_ingrediente": ["nitrito","nitrato","carne procesada"],
+        "severidad": "moderado",
+        "motivo": "Carnes procesadas son carcinógeno Grupo 1 (IARC). Prevención de recurrencia."
+      },
+      {
+        "feature_ingrediente": ["alcohol","cerveza","vino"],
+        "severidad": "moderado",
+        "motivo": "El alcohol aumenta riesgo de recurrencia en varios tipos de cáncer."
+      }
+    ]
+  },
+  "cancer_cuidados_paliativos": {
+    "nombre": "Cáncer — Cuidados Paliativos",
+    "cluster": "oncologico",
+    "fase_de": "cancer_tratamiento",
+    "clasificacion": "Estadio",
+    "reglas": [
+      {
+        "feature_ingrediente": ["pomelo","toronja"],
+        "severidad": "moderado",
+        "motivo": "Verificar interacciones con medicación paliativa."
+      }
+    ]
+  },
+  "embarazo_t1": {
+    "nombre": "Embarazo — Primer Trimestre",
+    "cluster": "embarazo",
+    "fase_de": "embarazo",
+    "clasificacion": "Trimestre",
+    "reglas": [
+      {
+        "feature_ingrediente": ["alcohol","cerveza","vino","licor"],
+        "severidad": "critico",
+        "motivo": "Alcohol ABSOLUTAMENTE contraindicado. Máximo riesgo teratogénico en T1."
+      },
+      {
+        "feature_ingrediente": ["cafeina","cafe","te","guarana"],
+        "severidad": "moderado",
+        "motivo": "Limitar cafeína a <200mg/día."
+      },
+      {
+        "feature_ingrediente": ["crudo","sashimi","ceviche","queso fresco no pasteurizado"],
+        "severidad": "critico",
+        "motivo": "Riesgo de listeriosis y toxoplasmosis. Especialmente peligroso en T1."
+      },
+      {
+        "feature_ingrediente": ["mercurio","atun","pez espada","tiburon"],
+        "severidad": "critico",
+        "motivo": "El mercurio es neurotóxico para el embrión en formación."
+      }
+    ]
+  },
+  "embarazo_t2": {
+    "nombre": "Embarazo — Segundo Trimestre",
+    "cluster": "embarazo",
+    "fase_de": "embarazo",
+    "clasificacion": "Trimestre",
+    "reglas": [
+      {
+        "feature_ingrediente": ["alcohol","cerveza","vino"],
+        "severidad": "critico",
+        "motivo": "Alcohol ABSOLUTAMENTE contraindicado en todo el embarazo."
+      },
+      {
+        "feature_ingrediente": ["cafeina","cafe","guarana"],
+        "severidad": "moderado",
+        "motivo": "Limitar cafeína a <200mg/día."
+      },
+      {
+        "feature_ingrediente": ["mercurio","atun","pez espada"],
+        "severidad": "critico",
+        "motivo": "El mercurio afecta el desarrollo neurológico fetal."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Screening de diabetes gestacional en T2. Controlar azúcares."
+      }
+    ]
+  },
+  "embarazo_t3": {
+    "nombre": "Embarazo — Tercer Trimestre",
+    "cluster": "embarazo",
+    "fase_de": "embarazo",
+    "clasificacion": "Trimestre",
+    "reglas": [
+      {
+        "feature_ingrediente": ["alcohol","cerveza","vino"],
+        "severidad": "critico",
+        "motivo": "Alcohol ABSOLUTAMENTE contraindicado."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Vigilar sodio por riesgo de preeclampsia en T3."
+      },
+      {
+        "feature_ingrediente": ["cafeina","cafe"],
+        "severidad": "moderado",
+        "motivo": "Limitar cafeína. Puede afectar peso al nacer."
+      },
+      {
+        "feature_ingrediente": ["crudo","sashimi"],
+        "severidad": "critico",
+        "motivo": "Riesgo infeccioso. Mantener precauciones hasta el parto."
+      }
+    ]
+  },
+  "puerperio_lactancia": {
+    "nombre": "Puerperio / Lactancia",
+    "cluster": "embarazo",
+    "fase_de": "embarazo",
+    "clasificacion": "Trimestre",
+    "reglas": [
+      {
+        "feature_ingrediente": ["alcohol","cerveza","vino"],
+        "severidad": "critico",
+        "motivo": "El alcohol pasa a la leche materna."
+      },
+      {
+        "feature_ingrediente": ["cafeina","cafe","guarana"],
+        "severidad": "moderado",
+        "motivo": "La cafeína pasa a la leche. Limitar a 300mg/día."
+      }
+    ]
+  },
+  "ar_remision": {
+    "nombre": "Artritis Reumatoide en Remisión",
+    "cluster": "inflamatorio",
+    "fase_de": "artritis_reumatoide",
+    "clasificacion": "DAS28",
+    "reglas": [
+      {
+        "feature_ingrediente": ["grasa trans","grasa hidrogenada"],
+        "severidad": "moderado",
+        "motivo": "Grasas trans promueven inflamación subclínica. Prevención de brote."
+      }
+    ]
+  },
+  "ar_actividad_moderada_alta": {
+    "nombre": "Artritis Reumatoide — Actividad Moderada/Alta",
+    "cluster": "inflamatorio",
+    "fase_de": "artritis_reumatoide",
+    "clasificacion": "DAS28",
+    "reglas": [
+      {
+        "feature_ingrediente": ["aceite de girasol","aceite de maiz","aceite de soja","omega 6"],
+        "severidad": "critico",
+        "motivo": "Omega-6 en exceso promueve prostaglandinas proinflamatorias."
+      },
+      {
+        "feature_ingrediente": ["azucar","jarabe","grasa trans","grasa hidrogenada"],
+        "severidad": "critico",
+        "motivo": "Azúcares y grasas trans amplifican la inflamación articular."
+      },
+      {
+        "feature_ingrediente": ["alcohol","cerveza","vino"],
+        "severidad": "moderado",
+        "motivo": "El alcohol interactúa con metotrexato (hepatotóxico)."
+      }
+    ]
+  },
+  "lupus_remision": {
+    "nombre": "Lupus en Remisión",
+    "cluster": "inflamatorio",
+    "fase_de": "lupus",
+    "clasificacion": "SLEDAI",
+    "reglas": [
+      {
+        "feature_ingrediente": ["alfalfa","brotes de alfalfa"],
+        "severidad": "critico",
+        "motivo": "La alfalfa puede desencadenar brotes incluso en remisión."
+      }
+    ]
+  },
+  "lupus_brote": {
+    "nombre": "Lupus — Brote Activo",
+    "cluster": "inflamatorio",
+    "fase_de": "lupus",
+    "clasificacion": "SLEDAI",
+    "reglas": [
+      {
+        "feature_ingrediente": ["alfalfa","brotes de alfalfa"],
+        "severidad": "critico",
+        "motivo": "PELIGRO: La alfalfa activa el sistema inmune. Contraindicada."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio agrava nefritis lúpica y retención."
+      },
+      {
+        "feature_ingrediente": ["grasa saturada","grasa trans"],
+        "severidad": "critico",
+        "motivo": "Grasas proinflamatorias empeoran el brote de lupus."
+      },
+      {
+        "feature_ingrediente": ["alcohol","cerveza","vino"],
+        "severidad": "critico",
+        "motivo": "El alcohol interactúa con inmunosupresores del lupus."
+      }
+    ]
+  },
+  "lupus_con_nefritis": {
+    "nombre": "Lupus con Nefritis Lúpica",
+    "cluster": "inflamatorio",
+    "fase_de": "lupus",
+    "clasificacion": "SLEDAI",
+    "reglas": [
+      {
+        "feature_ingrediente": ["alfalfa"],
+        "severidad": "critico",
+        "motivo": "Alfalfa contraindicada en lupus."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio <2g/día por nefritis. Proteger función renal."
+      },
+      {
+        "feature_ingrediente": ["fosfato","acido fosforico"],
+        "severidad": "moderado",
+        "motivo": "Limitar fosfatos si hay compromiso renal."
+      },
+      {
+        "feature_ingrediente": ["potasio","cloruro de potasio"],
+        "severidad": "moderado",
+        "motivo": "Vigilar potasio si TFG disminuida por nefritis."
+      }
+    ]
+  },
+  "dialisis_hemodialisis": {
+    "nombre": "Hemodiálisis",
+    "cluster": "renal",
+    "fase_de": "dialisis",
+    "clasificacion": "Modalidad",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio estricto entre sesiones de hemodiálisis."
+      },
+      {
+        "feature_ingrediente": ["fosfato","acido fosforico","polifosfato"],
+        "severidad": "critico",
+        "motivo": "Fósforo estrictísimo. Riesgo de calcificaciones."
+      },
+      {
+        "feature_ingrediente": ["potasio","cloruro de potasio","platano","banana"],
+        "severidad": "critico",
+        "motivo": "PELIGRO VITAL: Potasio acumulado entre sesiones. Riesgo cardíaco."
+      },
+      {
+        "feature_ingrediente": ["liquido","agua","jugo","sopa"],
+        "severidad": "moderado",
+        "motivo": "Restricción de líquidos entre sesiones (500ml + diuresis residual)."
+      }
+    ]
+  },
+  "dialisis_peritoneal": {
+    "nombre": "Diálisis Peritoneal",
+    "cluster": "renal",
+    "fase_de": "dialisis",
+    "clasificacion": "Modalidad",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Control de sodio en diálisis peritoneal."
+      },
+      {
+        "feature_ingrediente": ["fosfato","acido fosforico","polifosfato"],
+        "severidad": "critico",
+        "motivo": "Fósforo estricto."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "La diálisis peritoneal absorbe glucosa del dializado. Vigilar azúcares adicionales."
+      },
+      {
+        "feature_ingrediente": ["potasio","cloruro de potasio"],
+        "severidad": "moderado",
+        "motivo": "Potasio menos restrictivo que en hemodiálisis, pero vigilar."
+      }
+    ]
+  },
+  "trasplante_post_inmediato": {
+    "nombre": "Trasplante Renal — Post-Operatorio (<3 meses)",
+    "cluster": "renal",
+    "fase_de": "transplante_renal",
+    "clasificacion": "Tiempo",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio estricto post-trasplante inmediato."
+      },
+      {
+        "feature_ingrediente": ["pomelo","toronja","grapefruit"],
+        "severidad": "critico",
+        "motivo": "PELIGRO: El pomelo interfiere con ciclosporina/tacrolimus."
+      },
+      {
+        "feature_ingrediente": ["crudo","sashimi","ceviche","queso no pasteurizado"],
+        "severidad": "critico",
+        "motivo": "Inmunosupresión máxima. Alimentos crudos contraindicados."
+      },
+      {
+        "feature_ingrediente": ["hierba de san juan","equinacea","suplemento herbal"],
+        "severidad": "critico",
+        "motivo": "Suplementos herbales interfieren con inmunosupresores."
+      }
+    ]
+  },
+  "trasplante_estable": {
+    "nombre": "Trasplante Renal — Estable (3-12 meses)",
+    "cluster": "renal",
+    "fase_de": "transplante_renal",
+    "clasificacion": "Tiempo",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Control de sodio. Cuidar función del injerto."
+      },
+      {
+        "feature_ingrediente": ["pomelo","toronja","grapefruit"],
+        "severidad": "critico",
+        "motivo": "Pomelo SIEMPRE contraindicado con inmunosupresores."
+      },
+      {
+        "feature_ingrediente": ["crudo","sashimi"],
+        "severidad": "moderado",
+        "motivo": "Precaución con alimentos crudos mientras dure inmunosupresión alta."
+      }
+    ]
+  },
+  "trasplante_mantenimiento": {
+    "nombre": "Trasplante Renal — Mantenimiento (>12 meses)",
+    "cluster": "renal",
+    "fase_de": "transplante_renal",
+    "clasificacion": "Tiempo",
+    "reglas": [
+      {
+        "feature_ingrediente": ["pomelo","toronja","grapefruit"],
+        "severidad": "critico",
+        "motivo": "Pomelo SIEMPRE contraindicado con ciclosporina/tacrolimus."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Mantener control de sodio para cuidar el injerto."
+      }
+    ]
+  }
+}

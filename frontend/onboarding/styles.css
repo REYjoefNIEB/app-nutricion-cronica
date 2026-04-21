@@ -355,3 +355,220 @@ select option {
   width: 18px;
   height: 18px;
 }
+
+/* Utilidad */
+.hidden {
+  display: none !important;
+}
+
+/* ── Buscador de patologías (chips + autocompletado) ───────────── */
+.pathology-chips-field {
+  position: relative;
+}
+
+.pathology-chips-field.select-wrapper::after {
+  display: none;
+}
+
+.pathology-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.6rem;
+  min-height: 0;
+}
+
+.pathology-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.55rem 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: rgba(198, 120, 221, 0.15);
+  color: var(--text-main);
+  border: 1px solid rgba(198, 120, 221, 0.35);
+}
+
+.pathology-chip-label {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pathology-chip-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.pathology-chip-remove:hover {
+  background: var(--orange-strong);
+  color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pathology-chip-remove {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* ── Fases Clínicas Panel ───────────────────────────────────────── */
+.fases-panel {
+  margin-top: 0.65rem;
+  padding: 0.75rem 1rem;
+  background: #F0F4FB;
+  border-radius: 12px;
+  border: 1px solid #E5E7EB;
+}
+
+.fases-panel.hidden {
+  display: none;
+}
+
+.fases-section + .fases-section {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #E5E7EB;
+}
+
+.fases-panel-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6B7280;
+  margin: 0 0 0.25rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.fases-panel-clasificacion {
+  font-size: 0.72rem;
+  color: #8B85D6;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.55rem;
+}
+
+.fases-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.fase-chip {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1.5px solid #8B85D6;
+  background: transparent;
+  color: #555;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.fase-chip:hover {
+  background: linear-gradient(135deg, rgba(139,133,214,0.12), rgba(107,165,216,0.12));
+}
+
+.fase-chip.selected {
+  background: linear-gradient(135deg, #8B85D6, #6BA5D8);
+  color: #fff;
+  border-color: transparent;
+}
+
+.fase-chip-desc {
+  display: block;
+  font-size: 10px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+.fase-no-se {
+  border-style: dashed;
+  border-color: #ccc;
+  color: #9CA3AF;
+  font-style: italic;
+}
+
+.fase-no-se:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+.fase-no-se.selected {
+  background: rgba(139,133,214,0.15);
+  color: #8B85D6;
+  border-color: #8B85D6;
+  border-style: solid;
+  font-style: normal;
+}
+/* ── END Fases Clínicas Panel ── */
+
+.pathology-search-wrap {
+  position: relative;
+}
+
+.pathology-search-input {
+  width: 100%;
+}
+
+.pathology-suggestions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+  z-index: 40;
+  max-height: 220px;
+  overflow-y: auto;
+  background: var(--card-bg);
+  border: 2px solid var(--input-border);
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.pathology-suggestion-item {
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: background 0.15s ease;
+}
+
+.pathology-suggestion-item:hover,
+.pathology-suggestion-item:focus {
+  background: rgba(86, 182, 194, 0.12);
+}
+
+.pathology-select-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}

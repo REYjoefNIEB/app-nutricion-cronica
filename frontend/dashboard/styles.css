@@ -1,39 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 :root {
-  --bg-color: #f8fafc;
+  --bg-color: #F8F9FA;
   --card-bg: #ffffff;
   --card-border: #e2e8f0;
+
+  --text-main: #1a202c;
+  --text-muted: #64748b;
+
+  /* ── Nura Brand Palette ── */
+  --primary:        #264653;   /* navy profundo  */
+  --secondary:      #2A9D8F;   /* teal médico    */
+  --success:        #4CAF50;   /* verde estado   */
+
+  /* aliases explícitos */
+  --primary-teal:   #2A9D8F;
+  --primary-navy:   #264653;
+  --status-orange:  #F4A261;
+  --status-green:   #4CAF50;
+  --bg-light:       #F8F9FA;
+
+  --purple:         #7c3aed;   /* sólo uso residual */
+  --yellow-strong:  #d97706;
+  --orange-strong:  #ea580c;
+
+  --input-bg:     #ffffff;
+  --input-border: #cbd5e1;
+
+  /* ── Nura Brand Palette (Login System) ── */
+  --nura-logo-purple: #8B85D6;
+  --nura-logo-blue: #6BA5D8;
+  --nura-logo-gradient: linear-gradient(90deg, #8B85D6 0%, #6BA5D8 100%);
+  --nura-primary-coral: #E8798A;
+  --nura-primary-coral-hover: #D86878;
+  --nura-accent-teal: #14B8A6;
+  --nura-accent-teal-light: #E0F7F4;
+  --nura-bg-main: #F8F9FB;
+  --nura-bg-card: #FFFFFF;
+  --nura-bg-input: #F0F4FB;
+  --nura-border-light: #E5E7EB;
+  --nura-border-input: #D1D5DB;
+  --nura-text-primary: #1F2937;
+  --nura-text-secondary: #6B7280;
+  --nura-text-tertiary: #9CA3AF;
+  --nura-danger: #EF4444;
+  --nura-danger-bg: #FEF2F2;
+  --nura-success: #10B981;
+  --nura-success-bg: #ECFDF5;
+  --nura-warning: #F59E0B;
+  --nura-warning-bg: #FFFBEB;
+  --nura-info: #3B82F6;
+  --nura-info-bg: #EFF6FF;
+
+  /* === NURA V2 GRADIENTES PRINCIPALES === */
+  --nura-grad-brand: linear-gradient(135deg, #8B85D6, #6BA5D8);
+  --nura-grad-coral: linear-gradient(135deg, #E8798A, #D4627A);
+  --nura-grad-teal: linear-gradient(135deg, #14B8A6, #06B6D4);
+  --nura-grad-purple: linear-gradient(135deg, #8B5CF6, #7C3AED);
+  --nura-grad-orange: linear-gradient(135deg, #F59E0B, #F97316);
+  --nura-grad-red: linear-gradient(135deg, #EF4444, #DC2626);
+  --nura-grad-blue: linear-gradient(135deg, #3B82F6, #2563EB);
   
-  --text-main: #282c34;
-  --text-muted: #5c6370;
+  /* === FONDOS GLASSMORPHISM === */
+  --nura-glass-bg: rgba(255, 255, 255, 0.85);
+  --nura-glass-border: rgba(255, 255, 255, 0.5);
+  --nura-glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
   
-  --primary: #d19a66; 
-  --secondary: #56b6c2; 
-  --success: #98c379; 
+  /* === FONDOS SUAVES PARA CARDS === */
+  --nura-bg-brand-light: linear-gradient(135deg, rgba(139, 133, 214, 0.06), rgba(107, 165, 216, 0.06));
+  --nura-bg-teal-light: rgba(20, 184, 166, 0.08);
+  --nura-bg-purple-light: rgba(139, 92, 246, 0.08);
+  --nura-bg-coral-light: rgba(232, 121, 138, 0.08);
   
-  --purple: #c678dd; 
-  --yellow-strong: #e5c07b; 
-  --orange-strong: #e06c75; 
-  
-  --input-bg: #ffffff;
-  --input-border: #abb2bf;
+  /* === TEXTO === */
+  --nura-text-dark: #1a1a2e;
+  --nura-text-mid: #4a5568;
+  --nura-text-light: #94a3b8;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-color: #111827;
-    --card-bg: #1f2937;
-    --card-border: #374151;
-    
-    --text-main: #f9fafb;
-    --text-muted: #9ca3af;
-    
+    --bg-color: #0F1923;
+    --card-bg: #1a2535;
+    --card-border: #2d3f54;
+
+    --text-main: #f0f4f8;
+    --text-muted: #94a3b8;
+
     --input-bg: #111827;
     --input-border: #4b5563;
-    
-    --orange-strong: #e77680;
-    --secondary: #63c9d4;
-    --yellow-strong: #eed08a;
-    --purple: #d18ce4;
+
+    --secondary:       #3bbfb0;   /* teal ligeramente más brillante en oscuro */
+    --primary-teal:    #3bbfb0;
+    --orange-strong:   #f87171;
+    --yellow-strong:   #fbbf24;
+    --purple:          #a78bfa;
   }
 }
 
@@ -46,17 +107,167 @@
 }
 
 body {
-  background-color: var(--bg-color);
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(86, 182, 194, 0.08), transparent 40%),
-    radial-gradient(circle at 100% 100%, rgba(198, 120, 221, 0.08), transparent 40%);
-  color: var(--text-main);
+  font-family: -apple-system, 'Inter', 'Segoe UI', system-ui, sans-serif;
+  color: var(--nura-text-primary);
+  background: var(--nura-bg-main);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start; 
   padding: 2rem 1rem;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nura-title-gradient {
+    background: var(--nura-grad-brand) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: transparent !important;
+    font-weight: 700;
+}
+
+.nura-card-glass {
+    background: var(--nura-glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--nura-glass-border);
+    border-radius: 20px;
+    box-shadow: var(--nura-glass-shadow);
+    padding: 24px;
+}
+
+/* Gradient buttons */
+.nura-btn-grad-coral {
+    background: var(--nura-grad-coral);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 14px 28px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px rgba(232, 121, 138, 0.35);
+}
+.nura-btn-grad-coral:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(232, 121, 138, 0.45);
+}
+
+.nura-btn-grad-teal {
+    background: var(--nura-grad-teal);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 14px 28px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px rgba(20, 184, 166, 0.35);
+}
+.nura-btn-grad-teal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(20, 184, 166, 0.45);
+}
+
+.nura-btn-grad-red {
+    background: var(--nura-grad-red);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+}
+.nura-btn-grad-red:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.45);
+}
+
+/* Icons with gradients */
+.nura-icon-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nura-icon-circle--brand { background: var(--nura-bg-brand-light); color: var(--nura-logo-purple); }
+.nura-icon-circle--teal { background: var(--nura-bg-teal-light); color: var(--nura-accent-teal); }
+.nura-icon-circle--purple { background: var(--nura-bg-purple-light); color: #8B5CF6; }
+.nura-icon-circle--coral { background: var(--nura-bg-coral-light); color: var(--nura-primary-coral); }
+.nura-card {
+    background: var(--nura-bg-card);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--nura-border-light);
+}
+
+.nura-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--nura-border-input);
+    border-radius: 14px;
+    font-size: 15px;
+    background: var(--nura-bg-card);
+    transition: all 0.2s;
+}
+
+.nura-input:focus {
+    border-color: var(--nura-accent-teal);
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+    outline: none;
+}
+
+.nura-input--filled {
+    background: var(--nura-bg-input);
+}
+
+.nura-btn-primary {
+    width: 100%;
+    padding: 14px 24px;
+    background: var(--nura-primary-coral);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nura-btn-primary:hover {
+    background: var(--nura-primary-coral-hover);
+    transform: translateY(-1px);
+}
+
+.nura-btn-secondary {
+    width: 100%;
+    padding: 14px 24px;
+    background: var(--nura-bg-card);
+    color: var(--nura-text-primary);
+    border: 1px solid var(--nura-border-light);
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.nura-btn-danger {
+    background: var(--nura-danger);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 12px;
+}
+
+.nura-icon-delete {
+    color: var(--nura-danger);
+    cursor: pointer;
 }
 
 .container {
@@ -67,16 +278,13 @@ body {
 .header {
   margin-bottom: 2rem;
   animation: fadeDown 0.5s ease-out;
+  text-align: center;
 }
 
 .header h1 {
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, var(--secondary), var(--purple));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .header p {
@@ -92,16 +300,16 @@ body {
 
 /* Tarjeta Principal */
 .dashboard-card {
-  background: var(--card-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--card-border);
-  border-radius: 24px;
-  padding: 2rem;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+  background: var(--nura-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: var(--nura-glass-shadow);
+  border: 1px solid var(--nura-glass-border);
   margin-bottom: 1.5rem;
   animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes slideUp {
@@ -112,19 +320,14 @@ body {
 .card-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--text-main);
+  background: var(--nura-grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-.card-title::before {
-  content: '';
-  display: inline-block;
-  width: 8px;
-  height: 24px;
-  background: var(--primary);
-  border-radius: 4px;
 }
 
 /* Grilla de Métricas Físicas */
@@ -136,28 +339,32 @@ body {
 }
 
 .metric-box {
-  background: var(--input-bg);
-  border: 1px solid var(--input-border);
-  border-radius: 16px;
+  background: var(--nura-bg-card);
+  border: none;
+  border-radius: 20px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
 }
 
 .metric-value {
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--secondary);
+  background: var(--nura-grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 0.25rem;
 }
 
 .metric-label {
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--nura-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -179,7 +386,7 @@ body {
 
 .bmi-title {
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--text-main);
 }
 
@@ -207,12 +414,11 @@ body {
   width: 100%;
   height: 12px;
   background: linear-gradient(to right, 
-    var(--secondary) 0%, 
-    var(--secondary) 25%, 
-    var(--success) 45%, 
-    var(--success) 55%, 
-    var(--yellow-strong) 75%, 
-    var(--orange-strong) 100%
+    #14B8A6 0%, 
+    #06B6D4 25%, 
+    #10B981 45%, 
+    #F59E0B 75%, 
+    #EF4444 100%
   );
   border-radius: 6px;
   position: relative;
@@ -224,13 +430,17 @@ body {
   width: 14px;
   height: 22px;
   background: #ffffff;
-  border: 3px solid var(--text-main);
-  border-radius: 6px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 99px;
+  font-weight: 400;
   position: absolute;
   top: -5px;
   transform: translateX(-50%);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bmi-labels {
@@ -252,20 +462,22 @@ body {
 .action-btn {
   display: flex;
   align-items: center;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  background: var(--nura-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--nura-glass-border);
   border-radius: 20px;
-  padding: 1.25rem;
+  padding: 16px;
   text-decoration: none;
-  color: var(--text-main);
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  color: var(--nura-text-primary);
+  box-shadow: var(--nura-glass-shadow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .action-btn:hover {
-  transform: translateY(-3px);
-  border-color: var(--secondary);
-  box-shadow: 0 8px 24px rgba(86, 182, 194, 0.15);
+  background: var(--nura-bg-teal-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
 }
 
 .action-icon {
@@ -279,9 +491,9 @@ body {
   margin-right: 1rem;
 }
 
-.icon-profile { background: rgba(86, 182, 194, 0.15); }
-.icon-meds { background: rgba(198, 120, 221, 0.15); }
-.icon-scan { background: rgba(209, 154, 102, 0.15); }
+.icon-profile { background: rgba(139, 133, 214, 0.15); color: var(--nura-logo-purple); }
+.icon-meds { background: rgba(232, 121, 138, 0.15); color: var(--nura-primary-coral); }
+.icon-scan { background: rgba(20, 184, 166, 0.15); color: var(--nura-accent-teal); }
 
 .action-text {
   flex: 1;
@@ -290,7 +502,7 @@ body {
 }
 
 .action-arrow {
-  color: var(--text-muted);
+  color: #D1D5DB;
   font-size: 1.2rem;
   transition: transform 0.3s;
 }
@@ -304,3 +516,5011 @@ body {
 ::-webkit-scrollbar-track { background: var(--bg-color); }
 ::-webkit-scrollbar-thumb { background: var(--input-border); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--yellow-strong); }
+
+/* --- Scanner Hybrid Interface --- */
+.hybrid-search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.search-input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-input-group input {
+  flex: 1;
+  border-radius: 14px;
+  padding: 14px 16px;
+  background: var(--nura-bg-card);
+  border: 1px solid var(--nura-border-input);
+  color: var(--nura-text-primary);
+  outline: none;
+  font-size: 15px;
+  transition: all 0.2s;
+}
+.search-input-group input:focus {
+  border-color: var(--nura-accent-teal);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+.btn-search {
+  width: 3rem;
+  border-radius: 14px;
+  background: var(--nura-bg-card);
+  border: 1px solid var(--nura-border-input);
+  color: var(--nura-text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.btn-search:hover {
+  background: var(--nura-bg-main);
+}
+
+.btn-scan-action {
+  background: var(--nura-bg-card);
+  border: none;
+  position: relative;
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--nura-text-primary);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1; /* relative to ::before */
+}
+
+.btn-scan-action::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(135deg, #8B85D6, #6BA5D8);
+  border-radius: 18px;
+  z-index: -1;
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 2px;
+}
+.btn-scan-action:hover {
+  background: var(--nura-accent-teal-light);
+  transform: translateY(-2px);
+}
+
+/* Result Card */
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.product-photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-details {
+  flex: 1;
+}
+.product-details h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+  color: var(--text-main);
+}
+
+.traffic-light-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.traffic-light {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--input-border);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.3s;
+}
+.traffic-light.green { background: var(--success); box-shadow: 0 0 10px rgba(152, 195, 121, 0.6); }
+.traffic-light.yellow { background: var(--yellow-strong); box-shadow: 0 0 10px rgba(229, 192, 123, 0.6); }
+.traffic-light.red { background: var(--orange-strong); box-shadow: 0 0 10px rgba(224, 108, 117, 0.6); }
+
+.traffic-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.result-diagnosis {
+  background: rgba(0,0,0,0.03);
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-main);
+}
+
+.result-diagnosis-lead {
+  margin: 0 0 0.5rem 0;
+}
+
+.result-conflicts-list {
+  margin: 0.35rem 0 0 1.15rem;
+  padding: 0;
+  list-style: disc;
+  color: var(--text-main);
+}
+
+.result-conflicts-list li {
+  margin-bottom: 0.4rem;
+  padding-left: 0.15rem;
+}
+
+.result-diagnosis-source {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0.75rem 0 0 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ── Mis Patologías (chips, alineado con onboarding) ───────────── */
+.pathology-section {
+  margin-bottom: 1rem;
+  position: relative;   /* Establece contexto de apilamiento propio */
+  z-index: 10;          /* Gana sobre .med-selector-section que viene después en el DOM */
+}
+
+.pathology-card-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.85rem;
+  line-height: 1.45;
+}
+
+.pathology-save-status {
+  min-height: 1.2em;
+  font-size: 0.8rem;
+  margin-top: 0.55rem;
+  text-align: center;
+}
+
+.pathology-chips-field {
+  position: relative;
+  /* Sin overflow:hidden — el dropdown debe poder salir del contenedor */
+}
+
+.pathology-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.6rem;
+  min-height: 0;
+}
+
+.pathology-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--nura-accent-teal-light);
+  color: var(--nura-accent-teal);
+  border: none;
+}
+
+.pathology-chip-label {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pathology-chip-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--nura-border-light);
+  color: var(--nura-text-secondary);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.pathology-chip-remove:hover {
+  background: var(--orange-strong);
+  color: #fff;
+}
+
+/* ── Fases Clínicas Panel ───────────────────────────────────────── */
+.fases-panel {
+  margin-top: 0.65rem;
+  padding: 0.75rem 1rem;
+  background: var(--nura-bg-input, #F0F4FB);
+  border-radius: 12px;
+  border: 1px solid var(--nura-border-light, #E5E7EB);
+}
+
+.fases-panel.hidden {
+  display: none;
+}
+
+.fases-section + .fases-section {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--nura-border-light, #E5E7EB);
+}
+
+.fases-panel-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--nura-text-secondary, #6B7280);
+  margin: 0 0 0.25rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.fases-panel-clasificacion {
+  font-size: 0.72rem;
+  color: var(--nura-logo-purple, #8B85D6);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.55rem;
+}
+
+.fases-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.fase-chip {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1.5px solid #8B85D6;
+  background: transparent;
+  color: var(--nura-text-secondary, #555);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.fase-chip:hover {
+  background: linear-gradient(135deg, rgba(139,133,214,0.12), rgba(107,165,216,0.12));
+}
+
+.fase-chip.selected {
+  background: linear-gradient(135deg, #8B85D6, #6BA5D8);
+  color: #fff;
+  border-color: transparent;
+}
+
+.fase-chip-desc {
+  display: block;
+  font-size: 10px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+.fase-no-se {
+  border-style: dashed;
+  border-color: #ccc;
+  color: var(--nura-text-tertiary, #9CA3AF);
+  font-style: italic;
+}
+
+.fase-no-se:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+.fase-no-se.selected {
+  background: rgba(139,133,214,0.15);
+  color: var(--nura-logo-purple, #8B85D6);
+  border-color: #8B85D6;
+  border-style: solid;
+  font-style: normal;
+}
+
+@media (prefers-color-scheme: dark) {
+  .fases-panel {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.12);
+  }
+  .fase-chip {
+    color: #ccc;
+  }
+}
+/* ── END Fases Clínicas Panel ── */
+
+@media (prefers-color-scheme: dark) {
+  .pathology-chip-remove {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.pathology-search-wrap {
+  position: relative;
+}
+
+.pathology-search-input {
+  width: 100%;
+  border-radius: 14px;
+  padding: 14px 16px;
+  background: var(--nura-bg-card);
+  border: 1px solid var(--nura-border-input);
+  color: var(--nura-text-primary);
+  outline: none;
+  font-size: 15px;
+  transition: all 0.2s;
+}
+
+.pathology-search-input:focus {
+  border-color: var(--nura-accent-teal);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+.pathology-suggestions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+  z-index: 9999;        /* Supera cualquier stacking context adyacente (backdrop-filter, etc.) */
+  max-height: 220px;
+  overflow-y: auto;
+  background: var(--card-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.pathology-suggestion-item {
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: background 0.15s ease;
+}
+
+.pathology-suggestion-item:hover,
+.pathology-suggestion-item:focus {
+  background: rgba(86, 182, 194, 0.12);
+}
+
+.pathology-select-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn-secondary {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--text-main);
+  border-radius: 12px;
+  padding: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-secondary:hover {
+  background: var(--card-border);
+}
+
+/* ── [LÓGICO BACKEND] Selector de cámaras ─────────────────── */
+
+.camera-select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(86, 182, 194, 0.07);
+  border: 1px solid var(--secondary);
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.camera-select-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.camera-select {
+  flex: 1;
+  min-width: 0;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-size: 0.82rem;
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+  /* Truncar etiquetas largas de cámara virtual */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.camera-select:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 2px rgba(86, 182, 194, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  .camera-select {
+    background: var(--input-bg);
+    color: var(--text-main);
+  }
+}
+
+/* ── [ESCUDO FARMACOLÓGICO] Selector de Medicamentos V2 ───────── */
+.med-selector-section {
+  margin-bottom: 1rem;
+}
+
+.med-card-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.85rem;
+  line-height: 1.45;
+}
+
+/* ── Accordion groups ─────────────────────────────────────────── */
+.med-group {
+  position: relative;
+  background: var(--nura-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--nura-glass-border);
+  border-left: none;
+  border-radius: 14px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  box-shadow: var(--nura-glass-shadow);
+  transition: border-color 0.2s;
+}
+
+.med-group::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0; width: 5px;
+  background: var(--nura-grad-brand);
+}
+
+.med-group[open] {
+  border-color: rgba(86, 182, 194, 0.4);
+}
+
+.med-group-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  background: var(--input-bg);
+  transition: background 0.2s;
+}
+
+.med-group-header::-webkit-details-marker { display: none; }
+
+.med-group-header:hover {
+  background: rgba(86, 182, 194, 0.07);
+}
+
+.med-group-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: var(--nura-accent-teal-light);
+  color: var(--nura-accent-teal);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.med-group-name {
+  flex: 1;
+  font-size: 0.83rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.med-group-arrow {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 1;
+  display: inline-block;
+}
+
+details[open] .med-group-arrow {
+  transform: rotate(180deg);
+}
+
+/* Badge de grupo con fármacos activos */
+.med-group-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: var(--secondary);
+  color: #fff;
+  border-radius: 99px;
+  padding: 0.1rem 0.45rem;
+  margin-left: 0.25rem;
+  display: none;
+}
+.med-group-badge.visible { display: inline-block; }
+
+/* ── Chips dentro de grupos ───────────────────────────────────── */
+.med-chips-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem 0.75rem;
+  background: var(--card-bg);
+}
+
+.med-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  padding: 0.65rem 0.4rem;
+  border-radius: 12px;
+  border: 1px solid var(--nura-border-light);
+  background: var(--nura-bg-card);
+  color: var(--nura-text-primary);
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  line-height: 1.3;
+  position: relative;
+  overflow: hidden;
+}
+
+.med-chip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(86,182,194,0.08), rgba(198,120,221,0.08));
+  opacity: 0;
+  transition: opacity 0.22s;
+  border-radius: inherit;
+}
+
+.med-chip:hover::before { opacity: 1; }
+
+.med-chip:hover {
+  border-color: var(--nura-accent-teal);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(20, 184, 166, 0.18);
+}
+
+/* Active / selected state */
+.med-chip.active {
+  background: var(--nura-accent-teal-light);
+  border-color: var(--nura-accent-teal);
+  color: var(--nura-text-primary);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.1);
+}
+.med-chip.active::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 14px;
+  height: 14px;
+  background: var(--nura-grad-teal);
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>') no-repeat center;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>') no-repeat center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* "Ninguno" chip — accent purple, flex-row */
+.med-chip-none {
+  flex-direction: row !important;
+  gap: 0.55rem;
+  padding: 0.65rem 1rem;
+  border-radius: 14px;
+}
+.med-chip-none.active {
+  border-color: var(--purple);
+  background: linear-gradient(135deg, rgba(198,120,221,0.15), rgba(86,182,194,0.08));
+  box-shadow: 0 4px 12px rgba(198, 120, 221, 0.2);
+}
+.med-chip-none.active::after { color: var(--purple); }
+.med-chip-none:hover { border-color: var(--purple); }
+
+.med-chip-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.med-chip-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.med-chip-sub {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Badge global de selección activa */
+.med-active-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  padding: 0.45rem 1rem;
+  border-radius: 99px;
+  background: linear-gradient(135deg, rgba(86,182,194,0.15), rgba(198,120,221,0.12));
+  border: 1px solid rgba(86,182,194,0.4);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.med-save-status {
+  min-height: 1.2em;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+/* OMS Sex Button Styles */
+.oms-sex-btn {
+  flex: 1;
+  padding: 0.4rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--nura-glass-border);
+  background: var(--nura-glass-bg);
+  color: var(--nura-text-secondary);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.oms-sex-btn.oms-sex-btn--active {
+  background: var(--nura-grad-teal);
+  border-color: transparent;
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(20, 184, 166, 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  .med-chip {
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .med-chips-grid {
+    background: var(--card-bg);
+  }
+}
+
+/* ── Tarjeta de Alternativas Seguras ──────────────────────── */
+
+.alternatives-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  margin-top: 0.75rem;
+  animation: fadeSlideIn 0.35s ease both;
+}
+
+.alternatives-loading {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.alternatives-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--secondary);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.alternatives-icon {
+  font-size: 1.1rem;
+}
+
+.alternatives-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.alternative-item {
+  background: var(--bg-color);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 0.6rem 0.85rem;
+}
+
+.alternative-name {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  margin-bottom: 0.2rem;
+}
+
+.alternative-reason {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Modal: Pase de Cuidador ──────────────────────────────────── */
+
+.caregiver-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.caregiver-modal {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 2rem 1.75rem;
+  width: 100%;
+  max-width: 380px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem;
+  border-radius: 6px;
+  transition: color 0.2s;
+}
+
+.modal-close-btn:hover { color: var(--orange-strong); }
+
+.modal-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.modal-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.modal-hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.pin-modal-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.modal-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--card-border);
+  border-top-color: var(--secondary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.caregiver-qr {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.caregiver-qr canvas,
+.caregiver-qr img {
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+}
+
+.caregiver-pin-display {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  color: var(--secondary);
+  background: rgba(86, 182, 194, 0.1);
+  border: 1px solid rgba(86, 182, 194, 0.3);
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.75rem;
+  font-family: monospace;
+}
+
+.caregiver-expiry-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.caregiver-url-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.caregiver-url-link {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--secondary);
+  text-decoration: none;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid rgba(86, 182, 194, 0.4);
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.caregiver-url-link:hover {
+  background: rgba(86, 182, 194, 0.1);
+}
+
+.pin-modal-error {
+  padding: 1rem 0;
+  color: var(--orange-strong);
+  font-size: 0.88rem;
+}
+
+.btn-modal-retry {
+  margin-top: 0.75rem;
+  padding: 0.55rem 1.25rem;
+  background: transparent;
+  border: 1px solid var(--orange-strong);
+  color: var(--orange-strong);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-modal-retry:hover {
+  background: rgba(224, 108, 117, 0.1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =================================================================
+   🔬 LECTOR DE EXÁMENES CLÍNICOS — Fase 3, Paso 2
+   ================================================================= */
+
+/* ── Sección de subida ─────────────────────────────────────────── */
+.exam-upload-section {
+  padding: 1.75rem;
+}
+
+.exam-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.exam-title-icon {
+  font-size: 1.3rem;
+}
+
+.exam-section-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+/* ── Drag & Drop ───────────────────────────────────────────────── */
+.exam-dropzone {
+  border: 2px dashed var(--card-border);
+  border-radius: 16px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+  background: transparent;
+}
+
+.exam-dropzone:hover,
+.exam-dropzone:focus-visible {
+  border-color: var(--secondary);
+  background: rgba(86, 182, 194, 0.04);
+  outline: none;
+}
+
+.exam-dropzone.drag-over {
+  border-color: var(--secondary);
+  background: rgba(86, 182, 194, 0.08);
+  transform: scale(1.01);
+}
+
+.exam-dropzone-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.exam-dropzone-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.exam-dropzone-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.exam-dropzone-types {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.7;
+  letter-spacing: 0.03em;
+}
+
+/* Ocultar el input file real */
+#exam-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Estado: Analizando ────────────────────────────────────────── */
+.exam-analyzing {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.exam-analyzing-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--card-border);
+  border-top-color: var(--secondary);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+.exam-analyzing-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+}
+
+.exam-analyzing-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.exam-progress-bar {
+  height: 6px;
+  background: var(--card-border);
+  border-radius: 99px;
+  overflow: hidden;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.exam-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--secondary), var(--primary));
+  border-radius: 99px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+
+/* ── Estado: Error ─────────────────────────────────────────────── */
+.exam-error {
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.exam-error-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.exam-error-msg {
+  font-size: 0.88rem;
+  color: var(--orange-strong);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.btn-exam-retry {
+  padding: 0.55rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--orange-strong);
+  color: var(--orange-strong);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-exam-retry:hover {
+  background: rgba(224, 108, 117, 0.1);
+}
+
+/* ── Sección de resultados ─────────────────────────────────────── */
+.exam-results-section {
+  padding: 1.75rem;
+  animation: fadeSlideIn 0.35s ease both;
+}
+
+.exam-results-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1.1rem;
+}
+
+.exam-results-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.exam-results-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.exam-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.btn-exam-back {
+  margin-left: auto;
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid var(--card-border);
+  color: var(--text-muted);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.65rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-exam-back:hover {
+  background: var(--card-border);
+  color: var(--text-main);
+}
+
+/* ── Leyenda de confianza ──────────────────────────────────────── */
+.exam-confidence-legend {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.conf-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+}
+
+.conf-dot.conf-alta  { background: #4a9eed; }
+.conf-dot.conf-media { background: var(--yellow-strong); }
+.conf-dot.conf-baja  { background: var(--orange-strong); }
+
+/* ── Grupos de biomarcadores ───────────────────────────────────── */
+.exam-group {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  margin-bottom: 0.85rem;
+  overflow: hidden;
+}
+
+.exam-group-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  list-style: none;
+  user-select: none;
+  background: var(--card-bg);
+  transition: background 0.15s;
+}
+
+.exam-group-header::-webkit-details-marker { display: none; }
+
+.exam-group[open] > .exam-group-header {
+  border-bottom: 1px solid var(--card-border);
+}
+
+.exam-group-header:hover {
+  background: rgba(86, 182, 194, 0.04);
+}
+
+.exam-group-icon {
+  font-size: 1rem;
+}
+
+/* Conteo de biomarcadores detectados por grupo */
+.exam-group-count {
+  margin-left: auto;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 99px;
+  background: rgba(42,157,143,0.12);
+  color: var(--primary-teal, #2A9D8F);
+  white-space: nowrap;
+}
+
+/* ── Grid de campos ────────────────────────────────────────────── */
+.exam-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.85rem;
+  padding: 1rem;
+}
+
+/* ── Campo individual ──────────────────────────────────────────── */
+.exam-field-wrapper {
+  border-radius: 10px;
+  padding: 0.75rem;
+  border: 1.5px solid var(--card-border);
+  background: var(--input-bg);
+  transition: border-color 0.2s;
+}
+
+/* Confianza alta (normal) — borde azul sutil */
+.exam-field-wrapper.conf-alta {
+  border-color: rgba(74, 158, 237, 0.45);
+}
+
+/* Confianza media (alto/bajo) — borde amarillo */
+.exam-field-wrapper.conf-media {
+  border-color: rgba(229, 192, 123, 0.65);
+  background: rgba(229, 192, 123, 0.04);
+}
+
+/* Confianza baja (crítico/depende_genero) — borde naranja */
+.exam-field-wrapper.conf-baja {
+  border-color: rgba(224, 108, 117, 0.65);
+  background: rgba(224, 108, 117, 0.04);
+}
+
+.exam-field-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.45rem;
+  gap: 0.3rem;
+}
+
+.exam-field-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.exam-conf-badge {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.1rem 0.4rem;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.exam-conf-badge--conf-alta {
+  background: rgba(74, 158, 237, 0.12);
+  color: #4a9eed;
+}
+
+.exam-conf-badge--conf-media {
+  background: rgba(229, 192, 123, 0.18);
+  color: #b8892a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .exam-conf-badge--conf-media { color: var(--yellow-strong); }
+}
+
+.exam-conf-badge--conf-baja {
+  background: rgba(224, 108, 117, 0.15);
+  color: var(--orange-strong);
+}
+
+.exam-field-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.exam-field-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: border-color 0.15s;
+  -moz-appearance: textfield;
+}
+
+.exam-field-input::-webkit-inner-spin-button,
+.exam-field-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.exam-field-input:focus {
+  outline: none;
+  border-color: var(--secondary);
+}
+
+.exam-field-unit {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.exam-field-range {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+  line-height: 1.4;
+}
+
+/* ── Campo auto-rellenado por la IA ─────────────────────────────── */
+.exam-field--autofill {
+  border-color: rgba(42, 157, 143, 0.6) !important;
+  background: rgba(42, 157, 143, 0.04) !important;
+}
+
+.exam-field--manual {
+  border-color: var(--card-border);
+  background: var(--input-bg);
+}
+
+.exam-autofill-badge {
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+/* Badge de texto del archivo seleccionado */
+.exam-file-count-label {
+  font-size: 0.78rem;
+  color: var(--primary-teal, #2A9D8F);
+  font-weight: 600;
+  margin-top: 0.4rem;
+}
+
+/* Progreso multi-archivo en el estado "Analizando" */
+.exam-multi-progress {
+  font-size: 0.8rem;
+  color: var(--primary-teal, #2A9D8F);
+  font-weight: 600;
+  margin: 0.3rem 0;
+  text-align: center;
+  min-height: 1.2em;
+}
+
+/* ── Controles del formulario (Limpiar + Continuar) ─────────────── */
+.exam-form-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.btn-clear-form {
+  flex-shrink: 0;
+  padding: 0.9rem 1.25rem;
+  background: transparent;
+  border: 1.5px solid var(--card-border);
+  color: var(--text-muted);
+  border-radius: 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+.btn-clear-form:hover {
+  border-color: var(--glass-red, #E76F51);
+  color: var(--glass-red, #E76F51);
+  background: rgba(231,111,81,0.06);
+}
+
+/* ── Disclaimer ────────────────────────────────────────────────── */
+.exam-disclaimer {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 1.25rem 0 0;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+/* ── Botón Continuar ───────────────────────────────────────────── */
+.btn-exam-continue {
+  display: block;
+  flex: 1;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary-teal) 0%, var(--primary-navy) 100%);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn-exam-continue:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-exam-continue:disabled {
+  opacity: 0.55;
+  cursor: default;
+  transform: none;
+}
+
+/* ── Utilidad hidden ───────────────────────────────────────────── */
+.exam-upload-section .hidden,
+.exam-results-section .hidden {
+  display: none !important;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* =================================================================
+   🧮 SCORE METABÓLICO — Fase 3, Paso 3
+   ================================================================= */
+
+.exam-score-section {
+  padding: 1.75rem;
+  animation: fadeSlideIn 0.35s ease both;
+}
+
+/* ── Cabecera ──────────────────────────────────────────────────── */
+.score-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.score-main-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* ── Gauge (anillo SVG) ────────────────────────────────────────── */
+.score-gauge-wrapper {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 0.75rem;
+}
+
+.score-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.score-ring-track {
+  fill: none;
+  stroke: var(--card-border);
+  stroke-width: 10;
+}
+
+.score-ring-fill {
+  fill: none;
+  stroke: url(#nura-brand-grad) !important;
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s ease;
+}
+
+.score-ring-fill--verde    { stroke: url(#nura-brand-grad) !important; }
+.score-ring-fill--amarillo { stroke: url(#nura-brand-grad) !important; }
+.score-ring-fill--rojo     { stroke: url(#nura-brand-grad) !important; }
+
+.score-gauge-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.score-value {
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1;
+  background: var(--nura-grad-brand) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+.score-value.score-tier--verde    { color: transparent; }
+.score-value.score-tier--amarillo { color: transparent; }
+.score-value.score-tier--rojo     { color: transparent; }
+
+.score-label {
+  font-size: 0.72rem;
+  color: var(--nura-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Tier label ────────────────────────────────────────────────── */
+.score-tier-label {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  background: var(--nura-grad-brand) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+.score-tier-label.score-tier--verde    { color: transparent; }
+.score-tier-label.score-tier--amarillo { color: transparent; }
+.score-tier-label.score-tier--rojo     { color: transparent; }
+
+/* ── Chips ─────────────────────────────────────────────────────── */
+.score-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.score-chip {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.score-chip--ok {
+  background: var(--nura-bg-teal-light);
+  color: var(--nura-accent-teal);
+  border: none;
+}
+
+.score-chip--alerta {
+  background: var(--nura-bg-teal-light);
+  color: var(--nura-accent-teal);
+  border: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .score-chip--alerta { color: #f4a261; }
+}
+
+/* ── Tabla de alertas ──────────────────────────────────────────── */
+.score-alerts-list {
+  margin-bottom: 1.25rem;
+  overflow-x: auto;
+}
+
+.score-alerts-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.score-alerts-table th {
+  text-align: left;
+  padding: 0.5rem 0.65rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--card-border);
+  white-space: nowrap;
+}
+
+.score-alerts-table td {
+  padding: 0.5rem 0.65rem;
+  border-bottom: 1px solid var(--card-border);
+  vertical-align: middle;
+}
+
+.score-alert-row--critico td:first-child {
+  font-weight: 700;
+  background: var(--nura-grad-coral);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.score-alert-row--alerta td:first-child {
+  font-weight: 600;
+  background: var(--nura-grad-coral);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.score-ref {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ── Disclaimer ────────────────────────────────────────────────── */
+.score-disclaimer {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Acciones ──────────────────────────────────────────────────── */
+.score-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btn-print-brief {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  background: transparent;
+  border: 1.5px solid var(--primary-teal);
+  color: var(--primary-teal);
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.2s ease;
+}
+
+.btn-print-brief:hover {
+  background: var(--primary-teal);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ── Contenido de impresión (oculto en pantalla) ───────────────── */
+.print-brief {
+  display: none;
+}
+
+/* =================================================================
+   @media print — Solo se imprime el brief, todo lo demás se oculta
+   ================================================================= */
+/* =================================================================
+   📋 HISTORIAL DE EXÁMENES — Verificación 4
+   ================================================================= */
+
+.exam-history-section {
+  padding: 1.75rem;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.1rem;
+}
+
+.history-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.history-icon {
+  font-size: 1.15rem;
+}
+
+.btn-history-refresh {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  color: var(--text-muted);
+  border-radius: 8px;
+  font-size: 1.05rem;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.3s;
+  line-height: 1;
+}
+
+.btn-history-refresh:hover {
+  background: var(--card-border);
+  transform: rotate(180deg);
+}
+
+/* ── Estados ───────────────────────────────────────────────────── */
+.history-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.history-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--card-border);
+  border-top-color: var(--secondary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+.history-empty {
+  text-align: center;
+  padding: 1.5rem 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.history-empty-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.history-empty-sub {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-top: 0.25rem;
+}
+
+.history-error {
+  font-size: 0.84rem;
+  color: var(--orange-strong);
+  padding: 0.75rem 0;
+}
+
+/* ── Lista ─────────────────────────────────────────────────────── */
+.history-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--nura-glass-border);
+  border-radius: 20px;
+  background: var(--nura-glass-bg);
+  box-shadow: var(--nura-glass-shadow);
+  transition: background 0.15s;
+  animation: fadeSlideIn 0.25s ease both;
+}
+
+.history-item:hover {
+  background: var(--nura-bg-teal-light);
+}
+
+.history-item-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.history-item-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.history-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.history-item-fecha {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.history-item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.history-tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.15rem 0.55rem;
+  border-radius: 99px;
+}
+
+.history-tag--ok {
+  background: var(--nura-grad-teal);
+  color: white;
+  border: none;
+}
+
+.history-tag--alerta {
+  background: var(--nura-grad-orange);
+  color: white;
+  border: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .history-tag--alerta { color: var(--yellow-strong); }
+}
+
+/* ── Score badge ───────────────────────────────────────────────── */
+.history-item-right {
+  flex-shrink: 0;
+  margin-left: 0.75rem;
+}
+
+.history-score {
+  font-size: 1.05rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.history-score--verde {
+  background: var(--nura-grad-teal);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.history-score--amarillo {
+  background: var(--nura-grad-orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.history-score--rojo {
+  background: var(--nura-grad-red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Ítem clickeable ───────────────────────────────────────────── */
+.history-item--clickable {
+  cursor: pointer;
+}
+
+.history-item--clickable:hover {
+  background: rgba(86, 182, 194, 0.07);
+  border-color: var(--secondary);
+  transform: translateX(2px);
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.history-item--clickable:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+/* ── Botón papelera ────────────────────────────────────────────── */
+.btn-history-delete {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 8px 8px;
+  border-radius: 50%;
+  opacity: 0.35;
+  transition: opacity 0.15s, background 0.15s;
+  line-height: 1;
+  margin-left: 0.4rem;
+  flex-shrink: 0;
+  color: transparent; /* Hide emoji */
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.btn-history-delete::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  background: var(--nura-grad-red);
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>') no-repeat center;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>') no-repeat center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.history-item--clickable:hover .btn-history-delete,
+.btn-history-delete:focus-visible {
+  opacity: 0.75;
+}
+
+.btn-history-delete:hover {
+  opacity: 1;
+  background: var(--nura-danger-bg);
+}
+
+.btn-history-delete:disabled {
+  cursor: default;
+  opacity: 0.3;
+}
+
+/* ── Botón Volver al Dashboard ─────────────────────────────────── */
+.btn-score-to-dashboard {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 1.5px solid var(--card-border);
+  color: var(--text-muted);
+  border-radius: 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-score-to-dashboard:hover {
+  background: var(--card-border);
+  color: var(--text-main);
+  border-color: var(--text-muted);
+}
+
+/* Clase helper para ocultar secciones del dashboard al ver historial */
+.history-hidden {
+  display: none !important;
+}
+
+/* ── Ocultar historial al imprimir ────────────────────────────── */
+@media print {
+  .exam-history-section { display: none !important; }
+}
+
+/* =================================================================
+   SCORE SECTION — Nuevos bloques (Visibilidad, Recomendaciones, Sinergia)
+   ================================================================= */
+
+/* ── Biomarcadores en rango normal (colapsable) ────────────────── */
+.score-normal-details {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  margin-bottom: 1.1rem;
+  overflow: hidden;
+}
+
+.score-normal-summary {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #4ade80;
+  list-style: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background 0.15s;
+}
+
+.score-normal-summary::-webkit-details-marker { display: none; }
+
+.score-normal-details[open] > .score-normal-summary {
+  border-bottom: 1px solid var(--card-border);
+}
+
+.score-normal-summary:hover {
+  background: rgba(74, 222, 128, 0.06);
+}
+
+.score-normal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0.25rem 0;
+}
+
+.score-normal-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--card-border);
+  font-size: 0.82rem;
+}
+
+.score-normal-row:last-child {
+  border-bottom: none;
+}
+
+.score-normal-name {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.score-normal-val {
+  color: var(--text-main);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.score-normal-ref {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Estado en el colapsable "Ver todos" */
+.score-all-estado {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.score-all-estado--normal  { color: #4ade80; }
+.score-all-estado--alerta  { color: var(--yellow-strong); }
+.score-all-estado--critico { color: var(--orange-strong); }
+
+/* ── Plan de Acción Nutricional ────────────────────────────────── */
+.score-recommendations {
+  margin-bottom: 1.1rem;
+}
+
+.score-rec-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  background: var(--nura-grad-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.score-rec-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 0.65rem;
+}
+
+.score-rec-card {
+  position: relative;
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: 20px;
+  background: var(--nura-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--nura-glass-border);
+  border-left: none;
+  box-shadow: var(--nura-glass-shadow);
+  animation: fadeSlideIn 0.3s ease both;
+  overflow: hidden;
+}
+
+.score-rec-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0; width: 5px;
+  background: var(--nura-grad-teal);
+}
+
+.score-rec-card--alerta::before {
+  background: var(--nura-grad-orange);
+}
+
+.score-rec-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.score-rec-text {
+  font-size: 0.84rem;
+  color: var(--text-main);
+  line-height: 1.55;
+}
+
+.score-rec-disclaimer {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  opacity: 0.8;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Disclaimer individual por tarjeta de recomendación */
+.score-rec-card-disclaimer {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  opacity: 0.75;
+  margin-top: 0.4rem;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* ── Sinergia Fase 1 ───────────────────────────────────────────── */
+.score-sinergia {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(198, 120, 221, 0.3);
+  background: rgba(198, 120, 221, 0.06);
+  margin-bottom: 1.1rem;
+  animation: fadeSlideIn 0.35s ease both;
+}
+
+.sinergia-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.sinergia-text {
+  font-size: 0.83rem;
+  color: var(--text-main);
+  line-height: 1.55;
+}
+
+/* ── Ocultar nuevas secciones al imprimir ──────────────────────── */
+@media print {
+  .score-normal-details,
+  .score-recommendations,
+  .score-sinergia { display: none !important; }
+}
+
+/* ================================================================= */
+
+@media print {
+  /* Ocultar absolutamente todo */
+  body > .container > *:not(#exam-score-section) {
+    display: none !important;
+  }
+
+  #exam-score-section {
+    display: block !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Ocultar UI de pantalla dentro del score section */
+  .score-header,
+  .score-gauge-wrapper,
+  .score-tier-label,
+  .score-chips,
+  .score-alerts-list,
+  .score-disclaimer,
+  .score-actions {
+    display: none !important;
+  }
+
+  /* Mostrar el brief */
+  .print-brief {
+    display: block !important;
+    font-family: 'Inter', Arial, sans-serif;
+    color: #000;
+    padding: 1.5rem 0;
+  }
+
+  .print-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    color: #000;
+  }
+
+  .print-date {
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: 1.25rem;
+  }
+
+  .print-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .print-table th {
+    text-align: left;
+    padding: 0.45rem 0.6rem;
+    border-bottom: 2px solid #000;
+    font-weight: 700;
+  }
+
+  .print-table td {
+    padding: 0.4rem 0.6rem;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .print-disclaimer {
+    font-size: 0.75rem;
+    color: #555;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    padding-top: 0.75rem;
+    margin-top: 0.5rem;
+  }
+}
+
+/* =================================================================
+   Barra comparadora "Yo vs Rango Ideal"
+   ================================================================= */
+
+/* Card que envuelve la fila + la barra */
+.bbar-card {
+  padding: 0.55rem 0 0.3rem;
+  border-bottom: 1px solid var(--border-subtle, rgba(255,255,255,0.07));
+}
+.bbar-card:last-child {
+  border-bottom: none;
+}
+
+/* Contenedor de la barra con espacio arriba */
+.bbar-wrapper {
+  padding: 0.35rem 0 0.1rem;
+}
+
+/* La barra horizontal */
+.bbar {
+  position: relative;
+  display: flex;
+  height: 12px;
+  border-radius: 6px;
+  overflow: visible;
+  width: 100%;
+}
+
+/* Segmentos de color */
+.bbar-seg {
+  height: 100%;
+  flex-shrink: 0;
+}
+.bbar-seg:first-child { border-radius: 6px 0 0 6px; }
+.bbar-seg:last-child  { border-radius: 0 6px 6px 0; }
+.bbar-seg:only-child  { border-radius: 6px; }
+
+.bbar-seg--critico { background: var(--nura-grad-red); }
+.bbar-seg--bajo    { background: var(--nura-grad-orange); }
+.bbar-seg--normal  { background: var(--nura-grad-teal); }
+.bbar-seg--alto    { background: var(--nura-grad-orange); }
+
+/* Marcador de posición del usuario */
+.bbar-marker {
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.bbar-marker-dot {
+  width: 13px;
+  height: 13px;
+  background: #ffffff;
+  border: 2.5px solid #2d3748;
+  border-radius: 50%;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.45);
+}
+
+/* Caption: "Tu valor: X | Normal: Y" */
+.bbar-caption {
+  font-size: 0.71rem;
+  color: var(--text-muted, #9ca3af);
+  margin: 0.3rem 0 0;
+  line-height: 1.4;
+}
+.bbar-caption strong {
+  color: var(--text-primary, #e5e7eb);
+}
+
+/* Ocultar barras al imprimir */
+@media print {
+  .bbar-card,
+  .bbar-wrapper { display: none !important; }
+}
+
+/* =================================================================
+   Alerta de Tendencia Predictiva
+   ================================================================= */
+
+.score-tendencias {
+  margin: 1.2rem 0 0.4rem;
+}
+
+.tend-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.65rem;
+  letter-spacing: 0.01em;
+}
+
+.tend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+/* Tarjeta de tendencia — amarilla por defecto */
+.tend-card {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  background: rgba(251, 191, 36, 0.07);
+  border: 1px solid rgba(251, 191, 36, 0.28);
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+}
+
+/* Tarjeta roja cuando el estado empeoró */
+.tend-card--empeoro {
+  background: rgba(239, 68, 68, 0.07);
+  border-color: rgba(239, 68, 68, 0.28);
+}
+
+.tend-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tend-icon--up {
+  background: rgba(239,68,68,0.15);
+}
+.tend-icon--up::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 7px solid var(--glass-red, #ef4444);
+}
+.tend-icon--down {
+  background: rgba(34,197,94,0.15);
+}
+.tend-icon--down::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid var(--glass-green, #4ade80);
+}
+
+.tend-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.tend-msg {
+  font-size: 0.81rem;
+  color: var(--text-primary);
+  margin: 0 0 0.28rem;
+  line-height: 1.55;
+}
+
+.tend-disclaimer {
+  font-size: 0.67rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Ocultar en impresión */
+@media print {
+  .score-tendencias { display: none !important; }
+}
+
+/* =================================================================
+   Mapa de Correlaciones Clínicas
+   ================================================================= */
+
+.score-correlaciones {
+  margin: 1.1rem 0 0.4rem;
+}
+
+.corr-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.7rem;
+  letter-spacing: 0.01em;
+}
+
+/* Tarjeta por biomarcador alterado */
+.corr-card {
+  background: var(--nura-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--nura-glass-border);
+  border-radius: 20px;
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 0.6rem;
+  box-shadow: var(--nura-glass-shadow);
+}
+.corr-card:last-child { margin-bottom: 0; }
+
+.corr-msg {
+  font-size: 0.8rem;
+  color: var(--text-secondary, #9ca3af);
+  margin: 0 0 0.55rem;
+  line-height: 1.45;
+}
+.corr-msg strong {
+  color: var(--text-primary);
+}
+
+/* Grid de biomarcadores relacionados */
+.corr-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.corr-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+}
+
+/* Color de fondo según estado */
+.corr-item--ok      { background: rgba(39, 174,  96, 0.1); }
+.corr-item--alerta  { background: rgba(243, 156,  18, 0.1); }
+.corr-item--critico { background: rgba(231,  76,  60, 0.1); }
+.corr-item--faltante{ background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255,255,255,0.12); }
+
+.corr-item-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 7rem;
+  flex-shrink: 0;
+}
+
+.corr-item-val {
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.corr-item-estado {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary, #9ca3af);
+}
+
+.corr-item--ok      .corr-item-estado { color: #4ade80; }
+.corr-item--alerta  .corr-item-estado { color: var(--yellow-strong, #fbbf24); }
+.corr-item--critico .corr-item-estado { color: var(--orange-strong, #fb923c); }
+
+.corr-item-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Ocultar en impresión */
+@media print {
+  .score-correlaciones { display: none !important; }
+}
+
+/* =================================================================
+   Recordatorio de Re-examen
+   ================================================================= */
+
+.score-reexamen {
+  margin: 1.1rem 0 0.4rem;
+  position: relative;
+  overflow: hidden;
+  background: var(--nura-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--nura-glass-border);
+  border-left: none;
+  border-radius: 20px;
+  padding: 0.9rem 1rem;
+  box-shadow: var(--nura-glass-shadow);
+}
+.score-reexamen::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0; width: 5px;
+  background: var(--nura-grad-teal);
+}
+
+/* Variante urgente (resultado crítico) */
+.score-reexamen--urgente {
+  background: rgba(239, 68, 68, 0.07);
+  border-color: rgba(239, 68, 68, 0.35);
+}
+
+/* Fila superior: icono + fecha + intervalo */
+.reexamen-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.reexamen-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.reexamen-header-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.reexamen-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin: 0 0 0.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.reexamen-fecha {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.reexamen-intervalo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #63b3ed;
+  background: rgba(99, 179, 237, 0.12);
+  border-radius: 20px;
+  padding: 0.2rem 0.65rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.score-reexamen--urgente .reexamen-intervalo {
+  color: #fc8181;
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.reexamen-motivo {
+  font-size: 0.79rem;
+  color: var(--text-secondary, #9ca3af);
+  margin: 0 0 0.7rem;
+  line-height: 1.5;
+}
+
+.btn-reexamen-calendar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(99, 179, 237, 0.15);
+  border: 1px solid rgba(99, 179, 237, 0.35);
+  border-radius: 8px;
+  color: #63b3ed;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  transition: background 0.18s, opacity 0.18s;
+  margin-bottom: 0.55rem;
+}
+.btn-reexamen-calendar:hover  { background: rgba(99, 179, 237, 0.25); }
+.btn-reexamen-calendar:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+.reexamen-disclaimer {
+  font-size: 0.67rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Ocultar en impresión */
+@media print {
+  .score-reexamen { display: none !important; }
+}
+
+/* =================================================================
+   Calculadora Framingham
+   ================================================================= */
+
+.score-framingham {
+  margin: 1rem 0 0.4rem;
+  border: 1px solid var(--border-subtle, rgba(255,255,255,0.09));
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.fw-summary {
+  padding: 0.75rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  user-select: none;
+  background: var(--card-bg-2, rgba(255,255,255,0.03));
+}
+.fw-summary::-webkit-details-marker { display: none; }
+.fw-summary::after {
+  content: '›';
+  margin-left: auto;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+}
+.score-framingham[open] .fw-summary::after { transform: rotate(90deg); }
+
+.fw-body {
+  padding: 0.9rem 1rem 1rem;
+  border-top: 1px solid var(--border-subtle, rgba(255,255,255,0.08));
+}
+
+.fw-intro {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0 0 0.9rem;
+  line-height: 1.5;
+}
+
+/* Grid de 2 columnas */
+.fw-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+@media (max-width: 420px) {
+  .fw-row { grid-template-columns: 1fr; }
+}
+
+.fw-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.fw-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.fw-unit {
+  font-weight: 400;
+  opacity: 0.7;
+  margin-left: 0.2rem;
+}
+
+/* Input numérico */
+.fw-input-wrap { position: relative; }
+
+.fw-input {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  padding: 0.45rem 0.7rem;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+.fw-input:focus { outline: none; border-color: rgba(99,179,237,0.5); }
+.fw-input--locked {
+  background: rgba(39,174,96,0.08);
+  border-color: rgba(39,174,96,0.25);
+  color: #4ade80;
+}
+.fw-input[type="number"]::-webkit-inner-spin-button { opacity: 0.5; }
+
+/* Badge "Del examen ✓" */
+.fw-badge-auto {
+  position: absolute;
+  bottom: calc(100% + 0.15rem);
+  right: 0;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #4ade80;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+/* Toggle group (sexo, PA meds, tabaco) */
+.fw-toggle-group {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.fw-toggle {
+  flex: 1;
+  padding: 0.4rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--nura-glass-border);
+  background: var(--nura-glass-bg);
+  color: var(--nura-text-secondary);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fw-toggle--active {
+  background: var(--nura-grad-teal);
+  border-color: transparent;
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(20, 184, 166, 0.35);
+}
+
+/* Error inline */
+.fw-error {
+  font-size: 0.76rem;
+  color: #fc8181;
+  margin: 0.2rem 0 0.5rem;
+  padding: 0.4rem 0.6rem;
+  background: rgba(252,129,129,0.08);
+  border-radius: 6px;
+}
+
+/* Botón calcular */
+.btn-fw-calc {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.6rem;
+  background: var(--nura-grad-teal);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(20, 184, 166, 0.35);
+}
+.btn-fw-calc:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(20, 184, 166, 0.45);
+}
+
+/* Resultado */
+.fw-result {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+}
+
+.fw-result-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-bottom: 0.3rem;
+}
+
+.fw-result-pct {
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1;
+}
+.fw-result-pct--bajo {
+  background: var(--nura-grad-teal);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.fw-result-pct--moderado {
+  background: var(--nura-grad-orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.fw-result-pct--alto {
+  background: var(--nura-grad-red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.fw-result-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.fw-result-nivel {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0.2rem 0 0.6rem;
+}
+.fw-result-nivel--bajo {
+  background: var(--nura-grad-teal);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.fw-result-nivel--moderado {
+  background: var(--nura-grad-orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.fw-result-nivel--alto {
+  background: var(--nura-grad-red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.fw-required-hint {
+  font-size: 0.75rem;
+  color: var(--glass-yellow, #FBC02D);
+  margin-top: 0.3rem;
+  line-height: 1.4;
+}
+
+.fw-result-disclaimer {
+  font-size: 0.67rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Ocultar en impresión */
+@media print {
+  .score-framingham { display: none !important; }
+}
+
+/* =================================================================
+   Botón ℹ de Explicación Clínica
+   ================================================================= */
+
+.btn-expl {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: rgba(99, 179, 237, 0.15);
+  border: 1px solid rgba(99, 179, 237, 0.35);
+  border-radius: 50%;
+  color: #63b3ed;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-left: 0.3rem;
+  padding: 0;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+.btn-expl:hover { background: rgba(99, 179, 237, 0.3); }
+.btn-expl--inline { margin-left: 0.25rem; }
+
+/* =================================================================
+   Modal de Explicación Clínica — bottom sheet en mobile, centrado en desktop
+   ================================================================= */
+
+/* Overlay oscuro */
+.expl-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+}
+@media (min-width: 640px) {
+  .expl-overlay { align-items: center; padding: 1.5rem; }
+}
+
+/* Panel principal */
+.expl-panel {
+  background: var(--card-bg, #1a202c);
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  max-width: 540px;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 1.5rem 1.25rem 2rem;
+  position: relative;
+  outline: none;
+}
+@media (min-width: 640px) {
+  .expl-panel { border-radius: 16px; }
+}
+
+/* Botón cerrar */
+.expl-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  border-radius: 50%;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+.expl-close:hover { background: rgba(255, 255, 255, 0.15); }
+
+/* Header: icono + órgano */
+.expl-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.expl-icono {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.expl-organo-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin: 0 0 0.1rem;
+}
+
+.expl-organo {
+  font-size: 0.8rem;
+  color: #63b3ed;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Nombre del biomarcador */
+.expl-nombre {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 1rem;
+  padding-right: 2rem;
+}
+
+/* Secciones de contenido */
+.expl-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.expl-item {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  padding: 0.65rem 0.8rem;
+}
+
+.expl-item-label {
+  font-size: 0.67rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin: 0 0 0.3rem;
+}
+
+.expl-item-text {
+  font-size: 0.84rem;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* Disclaimer inferior */
+.expl-disclaimer {
+  font-size: 0.67rem;
+  color: var(--text-muted);
+  margin: 0;
+  text-align: center;
+}
+
+/* Ocultar en impresión */
+@media print {
+  .expl-overlay { display: none !important; }
+}
+
+/* =================================================================
+   ✨ NURA GLASSMORPHISM DESIGN SYSTEM — Fase 3 UI Overhaul
+   Cascades on top of existing rules — 100 % additive.
+   ================================================================= */
+
+/* ── 1. Google Fonts: Inter ───────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ── 2. Updated Design Tokens ───────────────────────────────────── */
+:root {
+  /* Brand */
+  --glass-brand:        #2A9D8F;
+  --glass-brand-light:  rgba(42, 157, 143, 0.12);
+  --glass-brand-mid:    rgba(42, 157, 143, 0.25);
+
+  /* State colours (soft Silicon Valley palette) */
+  --glass-green:        #4CAF50;
+  --glass-green-bg:     rgba(76, 175, 80, 0.10);
+  --glass-yellow:       #FBC02D;
+  --glass-yellow-bg:    rgba(251, 192, 45, 0.12);
+  --glass-orange:       #F4A261;
+  --glass-orange-bg:    rgba(244, 162, 97, 0.12);
+  --glass-red:          #E76F51;
+  --glass-red-bg:       rgba(231, 111, 81, 0.12);
+
+  /* Glass surface */
+  --glass-surface:      rgba(255, 255, 255, 0.78);
+  --glass-border:       rgba(255, 255, 255, 0.55);
+  --glass-shadow:       0 8px 32px rgba(0, 0, 0, 0.06);
+  --glass-shadow-hover: 0 16px 48px rgba(42, 157, 143, 0.12);
+
+  /* Page background */
+  --glass-bg:           #F4F7F6;
+
+  /* Typography */
+  --font-glass:         'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Radii */
+  --radius-card:        20px;
+  --radius-pill:        99px;
+  --radius-input:       10px;
+
+  /* Transition */
+  --ease-ui:            0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --glass-surface:  rgba(23, 32, 42, 0.82);
+    --glass-border:   rgba(255, 255, 255, 0.08);
+    --glass-shadow:   0 8px 32px rgba(0, 0, 0, 0.28);
+    --glass-bg:       #0F1923;
+  }
+}
+
+/* ── 3. Body & global font ──────────────────────────────────────── */
+body {
+  background: var(--glass-bg) !important;
+  background-image:
+    radial-gradient(ellipse 80% 40% at 50% -10%, rgba(42,157,143,0.10), transparent),
+    radial-gradient(ellipse 60% 30% at 90% 110%, rgba(76,175,80,0.07), transparent) !important;
+  font-family: var(--font-glass) !important;
+}
+
+*, *::before, *::after {
+  font-family: var(--font-glass) !important;
+}
+
+/* ── 4. Glass Cards ─────────────────────────────────────────────── */
+.dashboard-card,
+.main-card,
+.caregiver-modal,
+.expl-panel,
+.alternatives-card {
+  background: var(--glass-surface) !important;
+  backdrop-filter: blur(14px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--glass-shadow) !important;
+  transition: box-shadow var(--ease-ui), transform var(--ease-ui) !important;
+}
+
+.dashboard-card:hover,
+.main-card:hover {
+  box-shadow: var(--glass-shadow-hover) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ── Global micro-interactions ────────────────────────────────── */
+button,
+.btn-exam-continue,
+.btn-print-brief,
+.btn-fw-calc,
+.btn-scan-action,
+.btn-secondary,
+.btn-exam-back,
+.btn-exam-retry,
+.btn-modal-retry {
+  transition: background 0.3s ease-in-out,
+              color 0.3s ease-in-out,
+              border-color 0.3s ease-in-out,
+              transform 0.2s ease,
+              box-shadow 0.3s ease-in-out !important;
+}
+
+/* Card title accent bar — brand colour */
+.card-title::before {
+  background: var(--glass-brand) !important;
+}
+
+/* ── 5. Page Header ─────────────────────────────────────────────── */
+.header h1 {
+  background: linear-gradient(135deg, var(--glass-brand) 0%, #4CAF50 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* ── 6. Score Gauge — Full Ring (Doughnut) ───────────────────────── */
+.score-gauge-wrapper {
+  position: relative !important;
+  width: 160px !important;
+  height: 160px !important;
+  margin: 1.5rem auto 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.score-ring {
+  width: 100% !important;
+  height: 100% !important;
+  /* Rotate so the fill starts at 12 o'clock instead of 3 o'clock */
+  transform: rotate(-90deg) !important;
+}
+
+/* Track — unfilled full ring, neutral gray */
+.score-ring-track {
+  fill: none !important;
+  stroke: #E2E8F0 !important;
+  stroke-width: 12 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .score-ring-track { stroke: rgba(255,255,255,0.10) !important; }
+}
+
+/* Fill — colored arc, length driven by JS dasharray/dashoffset */
+.score-ring-fill {
+  fill: none !important;
+  stroke-width: 12 !important;
+  stroke-linecap: round !important;
+  transition: stroke-dashoffset 1.1s cubic-bezier(0.4, 0, 0.2, 1),
+              stroke 0.5s ease !important;
+}
+
+/* Color del anillo — 4 niveles de granularidad */
+.score-ring-fill.score-tier--verde    { stroke: #4CAF50 !important; }  /* >90  */
+.score-ring-fill.score-tier--teal     { stroke: #2A9D8F !important; }  /* >70  */
+.score-ring-fill.score-tier--naranja  { stroke: #F4A261 !important; }  /* >50  */
+.score-ring-fill.score-tier--rojo     { stroke: #E76F51 !important; }  /* ≤50  */
+
+/* Center number — perfectly centered inside the ring */
+.score-gauge-center {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  pointer-events: none !important;
+  line-height: 1 !important;
+  gap: 0.2rem !important;
+}
+
+.score-value {
+  font-size: 2.8rem !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.04em !important;
+}
+
+.score-value.score-tier--verde    { color: var(--glass-green)  !important; }
+.score-value.score-tier--amarillo { color: var(--glass-yellow) !important; }
+.score-value.score-tier--rojo     { color: var(--glass-red)    !important; }
+
+.score-label {
+  font-size: 0.6rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: var(--text-muted, #94a3b8) !important;
+}
+
+/* Tier label — strictly below the ring, with breathing room */
+.score-tier-label {
+  text-align: center !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.25rem !important;
+  max-width: 100% !important;
+  padding: 0 1.5rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  overflow-wrap: break-word !important;
+  line-height: 1.4 !important;
+}
+.score-tier-label.score-tier--verde    { color: #4CAF50 !important; }
+.score-tier-label.score-tier--teal     { color: #2A9D8F !important; }
+.score-tier-label.score-tier--naranja  { color: #F4A261 !important; }
+.score-tier-label.score-tier--amarillo { color: var(--glass-yellow) !important; }
+.score-tier-label.score-tier--rojo     { color: var(--glass-red)    !important; }
+
+/* ── 7. Score Chips ─────────────────────────────────────────────── */
+.score-chip {
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 0.3rem 0.85rem !important;
+  border: 1px solid transparent !important;
+  backdrop-filter: blur(6px) !important;
+}
+
+.score-chip--ok {
+  background: var(--glass-green-bg) !important;
+  color: var(--glass-green) !important;
+  border-color: rgba(76,175,80,0.25) !important;
+}
+
+.score-chip--alerta {
+  background: rgba(244, 162, 97, 0.12) !important;
+  color: #c45d1e !important;
+  border-color: rgba(244, 162, 97, 0.40) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .score-chip--alerta {
+    background: rgba(244,162,97,0.18) !important;
+    color: #f4a261 !important;
+    border-color: rgba(244,162,97,0.35) !important;
+  }
+}
+
+/* ── 8. Alert Table inside Score ────────────────────────────────── */
+.score-alerts-table th {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--text-muted) !important;
+  border-bottom: 2px solid var(--glass-brand) !important;
+  padding: 0.55rem 0.7rem !important;
+}
+
+.score-alerts-table td {
+  padding: 0.55rem 0.7rem !important;
+  font-size: 0.84rem !important;
+}
+
+.score-alert-row--critico td:first-child { color: var(--glass-red)    !important; font-weight: 700 !important; }
+.score-alert-row--alerta  td:first-child { color: var(--glass-yellow) !important; font-weight: 600 !important; }
+
+/* ── 9. Gradient Biomarker Bars ─────────────────────────────────── */
+.bbar {
+  height: 8px !important;
+  border-radius: var(--radius-pill) !important;
+  background: linear-gradient(
+    to right,
+    var(--glass-red)    0%,
+    var(--glass-orange) 18%,
+    var(--glass-green)  40%,
+    var(--glass-green)  60%,
+    var(--glass-orange) 82%,
+    var(--glass-red)    100%
+  ) !important;
+  overflow: visible !important;
+  position: relative !important;
+}
+
+/* Remove individual coloured segments — gradient background replaces them */
+.bbar-seg { display: none !important; }
+
+/* User position marker — elegant pin */
+.bbar-marker {
+  top: 50% !important;
+  z-index: 4 !important;
+}
+
+.bbar-marker-dot {
+  width: 16px !important;
+  height: 16px !important;
+  background: #fff !important;
+  border: 3px solid var(--glass-brand) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 8px rgba(42,157,143,0.35) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bbar-marker-dot { background: #1a2535 !important; }
+}
+
+.bbar-caption {
+  font-size: 0.72rem !important;
+  margin-top: 0.4rem !important;
+  color: var(--text-muted) !important;
+}
+
+.bbar-card {
+  padding: 0.6rem 0 0.4rem !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+}
+
+/* ── 10. Framingham — Sliders & Modern Toggles ──────────────────── */
+
+/* Slider input style for edad and PAS */
+.fw-input[type="range"] {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 100% !important;
+  height: 6px !important;
+  border-radius: var(--radius-pill) !important;
+  background: linear-gradient(to right, var(--glass-brand) var(--range-fill, 50%), rgba(0,0,0,0.1) var(--range-fill, 50%)) !important;
+  outline: none !important;
+  border: none !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+}
+
+.fw-input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  background: var(--glass-brand) !important;
+  border: 3px solid #fff !important;
+  box-shadow: 0 2px 8px rgba(42,157,143,0.4) !important;
+  cursor: pointer !important;
+  transition: transform var(--ease-ui) !important;
+}
+
+.fw-input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15) !important;
+}
+
+.fw-input[type="range"]::-moz-range-thumb {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  background: var(--glass-brand) !important;
+  border: 3px solid #fff !important;
+  box-shadow: 0 2px 8px rgba(42,157,143,0.4) !important;
+  cursor: pointer !important;
+}
+
+/* Framingham number inputs: underline style */
+.fw-input[type="number"] {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid var(--glass-border) !important;
+  border-radius: 0 !important;
+  padding: 0.45rem 0.2rem !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: var(--text-main) !important;
+  transition: border-color var(--ease-ui) !important;
+}
+
+.fw-input[type="number"]:focus {
+  outline: none !important;
+  border-bottom-color: var(--glass-brand) !important;
+}
+
+.fw-input--locked[type="number"] {
+  border-bottom-color: var(--glass-green) !important;
+  color: var(--glass-green) !important;
+}
+
+/* Modern pill toggles (replaces old outline-button toggles) */
+.fw-toggle-group {
+  background: rgba(0,0,0,0.05) !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 3px !important;
+  gap: 0 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .fw-toggle-group { background: rgba(255,255,255,0.07) !important; }
+}
+
+.fw-toggle {
+  flex: 1 !important;
+  padding: 0.38rem 0.6rem !important;
+  border-radius: var(--radius-pill) !important;
+  border: none !important;
+  background: transparent !important;
+  color: var(--text-muted) !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: background var(--ease-ui), color var(--ease-ui), box-shadow var(--ease-ui) !important;
+}
+
+.fw-toggle--active {
+  background: var(--glass-brand) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(42,157,143,0.30) !important;
+}
+
+/* Framingham panel glass look */
+.score-framingham {
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-card) !important;
+  overflow: hidden !important;
+}
+
+.fw-summary {
+  background: var(--glass-surface) !important;
+  backdrop-filter: blur(8px) !important;
+  font-weight: 700 !important;
+  padding: 0.9rem 1.1rem !important;
+}
+
+.fw-body {
+  padding: 1.1rem 1.1rem 1.25rem !important;
+  background: rgba(255,255,255,0.35) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .fw-body { background: rgba(0,0,0,0.12) !important; }
+}
+
+.fw-result {
+  background: var(--glass-brand-light) !important;
+  border: 1px solid var(--glass-brand-mid) !important;
+  border-radius: var(--radius-card) !important;
+}
+
+.fw-result-pct--bajo     { color: var(--glass-green)  !important; }
+.fw-result-pct--moderado { color: var(--glass-yellow) !important; }
+.fw-result-pct--alto     { color: var(--glass-red)    !important; }
+
+/* Calc button */
+.btn-fw-calc {
+  background: var(--glass-brand) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 0.7rem 1.5rem !important;
+  transition: opacity var(--ease-ui), transform var(--ease-ui) !important;
+}
+
+.btn-fw-calc:hover {
+  opacity: 0.88 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ── 11. Minimal Exam Form Inputs ───────────────────────────────── */
+.exam-field-input {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid var(--glass-border) !important;
+  border-radius: 0 !important;
+  font-weight: 700 !important;
+  color: var(--text-main) !important;
+  font-size: 0.98rem !important;
+  transition: border-color var(--ease-ui) !important;
+}
+
+.exam-field-input:focus {
+  outline: none !important;
+  border-bottom-color: var(--glass-brand) !important;
+}
+
+/* Exam field wrapper glass card */
+.exam-field-wrapper {
+  background: var(--glass-surface) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  transition: border-color var(--ease-ui), box-shadow var(--ease-ui) !important;
+}
+
+.exam-field-wrapper:focus-within {
+  border-color: var(--glass-brand) !important;
+  box-shadow: 0 0 0 3px var(--glass-brand-light) !important;
+}
+
+.exam-field-wrapper.conf-alta  { border-color: rgba(42,157,143,0.30) !important; }
+.exam-field-wrapper.conf-media { border-color: rgba(251,192,45,0.45) !important; }
+.exam-field-wrapper.conf-baja  { border-color: rgba(231,111,81,0.45) !important; }
+
+/* Badge colours */
+.exam-conf-badge--conf-alta {
+  background: rgba(42,157,143,0.12) !important;
+  color: var(--glass-brand) !important;
+}
+.exam-conf-badge--conf-media {
+  background: rgba(251,192,45,0.14) !important;
+  color: #a07720 !important;
+}
+.exam-conf-badge--conf-baja {
+  background: rgba(231,111,81,0.14) !important;
+  color: var(--glass-red) !important;
+}
+
+/* Exam dropzone glass */
+.exam-dropzone {
+  border: 2px dashed var(--glass-brand-mid) !important;
+  border-radius: var(--radius-card) !important;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s !important;
+}
+
+.exam-dropzone:hover,
+.exam-dropzone.drag-over {
+  border-color: var(--glass-brand) !important;
+  background: var(--glass-brand-light) !important;
+  transform: scale(1.01) !important;
+}
+
+/* Progress bar brand colour */
+.exam-progress-fill {
+  background: linear-gradient(90deg, var(--glass-brand), var(--glass-green)) !important;
+}
+
+/* ── 12. Action Buttons ─────────────────────────────────────────── */
+.btn-exam-continue,
+.btn-print-brief {
+  background: var(--glass-brand) !important;
+  border: none !important;
+  color: #fff !important;
+  border-radius: var(--radius-pill) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+  transition: opacity var(--ease-ui), transform var(--ease-ui) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+}
+.btn-print-brief:disabled {
+  opacity: 0.55 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+.btn-exam-continue:hover:not(:disabled),
+.btn-print-brief:hover:not(:disabled) {
+  opacity: 0.88 !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn-score-to-dashboard {
+  border-radius: var(--radius-pill) !important;
+  border-color: var(--glass-border) !important;
+}
+
+/* ── 13. Recommendation Cards ───────────────────────────────────── */
+.score-rec-card {
+  background: var(--glass-surface) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-left: 3px solid var(--glass-brand) !important;
+  border-radius: 14px !important;
+  transition: box-shadow var(--ease-ui), transform var(--ease-ui) !important;
+  box-shadow: 0 2px 8px rgba(42,157,143,0.06) !important;
+}
+
+.score-rec-card:hover {
+  box-shadow: var(--glass-shadow-hover) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Section header for Plan de Acción */
+.score-rec-title {
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.09em !important;
+  text-transform: uppercase !important;
+  color: var(--glass-brand) !important;
+  margin-bottom: 0.65rem !important;
+}
+
+/* Disclaimer below all recommendation cards */
+.score-rec-disclaimer {
+  font-size: 0.7rem !important;
+  color: var(--text-muted) !important;
+  text-align: center !important;
+  margin-top: 0.4rem !important;
+  opacity: 0.75 !important;
+}
+
+/* ── 14. Alternatives Card ──────────────────────────────────────── */
+.alternatives-card {
+  background: var(--glass-surface) !important;
+  backdrop-filter: blur(14px) !important;
+  border-radius: 16px !important;
+}
+
+.alternatives-header {
+  color: var(--glass-brand) !important;
+}
+
+.alternative-item {
+  background: rgba(42,157,143,0.06) !important;
+  border: 1px solid rgba(42,157,143,0.15) !important;
+  border-radius: 10px !important;
+}
+
+/* ── 15. Modal Glass ────────────────────────────────────────────── */
+.caregiver-modal,
+.expl-panel {
+  background: var(--glass-surface) !important;
+  backdrop-filter: blur(20px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+  border: 1px solid var(--glass-border) !important;
+}
+
+.caregiver-modal-overlay,
+.expl-overlay {
+  backdrop-filter: blur(6px) !important;
+}
+
+.caregiver-pin-display {
+  background: var(--glass-brand-light) !important;
+  border: 1px solid var(--glass-brand-mid) !important;
+  color: var(--glass-brand) !important;
+  border-radius: 14px !important;
+}
+
+/* ── 16. Info Button ─────────────────────────────────────────────── */
+.btn-expl {
+  background: var(--glass-brand-light) !important;
+  border-color: var(--glass-brand-mid) !important;
+  color: var(--glass-brand) !important;
+}
+
+.btn-expl:hover {
+  background: var(--glass-brand-mid) !important;
+}
+
+/* ── 17. Correlation Cards ──────────────────────────────────────── */
+.corr-card {
+  background: var(--glass-surface) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.corr-item--ok      { background: rgba(76, 175,  80, 0.08) !important; }
+.corr-item--alerta  { background: rgba(251, 192, 45, 0.08) !important; }
+.corr-item--critico { background: rgba(231, 111, 81, 0.08) !important; }
+
+/* ── 18. Re-exam Reminder ───────────────────────────────────────── */
+.score-reexamen {
+  background: var(--glass-brand-light) !important;
+  border-color: var(--glass-brand-mid) !important;
+  border-radius: 14px !important;
+}
+
+.score-reexamen--urgente {
+  background: rgba(231,111,81,0.08) !important;
+  border-color: rgba(231,111,81,0.30) !important;
+}
+
+.reexamen-intervalo {
+  background: var(--glass-brand-light) !important;
+  color: var(--glass-brand) !important;
+}
+
+.btn-reexamen-calendar {
+  background: var(--glass-brand-light) !important;
+  border-color: var(--glass-brand-mid) !important;
+  color: var(--glass-brand) !important;
+  border-radius: var(--radius-pill) !important;
+  font-weight: 600 !important;
+  transition: background var(--ease-ui) !important;
+}
+
+.btn-reexamen-calendar:hover {
+  background: var(--glass-brand-mid) !important;
+}
+
+/* ── 19. History List ───────────────────────────────────────────── */
+.history-item {
+  background: var(--glass-surface) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 14px !important;
+  transition: background var(--ease-ui), border-color var(--ease-ui), transform var(--ease-ui) !important;
+}
+
+.history-item--clickable:hover {
+  border-color: var(--glass-brand) !important;
+  background: rgba(42,157,143,0.07) !important;
+  transform: translateX(3px) !important;
+}
+
+.history-score--verde    { color: var(--glass-green)  !important; }
+.history-score--amarillo { color: var(--glass-yellow) !important; }
+.history-score--rojo     { color: var(--glass-red)    !important; }
+
+.history-tag--ok {
+  background: var(--glass-green-bg) !important;
+  color: var(--glass-green) !important;
+  border-color: rgba(76,175,80,0.25) !important;
+}
+
+.history-tag--alerta {
+  background: var(--glass-yellow-bg) !important;
+  color: #a07720 !important;
+  border-color: rgba(251,192,45,0.3) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .history-tag--alerta { color: var(--glass-yellow) !important; }
+}
+
+/* ── 20. Framingham sliders ─────────────────────────────────────── */
+.fw-field--slider {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.4rem !important;
+}
+
+.fw-slider-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.fw-slider-header .fw-label {
+  flex: 1 !important;
+  margin: 0 !important;
+}
+
+.fw-slider-display {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 0.2rem !important;
+}
+
+.fw-slider-output {
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  color: var(--glass-brand) !important;
+  min-width: 2.2ch !important;
+  text-align: right !important;
+}
+
+.fw-slider {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 100% !important;
+  height: 5px !important;
+  border-radius: var(--radius-pill) !important;
+  background: rgba(0,0,0,0.1) !important;
+  outline: none !important;
+  border: none !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  accent-color: var(--glass-brand) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .fw-slider { background: rgba(255,255,255,0.12) !important; }
+}
+
+.fw-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  background: var(--glass-brand) !important;
+  border: 3px solid #fff !important;
+  box-shadow: 0 2px 8px rgba(42,157,143,0.35) !important;
+  cursor: pointer !important;
+  transition: transform var(--ease-ui) !important;
+}
+
+.fw-slider::-webkit-slider-thumb:hover { transform: scale(1.18) !important; }
+.fw-slider::-webkit-slider-thumb:active { transform: scale(1.08) !important; }
+
+.fw-slider::-moz-range-thumb {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  background: var(--glass-brand) !important;
+  border: 3px solid #fff !important;
+  box-shadow: 0 2px 8px rgba(42,157,143,0.35) !important;
+  cursor: pointer !important;
+}
+
+.fw-slider-ticks {
+  display: flex !important;
+  justify-content: space-between !important;
+  font-size: 0.68rem !important;
+  color: var(--text-muted) !important;
+  opacity: 0.6 !important;
+  padding: 0 2px !important;
+}
+
+/* ── 21. Action Buttons — Caregiver ─────────────────────────────── */
+.action-btn {
+  border-radius: 14px !important;
+  transition: box-shadow var(--ease-ui), transform var(--ease-ui) !important;
+}
+
+.action-btn:hover {
+  box-shadow: var(--glass-shadow-hover) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ── 22. Search Bar glass ───────────────────────────────────────── */
+.hybrid-search-container .search-input,
+#food-search-input {
+  background: var(--glass-surface) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-pill) !important;
+  backdrop-filter: blur(8px) !important;
+  transition: border-color var(--ease-ui), box-shadow var(--ease-ui) !important;
+}
+
+#food-search-input:focus {
+  border-color: var(--glass-brand) !important;
+  box-shadow: 0 0 0 3px var(--glass-brand-light) !important;
+  outline: none !important;
+}
+
+/* ── 23. Scan result card glass ─────────────────────────────────── */
+#scan-result-card {
+  background: var(--glass-surface) !important;
+  backdrop-filter: blur(14px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--glass-shadow) !important;
+}
+
+/* ── 24. Disclaimer text ─────────────────────────────────────────── */
+.score-disclaimer,
+.exam-disclaimer,
+.score-rec-disclaimer,
+.reexamen-disclaimer {
+  font-size: 0.73rem !important;
+  color: var(--text-muted) !important;
+  opacity: 0.75 !important;
+}
+
+/* ── 25. Percentile section glass ────────────────────────────────── */
+.score-percentiles {
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-card) !important;
+  backdrop-filter: blur(8px) !important;
+  overflow: hidden !important;
+}
+
+.perc-bar-fill { background: var(--glass-brand) !important; }
+.perc-bar-fill.perc-bar--malo   { background: var(--glass-red)    !important; }
+.perc-bar-fill.perc-bar--alerta { background: var(--glass-yellow) !important; }
+.perc-bar-fill.perc-bar--bueno  { background: var(--glass-green)  !important; }
+
+/* ── End of Glassmorphism Design System ──────────────────────────── */
+
+/* =================================================================
+   INN. 8 — Simulador "¿Qué pasa si?"
+   ================================================================= */
+.score-simulador {
+    margin-top: 1rem;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    background: var(--glass-surface);
+    backdrop-filter: blur(8px);
+}
+
+.sim-summary {
+    padding: 0.9rem 1.1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.sim-summary::-webkit-details-marker { display: none; }
+.sim-summary::after {
+    content: '▸';
+    margin-left: auto;
+    transition: transform 0.2s;
+    color: var(--text-muted);
+}
+.score-simulador[open] .sim-summary::after { transform: rotate(90deg); }
+
+.sim-body {
+    padding: 0 1rem 1rem;
+}
+
+.sim-intro {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.sim-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.sim-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-card);
+    padding: 0.85rem 1rem;
+}
+
+.sim-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.55rem;
+}
+
+.sim-card-label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.sim-card-val {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--glass-brand);
+    min-width: 80px;
+    text-align: right;
+}
+
+.sim-track {
+    margin-bottom: 0.5rem;
+}
+
+.sim-range {
+    width: 100%;
+    accent-color: var(--glass-brand);
+    height: 6px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.sim-delta {
+    font-size: 0.81rem;
+    color: var(--text-secondary);
+    margin: 0.3rem 0 0.6rem;
+    min-height: 2.4em;
+    line-height: 1.4;
+}
+
+.sim-delta--mejora  { color: var(--glass-green)  !important; font-weight: 600; }
+.sim-delta--empeora { color: var(--glass-red)    !important; }
+
+.btn-sim-meta {
+    font-size: 0.78rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-pill);
+    background: rgba(255,255,255,0.06);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+.btn-sim-meta:hover {
+    background: var(--glass-brand-light);
+    color: var(--text-primary);
+}
+.btn-sim-meta--saved {
+    background: rgba(34,197,94,0.15) !important;
+    color: var(--glass-green) !important;
+    border-color: var(--glass-green) !important;
+}
+
+@media print { .score-simulador { display: none !important; } }
+
+/* =================================================================
+   INN. 9 — Comparador Poblacional OMS (NCD-RisC)
+   ================================================================= */
+
+/* Container summary */
+.perc-summary {
+    padding: 0.9rem 1.1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.perc-summary::-webkit-details-marker { display: none; }
+.perc-summary::after {
+    content: '▸';
+    margin-left: auto;
+    transition: transform 0.2s;
+    color: var(--text-muted);
+}
+.score-percentiles[open] .perc-summary::after { transform: rotate(90deg); }
+
+.perc-body {
+    padding: 0 1rem 1rem;
+}
+
+/* ── Sex toggle ──────────────────────────────────────────────── */
+.oms-sex-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.oms-sex-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.oms-sex-group {
+    display: flex;
+    background: rgba(0,0,0,0.05);
+    border-radius: var(--radius-pill);
+    padding: 3px;
+    gap: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .oms-sex-group { background: rgba(255,255,255,0.07); }
+}
+
+.oms-sex-btn {
+    flex: 1;
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-pill);
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--ease-ui), color var(--ease-ui), box-shadow var(--ease-ui);
+    white-space: nowrap;
+}
+
+.oms-sex-btn--active {
+    background: var(--glass-brand);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(42,157,143,0.30);
+}
+
+/* ── List ────────────────────────────────────────────────────── */
+.perc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+/* ── OMS comparison item ─────────────────────────────────────── */
+.oms-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.oms-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.oms-item-name {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Badge */
+.oms-badge {
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 0.18rem 0.6rem;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+    background: rgba(255,255,255,0.08);
+    color: var(--text-secondary);
+}
+.oms-badge--dentro  { background: rgba(42,157,143,0.14);  color: var(--glass-brand); }
+.oms-badge--bueno   { background: rgba(76,175,80,0.14);   color: var(--glass-green); }
+.oms-badge--alto    { background: rgba(231,111,81,0.14);  color: var(--glass-red); }
+.oms-badge--bajo    { background: rgba(251,192,45,0.14);  color: var(--glass-yellow); }
+
+/* Bar: gradient track, center line = promedio, dot = usuario */
+.oms-bar-track {
+    position: relative;
+    height: 8px;
+    /* gradient verde→amarillo→rojo (izq=bueno, der=malo por defecto) */
+    background: linear-gradient(to right,
+        rgba(76,175,80,0.35) 0%,
+        rgba(251,192,45,0.35) 50%,
+        rgba(231,111,81,0.35) 100%);
+    border-radius: 4px;
+    overflow: visible;   /* el dot sobresale del track */
+}
+
+/* Average marker: vertical dashed rule at 50% */
+.oms-bar-avg {
+    position: absolute;
+    left: 50%;
+    top: -4px;
+    bottom: -4px;
+    width: 2px;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.35) 0px,
+        rgba(0,0,0,0.35) 3px,
+        transparent 3px,
+        transparent 6px
+    );
+    transform: translateX(-50%);
+}
+
+@media (prefers-color-scheme: dark) {
+    .oms-bar-avg {
+        background: repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.4) 0px,
+            rgba(255,255,255,0.4) 3px,
+            transparent 3px,
+            transparent 6px
+        );
+    }
+}
+
+/* User value marker dot */
+.oms-bar-user {
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--glass-brand);
+    border: 2.5px solid #fff;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.30);
+    transition: left 0.4s ease;
+    z-index: 2;
+}
+.oms-bar-user.oms-bar--alto { background: var(--glass-red); }
+.oms-bar-user.oms-bar--ok   { background: var(--glass-green); }
+
+/* Text line */
+.oms-item-text {
+    font-size: 0.77rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    margin: 0;
+}
+
+/* Fallback / info messages */
+.perc-sin-edad {
+    font-size: 0.83rem;
+    color: var(--text-secondary);
+    padding: 0.5rem 0;
+}
+
+.perc-disclaimer {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+    margin-top: 1.1rem;
+    line-height: 1.45;
+}
+
+@media print { .score-percentiles { display: none !important; } }
+
+/* =================================================================
+   GLOBAL REFINEMENTS — Silicon Valley polish layer
+   ================================================================= */
+
+/* ── Score section header ──────────────────────────────────────── */
+.score-main-title {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+  color: var(--text-primary, var(--text-main)) !important;
+  opacity: 0.75 !important;
+}
+
+.score-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  margin-bottom: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+}
+
+/* Back button: minimal ghost */
+.btn-exam-back {
+  background: transparent !important;
+  border: 1px solid var(--glass-border) !important;
+  color: var(--text-muted) !important;
+  border-radius: var(--radius-pill) !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.9rem !important;
+  cursor: pointer !important;
+  transition: background var(--ease-ui), color var(--ease-ui) !important;
+  flex-shrink: 0 !important;
+}
+.btn-exam-back:hover {
+  background: var(--glass-brand-light) !important;
+  color: var(--glass-brand) !important;
+}
+
+/* ── Section inner-titles (h3 inside score section) ───────────── */
+.score-rec-title,
+.tend-title,
+.corr-title {
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--glass-brand) !important;
+  margin-bottom: 0.75rem !important;
+  opacity: 0.85 !important;
+}
+
+/* ── Chips: rounder, softer ────────────────────────────────────── */
+.score-chips {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.4rem !important;
+  justify-content: center !important;
+  margin-bottom: 1rem !important;
+}
+
+/* ── Alert table: cleaner ──────────────────────────────────────── */
+.score-alerts-table {
+  border-collapse: collapse !important;
+  width: 100% !important;
+  font-size: 0.83rem !important;
+}
+.score-alerts-table th {
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: var(--text-muted) !important;
+  padding: 0.5rem 0.6rem !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+  background: transparent !important;
+}
+.score-alerts-table td {
+  padding: 0.55rem 0.6rem !important;
+  border-bottom: 1px solid rgba(0,0,0,0.04) !important;
+  vertical-align: middle !important;
+}
+@media (prefers-color-scheme: dark) {
+  .score-alerts-table td { border-bottom-color: rgba(255,255,255,0.04) !important; }
+}
+
+/* ── Print brief: zero glass effects ──────────────────────────── */
+@media print {
+  .score-gauge-wrapper,
+  .score-ring { filter: none !important; }
+
+  .score-ring-fill {
+    filter: none !important;
+    stroke: #2A9D8F !important;   /* fallback solid color for print */
+  }
+
+  .score-ring-track {
+    stroke: #e0e0e0 !important;
+  }
+
+  .dashboard-card,
+  .main-card {
+    background: #fff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: 1px solid #e0e0e0 !important;
+  }
+
+  body {
+    background: #fff !important;
+    background-image: none !important;
+  }
+}
+
+/* ── Score actions: cleaner layout ────────────────────────────── */
+.score-actions {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+  margin-top: 1.25rem !important;
+}
+
+.btn-print-brief {
+  background: transparent !important;
+  border: 1.5px solid var(--glass-border) !important;
+  color: var(--text-muted) !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 0.65rem 1.25rem !important;
+  font-size: 0.83rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: border-color var(--ease-ui), color var(--ease-ui) !important;
+  text-align: center !important;
+}
+.btn-print-brief:hover {
+  border-color: var(--glass-brand) !important;
+  color: var(--glass-brand) !important;
+}
+
+/* ── Reexamen button: brand fill ───────────────────────────────── */
+.btn-reexamen-calendar {
+  background: var(--glass-brand) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--radius-pill) !important;
+  padding: 0.65rem 1.25rem !important;
+  font-size: 0.83rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  transition: opacity var(--ease-ui), transform var(--ease-ui) !important;
+}
+.btn-reexamen-calendar:hover {
+  opacity: 0.88 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ── Sinergia card: subtle ─────────────────────────────────────── */
+.score-sinergia {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.6rem !important;
+  padding: 0.75rem 0.9rem !important;
+  background: var(--glass-brand-light) !important;
+  border-radius: var(--radius-card) !important;
+  border: 1px solid var(--glass-brand-mid) !important;
+}
+
+.sinergia-icon {
+  color: var(--glass-brand) !important;
+  flex-shrink: 0 !important;
+  margin-top: 2px !important;
+}
+
+.sinergia-text {
+  font-size: 0.8rem !important;
+  color: var(--text-secondary, var(--text-muted)) !important;
+  line-height: 1.5 !important;
+}
+
+/* ── Global: text variables bridging ──────────────────────────── */
+:root {
+  --text-primary:   var(--text-main);
+  --text-secondary: var(--text-muted);
+}
+
+/* ── Botones de utilidad para grupos del formulario de biomarcadores */
+.btn-util-group {
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  color: #374151;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.btn-util-group:hover {
+  background: #f0fdf4;
+  border-color: #14b8a6;
+  color: #0d9488;
+}
+.btn-util-altered {
+  border-color: #fbbf24;
+  color: #92400e;
+  background: #fffbeb;
+}
+.btn-util-altered:hover {
+  background: #fef3c7;
+  border-color: #f59e0b;
+}
+
+/* ── Texto simplificado de próximo control (Fase 4 pendiente) ── */
+.reexamen-simple-text {
+  font-size: 0.875rem;
+  color: var(--text-secondary, #64748b);
+  margin: 0;
+  padding: 0.75rem 1rem;
+  background: #f0fdfa;
+  border: 1px solid #99f6e4;
+  border-radius: 10px;
+  line-height: 1.5;
+}
+
+#title, 
+.header h1, 
+.header h1#title,
+h1#title {
+    background: linear-gradient(135deg, #8B85D6, #6BA5D8) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    color: transparent !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+}
+
+.bmi-title {
+    font-weight: 400 !important;
+    color: #6B7280 !important;
+    font-size: 0.9rem;
+}
+
+/* ══════════════════════════════════════════════════════
+   Mi Calendario de Salud — Fase 4
+   ══════════════════════════════════════════════════════ */
+
+/* ── Cabecera de navegación ── */
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.cal-nav-btn {
+  background: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+}
+.cal-nav-btn:hover { background: #f0fdf4; border-color: #14b8a6; color: #0d9488; }
+.cal-month-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* ── Grid del calendario ── */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 8px;
+}
+.cal-weekday {
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #9ca3af;
+  padding: 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.cal-cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.12s;
+  position: relative;
+}
+.cal-cell:hover { background: #f0fdf4; }
+.cal-cell--empty { cursor: default; pointer-events: none; }
+.cal-cell--today .cal-cell-num {
+  background: #14b8a6;
+  color: #fff;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+.cal-cell--selected { background: #f0fdf4; outline: 2px solid #14b8a6; }
+.cal-cell-num {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #374151;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Puntos de eventos ── */
+.cal-dots {
+  display: flex;
+  gap: 2px;
+  margin-top: 2px;
+}
+.cal-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.cal-dot--cita_medica  { background: #3B82F6; }
+.cal-dot--examen_lab   { background: #10B981; }
+.cal-dot--medicamento  { background: #8B5CF6; }
+
+/* ── Leyenda ── */
+.cal-legend {
+  display: flex;
+  gap: 12px;
+  font-size: 0.72rem;
+  color: #6b7280;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.cal-legend .cal-dot { width: 8px; height: 8px; }
+
+/* ── Panel del día seleccionado ── */
+.cal-day-events {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.cal-day-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 10px 0;
+  text-transform: capitalize;
+}
+.cal-events-list { display: flex; flex-direction: column; gap: 8px; }
+.cal-no-events {
+  font-size: 0.82rem;
+  color: #9ca3af;
+  margin: 0;
+  text-align: center;
+  padding: 8px 0;
+}
+
+/* ── Tarjeta de evento ── */
+.cal-event-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.cal-event--cita_medica  { border-left-color: #3B82F6; }
+.cal-event--examen_lab   { border-left-color: #10B981; }
+.cal-event--medicamento  { border-left-color: #8B5CF6; }
+
+.cal-event-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cal-event-emoji { font-size: 1rem; flex-shrink: 0; }
+.cal-event-info  { flex: 1; min-width: 0; }
+.cal-event-title { font-size: 0.85rem; color: #1f2937; display: block; font-weight: 600; }
+.cal-event-hora  { font-size: 0.75rem; color: #6b7280; }
+.cal-event-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #d1d5db;
+  font-size: 0.8rem;
+  padding: 2px 4px;
+  transition: color 0.12s;
+}
+.cal-event-delete:hover { color: #ef4444; }
+.cal-event-prep          { font-size: 0.78rem; color: #374151; margin: 6px 0 2px; }
+.cal-event-instrucciones { font-size: 0.78rem; color: #6b7280; margin: 0 0 6px; }
+.cal-event-horarios      { font-size: 0.78rem; color: #6b7280; margin: 6px 0 4px; }
+
+.cal-event-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.cal-event-ics {
+  background: #f0fdf4;
+  border: 1px solid #10b981;
+  color: #065f46;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.12s;
+}
+.cal-event-ics:hover { background: #d1fae5; }
+.cal-event-gcal {
+  background: #eff6ff;
+  border: 1px solid #3b82f6;
+  color: #1e40af;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.12s;
+}
+.cal-event-gcal:hover { background: #dbeafe; }
+
+/* ── Toggle switch alarma (medicamentos) ── */
+.cal-switch { display: inline-flex; align-items: center; cursor: pointer; flex-shrink: 0; }
+.cal-switch-input { display: none; }
+.cal-switch-track {
+  width: 34px;
+  height: 18px;
+  background: #d1d5db;
+  border-radius: 9px;
+  position: relative;
+  transition: background 0.2s;
+}
+.cal-switch-track::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.18);
+}
+.cal-switch-input:checked + .cal-switch-track { background: #8B5CF6; }
+.cal-switch-input:checked + .cal-switch-track::after { transform: translateX(16px); }
+
+/* ── Botón agregar evento ── */
+.btn-add-event {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: opacity 0.15s;
+  letter-spacing: 0.01em;
+}
+.btn-add-event:hover { opacity: 0.9; }
+
+/* ── Modal overlay ── */
+.cal-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1100;
+}
+.cal-modal-overlay.hidden { display: none; }
+
+.cal-modal-box {
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  padding: 20px 16px 32px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.14);
+}
+.cal-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.cal-modal-title { font-size: 1rem; font-weight: 700; color: #1f2937; margin: 0; }
+.cal-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #6b7280;
+  padding: 4px 8px;
+  line-height: 1;
+}
+.cal-modal-close:hover { color: #ef4444; }
+
+/* ── Tabs ── */
+.cal-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.cal-tab {
+  flex: 1;
+  padding: 7px 4px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+  font-size: 0.74rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: #6b7280;
+  transition: all 0.12s;
+  white-space: nowrap;
+  text-align: center;
+}
+.cal-tab--active {
+  background: #f0fdf4;
+  border-color: #14b8a6;
+  color: #0f766e;
+  font-weight: 600;
+}
+.cal-tab-content { display: block; }
+.cal-tab-content.hidden { display: none; }
+
+/* ── Inputs del formulario ── */
+.cal-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #374151;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.cal-input {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  color: #1f2937;
+  background: #fafafa;
+  outline: none;
+  transition: border-color 0.12s;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.cal-input:focus { border-color: #14b8a6; background: #fff; }
+.cal-select { appearance: auto; }
+
+/* ── Preview preparativo de examen ── */
+.cal-preparativo-preview {
+  background: #f0fdf4;
+  border: 1px solid #99f6e4;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.8rem;
+  color: #065f46;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+/* ── Botón guardar del modal ── */
+.btn-save-event {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 14px;
+  background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  font-family: inherit;
+}
+.btn-save-event:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-save-event:hover:not(:disabled) { opacity: 0.9; }
+
+/* ── Edición inline de peso / altura ──────────────────────────── */
+.btn-metric-edit {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-metric-edit:hover {
+  background: rgba(86,182,194,0.12);
+  color: var(--secondary);
+}
+.metrics-edit-form {
+  margin-top: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: rgba(86,182,194,0.06);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+}
+.metrics-edit-row {
+  display: flex;
+  gap: 0.75rem;
+}
+.metrics-edit-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.metrics-edit-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--secondary);
+}
+.metrics-edit-input {
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+  border-radius: 10px;
+  padding: 0.55rem 0.75rem;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.metrics-edit-input:focus {
+  border-color: var(--yellow-strong);
+  box-shadow: 0 0 0 3px rgba(229,192,123,0.2);
+}
+.btn-metrics-save {
+  flex: 1;
+  background: var(--secondary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-family: inherit;
+}
+.btn-metrics-save:hover { opacity: 0.85; }
+.btn-metrics-save:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-metrics-cancel {
+  flex: 1;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+.btn-metrics-cancel:hover { background: rgba(0,0,0,0.05); }
+.metrics-save-status {
+  font-size: 0.8rem;
+  margin-top: 0.4rem;
+  min-height: 1.1em;
+}

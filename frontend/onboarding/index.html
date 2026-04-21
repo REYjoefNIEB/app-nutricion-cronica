@@ -51,14 +51,29 @@
                 </div>
                 
                 <div class="form-group">
-                    <label id="label-pathology" for="select-pathology"></label>
-                    <div class="input-wrapper select-wrapper">
-                        <select id="select-pathology" required>
+                    <label id="label-pathology" for="pathology-search"></label>
+                    <div class="pathology-chips-field input-wrapper autocomplete-wrapper">
+                        <div id="pathology-chips" class="pathology-chips" aria-live="polite"></div>
+                        <div class="pathology-search-wrap">
+                            <input type="text"
+                                   id="pathology-search"
+                                   class="pathology-search-input"
+                                   autocomplete="off"
+                                   autocapitalize="none"
+                                   spellcheck="false"
+                                   role="combobox"
+                                   aria-autocomplete="list"
+                                   aria-expanded="false"
+                                   aria-controls="pathology-suggestions">
+                            <ul id="pathology-suggestions" class="pathology-suggestions hidden" role="listbox"></ul>
+                        </div>
+                        <select id="select-pathology" multiple required class="multi-select-custom pathology-select-hidden" aria-hidden="true" tabindex="-1">
                             <!-- Options added via JS for i18n support -->
                         </select>
                     </div>
+                    <div id="onboarding-fases-panel" class="fases-panel hidden" aria-live="polite"></div>
                 </div>
-                
+
                 <!-- [AGENTE 01 — Legal & Compliance] Consentimiento Informado -->
                 <div class="consent-section" id="legal-document-text">
                     <h2 class="consent-title" id="consent-title"></h2>
@@ -139,6 +154,7 @@
     <script src="../shared/legal-content.js"></script>
     <!-- [LÓGICO BACKEND] Caché local AES-GCM — debe cargar antes de app.js -->
     <script src="../shared/storage.js"></script>
+    <script src="../shared/clinical-phases.js"></script>
     <!-- [LÓGICO BACKEND] Inicializa window.NuraFirebase antes de DOMContentLoaded -->
     <script type="module" src="../shared/firebase-config.js"></script>
     <script src="app.js"></script>

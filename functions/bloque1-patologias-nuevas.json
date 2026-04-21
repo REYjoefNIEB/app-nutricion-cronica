@@ -1,0 +1,1066 @@
+{
+  "asma": {
+    "nombre": "Asma Bronquial",
+    "cluster": "respiratorio",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "sulfito",
+          "metabisulfito",
+          "dioxido de azufre",
+          "bisulfito"
+        ],
+        "severidad": "critico",
+        "motivo": "Los sulfitos son un disparador documentado de crisis asmática."
+      },
+      {
+        "feature_ingrediente": [
+          "tartrazina",
+          "colorante artificial",
+          "benzoato"
+        ],
+        "severidad": "moderado",
+        "motivo": "Aditivos asociados a exacerbaciones del asma."
+      },
+      {
+        "feature_ingrediente": [
+          "vino",
+          "cerveza",
+          "alcohol"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol, especialmente vino tinto, puede desencadenar broncoespasmo."
+      }
+    ]
+  },
+  "epoc": {
+    "nombre": "EPOC (Enfermedad Pulmonar Obstructiva Crónica)",
+    "cluster": "respiratorio",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "El sodio agrava la retención de líquidos y el corazón pulmonar."
+      },
+      {
+        "feature_ingrediente": [
+          "embutido",
+          "sopa instantanea",
+          "conservas"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimentos procesados con alta carga de sodio."
+      },
+      {
+        "feature_ingrediente": [
+          "gaseosa",
+          "bebida carbonatada",
+          "espumante"
+        ],
+        "severidad": "moderado",
+        "motivo": "Las bebidas carbonatadas generan distensión abdominal que dificulta la respiración."
+      }
+    ]
+  },
+  "apnea_sueno": {
+    "nombre": "Apnea Obstructiva del Sueño",
+    "cluster": "respiratorio",
+    "reglas": [
+      {
+        "feature_sello": "fat",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Alta densidad calórica. El control de peso es clave en apnea del sueño."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol relaja la musculatura faríngea y empeora los episodios de apnea."
+      },
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "energizante"
+        ],
+        "severidad": "moderado",
+        "motivo": "La cafeína altera la calidad del sueño ya comprometido en apnea."
+      }
+    ]
+  },
+  "fibrosis_quistica": {
+    "nombre": "Fibrosis Quística",
+    "cluster": "respiratorio",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "En fibrosis quística se PROMUEVE alto sodio (pérdida por sudor). Consulte a su médico."
+      },
+      {
+        "feature_ingrediente": [
+          "grasa",
+          "aceite"
+        ],
+        "severidad": "moderado",
+        "motivo": "Se requiere alta ingesta calórica. Tomar enzimas pancreáticas con las grasas."
+      }
+    ]
+  },
+  "depresion": {
+    "nombre": "Depresión Mayor",
+    "cluster": "psiquiatrico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "queso curado",
+          "queso azul",
+          "embutido curado",
+          "salame",
+          "vino tinto",
+          "salsa de soja",
+          "miso",
+          "fermentado",
+          "tiramina"
+        ],
+        "severidad": "critico",
+        "motivo": "Si toma IMAOs (antidepresivos), la tiramina puede causar crisis hipertensiva."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol es depresor del SNC y reduce eficacia de antidepresivos."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Picos de glucosa alteran el estado de ánimo y empeoran síntomas depresivos."
+      }
+    ]
+  },
+  "ansiedad_generalizada": {
+    "nombre": "Trastorno de Ansiedad Generalizada",
+    "cluster": "psiquiatrico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "te verde",
+          "guarana",
+          "taurina",
+          "energizante"
+        ],
+        "severidad": "critico",
+        "motivo": "Los estimulantes agravan síntomas de ansiedad y pueden desencadenar crisis de pánico."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol empeora la ansiedad al día siguiente (rebote) y afecta ansiolíticos."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Picos glucémicos pueden simular o amplificar síntomas de ansiedad."
+      }
+    ]
+  },
+  "trastorno_bipolar": {
+    "nombre": "Trastorno Bipolar",
+    "cluster": "psiquiatrico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "sal",
+          "sodio"
+        ],
+        "severidad": "moderado",
+        "motivo": "Si toma LITIO, cambios bruscos en sodio alteran niveles del medicamento."
+      },
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "guarana"
+        ],
+        "severidad": "moderado",
+        "motivo": "La cafeína aumenta la excreción de litio y puede desencadenar episodios maníacos."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol desestabiliza el ánimo y altera niveles de estabilizadores."
+      }
+    ]
+  },
+  "insomnio_cronico": {
+    "nombre": "Insomnio Crónico",
+    "cluster": "psiquiatrico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "te verde",
+          "guarana",
+          "energizante",
+          "mate"
+        ],
+        "severidad": "critico",
+        "motivo": "La cafeína tiene vida media de 5-7 horas. Evitar después del mediodía."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol fragmenta el sueño aunque induzca somnolencia inicial."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Azúcares antes de dormir causan despertares nocturnos."
+      }
+    ]
+  },
+  "adiccion_alcohol": {
+    "nombre": "Alcoholismo / Recuperación",
+    "cluster": "psiquiatrico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino",
+          "licor",
+          "vodka",
+          "whisky",
+          "ron",
+          "pisco",
+          "vinagre de vino",
+          "extracto de vainilla"
+        ],
+        "severidad": "critico",
+        "motivo": "Contraindicación absoluta. Riesgo de recaída y daño hepático."
+      },
+      {
+        "feature_ingrediente": [
+          "tiramina",
+          "queso curado",
+          "vino"
+        ],
+        "severidad": "moderado",
+        "motivo": "Si toma disulfiram o naltrexona, evitar trazas de alcohol y fermentados."
+      }
+    ]
+  },
+  "menopausia": {
+    "nombre": "Menopausia / Perimenopausia",
+    "cluster": "endocrino",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe"
+        ],
+        "severidad": "moderado",
+        "motivo": "La cafeína empeora sofocos y puede reducir absorción de calcio."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "vino",
+          "cerveza"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol intensifica sofocos y aumenta riesgo de osteoporosis."
+      },
+      {
+        "feature_ingrediente": [
+          "azucar refinado",
+          "harina blanca"
+        ],
+        "severidad": "moderado",
+        "motivo": "Agravan inestabilidad emocional y aumento de peso en menopausia."
+      }
+    ]
+  },
+  "sobrecrecimiento_bacteriano_sibo": {
+    "nombre": "SIBO (Sobrecrecimiento Bacteriano)",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "fodmap",
+          "ajo",
+          "cebolla",
+          "manzana",
+          "pera",
+          "mango",
+          "sandia",
+          "leche",
+          "lactosa",
+          "trigo",
+          "legumbre",
+          "lenteja",
+          "garbanzo",
+          "inulina",
+          "fructooligosacarido"
+        ],
+        "severidad": "critico",
+        "motivo": "Los FODMAPs fermentan y alimentan el sobrecrecimiento bacteriano."
+      },
+      {
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "fructosa",
+          "miel",
+          "agave"
+        ],
+        "severidad": "critico",
+        "motivo": "Los azúcares alimentan las bacterias del intestino delgado."
+      },
+      {
+        "feature_ingrediente": [
+          "probiotico",
+          "kefir",
+          "yogurt",
+          "chucrut",
+          "kimchi"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los probióticos pueden empeorar SIBO. Consulte a su gastroenterólogo."
+      }
+    ]
+  },
+  "helicobacter_pylori": {
+    "nombre": "Infección por H. Pylori",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe"
+        ],
+        "severidad": "moderado",
+        "motivo": "El café aumenta secreción ácida que irrita el estómago infectado."
+      },
+      {
+        "feature_ingrediente": [
+          "aji",
+          "chile",
+          "pimienta",
+          "picante"
+        ],
+        "severidad": "moderado",
+        "motivo": "Irritantes agravan la gastritis asociada a H. pylori."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol daña la mucosa gástrica y retarda la erradicación."
+      },
+      {
+        "feature_ingrediente": [
+          "aspirina",
+          "ibuprofeno",
+          "aine"
+        ],
+        "severidad": "critico",
+        "motivo": "Los AINEs junto a H. pylori causan úlcera severa."
+      }
+    ]
+  },
+  "deficit_enzima_dao": {
+    "nombre": "Déficit de DAO (Diaminooxidasa)",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "histamina",
+          "atun",
+          "sardina",
+          "caballa",
+          "anchoa",
+          "arenque",
+          "queso curado",
+          "queso azul",
+          "embutido curado",
+          "vino tinto",
+          "cerveza",
+          "champagne",
+          "vinagre",
+          "chucrut",
+          "kimchi",
+          "tomate",
+          "espinaca",
+          "berenjena",
+          "fresa",
+          "chocolate",
+          "cacao",
+          "mariscos"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimentos altos en histamina que el déficit de DAO no puede metabolizar."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol bloquea la enzima DAO empeorando síntomas."
+      }
+    ]
+  },
+  "vih_sida": {
+    "nombre": "VIH / SIDA",
+    "cluster": "infeccioso",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "pomelo",
+          "toronja",
+          "grapefruit",
+          "furanocumarina"
+        ],
+        "severidad": "critico",
+        "motivo": "El pomelo interfiere con varios antirretrovirales (inhibidores de proteasa)."
+      },
+      {
+        "feature_ingrediente": [
+          "hierba de san juan",
+          "hiperico"
+        ],
+        "severidad": "critico",
+        "motivo": "Reduce niveles de antirretrovirales peligrosamente."
+      },
+      {
+        "feature_ingrediente": [
+          "crudo",
+          "sashimi",
+          "ceviche",
+          "huevo crudo"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimentos crudos tienen riesgo de infección en pacientes inmunocomprometidos."
+      },
+      {
+        "feature_ingrediente": [
+          "leche no pasteurizada",
+          "queso fresco artesanal"
+        ],
+        "severidad": "critico",
+        "motivo": "Riesgo de listeria y otras infecciones."
+      }
+    ]
+  },
+  "hepatitis_b_cronica": {
+    "nombre": "Hepatitis B Crónica",
+    "cluster": "infeccioso",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol acelera el daño hepático y progresión a cirrosis."
+      },
+      {
+        "feature_ingrediente": [
+          "hierro",
+          "suplemento de hierro"
+        ],
+        "severidad": "moderado",
+        "motivo": "El exceso de hierro es hepatotóxico en hepatitis crónica."
+      },
+      {
+        "feature_sello": "fat",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Las grasas saturadas sobrecargan el hígado inflamado."
+      }
+    ]
+  },
+  "hepatitis_c_cronica": {
+    "nombre": "Hepatitis C Crónica",
+    "cluster": "infeccioso",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol acelera el daño hepático en hepatitis C."
+      },
+      {
+        "feature_ingrediente": [
+          "pomelo",
+          "toronja",
+          "grapefruit"
+        ],
+        "severidad": "critico",
+        "motivo": "El pomelo interfiere con antivirales de acción directa (DAAs)."
+      },
+      {
+        "feature_ingrediente": [
+          "hierro",
+          "suplemento de hierro"
+        ],
+        "severidad": "moderado",
+        "motivo": "El hierro acumulado es hepatotóxico."
+      }
+    ]
+  },
+  "osteoartritis": {
+    "nombre": "Osteoartritis / Artrosis",
+    "cluster": "musculoesqueletico",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Los azúcares promueven inflamación que agrava el dolor articular."
+      },
+      {
+        "feature_ingrediente": [
+          "grasa trans",
+          "grasa hidrogenada",
+          "aceite de palma"
+        ],
+        "severidad": "moderado",
+        "motivo": "Grasas proinflamatorias empeoran el dolor de la artrosis."
+      }
+    ]
+  },
+  "sarcopenia": {
+    "nombre": "Sarcopenia",
+    "cluster": "musculoesqueletico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "diet",
+          "light",
+          "zero",
+          "sin azucar",
+          "bajo en calorias"
+        ],
+        "severidad": "moderado",
+        "motivo": "Las dietas hipocalóricas empeoran la pérdida muscular. Se requiere aporte proteico."
+      }
+    ]
+  },
+  "acne_severo": {
+    "nombre": "Acné Severo / Quístico",
+    "cluster": "dermatologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "leche",
+          "lactosa",
+          "suero",
+          "proteina de leche"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los lácteos (especialmente descremados) aumentan IGF-1 y agravan acné."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "El azúcar aumenta insulina e IGF-1, empeorando el acné."
+      },
+      {
+        "feature_ingrediente": [
+          "chocolate",
+          "cacao"
+        ],
+        "severidad": "moderado",
+        "motivo": "El chocolate (especialmente con leche) se asocia a brotes de acné."
+      }
+    ]
+  },
+  "urticaria_cronica": {
+    "nombre": "Urticaria Crónica",
+    "cluster": "dermatologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "sulfito",
+          "benzoato",
+          "tartrazina",
+          "conservante"
+        ],
+        "severidad": "critico",
+        "motivo": "Aditivos pseudoalérgicos disparadores comunes de urticaria crónica."
+      },
+      {
+        "feature_ingrediente": [
+          "histamina",
+          "vino",
+          "queso curado",
+          "embutido"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimentos altos en histamina o liberadores agravan urticaria."
+      },
+      {
+        "feature_ingrediente": [
+          "salicilato",
+          "aspirina",
+          "ibuprofeno"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los salicilatos pueden desencadenar brotes."
+      }
+    ]
+  },
+  "hiperplasia_prostatica": {
+    "nombre": "Hiperplasia Prostática Benigna",
+    "cluster": "urologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "te verde"
+        ],
+        "severidad": "moderado",
+        "motivo": "La cafeína aumenta frecuencia urinaria y agrava síntomas."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol empeora síntomas urinarios y aumenta retención."
+      },
+      {
+        "feature_ingrediente": [
+          "picante",
+          "aji",
+          "chile"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los picantes pueden irritar la uretra y aumentar síntomas."
+      }
+    ]
+  },
+  "anemia_megaloblastica": {
+    "nombre": "Anemia Megaloblástica (déficit B12/Folato)",
+    "cluster": "hematologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol reduce absorción de B12 y folato, agravando la anemia."
+      }
+    ]
+  },
+  "anemia_hemolitica": {
+    "nombre": "Anemia Hemolítica",
+    "cluster": "hematologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "haba",
+          "fava"
+        ],
+        "severidad": "critico",
+        "motivo": "Si es déficit de G6PD, las habas causan crisis hemolítica grave."
+      },
+      {
+        "feature_ingrediente": [
+          "sulfito",
+          "metabisulfito"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los sulfitos pueden desencadenar hemólisis en G6PD."
+      }
+    ]
+  },
+  "policitemia_vera": {
+    "nombre": "Policitemia Vera",
+    "cluster": "hematologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "hierro",
+          "suplemento de hierro",
+          "higado",
+          "morcilla"
+        ],
+        "severidad": "critico",
+        "motivo": "El hierro alto empeora la policitemia. Evitar suplementación."
+      },
+      {
+        "feature_ingrediente": [
+          "vitamina c",
+          "acido ascorbico"
+        ],
+        "severidad": "moderado",
+        "motivo": "La vitamina C aumenta absorción de hierro."
+      }
+    ]
+  },
+  "resistencia_insulinica": {
+    "nombre": "Resistencia a la Insulina",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "El azúcar agrava la resistencia insulínica."
+      },
+      {
+        "feature_ingrediente": [
+          "harina refinada",
+          "harina blanca",
+          "arroz blanco"
+        ],
+        "severidad": "moderado",
+        "motivo": "Carbohidratos refinados aumentan la insulina rápidamente."
+      },
+      {
+        "feature_ingrediente": [
+          "fructosa",
+          "jarabe de maiz"
+        ],
+        "severidad": "critico",
+        "motivo": "La fructosa es el driver principal de resistencia insulínica hepática."
+      }
+    ]
+  },
+  "hipoglucemia_reactiva": {
+    "nombre": "Hipoglucemia Reactiva",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Los picos de azúcar desencadenan liberación excesiva de insulina y posterior hipoglucemia."
+      },
+      {
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "miel"
+        ],
+        "severidad": "critico",
+        "motivo": "Azúcares simples generan el ciclo hiperglucemia-hipoglucemia."
+      }
+    ]
+  },
+  "deficiencia_vitamina_d": {
+    "nombre": "Déficit de Vitamina D",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol interfiere con el metabolismo hepático de vitamina D."
+      }
+    ]
+  },
+  "hiponatremia": {
+    "nombre": "Hiponatremia Crónica",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "cerveza",
+          "agua destilada"
+        ],
+        "severidad": "critico",
+        "motivo": "El consumo excesivo de líquidos hipotónicos empeora la hiponatremia."
+      }
+    ]
+  },
+  "hipercalcemia": {
+    "nombre": "Hipercalcemia",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "calcio",
+          "leche",
+          "queso",
+          "yogurt",
+          "lacteo"
+        ],
+        "severidad": "critico",
+        "motivo": "Limitar ingesta de calcio en hipercalcemia."
+      },
+      {
+        "feature_ingrediente": [
+          "vitamina d",
+          "suplemento de vitamina d"
+        ],
+        "severidad": "critico",
+        "motivo": "La vitamina D aumenta absorción de calcio, empeorando hipercalcemia."
+      }
+    ]
+  },
+  "hipocalcemia": {
+    "nombre": "Hipocalcemia",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico",
+          "gaseosa cola"
+        ],
+        "severidad": "moderado",
+        "motivo": "El exceso de fósforo desbalancea el calcio, agravando hipocalcemia."
+      }
+    ]
+  },
+  "caquexia_oncologica": {
+    "nombre": "Caquexia Oncológica",
+    "cluster": "oncologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "diet",
+          "light",
+          "zero",
+          "sin azucar",
+          "bajo en calorias"
+        ],
+        "severidad": "critico",
+        "motivo": "Se requiere ingesta calórica ALTA. Productos hipocalóricos están contraindicados."
+      }
+    ]
+  },
+  "quimioterapia_nauseas": {
+    "nombre": "Náuseas por Quimioterapia",
+    "cluster": "oncologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "picante",
+          "aji",
+          "chile",
+          "pimienta"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los alimentos picantes agravan las náuseas."
+      },
+      {
+        "feature_sello": "fat",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Las grasas empeoran las náuseas y retrasan el vaciamiento gástrico."
+      },
+      {
+        "feature_ingrediente": [
+          "aroma intenso",
+          "frito"
+        ],
+        "severidad": "moderado",
+        "motivo": "Aromas fuertes y frituras empeoran las náuseas."
+      }
+    ]
+  },
+  "sindrome_dumping": {
+    "nombre": "Síndrome de Dumping (Post-Bariátrica)",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Los azúcares concentrados disparan el síndrome de dumping."
+      },
+      {
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "glucosa",
+          "fructosa"
+        ],
+        "severidad": "critico",
+        "motivo": "Azúcares simples causan dumping temprano con síntomas severos."
+      },
+      {
+        "feature_ingrediente": [
+          "bebida carbonatada",
+          "gaseosa"
+        ],
+        "severidad": "moderado",
+        "motivo": "Líquidos con azúcar empeoran el dumping."
+      }
+    ]
+  },
+  "insuficiencia_pancreatica_exocrina": {
+    "nombre": "Insuficiencia Pancreática Exocrina",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "feature_sello": "fat",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Requiere enzimas pancreáticas suplementarias con cada comida grasa."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol empeora la función pancreática."
+      }
+    ]
+  },
+  "colestasis_gestacional": {
+    "nombre": "Colestasis Intrahepática del Embarazo",
+    "cluster": "embarazo",
+    "reglas": [
+      {
+        "feature_sello": "fat",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Las grasas requieren bilis. Empeoran el prurito y función hepática."
+      },
+      {
+        "feature_ingrediente": [
+          "higado",
+          "viscera"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alta carga hepática. Evitar en colestasis."
+      }
+    ]
+  },
+  "anemia_gestacional": {
+    "nombre": "Anemia Gestacional",
+    "cluster": "embarazo",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "te",
+          "cafe",
+          "tanino"
+        ],
+        "severidad": "moderado",
+        "motivo": "El té y café inhiben absorción de hierro. Separar 2h de suplementos."
+      },
+      {
+        "feature_ingrediente": [
+          "calcio",
+          "lacteo",
+          "suplemento de calcio"
+        ],
+        "severidad": "moderado",
+        "motivo": "El calcio inhibe absorción de hierro. Separar de la suplementación."
+      }
+    ]
+  },
+  "hiperemesis_gravidica": {
+    "nombre": "Hiperemesis Gravídica",
+    "cluster": "embarazo",
+    "reglas": [
+      {
+        "feature_sello": "fat",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Las grasas empeoran las náuseas severas. Preferir alimentos secos y fríos."
+      },
+      {
+        "feature_ingrediente": [
+          "aroma fuerte",
+          "frito",
+          "picante"
+        ],
+        "severidad": "moderado",
+        "motivo": "Disparadores de náusea. Evitar en hiperemesis."
+      }
+    ]
+  },
+  "deportista_alto_rendimiento": {
+    "nombre": "Deportista de Alto Rendimiento",
+    "cluster": "deportivo",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "diet",
+          "light",
+          "zero",
+          "sin azucar"
+        ],
+        "severidad": "moderado",
+        "motivo": "Requiere aporte calórico alto. Los light pueden ser insuficientes."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol afecta recuperación muscular y rendimiento."
+      }
+    ]
+  },
+  "deficit_energetico_relativo": {
+    "nombre": "Déficit Energético Relativo del Deporte (RED-S)",
+    "cluster": "deportivo",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "diet",
+          "light",
+          "zero",
+          "sin azucar",
+          "bajo en calorias"
+        ],
+        "severidad": "critico",
+        "motivo": "RED-S requiere aumentar ingesta calórica. Productos hipocalóricos contraindicados."
+      }
+    ]
+  }
+}

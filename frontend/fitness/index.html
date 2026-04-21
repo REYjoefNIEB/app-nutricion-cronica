@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nura — Genética Deportiva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B85D6; --primary-end: #6BA5D8;
+            --gradient: linear-gradient(135deg, #8B85D6 0%, #6BA5D8 100%);
+            --bg: #F7F7F9; --card: #FFFFFF; --ink: #1A1A2E; --ink-60: #666680;
+            --radius: 16px; --radius-sm: 10px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+        .container { max-width: 720px; margin: 0 auto; padding: 24px 16px 60px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--primary); font-size: 13px; font-weight: 600; text-decoration: none; margin-bottom: 16px; }
+        .page-header { text-align: center; padding: 32px 24px; background: var(--card); border-radius: var(--radius); margin-bottom: 20px; box-shadow: 0 2px 12px rgba(139,133,214,0.08); }
+        .page-header h1 { font-size: 26px; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+        .page-header p { color: var(--ink-60); font-size: 14px; }
+        .card { background: var(--card); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+        .card h2 { font-size: 17px; font-weight: 700; margin-bottom: 16px; }
+        .disclaimer-box { background: #FFF9E6; border-left: 4px solid #F4C542; padding: 12px 14px; border-radius: 8px; font-size: 13px; color: #5A4A00; margin-bottom: 20px; }
+        .spinner { display: none; text-align: center; padding: 60px 20px; color: var(--ink-60); }
+        .spinner.active { display: block; }
+        .no-data { text-align: center; padding: 40px 20px; background: var(--card); border-radius: var(--radius); color: var(--ink-60); margin-bottom: 16px; }
+        .error-box { background: #FFF0F0; border-left: 4px solid #D45D5D; padding: 12px 14px; border-radius: 8px; font-size: 14px; color: #D45D5D; margin-top: 16px; display: none; }
+        .btn-analyze { width: 100%; padding: 14px; background: var(--gradient); color: #FFF; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; }
+        /* Profile hero */
+        .profile-hero { text-align: center; padding: 28px 20px; background: var(--gradient); border-radius: var(--radius); margin-bottom: 16px; color: #fff; }
+        .profile-hero .hero-icon { font-size: 56px; margin-bottom: 12px; }
+        .profile-hero h2 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+        .profile-hero p { font-size: 14px; opacity: 0.88; }
+        /* Fiber bar */
+        .fiber-label { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; margin-bottom: 6px; color: var(--ink-60); }
+        .fiber-bar-wrap { height: 14px; background: #EEE; border-radius: 7px; overflow: hidden; position: relative; }
+        .fiber-bar-power { height: 100%; border-radius: 7px 0 0 7px; background: linear-gradient(90deg,#F4A6A6,#E05454); }
+        .fiber-bar-endur { height: 100%; border-radius: 0 7px 7px 0; background: linear-gradient(90deg,#A8E6CF,#48BB78); position: absolute; right: 0; top: 0; }
+        /* Stat row */
+        .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .stat-box { background: linear-gradient(135deg,rgba(139,133,214,0.07),rgba(107,165,216,0.07)); border-radius: 12px; padding: 16px; text-align: center; }
+        .stat-box .stat-icon { font-size: 28px; margin-bottom: 6px; }
+        .stat-box .stat-label { font-size: 11px; font-weight: 600; color: var(--ink-60); text-transform: uppercase; letter-spacing: 0.04em; }
+        .stat-box .stat-value { font-size: 17px; font-weight: 800; margin-top: 4px; }
+        /* Alert */
+        .alert-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #F0F0F5; }
+        .alert-item:last-child { border-bottom: none; }
+        .alert-icon { font-size: 22px; min-width: 28px; }
+        .alert-text { flex: 1; font-size: 14px; line-height: 1.5; }
+        .alert-text strong { display: block; font-size: 14px; margin-bottom: 2px; }
+        /* Plan */
+        .plan-section { margin-bottom: 20px; }
+        .plan-title { font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; }
+        .plan-item { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid #F0F0F5; font-size: 14px; }
+        .plan-item:last-child { border-bottom: none; }
+        .plan-bullet { font-size: 18px; min-width: 24px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="../dashboard/index.html" class="back-link">← Volver al Dashboard</a>
+
+    <div class="page-header">
+        <div style="font-size:48px;margin-bottom:12px;">🏋️</div>
+        <h1>Genética Deportiva</h1>
+        <p>Tu perfil de rendimiento físico basado en variantes genéticas · Solo orientativo</p>
+    </div>
+
+    <div class="disclaimer-box">
+        <strong>Solo orientativo — no prescripción médica</strong>
+        El rendimiento deportivo depende de entrenamiento, nutrición y factores ambientales. Las variantes genéticas son uno de muchos factores. Consulta un médico del deporte antes de cambiar tu rutina.
+    </div>
+
+    <div id="spinnerSection" class="spinner">
+        <div style="font-size:36px;margin-bottom:12px;">🏃</div>
+        <p>Calculando tu perfil deportivo…</p>
+        <p style="font-size:12px;margin-top:8px;color:var(--ink-60)">Esto puede tardar 15-30 segundos</p>
+    </div>
+
+    <div id="noDataSection" class="no-data" style="display:none;">
+        <div style="font-size:48px;margin-bottom:12px;">🏋️</div>
+        <p style="font-weight:600;margin-bottom:8px;">No hay datos genéticos</p>
+        <p>Sube tu archivo de ADN primero para ver tu perfil deportivo.</p>
+        <a href="../genetics/index.html" style="display:inline-block;margin-top:16px;padding:10px 20px;background:var(--gradient);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">Subir mi ADN</a>
+    </div>
+
+    <div id="analyzeCard" class="card" style="display:none;">
+        <p style="font-size:14px;color:var(--ink-60);margin-bottom:16px;">Tienes datos genéticos. Calcula tu perfil deportivo genético ahora.</p>
+        <button class="btn-analyze" onclick="loadFitness()">Calcular mi perfil deportivo</button>
+    </div>
+
+    <div id="resultsSection" style="display:none;">
+
+        <!-- Hero perfil -->
+        <div class="profile-hero" id="profileHero">
+            <div class="hero-icon" id="heroIcon">🏃</div>
+            <h2 id="profileTitle">—</h2>
+            <p id="profileSubtitle">—</p>
+        </div>
+
+        <!-- Fibras musculares -->
+        <div class="card">
+            <h2>💪 Composición de Fibras Musculares</h2>
+            <div class="fiber-label">
+                <span id="powerLabel">Potencia (tipo II)</span>
+                <span id="endurLabel">Resistencia (tipo I)</span>
+            </div>
+            <div class="fiber-bar-wrap">
+                <div class="fiber-bar-power" id="fiberPower" style="width:50%"></div>
+                <div class="fiber-bar-endur" id="fiberEndur" style="width:50%"></div>
+            </div>
+            <p style="font-size:12px;color:var(--ink-60);margin-top:8px;" id="fiberNote"></p>
+        </div>
+
+        <!-- Stats grid -->
+        <div class="card">
+            <h2>📊 Capacidades Genéticas</h2>
+            <div class="stat-grid" id="statsGrid"></div>
+        </div>
+
+        <!-- Alertas de lesión -->
+        <div class="card" id="alertsCard">
+            <h2>⚠️ Alertas de Riesgo</h2>
+            <div id="alertsList"></div>
+        </div>
+
+        <!-- Plan entrenamiento -->
+        <div class="card">
+            <h2>🗓️ Plan de Entrenamiento Personalizado</h2>
+            <div id="trainingPlan"></div>
+        </div>
+
+        <!-- Plan nutrición deportiva -->
+        <div class="card">
+            <h2>🥗 Nutrición Deportiva Personalizada</h2>
+            <div id="nutritionPlan"></div>
+        </div>
+
+        <button class="btn-analyze" onclick="loadFitness()">Recalcular perfil</button>
+    </div>
+
+    <div id="errorBox" class="error-box"></div>
+</div>
+
+<script type="module" src="../shared/firebase-config.js"></script>
+<script>
+let _user = null;
+
+document.addEventListener('DOMContentLoaded', async () => {
+    let tries = 0;
+    while (!window.NuraFirebase && tries < 40) {
+        await new Promise(r => setTimeout(r, 100));
+        tries++;
+    }
+    if (!window.NuraFirebase) return;
+
+    const { auth } = window.NuraFirebase;
+    await auth.authStateReady();
+    _user = auth.currentUser;
+    if (!_user) { window.location.href = '../auth/index.html'; return; }
+
+    await tryLoadExisting();
+});
+
+async function tryLoadExisting() {
+    try {
+        const { getFirestore, doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
+        const db   = getFirestore(window.NuraFirebase.app);
+        const snap = await getDoc(doc(db, 'users', _user.uid, 'fitness_profile', 'result'));
+
+        if (snap.exists()) {
+            renderFitness(snap.data());
+        } else {
+            const userSnap = await getDoc(doc(db, 'users', _user.uid));
+            if (userSnap.data()?.hasGeneticData) {
+                document.getElementById('analyzeCard').style.display = 'block';
+            } else {
+                document.getElementById('noDataSection').style.display = 'block';
+            }
+        }
+    } catch (err) {
+        document.getElementById('noDataSection').style.display = 'block';
+    }
+}
+
+async function loadFitness() {
+    document.getElementById('analyzeCard').style.display    = 'none';
+    document.getElementById('resultsSection').style.display = 'none';
+    document.getElementById('errorBox').style.display       = 'none';
+    document.getElementById('spinnerSection').classList.add('active');
+
+    try {
+        const { getFunctions, httpsCallable } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js');
+        const fns = getFunctions(window.NuraFirebase.app, 'us-central1');
+        const fn  = httpsCallable(fns, 'analyzeFitness', { timeout: 130000 });
+        const res = await fn();
+        document.getElementById('spinnerSection').classList.remove('active');
+        renderFitness(res.data);
+    } catch (err) {
+        document.getElementById('spinnerSection').classList.remove('active');
+        const box = document.getElementById('errorBox');
+        box.style.display = 'block';
+        box.textContent   = 'Error: ' + (err.message || 'Error desconocido');
+        if (err.message && err.message.includes('not-found')) {
+            box.innerHTML = 'No se encontraron datos genéticos. <a href="../genetics/index.html" style="color:var(--primary)">Sube tu ADN primero →</a>';
+        }
+    }
+}
+
+function renderFitness(data) {
+    document.getElementById('spinnerSection').classList.remove('active');
+    document.getElementById('resultsSection').style.display = 'block';
+    document.getElementById('analyzeCard').style.display    = 'none';
+    document.getElementById('noDataSection').style.display  = 'none';
+
+    // Backend returns { profile: flatObj } via function call, or flatObj directly from Firestore
+    const p = data.profile || data;
+
+    // Hero
+    const fiberScore = p.fibers?.score || 'mixed';
+    const HERO_MAP = {
+        power:     { icon: '⚡', title: 'Perfil de Potencia y Velocidad',   subtitle: p.fibers?.description || 'Tu genética favorece el entrenamiento explosivo y de fuerza máxima.' },
+        endurance: { icon: '🏃', title: 'Perfil de Resistencia Aeróbica',   subtitle: p.fibers?.description || 'Tu genética favorece los deportes de fondo y resistencia prolongada.' },
+        mixed:     { icon: '⚖️', title: 'Perfil Versátil / Mixto',          subtitle: p.fibers?.description || 'Tu genética te adapta tanto a potencia como a resistencia.' }
+    };
+    const hero = HERO_MAP[fiberScore] || HERO_MAP.mixed;
+    document.getElementById('heroIcon').textContent        = hero.icon;
+    document.getElementById('profileTitle').textContent    = hero.title;
+    document.getElementById('profileSubtitle').textContent = hero.subtitle;
+
+    // Fibras
+    const powerPct = fiberScore === 'power' ? 72 : fiberScore === 'endurance' ? 28 : 50;
+    const endurPct = 100 - powerPct;
+    document.getElementById('fiberPower').style.width = powerPct + '%';
+    document.getElementById('fiberEndur').style.width = endurPct + '%';
+    document.getElementById('powerLabel').textContent = 'Potencia (' + powerPct + '%)';
+    document.getElementById('endurLabel').textContent = 'Resistencia (' + endurPct + '%)';
+    document.getElementById('fiberNote').textContent  = p.fibers?.recovery || '';
+
+    // Stats — construidos desde el perfil plano
+    const statsGrid = document.getElementById('statsGrid');
+    statsGrid.innerHTML = '';
+    const stats = [];
+    if (p.aerobic)         stats.push({ icon: '🫁', label: 'Capacidad Aeróbica',       value: p.aerobic.level });
+    if (p.recovery)        stats.push({ icon: '🔥', label: 'Inflamación Post-Entreno',  value: p.recovery.inflammation });
+    if (p.cardio_response) stats.push({ icon: '❤️', label: 'Respuesta al Cardio',       value: p.cardio_response.responder });
+    if (p.fat_oxidation)   stats.push({ icon: '🔋', label: 'Quema de Grasas',           value: p.fat_oxidation.burn });
+    if (p.vitamin_d)       stats.push({ icon: '☀️', label: 'Vitamina D',                value: p.vitamin_d.level });
+    if (p.pharma)          stats.push({ icon: '💊', label: 'Metabolismo AINEs',          value: p.pharma.type });
+    stats.forEach(s => {
+        const box = document.createElement('div');
+        box.className = 'stat-box';
+        box.innerHTML = '<div class="stat-icon">' + s.icon + '</div><div class="stat-label">' + s.label + '</div><div class="stat-value">' + (s.value || '—') + '</div>';
+        statsGrid.appendChild(box);
+    });
+
+    // Alertas de riesgo — usa risk_alerts del backend (separado de nutrición)
+    const alertsList = document.getElementById('alertsList');
+    const alertsCard = document.getElementById('alertsCard');
+    const riskAlerts = p.risk_alerts && p.risk_alerts.length ? p.risk_alerts : (() => {
+        const a = [];
+        if (p.injury_risk?.risk === 'ALTO')         a.push({ icon: '🦵', title: 'Riesgo de Lesión de Tendones', message: 'Mayor susceptibilidad a tendinitis. Calentamiento 10+ min OBLIGATORIO.' });
+        if (p.recovery?.inflammation === 'ALTA')    a.push({ icon: '🔥', title: 'Inflamación Post-Ejercicio Alta', message: 'No entrenes el mismo grupo muscular en días consecutivos. Descansa 48-72h entre sesiones intensas.' });
+        if (p.vitamin_d?.level === 'Muy bajo')      a.push({ icon: '☀️', title: 'Probable Déficit de Vitamina D', message: 'El déficit reduce fuerza y aumenta riesgo de fracturas. Consulta tu médico para suplementación.' });
+        if (p.pharma?.type === 'Metabolizador lento') a.push({ icon: '💊', title: 'Metabolizador Lento de AINEs', message: 'Los antiinflamatorios se acumulan más en tu organismo. Usa dosis mínima efectiva.' });
+        return a;
+    })();
+
+    if (!riskAlerts.length) {
+        alertsCard.style.display = 'none';
+    } else {
+        alertsCard.style.display = 'block';
+        alertsList.innerHTML = riskAlerts.map(a =>
+            '<div class="alert-item"><span class="alert-icon">' + (a.icon || '⚠️') + '</span><div class="alert-text"><strong>' + a.title + '</strong><p>' + (a.message || a.description || '') + '</p></div></div>'
+        ).join('');
+    }
+
+    // Plan de entrenamiento — solo entrenamiento, sin riesgos
+    const trainingEl = document.getElementById('trainingPlan');
+    trainingEl.innerHTML = '';
+    const addSection = (el, title, items) => {
+        if (!items || !items.length) return;
+        const div = document.createElement('div');
+        div.className = 'plan-section';
+        div.innerHTML = '<div class="plan-title">' + title + '</div>' +
+            items.map(item => '<div class="plan-item"><span class="plan-bullet">' + (item.icon || '•') + '</span><span>' + item.text + '</span></div>').join('');
+        el.appendChild(div);
+    };
+    if (p.fibers?.training?.length)
+        addSection(trainingEl, p.fibers.type || 'Entrenamiento Recomendado',
+            p.fibers.training.map(t => ({ icon: '🏋️', text: t })));
+    if (p.fibers?.bestSports?.length)
+        addSection(trainingEl, 'Deportes Recomendados Para Ti',
+            p.fibers.bestSports.map(s => ({ icon: '🏅', text: s })));
+    if (p.training_recommendations?.length)
+        addSection(trainingEl, 'Planificación del Entrenamiento',
+            p.training_recommendations.map(r => ({ icon: r.priority === 'critical' ? '⚠️' : '💡', text: r.text })));
+    if (!trainingEl.children.length)
+        trainingEl.innerHTML = '<p style="color:var(--ink-60);font-size:14px;">Analiza tu ADN para obtener un plan personalizado.</p>';
+
+    // Plan de nutrición — solo combustible y recuperación, sin alertas de riesgo
+    const nutriEl = document.getElementById('nutritionPlan');
+    nutriEl.innerHTML = '';
+    if (p.nutrition_plan && p.nutrition_plan.length) {
+        addSection(nutriEl, 'Nutrición Personalizada',
+            p.nutrition_plan.map(n => ({ icon: '🥗', text: n.text })));
+    } else {
+        // Fallback: solo fat_oxidation y aerobic (sin recovery/vitamin_d/pharma que van en alertas)
+        const nutriItems = [];
+        if (p.fat_oxidation?.advice) nutriItems.push({ icon: '🔋', text: p.fat_oxidation.advice });
+        if (p.aerobic?.advice)       nutriItems.push({ icon: '🫁', text: p.aerobic.advice });
+        if (nutriItems.length) addSection(nutriEl, 'Nutrición Personalizada', nutriItems);
+    }
+    if (!nutriEl.children.length)
+        nutriEl.innerHTML = '<p style="color:var(--ink-60);font-size:14px;">Analiza tu ADN para obtener recomendaciones nutricionales personalizadas.</p>';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "nura-functions",
+  "version": "1.0.0",
+  "description": "Firebase Cloud Functions — Proxy seguro de IA para Nura",
+  "main": "index.js",
+  "engines": {
+    "node": "20"
+  },
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0",
+    "firebase-functions": "^6.0.0",
+    "html-pdf-node": "^1.0.8",
+    "xlsx": "^0.18.5"
+  },
+  "private": true
+}

@@ -1,0 +1,6822 @@
+{
+  "diabetes_t2": {
+    "nombre": "Diabetes Tipo 2",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN AZÚCARES. Riesgo de pico glucémico.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene azúcares añadidos.",
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "fructosa",
+          "glucosa",
+          "maltodextrina",
+          "dextrosa",
+          "sacarosa",
+          "miel",
+          "panela",
+          "jarabe de maiz"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Contiene edulcorantes. Precaución metabólica.",
+        "feature_ingrediente": [
+          "aspartamo",
+          "sucralosa",
+          "sacarina",
+          "acesulfamo",
+          "stevia",
+          "ciclamato"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "uva",
+          "uvas",
+          "sandia",
+          "piña",
+          "mango",
+          "platano maduro",
+          "datil",
+          "datiles",
+          "higo seco",
+          "pasas",
+          "arroz blanco",
+          "pan blanco",
+          "papa",
+          "pure de papa",
+          "harina refinada",
+          "harina de trigo",
+          "corn flakes",
+          "cereal de caja",
+          "miel",
+          "azucar",
+          "panela",
+          "chancaca",
+          "arroz"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimento de ALTO ÍNDICE GLUCÉMICO. Puede causar picos de glucosa. Controlar porción."
+      }
+    ]
+  },
+  "diabetes_t1": {
+    "nombre": "Diabetes Tipo 1",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN AZÚCARES. Riesgo de hiperglucemia.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene azúcares que requieren ajuste de insulina.",
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "fructosa",
+          "glucosa",
+          "maltodextrina",
+          "dextrosa",
+          "sacarosa"
+        ]
+      }
+    ]
+  },
+  "prediabetes": {
+    "nombre": "Prediabetes / Resistencia a la Insulina",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN AZÚCARES. Riesgo de progresión a diabetes.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene azúcares añadidos.",
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "fructosa",
+          "glucosa",
+          "maltodextrina"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Carbohidrato refinado de alto índice glucémico.",
+        "feature_ingrediente": [
+          "harina refinada",
+          "harina de trigo"
+        ]
+      }
+    ]
+  },
+  "obesidad": {
+    "nombre": "Obesidad",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN AZÚCARES. Alta densidad calórica.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Sello ALTO EN GRASAS. Alta densidad calórica.",
+        "feature_sello": "fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Alto en grasas saturadas.",
+        "feature_sello": "saturated-fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Contiene grasas de baja calidad.",
+        "feature_ingrediente": [
+          "aceite de palma",
+          "manteca",
+          "grasa hidrogenada"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "mayonesa",
+          "crema",
+          "mantequilla",
+          "manteca",
+          "queso crema",
+          "tocino",
+          "panceta",
+          "chicharron",
+          "papas fritas",
+          "fritura",
+          "frito",
+          "papa frita"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimento de alta densidad calórica. Control de porciones."
+      }
+    ]
+  },
+  "sobrepeso": {
+    "nombre": "Sobrepeso",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Alto en azúcares. Control de peso.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Alto en grasas totales. Control calórico.",
+        "feature_sello": "fat",
+        "limite": "high"
+      }
+    ]
+  },
+  "sindrome_metabolico": {
+    "nombre": "Síndrome Metabólico",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN AZÚCARES. Agrava resistencia insulínica.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN SODIO. Riesgo cardiovascular.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Alto en grasas saturadas. Afecta perfil lipídico.",
+        "feature_sello": "saturated-fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Fructosa añadida agrava el síndrome metabólico.",
+        "feature_ingrediente": [
+          "jarabe de maiz",
+          "fructosa"
+        ]
+      }
+    ]
+  },
+  "hiperuricemia": {
+    "nombre": "Hiperuricemia / Gota",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Fructosa eleva ácido úrico.",
+        "feature_ingrediente": [
+          "fructosa",
+          "jarabe de maiz"
+        ]
+      },
+      {
+        "severidad": "critico",
+        "motivo": "El alcohol eleva significativamente el ácido úrico.",
+        "feature_ingrediente": [
+          "cerveza",
+          "alcohol"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "higado",
+          "rinon",
+          "corazon",
+          "molleja",
+          "viscera",
+          "visceras",
+          "sardina",
+          "sardinas",
+          "anchoa",
+          "anchoas",
+          "arenque",
+          "caballa",
+          "trucha",
+          "salmon",
+          "mejillon",
+          "mejillones",
+          "camaron",
+          "camarones",
+          "langostino",
+          "calamar",
+          "pulpo",
+          "ostras",
+          "extracto de levadura",
+          "levadura",
+          "cerveza",
+          "caldo de carne concentrado"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimento MUY ALTO EN PURINAS. Eleva ácido úrico significativamente."
+      },
+      {
+        "feature_ingrediente": [
+          "carne",
+          "carne roja",
+          "res",
+          "vacuno",
+          "cordero",
+          "cerdo",
+          "pollo",
+          "pavo",
+          "conejo",
+          "jamon",
+          "tocino",
+          "panceta",
+          "chorizo",
+          "longaniza",
+          "atun",
+          "bacalao",
+          "pescado",
+          "lenteja",
+          "lentejas",
+          "poroto",
+          "porotos",
+          "frijol",
+          "frijoles",
+          "garbanzo",
+          "garbanzos",
+          "espinaca",
+          "esparrago",
+          "champiñon",
+          "champiñones",
+          "coliflor"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimento con contenido moderado de purinas. Limitar frecuencia."
+      }
+    ]
+  },
+  "hipotiroidismo": {
+    "nombre": "Hipotiroidismo",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "La soja puede interferir con absorción de levotiroxina.",
+        "feature_ingrediente": [
+          "soja",
+          "soya",
+          "isoflavonas"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El gluten puede agravar tiroiditis autoinmune en algunos pacientes.",
+        "feature_ingrediente": [
+          "gluten"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "brocoli",
+          "coliflor",
+          "repollo",
+          "col",
+          "kale",
+          "col rizada",
+          "nabo",
+          "rabano",
+          "berro",
+          "rucula",
+          "soja",
+          "soya",
+          "tofu",
+          "leche de soja",
+          "fresa",
+          "frutilla",
+          "durazno",
+          "mani"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimento con goitrógenos. Puede interferir con función tiroidea si se consume en exceso."
+      }
+    ]
+  },
+  "hipertiroidismo": {
+    "nombre": "Hipertiroidismo",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "El exceso de yodo agrava el hipertiroidismo.",
+        "feature_ingrediente": [
+          "yodo",
+          "algas",
+          "kelp",
+          "nori",
+          "kombu"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Los estimulantes agravan los síntomas de hipertiroidismo.",
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "guarana",
+          "mate"
+        ]
+      }
+    ]
+  },
+  "sop": {
+    "nombre": "Síndrome de Ovario Poliquístico (SOP)",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN AZÚCARES. Agrava resistencia insulínica del SOP.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Azúcares añadidos agravan el SOP.",
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "fructosa",
+          "maltodextrina"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Lácteos pueden agravar acné hormonal del SOP.",
+        "feature_ingrediente": [
+          "leche",
+          "lactosa",
+          "suero"
+        ]
+      }
+    ]
+  },
+  "fenilcetonuria": {
+    "nombre": "Fenilcetonuria (PKU)",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO: Contiene fenilalanina. Contraindicado en PKU.",
+        "feature_ingrediente": [
+          "aspartamo",
+          "fenilalanina"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Alto contenido proteico. Verificar aporte de fenilalanina.",
+        "feature_ingrediente": [
+          "proteina",
+          "caseina",
+          "suero de leche",
+          "gelatina"
+        ]
+      }
+    ]
+  },
+  "galactosemia": {
+    "nombre": "Galactosemia",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO: Contiene galactosa/lactosa. Contraindicado.",
+        "feature_ingrediente": [
+          "leche",
+          "lactosa",
+          "galactosa",
+          "suero",
+          "caseinato"
+        ]
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene lácteos. Contraindicado en galactosemia."
+      }
+    ]
+  },
+  "hipertension": {
+    "nombre": "Hipertensión Arterial",
+    "cluster": "cardiovascular",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN SODIO. Riesgo cardiovascular.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Nivel medio de sodio. Consumo moderado.",
+        "feature_sello": "salt",
+        "limite": "moderate"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Contiene aditivos con sodio.",
+        "feature_ingrediente": [
+          "glutamato monosodico",
+          "msg",
+          "sal"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "embutido",
+          "chorizo",
+          "longaniza",
+          "jamon",
+          "tocino",
+          "queso procesado",
+          "sopa instantanea",
+          "ramen",
+          "salsa de soja",
+          "salsa de soya",
+          "encurtido",
+          "aceitunas",
+          "chucrut"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimento procesado con alto contenido de sodio oculto."
+      }
+    ]
+  },
+  "dislipidemia": {
+    "nombre": "Dislipidemia / Colesterol Alto",
+    "cluster": "cardiovascular",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN GRASAS SATURADAS. Afecta perfil lipídico.",
+        "feature_sello": "saturated-fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Alto en grasas totales.",
+        "feature_sello": "fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene grasas nocivas para el colesterol.",
+        "feature_ingrediente": [
+          "aceite de palma",
+          "manteca",
+          "grasa hidrogenada",
+          "aceite de coco"
+        ]
+      }
+    ]
+  },
+  "hipertrigliceridemia": {
+    "nombre": "Hipertrigliceridemia",
+    "cluster": "cardiovascular",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "El azúcar eleva triglicéridos.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "La fructosa y azúcares elevan triglicéridos significativamente.",
+        "feature_ingrediente": [
+          "fructosa",
+          "jarabe de maiz",
+          "azucar"
+        ]
+      },
+      {
+        "severidad": "critico",
+        "motivo": "El alcohol eleva triglicéridos.",
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ]
+      }
+    ]
+  },
+  "insuficiencia_cardiaca": {
+    "nombre": "Insuficiencia Cardíaca",
+    "cluster": "cardiovascular",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN SODIO. Provoca retención de líquidos.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Sodio moderado. Controlar ingesta diaria.",
+        "feature_sello": "salt",
+        "limite": "moderate"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Los estimulantes pueden agravar arritmias.",
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "guarana",
+          "taurina"
+        ]
+      }
+    ]
+  },
+  "arritmia": {
+    "nombre": "Arritmia Cardíaca",
+    "cluster": "cardiovascular",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Los estimulantes pueden desencadenar arritmias.",
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "guarana",
+          "taurina",
+          "mate",
+          "te verde"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El exceso de sodio altera el equilibrio electrolítico.",
+        "feature_sello": "salt",
+        "limite": "high"
+      }
+    ]
+  },
+  "aterosclerosis": {
+    "nombre": "Aterosclerosis",
+    "cluster": "cardiovascular",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Las grasas saturadas aceleran la aterosclerosis.",
+        "feature_sello": "saturated-fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Las grasas trans son el mayor factor de riesgo.",
+        "feature_ingrediente": [
+          "grasa hidrogenada",
+          "grasa trans",
+          "aceite de palma"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El sodio eleva la presión arterial.",
+        "feature_sello": "salt",
+        "limite": "high"
+      }
+    ]
+  },
+  "enfermedad_coronaria": {
+    "nombre": "Enfermedad Coronaria",
+    "cluster": "cardiovascular",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Las grasas saturadas agravan la enfermedad coronaria.",
+        "feature_sello": "saturated-fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "El sodio eleva la presión y el riesgo coronario.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Los nitritos en carnes procesadas aumentan riesgo cardiovascular.",
+        "feature_ingrediente": [
+          "nitrito",
+          "nitrato"
+        ]
+      }
+    ]
+  },
+  "trombosis": {
+    "nombre": "Trombosis / Anticoagulados (Warfarina)",
+    "cluster": "cardiovascular",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Estos suplementos pueden alterar la coagulación.",
+        "feature_ingrediente": [
+          "ginkgo",
+          "ginseng",
+          "omega 3"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "espinaca",
+          "espinacas",
+          "kale",
+          "col rizada",
+          "acelga",
+          "acelgas",
+          "brocoli",
+          "brocoli",
+          "repollo",
+          "col",
+          "lechuga",
+          "lechuga romana",
+          "perejil",
+          "cilantro",
+          "albahaca",
+          "cebolleta",
+          "cebolla verde",
+          "nabo",
+          "berro",
+          "rucula",
+          "arugula",
+          "te verde",
+          "matcha",
+          "aceite de soja",
+          "aceite de canola",
+          "hígado"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimento ALTO EN VITAMINA K. Mantener ingesta constante con anticoagulantes."
+      }
+    ]
+  },
+  "enfermedad_vascular_periferica": {
+    "nombre": "Enfermedad Vascular Periférica",
+    "cluster": "cardiovascular",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Las grasas saturadas empeoran la circulación.",
+        "feature_sello": "saturated-fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El sodio agrava la hipertensión asociada.",
+        "feature_sello": "salt",
+        "limite": "high"
+      }
+    ]
+  },
+  "enfermedad_poliquistica_renal": {
+    "nombre": "Enfermedad Poliquística Renal (EPR)",
+    "cluster": "renal",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "El sodio estimula la vasopresina, acelerando el crecimiento de quistes renales.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Sodio moderado. En EPR se recomienda <2g/día de sodio.",
+        "feature_sello": "salt",
+        "limite": "moderate"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "La cafeína eleva el AMPc, lo que puede acelerar el crecimiento de quistes.",
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "te",
+          "guarana",
+          "mate",
+          "chocolate",
+          "cacao"
+        ]
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Los fosfatos agravan la función renal en EPR.",
+        "feature_ingrediente": [
+          "acido fosforico",
+          "fosfato",
+          "polifosfato"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "La carga proteica alta estresa los riñones poliquísticos.",
+        "feature_ingrediente": [
+          "whey",
+          "proteina concentrada",
+          "suero de leche"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "queso",
+          "queso procesado",
+          "queso crema",
+          "queso cheddar",
+          "queso parmesano",
+          "leche",
+          "yogurt",
+          "leche en polvo",
+          "sardina",
+          "sardinas",
+          "salmon",
+          "atun",
+          "trucha",
+          "bacalao",
+          "higado",
+          "viscera",
+          "rinon",
+          "nuez",
+          "nueces",
+          "almendra",
+          "almendras",
+          "mani",
+          "pistacho",
+          "semilla de girasol",
+          "semilla de calabaza",
+          "semilla de chia",
+          "lenteja",
+          "lentejas",
+          "garbanzo",
+          "garbanzos",
+          "poroto",
+          "porotos",
+          "soja",
+          "soya",
+          "tofu",
+          "avena",
+          "quinoa",
+          "arroz integral",
+          "germen de trigo",
+          "salvado",
+          "chocolate",
+          "cacao",
+          "cerveza",
+          "cola",
+          "gaseosa",
+          "embutido",
+          "salchicha",
+          "jamon",
+          "chorizo",
+          "huevo",
+          "yema"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimento con alto contenido de fósforo. Control en EPR."
+      }
+    ]
+  },
+  "insuficiencia_renal_cronica": {
+    "nombre": "Insuficiencia Renal Crónica (ERC)",
+    "cluster": "renal",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN SODIO. Riesgo de sobrecarga renal.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Los aditivos con fósforo agravan la ERC.",
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico",
+          "polifosfato",
+          "pirofosfato"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El exceso de potasio es peligroso en ERC avanzada.",
+        "feature_ingrediente": [
+          "potasio",
+          "cloruro de potasio"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Alta carga proteica puede acelerar deterioro renal.",
+        "feature_ingrediente": [
+          "whey",
+          "proteina concentrada"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "uva",
+          "mango",
+          "durazno",
+          "damasco",
+          "higo",
+          "kiwi",
+          "melon",
+          "sandia",
+          "ciruela",
+          "granada",
+          "zapallo",
+          "calabaza",
+          "champiñon",
+          "champiñones",
+          "chocolate",
+          "cacao"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimento con contenido moderado-alto de potasio. Controlar porción en ERC."
+      },
+      {
+        "feature_ingrediente": [
+          "platano",
+          "banana",
+          "aguacate",
+          "palta",
+          "papa",
+          "patata",
+          "camote",
+          "batata",
+          "tomate",
+          "pure de tomate",
+          "salsa de tomate",
+          "espinaca",
+          "espinacas",
+          "acelga",
+          "acelgas",
+          "naranja",
+          "jugo de naranja",
+          "kiwi",
+          "melon",
+          "sandia",
+          "mango",
+          "chirimoya",
+          "guayaba",
+          "maracuya",
+          "granadilla",
+          "durazno",
+          "damasco",
+          "ciruela",
+          "ciruela pasa",
+          "datil",
+          "datiles",
+          "higo",
+          "higos",
+          "pasas",
+          "uva",
+          "lenteja",
+          "lentejas",
+          "poroto",
+          "porotos",
+          "frijol",
+          "frijoles",
+          "garbanzo",
+          "garbanzos",
+          "soja",
+          "soya",
+          "champiñon",
+          "champiñones",
+          "hongos",
+          "salmon",
+          "atun",
+          "trucha",
+          "bacalao",
+          "nuez",
+          "nueces",
+          "almendra",
+          "almendras",
+          "mani",
+          "pistacho",
+          "semilla de girasol",
+          "semilla de calabaza",
+          "chocolate",
+          "cacao",
+          "cafe",
+          "leche",
+          "yogurt"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimento ALTO EN POTASIO. Riesgo de hipercalemia en ERC."
+      },
+      {
+        "feature_ingrediente": [
+          "pera",
+          "manzana",
+          "fresa",
+          "frutilla",
+          "cereza",
+          "piña",
+          "papaya",
+          "granada",
+          "zanahoria",
+          "zapallo",
+          "calabaza",
+          "choclo",
+          "maiz",
+          "coliflor",
+          "repollo",
+          "pepino",
+          "arroz integral",
+          "avena",
+          "quinoa",
+          "pollo",
+          "pavo",
+          "cerdo",
+          "res",
+          "cordero"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimento con potasio moderado. Controlar porción en ERC."
+      },
+      {
+        "feature_ingrediente": [
+          "queso",
+          "queso procesado",
+          "queso crema",
+          "queso cheddar",
+          "queso parmesano",
+          "leche",
+          "yogurt",
+          "leche en polvo",
+          "sardina",
+          "sardinas",
+          "salmon",
+          "atun",
+          "trucha",
+          "bacalao",
+          "higado",
+          "viscera",
+          "rinon",
+          "nuez",
+          "nueces",
+          "almendra",
+          "almendras",
+          "mani",
+          "pistacho",
+          "semilla de girasol",
+          "semilla de calabaza",
+          "semilla de chia",
+          "lenteja",
+          "lentejas",
+          "garbanzo",
+          "garbanzos",
+          "poroto",
+          "porotos",
+          "soja",
+          "soya",
+          "tofu",
+          "avena",
+          "quinoa",
+          "arroz integral",
+          "germen de trigo",
+          "salvado",
+          "chocolate",
+          "cacao",
+          "cerveza",
+          "cola",
+          "gaseosa",
+          "embutido",
+          "salchicha",
+          "jamon",
+          "chorizo",
+          "huevo",
+          "yema"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimento ALTO EN FÓSFORO. Control estricto en ERC."
+      }
+    ]
+  },
+  "litiasis_renal_calcio": {
+    "nombre": "Cálculos Renales de Calcio/Oxalato",
+    "cluster": "renal",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "El sodio aumenta la excreción de calcio y el riesgo de cálculos.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Alimentos altos en oxalatos favorecen cálculos.",
+        "feature_ingrediente": [
+          "oxalato",
+          "espinaca",
+          "ruibarbo",
+          "remolacha"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El exceso de vitamina C se convierte en oxalato.",
+        "feature_ingrediente": [
+          "vitamina c",
+          "acido ascorbico"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "pistacho",
+          "castana",
+          "semilla de chia",
+          "semilla de girasol",
+          "semilla de calabaza",
+          "higo",
+          "frambuesa",
+          "mora"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimento con contenido moderado de oxalatos. Consumir con precaución."
+      },
+      {
+        "feature_ingrediente": [
+          "espinaca",
+          "espinacas",
+          "acelga",
+          "acelgas",
+          "ruibarbo",
+          "remolacha",
+          "betarraga",
+          "cacao",
+          "chocolate",
+          "chocolate amargo",
+          "nuez",
+          "nueces",
+          "mani",
+          "cacahuete",
+          "almendra",
+          "almendras",
+          "te negro",
+          "te verde",
+          "camote",
+          "batata",
+          "tofu",
+          "soja",
+          "soya",
+          "perejil",
+          "jengibre"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimento ALTO EN OXALATOS. Favorece formación de cálculos renales de calcio."
+      },
+      {
+        "feature_ingrediente": [
+          "pistacho",
+          "pistachos",
+          "castana",
+          "castanas",
+          "avellana",
+          "avellanas",
+          "semilla de chia",
+          "chia",
+          "semilla de girasol",
+          "semilla de calabaza",
+          "semilla de sesamo",
+          "ajonjoli",
+          "tahini",
+          "frambuesa",
+          "frambuesas",
+          "mora",
+          "moras",
+          "arandano",
+          "arandanos",
+          "higo",
+          "higos",
+          "kiwi",
+          "naranja",
+          "mandarina",
+          "frijol",
+          "frijoles",
+          "poroto",
+          "porotos",
+          "lenteja",
+          "lentejas",
+          "garbanzo",
+          "garbanzos",
+          "quinoa",
+          "trigo sarraceno",
+          "zanahoria",
+          "zapallo",
+          "calabaza",
+          "pimenton",
+          "pimiento",
+          "berenjena",
+          "apio",
+          "brocoli"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimento con contenido moderado de oxalatos. Controlar porción y consumir con calcio."
+      }
+    ]
+  },
+  "litiasis_renal_urato": {
+    "nombre": "Cálculos Renales de Ácido Úrico",
+    "cluster": "renal",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "La fructosa eleva ácido úrico y favorece cálculos de urato.",
+        "feature_ingrediente": [
+          "fructosa",
+          "jarabe de maiz"
+        ]
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Las purinas y el alcohol elevan ácido úrico.",
+        "feature_ingrediente": [
+          "extracto de levadura",
+          "cerveza",
+          "alcohol"
+        ]
+      }
+    ]
+  },
+  "sindrome_nefrotico": {
+    "nombre": "Síndrome Nefrótico",
+    "cluster": "renal",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "El sodio agrava el edema del síndrome nefrótico.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Las grasas saturadas agravan la hiperlipidemia nefrótica.",
+        "feature_sello": "saturated-fat",
+        "limite": "high"
+      }
+    ]
+  },
+  "dialisis": {
+    "nombre": "Paciente en Diálisis",
+    "cluster": "renal",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Control estricto de sodio en diálisis.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Los fosfatos son extremadamente peligrosos en diálisis.",
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico",
+          "polifosfato"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "platano",
+          "banana",
+          "aguacate",
+          "palta",
+          "papa",
+          "patata",
+          "camote",
+          "batata",
+          "tomate",
+          "pure de tomate",
+          "salsa de tomate",
+          "espinaca",
+          "espinacas",
+          "acelga",
+          "acelgas",
+          "naranja",
+          "jugo de naranja",
+          "kiwi",
+          "melon",
+          "sandia",
+          "mango",
+          "chirimoya",
+          "guayaba",
+          "maracuya",
+          "granadilla",
+          "durazno",
+          "damasco",
+          "ciruela",
+          "ciruela pasa",
+          "datil",
+          "datiles",
+          "higo",
+          "higos",
+          "pasas",
+          "uva",
+          "lenteja",
+          "lentejas",
+          "poroto",
+          "porotos",
+          "frijol",
+          "frijoles",
+          "garbanzo",
+          "garbanzos",
+          "soja",
+          "soya",
+          "champiñon",
+          "champiñones",
+          "hongos",
+          "salmon",
+          "atun",
+          "trucha",
+          "bacalao",
+          "nuez",
+          "nueces",
+          "almendra",
+          "almendras",
+          "mani",
+          "pistacho",
+          "semilla de girasol",
+          "semilla de calabaza",
+          "chocolate",
+          "cacao",
+          "cafe",
+          "leche",
+          "yogurt"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimento ALTO EN POTASIO. Riesgo severo de hipercalemia en diálisis."
+      },
+      {
+        "feature_ingrediente": [
+          "queso",
+          "queso procesado",
+          "queso crema",
+          "queso cheddar",
+          "queso parmesano",
+          "leche",
+          "yogurt",
+          "leche en polvo",
+          "sardina",
+          "sardinas",
+          "salmon",
+          "atun",
+          "trucha",
+          "bacalao",
+          "higado",
+          "viscera",
+          "rinon",
+          "nuez",
+          "nueces",
+          "almendra",
+          "almendras",
+          "mani",
+          "pistacho",
+          "semilla de girasol",
+          "semilla de calabaza",
+          "semilla de chia",
+          "lenteja",
+          "lentejas",
+          "garbanzo",
+          "garbanzos",
+          "poroto",
+          "porotos",
+          "soja",
+          "soya",
+          "tofu",
+          "avena",
+          "quinoa",
+          "arroz integral",
+          "germen de trigo",
+          "salvado",
+          "chocolate",
+          "cacao",
+          "cerveza",
+          "cola",
+          "gaseosa",
+          "embutido",
+          "salchicha",
+          "jamon",
+          "chorizo",
+          "huevo",
+          "yema"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimento ALTO EN FÓSFORO. Control estricto en diálisis."
+      }
+    ]
+  },
+  "nefropatia_diabetica": {
+    "nombre": "Nefropatía Diabética",
+    "cluster": "renal",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "El azúcar agrava tanto la diabetes como la nefropatía.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "El sodio empeora la función renal y la presión arterial.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Los fosfatos agravan la nefropatía.",
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico"
+        ]
+      }
+    ]
+  },
+  "transplante_renal": {
+    "nombre": "Trasplante Renal",
+    "cluster": "renal",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Control de sodio post-trasplante.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "El pomelo interfiere con inmunosupresores (ciclosporina/tacrolimus).",
+        "feature_ingrediente": [
+          "pomelo",
+          "toronja",
+          "grapefruit"
+        ]
+      }
+    ]
+  },
+  "celiaquia": {
+    "nombre": "Enfermedad Celíaca",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Contiene GLUTEN. Alérgeno crítico."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene cereales con gluten.",
+        "feature_ingrediente": [
+          "trigo",
+          "cebada",
+          "centeno",
+          "malta",
+          "seitan"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Contiene avena. Verificar certificación Sin Gluten.",
+        "feature_ingrediente": [
+          "avena"
+        ]
+      }
+    ]
+  },
+  "sensibilidad_gluten": {
+    "nombre": "Sensibilidad al Gluten No Celíaca",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Contiene gluten. Evaluar tolerancia individual."
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Contiene cereales con gluten.",
+        "feature_ingrediente": [
+          "trigo",
+          "cebada",
+          "centeno"
+        ]
+      }
+    ]
+  },
+  "intolerancia_lactosa": {
+    "nombre": "Intolerancia a la Lactosa",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Contiene lácteos. Verificar si es versión sin lactosa."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene derivados lácteos. Consumir según tolerancia.",
+        "feature_ingrediente": [
+          "leche",
+          "lactosa",
+          "suero",
+          "caseinato",
+          "nata",
+          "crema"
+        ]
+      }
+    ]
+  },
+  "alergia_leche": {
+    "nombre": "Alergia a Proteína de Leche de Vaca (APLV)",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO ALÉRGICO: Contiene proteína de leche."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene proteínas lácteas. Riesgo de reacción alérgica.",
+        "feature_ingrediente": [
+          "leche",
+          "caseina",
+          "caseinato",
+          "suero",
+          "lactoglobulina",
+          "lactoalbumina",
+          "whey"
+        ]
+      }
+    ]
+  },
+  "colon_irritable": {
+    "nombre": "Síndrome de Intestino Irritable (SII)",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "La cafeína puede agravar los síntomas del SII.",
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "manzana",
+          "pera",
+          "cereza",
+          "sandia",
+          "mango",
+          "durazno",
+          "ciruela",
+          "damasco",
+          "chirimoya",
+          "higo",
+          "aguacate",
+          "palta",
+          "cebolla",
+          "ajo",
+          "puerro",
+          "alcachofa",
+          "trigo",
+          "centeno",
+          "cebada",
+          "leche",
+          "lactosa",
+          "helado",
+          "yogurt",
+          "crema",
+          "miel",
+          "jarabe de maiz",
+          "agave",
+          "sorbitol",
+          "manitol",
+          "xilitol",
+          "inulina",
+          "champiñon",
+          "champiñones",
+          "coliflor",
+          "esparrago",
+          "poroto",
+          "frijol",
+          "lenteja",
+          "garbanzo"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimento alto en FODMAPs. Puede agravar síntomas del SII. Evaluar tolerancia individual."
+      }
+    ]
+  },
+  "crohn": {
+    "nombre": "Enfermedad de Crohn",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Los emulsionantes pueden agravar la inflamación intestinal en Crohn.",
+        "feature_ingrediente": [
+          "emulsionante",
+          "carragenina",
+          "polisorbato",
+          "carboximetilcelulosa"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "La fibra insoluble puede empeorar los brotes.",
+        "feature_ingrediente": [
+          "fibra insoluble",
+          "salvado"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Muchos pacientes con Crohn son intolerantes a la lactosa.",
+        "feature_ingrediente": [
+          "lactosa",
+          "leche"
+        ]
+      }
+    ]
+  },
+  "colitis_ulcerosa": {
+    "nombre": "Colitis Ulcerosa",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Los emulsionantes agravan la inflamación del colon.",
+        "feature_ingrediente": [
+          "emulsionante",
+          "carragenina",
+          "polisorbato"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Los sulfitos pueden desencadenar brotes.",
+        "feature_ingrediente": [
+          "sulfito",
+          "dioxido de azufre"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "La fibra insoluble irrita el colon inflamado.",
+        "feature_ingrediente": [
+          "fibra insoluble",
+          "salvado"
+        ]
+      }
+    ]
+  },
+  "gastritis": {
+    "nombre": "Gastritis Crónica",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "La cafeína estimula la secreción ácida.",
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "te",
+          "chocolate"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Irritantes gástricos. Agravan la gastritis.",
+        "feature_ingrediente": [
+          "vinagre",
+          "limon",
+          "acido citrico",
+          "aji",
+          "pimienta",
+          "chile"
+        ]
+      },
+      {
+        "severidad": "critico",
+        "motivo": "El alcohol irrita directamente la mucosa gástrica.",
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ]
+      }
+    ]
+  },
+  "reflujo_gastroesofagico": {
+    "nombre": "Reflujo Gastroesofágico (ERGE)",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Relaja el esfínter esofágico, empeorando el reflujo.",
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "chocolate",
+          "menta"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Las grasas retardan el vaciamiento gástrico y agravan el reflujo.",
+        "feature_sello": "fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Alimentos ácidos empeoran los síntomas de reflujo.",
+        "feature_ingrediente": [
+          "tomate",
+          "citrico",
+          "vinagre"
+        ]
+      }
+    ]
+  },
+  "ulcera_peptica": {
+    "nombre": "Úlcera Péptica",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Irritantes que agravan la úlcera.",
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "alcohol",
+          "aji",
+          "pimienta"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Los ácidos irritan la mucosa ulcerada.",
+        "feature_ingrediente": [
+          "acido citrico",
+          "vinagre"
+        ]
+      }
+    ]
+  },
+  "diverticulosis": {
+    "nombre": "Diverticulosis / Diverticulitis",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Partículas pequeñas pueden alojarse en divertículos (evidencia debatida).",
+        "feature_ingrediente": [
+          "semilla",
+          "maiz",
+          "palomita"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Dietas altas en grasa se asocian a diverticulitis.",
+        "feature_sello": "fat",
+        "limite": "high"
+      }
+    ]
+  },
+  "pancreatitis": {
+    "nombre": "Pancreatitis",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Las grasas son el principal disparador de pancreatitis.",
+        "feature_sello": "fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Grasas saturadas estresan el páncreas.",
+        "feature_sello": "saturated-fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "El alcohol es causa principal de pancreatitis.",
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ]
+      }
+    ]
+  },
+  "esofago_barrett": {
+    "nombre": "Esófago de Barrett",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Relajan el esfínter y aumentan la exposición ácida del esófago.",
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "chocolate",
+          "menta",
+          "alcohol"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Las grasas agravan el reflujo asociado a Barrett.",
+        "feature_sello": "fat",
+        "limite": "high"
+      }
+    ]
+  },
+  "gastroparesia": {
+    "nombre": "Gastroparesia",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Las grasas retardan el vaciamiento gástrico.",
+        "feature_sello": "fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "La fibra insoluble puede formar bezoares en gastroparesia.",
+        "feature_ingrediente": [
+          "fibra insoluble",
+          "salvado",
+          "semilla"
+        ]
+      }
+    ]
+  },
+  "fructosa_malabsorcion": {
+    "nombre": "Malabsorción de Fructosa",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Los fructanos pueden causar síntomas similares.",
+        "feature_ingrediente": [
+          "inulina",
+          "fructooligosacarido"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "manzana",
+          "pera",
+          "cereza",
+          "sandia",
+          "mango",
+          "uva",
+          "higo",
+          "datil"
+        ],
+        "severidad": "critico",
+        "motivo": "Fruta con alto contenido de fructosa libre. Causa síntomas GI."
+      },
+      {
+        "feature_ingrediente": [
+          "manzana",
+          "pera",
+          "cereza",
+          "sandia",
+          "mango",
+          "uva",
+          "higo",
+          "datil",
+          "chirimoya",
+          "guayaba",
+          "miel",
+          "agave",
+          "jarabe de maiz",
+          "fructosa",
+          "sorbitol",
+          "manitol",
+          "inulina"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimento con alto contenido de fructosa libre o polioles. Causa síntomas GI severos."
+      }
+    ]
+  },
+  "histaminosis": {
+    "nombre": "Intolerancia a la Histamina",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Aditivos que pueden bloquear la enzima DAO.",
+        "feature_ingrediente": [
+          "conservante",
+          "benzoato",
+          "sulfito",
+          "nitrito"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "atun",
+          "sardina",
+          "caballa",
+          "anchoa",
+          "arenque",
+          "marisco",
+          "mariscos",
+          "camaron",
+          "langostino",
+          "queso curado",
+          "queso azul",
+          "embutido",
+          "salame",
+          "jamon curado",
+          "vino tinto",
+          "cerveza",
+          "champagne",
+          "vinagre",
+          "salsa de soja",
+          "tomate",
+          "espinaca",
+          "berenjena",
+          "aguacate",
+          "palta",
+          "fresa",
+          "frutilla",
+          "citrico",
+          "naranja",
+          "limon",
+          "chocolate",
+          "cacao",
+          "nuez",
+          "nueces",
+          "mani",
+          "cacahuete",
+          "fermentado",
+          "chucrut",
+          "kimchi"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimento ALTO EN HISTAMINA o liberador de histamina. Riesgo de reacción."
+      }
+    ]
+  },
+  "favismo": {
+    "nombre": "Déficit de G6PD (Favismo)",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO: Las habas pueden causar crisis hemolítica en déficit de G6PD.",
+        "feature_ingrediente": [
+          "haba",
+          "fava"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Altas dosis de vitamina C pueden precipitar hemólisis.",
+        "feature_ingrediente": [
+          "sulfito",
+          "acido ascorbico",
+          "vitamina c"
+        ]
+      }
+    ]
+  },
+  "higado_graso": {
+    "nombre": "Hígado Graso No Alcohólico (NAFLD)",
+    "cluster": "hepatico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "La fructosa es el principal driver del hígado graso.",
+        "feature_ingrediente": [
+          "fructosa",
+          "jarabe de maiz",
+          "agave"
+        ]
+      },
+      {
+        "severidad": "critico",
+        "motivo": "El exceso de azúcar se convierte en grasa hepática.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Las grasas trans empeoran la esteatosis hepática.",
+        "feature_ingrediente": [
+          "grasa hidrogenada",
+          "grasa trans"
+        ]
+      }
+    ]
+  },
+  "cirrosis": {
+    "nombre": "Cirrosis Hepática",
+    "cluster": "hepatico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "El sodio agrava la ascitis y edema en cirrosis.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "El alcohol está absolutamente contraindicado en cirrosis.",
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El exceso de hierro es hepatotóxico en cirrosis.",
+        "feature_ingrediente": [
+          "hierro",
+          "suplemento de hierro"
+        ]
+      }
+    ]
+  },
+  "hepatitis": {
+    "nombre": "Hepatitis (Crónica)",
+    "cluster": "hepatico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "El alcohol agrava cualquier hepatitis.",
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Las grasas saturadas sobrecargan el hígado inflamado.",
+        "feature_sello": "fat",
+        "limite": "high"
+      }
+    ]
+  },
+  "hemocromatosis": {
+    "nombre": "Hemocromatosis",
+    "cluster": "hepatico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO: El hierro añadido es tóxico en hemocromatosis.",
+        "feature_ingrediente": [
+          "hierro",
+          "sulfato ferroso",
+          "fumarato ferroso"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "La vitamina C aumenta la absorción de hierro.",
+        "feature_ingrediente": [
+          "vitamina c",
+          "acido ascorbico"
+        ]
+      },
+      {
+        "severidad": "critico",
+        "motivo": "El alcohol acelera el daño hepático por hierro.",
+        "feature_ingrediente": [
+          "alcohol"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "higado",
+          "viscera",
+          "rinon",
+          "morcilla",
+          "carne roja",
+          "res",
+          "cordero",
+          "sardina",
+          "atun",
+          "mejillon",
+          "ostras",
+          "espinaca",
+          "acelga",
+          "lenteja",
+          "lentejas",
+          "garbanzo",
+          "garbanzos",
+          "poroto",
+          "cereal fortificado",
+          "avena fortificada",
+          "tofu",
+          "semilla de calabaza",
+          "quinoa"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimento ALTO EN HIERRO. Control estricto en hemocromatosis."
+      }
+    ]
+  },
+  "wilson": {
+    "nombre": "Enfermedad de Wilson",
+    "cluster": "hepatico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "higado",
+          "viscera",
+          "rinon",
+          "chocolate",
+          "cacao",
+          "nuez",
+          "nueces",
+          "almendra",
+          "avellana",
+          "pistacho",
+          "mani",
+          "semilla de girasol",
+          "semilla de sesamo",
+          "champiñon",
+          "champiñones",
+          "hongos",
+          "marisco",
+          "mariscos",
+          "ostion",
+          "ostras",
+          "camaron",
+          "langosta",
+          "aguacate",
+          "palta"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimento ALTO EN COBRE. Contraindicado en Enfermedad de Wilson."
+      }
+    ]
+  },
+  "porfiria": {
+    "nombre": "Porfiria",
+    "cluster": "hepatico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "El alcohol desencadena crisis de porfiria.",
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Las restricciones calóricas y glucémicas son importantes en porfiria.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      }
+    ]
+  },
+  "colestasis": {
+    "nombre": "Colestasis / Problemas Biliares",
+    "cluster": "hepatico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Las grasas requieren bilis para digerirse. Sobrecarga el sistema biliar.",
+        "feature_sello": "fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Las grasas saturadas son las más difíciles de digerir sin bilis adecuada.",
+        "feature_sello": "saturated-fat",
+        "limite": "high"
+      }
+    ]
+  },
+  "alergia_huevo": {
+    "nombre": "Alergia al Huevo",
+    "cluster": "alergico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO ALÉRGICO: Contiene huevo."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene derivados de huevo.",
+        "feature_ingrediente": [
+          "huevo",
+          "albumina",
+          "lisozima",
+          "lecitina de huevo",
+          "ovoalbumina",
+          "ovomucina"
+        ]
+      }
+    ]
+  },
+  "alergia_soja": {
+    "nombre": "Alergia a la Soja",
+    "cluster": "alergico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO ALÉRGICO: Contiene soja."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene derivados de soja.",
+        "feature_ingrediente": [
+          "soja",
+          "soya",
+          "lecitina de soja",
+          "proteina de soja",
+          "tofu",
+          "edamame"
+        ]
+      }
+    ]
+  },
+  "alergia_frutos_secos": {
+    "nombre": "Alergia a Frutos Secos",
+    "cluster": "alergico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO ALÉRGICO: Contiene frutos secos."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene frutos secos o trazas.",
+        "feature_ingrediente": [
+          "nuez",
+          "almendra",
+          "avellana",
+          "pistacho",
+          "anacardo",
+          "mani",
+          "cacahuete",
+          "cacahuate"
+        ]
+      }
+    ]
+  },
+  "alergia_mani": {
+    "nombre": "Alergia al Maní",
+    "cluster": "alergico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO ALÉRGICO: Contiene maní/cacahuete."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene maní o derivados.",
+        "feature_ingrediente": [
+          "mani",
+          "cacahuete",
+          "cacahuate",
+          "mantequilla de mani"
+        ]
+      }
+    ]
+  },
+  "alergia_pescado": {
+    "nombre": "Alergia al Pescado",
+    "cluster": "alergico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO ALÉRGICO: Contiene pescado."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene pescado o derivados.",
+        "feature_ingrediente": [
+          "pescado",
+          "anchoa",
+          "sardina",
+          "atun",
+          "salmon",
+          "surimi",
+          "salsa de pescado"
+        ]
+      }
+    ]
+  },
+  "alergia_mariscos": {
+    "nombre": "Alergia a Mariscos/Crustáceos",
+    "cluster": "alergico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO ALÉRGICO: Contiene mariscos/crustáceos."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene mariscos o derivados.",
+        "feature_ingrediente": [
+          "camaron",
+          "gamba",
+          "langostino",
+          "cangrejo",
+          "langosta",
+          "quitosano"
+        ]
+      }
+    ]
+  },
+  "alergia_sesamo": {
+    "nombre": "Alergia al Sésamo",
+    "cluster": "alergico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO ALÉRGICO: Contiene sésamo."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene sésamo o derivados.",
+        "feature_ingrediente": [
+          "sesamo",
+          "ajonjoli",
+          "tahini",
+          "tahina"
+        ]
+      }
+    ]
+  },
+  "alergia_mostaza": {
+    "nombre": "Alergia a la Mostaza",
+    "cluster": "alergico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO ALÉRGICO: Contiene mostaza."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene mostaza.",
+        "feature_ingrediente": [
+          "mostaza",
+          "semilla de mostaza"
+        ]
+      }
+    ]
+  },
+  "alergia_apio": {
+    "nombre": "Alergia al Apio",
+    "cluster": "alergico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO ALÉRGICO: Contiene apio."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene apio o derivados.",
+        "feature_ingrediente": [
+          "apio",
+          "celeriac"
+        ]
+      }
+    ]
+  },
+  "alergia_sulfitos": {
+    "nombre": "Sensibilidad a Sulfitos",
+    "cluster": "alergico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO: Contiene sulfitos."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene sulfitos. Puede causar reacciones severas.",
+        "feature_ingrediente": [
+          "sulfito",
+          "metabisulfito",
+          "dioxido de azufre",
+          "bisulfito"
+        ]
+      }
+    ]
+  },
+  "alergia_latex_frutas": {
+    "nombre": "Síndrome Látex-Frutas",
+    "cluster": "alergico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Frutas con reactividad cruzada al látex.",
+        "feature_ingrediente": [
+          "platano",
+          "banana",
+          "kiwi",
+          "aguacate",
+          "palta",
+          "castana"
+        ]
+      }
+    ]
+  },
+  "mastocitosis": {
+    "nombre": "Mastocitosis",
+    "cluster": "alergico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Alimentos histaminoliberadores.",
+        "feature_ingrediente": [
+          "chocolate",
+          "tomate",
+          "fresa",
+          "marisco"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "atun",
+          "sardina",
+          "caballa",
+          "anchoa",
+          "arenque",
+          "marisco",
+          "mariscos",
+          "camaron",
+          "langostino",
+          "queso curado",
+          "queso azul",
+          "embutido",
+          "salame",
+          "jamon curado",
+          "vino tinto",
+          "cerveza",
+          "champagne",
+          "vinagre",
+          "salsa de soja",
+          "tomate",
+          "espinaca",
+          "berenjena",
+          "aguacate",
+          "palta",
+          "fresa",
+          "frutilla",
+          "citrico",
+          "naranja",
+          "limon",
+          "chocolate",
+          "cacao",
+          "nuez",
+          "nueces",
+          "mani",
+          "cacahuete",
+          "fermentado",
+          "chucrut",
+          "kimchi"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimento liberador de histamina. Riesgo de degranulación mastocitaria."
+      }
+    ]
+  },
+  "esofagitis_eosinofilica": {
+    "nombre": "Esofagitis Eosinofílica",
+    "cluster": "alergico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Los 4 alérgenos principales de la esofagitis eosinofílica."
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Alérgenos comunes en esofagitis eosinofílica. Considerar eliminación.",
+        "feature_ingrediente": [
+          "leche",
+          "trigo",
+          "huevo",
+          "soja"
+        ]
+      }
+    ]
+  },
+  "artritis_reumatoide": {
+    "nombre": "Artritis Reumatoide",
+    "cluster": "inflamatorio",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Exceso de omega-6 promueve inflamación.",
+        "feature_ingrediente": [
+          "aceite de girasol",
+          "aceite de maiz",
+          "aceite de soja",
+          "omega 6"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Azúcares y grasas trans promueven inflamación sistémica.",
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "grasa trans",
+          "grasa hidrogenada"
+        ]
+      }
+    ]
+  },
+  "lupus": {
+    "nombre": "Lupus Eritematoso Sistémico",
+    "cluster": "inflamatorio",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "La alfalfa puede desencadenar brotes de lupus.",
+        "feature_ingrediente": [
+          "alfalfa",
+          "brotes de alfalfa"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El sodio agrava la nefritis lúpica.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Las grasas proinflamatorias agravan el lupus.",
+        "feature_ingrediente": [
+          "grasa saturada",
+          "grasa trans"
+        ]
+      }
+    ]
+  },
+  "fibromialgia": {
+    "nombre": "Fibromialgia",
+    "cluster": "inflamatorio",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Las excitotoxinas pueden agravar el dolor en fibromialgia.",
+        "feature_ingrediente": [
+          "glutamato monosodico",
+          "msg",
+          "aspartamo"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El azúcar puede empeorar la fatiga y el dolor.",
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe"
+        ]
+      }
+    ]
+  },
+  "esclerosis_multiple": {
+    "nombre": "Esclerosis Múltiple",
+    "cluster": "inflamatorio",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Dietas bajas en grasas saturadas se asocian a menos brotes (protocolo Swank).",
+        "feature_sello": "saturated-fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Las grasas trans promueven neuroinflamación.",
+        "feature_ingrediente": [
+          "grasa trans",
+          "grasa hidrogenada"
+        ]
+      }
+    ]
+  },
+  "psoriasis": {
+    "nombre": "Psoriasis",
+    "cluster": "inflamatorio",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "El alcohol es un disparador conocido de brotes de psoriasis.",
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Algunos pacientes con psoriasis mejoran eliminando gluten.",
+        "feature_ingrediente": [
+          "gluten"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Proinflamatorios que pueden agravar la psoriasis.",
+        "feature_ingrediente": [
+          "azucar",
+          "grasa trans"
+        ]
+      }
+    ]
+  },
+  "tiroiditis_hashimoto": {
+    "nombre": "Tiroiditis de Hashimoto",
+    "cluster": "inflamatorio",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "La eliminación de gluten puede beneficiar a algunos pacientes con Hashimoto.",
+        "feature_ingrediente": [
+          "gluten"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "La soja puede interferir con la absorción de levotiroxina.",
+        "feature_ingrediente": [
+          "soja",
+          "soya"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El exceso de yodo puede agravar Hashimoto.",
+        "feature_ingrediente": [
+          "yodo",
+          "algas",
+          "kelp"
+        ]
+      }
+    ]
+  },
+  "dermatitis_atopica": {
+    "nombre": "Dermatitis Atópica / Eccema",
+    "cluster": "inflamatorio",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Los colorantes artificiales pueden empeorar la dermatitis.",
+        "feature_ingrediente": [
+          "colorante",
+          "tartrazina",
+          "rojo 40",
+          "amarillo 5"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Los conservantes pueden agravar los síntomas.",
+        "feature_ingrediente": [
+          "conservante",
+          "benzoato",
+          "sorbato"
+        ]
+      }
+    ]
+  },
+  "enfermedad_celiaca_refractaria": {
+    "nombre": "Enfermedad Celíaca Refractaria",
+    "cluster": "inflamatorio",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "ELIMINACIÓN ABSOLUTA de gluten. Celíaquía refractaria requiere cero contaminación."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Cualquier traza de gluten es peligrosa.",
+        "feature_ingrediente": [
+          "trigo",
+          "cebada",
+          "centeno",
+          "malta",
+          "avena",
+          "seitan"
+        ]
+      }
+    ]
+  },
+  "epilepsia_keto": {
+    "nombre": "Epilepsia (Dieta Cetogénica)",
+    "cluster": "neurologico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Los carbohidratos rompen la cetosis terapéutica.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Carbohidratos que interfieren con la dieta cetogénica anticonvulsiva.",
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "maltodextrina",
+          "harina",
+          "almidon"
+        ]
+      }
+    ]
+  },
+  "migrana": {
+    "nombre": "Migraña",
+    "cluster": "neurologico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Disparadores comunes de migraña.",
+        "feature_ingrediente": [
+          "glutamato monosodico",
+          "msg",
+          "tiramina",
+          "nitrito",
+          "nitrato"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El aspartamo es un disparador reportado de migraña.",
+        "feature_ingrediente": [
+          "aspartamo"
+        ]
+      },
+      {
+        "feature_ingrediente": [
+          "queso curado",
+          "queso azul",
+          "queso roquefort",
+          "queso brie",
+          "queso camembert",
+          "queso parmesano",
+          "queso gouda",
+          "embutido curado",
+          "salame",
+          "salami",
+          "pepperoni",
+          "prosciutto",
+          "vino tinto",
+          "cerveza",
+          "sake",
+          "salsa de soja",
+          "salsa de soya",
+          "miso",
+          "tempeh",
+          "natto",
+          "chucrut",
+          "kimchi",
+          "encurtido",
+          "pickle",
+          "platano maduro",
+          "aguacate maduro",
+          "palta madura",
+          "chocolate",
+          "cacao"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimento rico en tiramina. Disparador común de migraña."
+      }
+    ]
+  },
+  "parkinson": {
+    "nombre": "Enfermedad de Parkinson",
+    "cluster": "neurologico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Las proteínas pueden interferir con la absorción de levodopa. Distribuir ingesta.",
+        "feature_ingrediente": [
+          "proteina",
+          "caseina",
+          "whey"
+        ]
+      }
+    ]
+  },
+  "alzheimer": {
+    "nombre": "Enfermedad de Alzheimer",
+    "cluster": "neurologico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Las grasas saturadas se asocian a mayor riesgo neurodegenerativo.",
+        "feature_sello": "saturated-fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Las grasas trans se asocian a deterioro cognitivo.",
+        "feature_ingrediente": [
+          "grasa trans",
+          "grasa hidrogenada"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El aluminio como aditivo es cuestionado en Alzheimer.",
+        "feature_ingrediente": [
+          "aluminio"
+        ]
+      }
+    ]
+  },
+  "tdah": {
+    "nombre": "TDAH (Trastorno por Déficit de Atención)",
+    "cluster": "neurologico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Los colorantes artificiales pueden agravar síntomas de TDAH (Estudio Southampton).",
+        "feature_ingrediente": [
+          "tartrazina",
+          "rojo 40",
+          "amarillo 5",
+          "amarillo 6",
+          "azul 1",
+          "colorante artificial"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El benzoato de sodio puede empeorar la hiperactividad.",
+        "feature_ingrediente": [
+          "benzoato de sodio"
+        ]
+      }
+    ]
+  },
+  "autismo_dieta": {
+    "nombre": "Trastorno del Espectro Autista (Dieta de exclusión)",
+    "cluster": "neurologico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Algunos pacientes reportan mejoras con dieta libre de gluten y caseína (evidencia limitada).",
+        "feature_ingrediente": [
+          "gluten",
+          "trigo",
+          "caseina",
+          "leche"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Aditivos que algunos protocolos de exclusión evitan.",
+        "feature_ingrediente": [
+          "colorante artificial",
+          "tartrazina",
+          "benzoato"
+        ]
+      }
+    ]
+  },
+  "cancer_tratamiento": {
+    "nombre": "Paciente Oncológico en Tratamiento",
+    "cluster": "oncologico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "El pomelo interfiere con múltiples fármacos de quimioterapia.",
+        "feature_ingrediente": [
+          "pomelo",
+          "toronja",
+          "grapefruit"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Los suplementos herbales pueden interferir con el tratamiento oncológico.",
+        "feature_ingrediente": [
+          "suplemento herbal",
+          "hierba de san juan",
+          "equinacea"
+        ]
+      }
+    ]
+  },
+  "cancer_inmunosuprimido": {
+    "nombre": "Paciente Inmunosuprimido",
+    "cluster": "oncologico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Los probióticos vivos pueden ser riesgosos en inmunosuprimidos.",
+        "feature_ingrediente": [
+          "probiotico",
+          "lactobacillus",
+          "bifidobacterium"
+        ]
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Los alimentos crudos tienen riesgo de infección en inmunosuprimidos.",
+        "feature_ingrediente": [
+          "crudo",
+          "sashimi",
+          "ceviche"
+        ]
+      }
+    ]
+  },
+  "cancer_colon": {
+    "nombre": "Cáncer de Colon (Prevención/Post)",
+    "cluster": "oncologico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Las carnes procesadas son carcinógeno Grupo 1 (IARC) para cáncer colorrectal.",
+        "feature_ingrediente": [
+          "nitrito",
+          "nitrato",
+          "carne procesada"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Aditivos cuestionados en prevención oncológica.",
+        "feature_ingrediente": [
+          "colorante",
+          "tartrazina"
+        ]
+      }
+    ]
+  },
+  "cancer_mama_hormonodep": {
+    "nombre": "Cáncer de Mama Hormonodependiente",
+    "cluster": "oncologico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Los fitoestrógenos son debatidos en cáncer de mama hormonodependiente. Consultar oncólogo.",
+        "feature_ingrediente": [
+          "soja",
+          "soya",
+          "isoflavonas",
+          "fitoestrogenos"
+        ]
+      },
+      {
+        "severidad": "critico",
+        "motivo": "El alcohol aumenta el riesgo de recurrencia en cáncer de mama.",
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ]
+      }
+    ]
+  },
+  "nutricion_infantil": {
+    "nombre": "Nutrición Infantil (<6 años)",
+    "cluster": "pediatrico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "La cafeína y estimulantes no son aptos para niños.",
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "te",
+          "guarana",
+          "taurina"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Los colorantes artificiales pueden afectar el comportamiento infantil.",
+        "feature_ingrediente": [
+          "tartrazina",
+          "rojo 40",
+          "amarillo 5",
+          "colorante artificial"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Los edulcorantes no son recomendados para niños pequeños.",
+        "feature_ingrediente": [
+          "edulcorante",
+          "aspartamo",
+          "sucralosa",
+          "sacarina",
+          "stevia"
+        ]
+      }
+    ]
+  },
+  "alergia_proteina_leche_infantil": {
+    "nombre": "APLV Infantil",
+    "cluster": "pediatrico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "PELIGRO: Contiene proteína de leche. No apto para APLV."
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Contiene proteínas de leche de vaca.",
+        "feature_ingrediente": [
+          "leche",
+          "caseina",
+          "caseinato",
+          "suero",
+          "lactoalbumina",
+          "whey"
+        ]
+      }
+    ]
+  },
+  "selectividad_alimentaria": {
+    "nombre": "Selectividad Alimentaria Infantil",
+    "cluster": "pediatrico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Los colorantes pueden afectar el comportamiento.",
+        "feature_ingrediente": [
+          "colorante artificial",
+          "tartrazina",
+          "rojo 40"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Alto en azúcares. No recomendado para alimentación infantil.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      }
+    ]
+  },
+  "bajo_peso_infantil": {
+    "nombre": "Desnutrición / Bajo Peso Infantil",
+    "cluster": "pediatrico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Productos light/diet no son aptos para niños con bajo peso.",
+        "feature_ingrediente": [
+          "edulcorante",
+          "aspartamo",
+          "sucralosa",
+          "diet",
+          "light"
+        ]
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Los estimulantes suprimen el apetito. No apto para bajo peso.",
+        "feature_ingrediente": [
+          "cafeina",
+          "guarana"
+        ]
+      }
+    ]
+  },
+  "diabetes_infantil": {
+    "nombre": "Diabetes Tipo 1 Infantil",
+    "cluster": "pediatrico",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN AZÚCARES. Requiere ajuste de insulina.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Azúcares añadidos. Calcular carbohidratos para dosis de insulina.",
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "glucosa",
+          "fructosa"
+        ]
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Estimulantes no aptos para niños diabéticos.",
+        "feature_ingrediente": [
+          "cafeina",
+          "guarana",
+          "taurina"
+        ]
+      }
+    ]
+  },
+  "embarazo_pediatrico": {
+    "nombre": "Embarazo Adolescente",
+    "cluster": "pediatrico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Limitar cafeína a <200mg/día en embarazo.",
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "te",
+          "guarana"
+        ]
+      },
+      {
+        "severidad": "critico",
+        "motivo": "El alcohol está absolutamente contraindicado en embarazo.",
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Algunos edulcorantes no están recomendados en embarazo.",
+        "feature_ingrediente": [
+          "edulcorante",
+          "sacarina"
+        ]
+      }
+    ]
+  },
+  "control_peso_general": {
+    "nombre": "Control de Peso General",
+    "cluster": "control_peso",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Alto en azúcares. Calorías vacías.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Alto en grasas. Alta densidad calórica.",
+        "feature_sello": "fat",
+        "limite": "high"
+      }
+    ]
+  },
+  "obesidad_morbida": {
+    "nombre": "Obesidad Mórbida",
+    "cluster": "control_peso",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN AZÚCARES. Contraindicado.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN GRASAS. Alta densidad calórica.",
+        "feature_sello": "fat",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Alto en grasas saturadas.",
+        "feature_sello": "saturated-fat",
+        "limite": "high"
+      }
+    ]
+  },
+  "post_bariatrica": {
+    "nombre": "Post Cirugía Bariátrica",
+    "cluster": "control_peso",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "El dumping syndrome puede ocurrir con alimentos altos en azúcar.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Azúcares concentrados causan síndrome de dumping.",
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "fructosa",
+          "glucosa"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Las grasas se toleran mal post-cirugía bariátrica.",
+        "feature_sello": "fat",
+        "limite": "high"
+      }
+    ]
+  },
+  "trastorno_alimentario": {
+    "nombre": "Recuperación de Trastorno Alimentario",
+    "cluster": "control_peso",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "Los productos diet pueden reforzar conductas restrictivas. Consultar terapeuta.",
+        "feature_ingrediente": [
+          "diet",
+          "light",
+          "zero",
+          "sin azucar",
+          "bajo en calorias"
+        ]
+      }
+    ]
+  },
+  "lactancia": {
+    "nombre": "Lactancia Materna",
+    "cluster": "embarazo",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "El alcohol pasa a la leche materna.",
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "La cafeína pasa a la leche materna. Limitar a 300mg/día.",
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "guarana"
+        ]
+      }
+    ]
+  },
+  "diabetes_gestacional": {
+    "nombre": "Diabetes Gestacional",
+    "cluster": "embarazo",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN AZÚCARES. Riesgo para el feto.",
+        "feature_sello": "sugars",
+        "limite": "high"
+      },
+      {
+        "severidad": "critico",
+        "motivo": "Azúcares añadidos agravan la diabetes gestacional.",
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "fructosa",
+          "glucosa",
+          "maltodextrina"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Edulcorantes debatidos en embarazo. Consultar obstetra.",
+        "feature_ingrediente": [
+          "aspartamo",
+          "sucralosa"
+        ]
+      }
+    ]
+  },
+  "preeclampsia": {
+    "nombre": "Preeclampsia",
+    "cluster": "embarazo",
+    "reglas": [
+      {
+        "severidad": "critico",
+        "motivo": "El sodio agrava la hipertensión gestacional.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "Controlar ingesta de sodio en preeclampsia.",
+        "feature_sello": "salt",
+        "limite": "moderate"
+      }
+    ]
+  },
+  "anemia_ferropenica": {
+    "nombre": "Anemia Ferropénica",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "El té y café inhiben la absorción de hierro. Separar de las comidas.",
+        "feature_ingrediente": [
+          "te",
+          "cafe",
+          "tanino"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El calcio inhibe la absorción de hierro. No consumir junto a suplementos.",
+        "feature_ingrediente": [
+          "calcio",
+          "lacteo",
+          "leche"
+        ]
+      }
+    ]
+  },
+  "osteoporosis": {
+    "nombre": "Osteoporosis",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "severidad": "moderado",
+        "motivo": "El exceso de cafeína puede reducir la absorción de calcio.",
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe"
+        ]
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El exceso de sodio aumenta la excreción urinaria de calcio.",
+        "feature_sello": "salt",
+        "limite": "high"
+      },
+      {
+        "severidad": "moderado",
+        "motivo": "El exceso de fósforo desequilibra la relación calcio/fósforo.",
+        "feature_ingrediente": [
+          "acido fosforico",
+          "fosfato"
+        ]
+      }
+    ]
+  },
+  "interacciones_farmacologicas": {
+    "atorvastatina": {
+      "nombre": "Atorvastatina (Estatina)",
+      "grupo": "estatinas",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "pomelo",
+            "toronja",
+            "grapefruit",
+            "jugo de pomelo",
+            "jugo de toronja",
+            "furanocumarina"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: El pomelo inhibe CYP3A4 y multiplica el efecto de la atorvastatina. Riesgo de rabdomiólisis."
+        }
+      ]
+    },
+    "simvastatina": {
+      "nombre": "Simvastatina (Estatina)",
+      "grupo": "estatinas",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "pomelo",
+            "toronja",
+            "grapefruit",
+            "jugo de pomelo",
+            "jugo de toronja",
+            "furanocumarina"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: El pomelo inhibe CYP3A4 y multiplica el efecto de la simvastatina. Riesgo de rabdomiólisis."
+        }
+      ]
+    },
+    "lovastatina": {
+      "nombre": "Lovastatina (Estatina)",
+      "grupo": "estatinas",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "pomelo",
+            "toronja",
+            "grapefruit",
+            "jugo de pomelo",
+            "furanocumarina"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: El pomelo potencia peligrosamente la lovastatina. Riesgo de rabdomiólisis."
+        }
+      ]
+    },
+    "ciclosporina": {
+      "nombre": "Ciclosporina (Inmunosupresor)",
+      "grupo": "inmunosupresores",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "pomelo",
+            "toronja",
+            "grapefruit",
+            "jugo de pomelo",
+            "furanocumarina"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: El pomelo eleva los niveles de ciclosporina a niveles tóxicos. Riesgo de nefrotoxicidad."
+        },
+        {
+          "feature_ingrediente": [
+            "hierba de san juan",
+            "hiperico",
+            "st john"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: La hierba de San Juan reduce los niveles de ciclosporina. Riesgo de rechazo de trasplante."
+        }
+      ]
+    },
+    "tacrolimus": {
+      "nombre": "Tacrolimus (Inmunosupresor)",
+      "grupo": "inmunosupresores",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "pomelo",
+            "toronja",
+            "grapefruit",
+            "jugo de pomelo",
+            "furanocumarina"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: El pomelo eleva los niveles de tacrolimus. Riesgo de nefrotoxicidad y neurotoxicidad."
+        },
+        {
+          "feature_ingrediente": [
+            "hierba de san juan",
+            "hiperico"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: La hierba de San Juan reduce niveles de tacrolimus. Riesgo de rechazo."
+        }
+      ]
+    },
+    "warfarina": {
+      "nombre": "Warfarina (Anticoagulante)",
+      "grupo": "anticoagulantes",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "espinaca",
+            "espinacas",
+            "kale",
+            "col rizada",
+            "brocoli",
+            "repollo",
+            "col",
+            "lechuga",
+            "acelga",
+            "perejil",
+            "cilantro",
+            "nabo",
+            "berro",
+            "rucula",
+            "te verde",
+            "matcha",
+            "vitamina k"
+          ],
+          "severidad": "moderado",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: Alto en vitamina K. Mantener ingesta CONSTANTE (no eliminar). Cambios bruscos desestabilizan el INR."
+        },
+        {
+          "feature_ingrediente": [
+            "arandano",
+            "cranberry",
+            "jugo de arandano"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: El arándano potencia el efecto de la warfarina. Riesgo de sangrado."
+        },
+        {
+          "feature_ingrediente": [
+            "ginkgo",
+            "ginseng",
+            "omega 3",
+            "aceite de pescado",
+            "vitamina e"
+          ],
+          "severidad": "moderado",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: Estos suplementos pueden aumentar el riesgo de sangrado con warfarina."
+        },
+        {
+          "feature_ingrediente": [
+            "alcohol",
+            "cerveza",
+            "vino",
+            "licor"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: El alcohol potencia el sangrado y desestabiliza el INR con warfarina."
+        }
+      ]
+    },
+    "acenocumarol": {
+      "nombre": "Acenocumarol (Anticoagulante)",
+      "grupo": "anticoagulantes",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "espinaca",
+            "espinacas",
+            "kale",
+            "brocoli",
+            "repollo",
+            "lechuga",
+            "acelga",
+            "perejil",
+            "te verde",
+            "vitamina k"
+          ],
+          "severidad": "moderado",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: Alto en vitamina K. Mantener ingesta constante para estabilidad del INR."
+        },
+        {
+          "feature_ingrediente": [
+            "alcohol",
+            "cerveza",
+            "vino"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: El alcohol potencia el sangrado con acenocumarol."
+        }
+      ]
+    },
+    "fenelzina": {
+      "nombre": "Fenelzina (IMAO)",
+      "grupo": "imao",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "queso curado",
+            "queso azul",
+            "queso roquefort",
+            "queso parmesano",
+            "queso brie",
+            "queso camembert",
+            "queso gouda",
+            "salame",
+            "salami",
+            "pepperoni",
+            "embutido curado",
+            "vino tinto",
+            "cerveza",
+            "sake",
+            "salsa de soja",
+            "salsa de soya",
+            "miso",
+            "tempeh",
+            "natto",
+            "chucrut",
+            "kimchi",
+            "tiramina"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA GRAVE: Alimento rico en tiramina + IMAO = riesgo de CRISIS HIPERTENSIVA. Puede ser mortal."
+        }
+      ]
+    },
+    "tranilcipromina": {
+      "nombre": "Tranilcipromina (IMAO)",
+      "grupo": "imao",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "queso curado",
+            "queso azul",
+            "queso parmesano",
+            "salame",
+            "salami",
+            "embutido curado",
+            "vino tinto",
+            "cerveza",
+            "salsa de soja",
+            "salsa de soya",
+            "miso",
+            "chucrut",
+            "kimchi",
+            "tiramina"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA GRAVE: Tiramina + IMAO = crisis hipertensiva potencialmente mortal."
+        }
+      ]
+    },
+    "metformina": {
+      "nombre": "Metformina (Antidiabético)",
+      "grupo": "antidiabeticos",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "alcohol",
+            "cerveza",
+            "vino",
+            "licor",
+            "vodka",
+            "whisky",
+            "ron",
+            "pisco"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: Alcohol + metformina = riesgo de acidosis láctica. Potencialmente mortal."
+        }
+      ]
+    },
+    "ciprofloxacino": {
+      "nombre": "Ciprofloxacino (Fluoroquinolona)",
+      "grupo": "antibioticos",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "leche",
+            "yogurt",
+            "queso",
+            "lacteo",
+            "calcio",
+            "hierro",
+            "antiácido",
+            "suplemento de calcio",
+            "suplemento de hierro"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: El calcio/hierro quela ciprofloxacino y ANULA su absorción. Separar 2h mínimo.",
+          "ventana_horas": 2,
+          "ventana_texto": "Separar lácteos/calcio/hierro al menos 2 horas de la toma de ciprofloxacino."
+        },
+        {
+          "feature_ingrediente": [
+            "cafeina",
+            "cafe",
+            "te",
+            "guarana"
+          ],
+          "severidad": "moderado",
+          "motivo": "INTERACCIÓN: Ciprofloxacino potencia el efecto de la cafeína. Puede causar insomnio y taquicardia."
+        }
+      ]
+    },
+    "tetraciclina": {
+      "nombre": "Tetraciclina (Antibiótico)",
+      "grupo": "antibioticos",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "leche",
+            "yogurt",
+            "queso",
+            "lacteo",
+            "calcio",
+            "hierro",
+            "antiácido",
+            "suplemento de calcio"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: Lácteos/calcio/hierro anulan la absorción de tetraciclina. No consumir juntos.",
+          "ventana_horas": 2,
+          "ventana_texto": "Separar lácteos/calcio/hierro al menos 2 horas de la toma de tetraciclina."
+        }
+      ]
+    },
+    "doxiciclina": {
+      "nombre": "Doxiciclina (Antibiótico)",
+      "grupo": "antibioticos",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "leche",
+            "yogurt",
+            "queso",
+            "lacteo",
+            "calcio",
+            "antiácido",
+            "suplemento de calcio"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN FARMACOLÓGICA: Lácteos reducen la absorción de doxiciclina significativamente.",
+          "ventana_horas": 2,
+          "ventana_texto": "Separar lácteos/calcio al menos 2 horas de la toma de doxiciclina."
+        }
+      ]
+    },
+    "levotiroxina": {
+      "nombre": "Levotiroxina (Hormona tiroidea)",
+      "grupo": "tiroides",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "soja",
+            "soya",
+            "leche de soja",
+            "tofu",
+            "proteina de soja"
+          ],
+          "severidad": "moderado",
+          "motivo": "INTERACCIÓN: La soja puede reducir la absorción de levotiroxina.",
+          "ventana_horas": 4,
+          "ventana_texto": "Separar alimentos con soja al menos 4 horas de la toma de levotiroxina."
+        },
+        {
+          "feature_ingrediente": [
+            "cafe",
+            "cafeina"
+          ],
+          "severidad": "moderado",
+          "motivo": "INTERACCIÓN: El café reduce la absorción de levotiroxina. Tomar la pastilla 30-60min antes del café.",
+          "ventana_horas": 1,
+          "ventana_texto": "Tomar la levotiroxina al menos 1 hora antes de consumir café."
+        },
+        {
+          "feature_ingrediente": [
+            "calcio",
+            "suplemento de calcio",
+            "hierro",
+            "suplemento de hierro"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN: Calcio y hierro bloquean la absorción de levotiroxina. Separar 4 horas mínimo.",
+          "ventana_horas": 4,
+          "ventana_texto": "Separar calcio/hierro al menos 4 horas de la toma de levotiroxina."
+        },
+        {
+          "feature_ingrediente": [
+            "nuez",
+            "nueces",
+            "fibra",
+            "salvado"
+          ],
+          "severidad": "moderado",
+          "motivo": "INTERACCIÓN: La fibra alta puede reducir la absorción de levotiroxina."
+        }
+      ]
+    },
+    "metronidazol": {
+      "nombre": "Metronidazol (Antibiótico/Antiparasitario)",
+      "grupo": "antibioticos",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "alcohol",
+            "cerveza",
+            "vino",
+            "licor",
+            "vodka",
+            "whisky",
+            "ron",
+            "pisco"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN GRAVE: Alcohol + metronidazol = efecto disulfiram (náuseas severas, vómitos, taquicardia). Prohibido hasta 48h después.",
+          "ventana_horas": 48,
+          "ventana_texto": "Evitar alcohol durante el tratamiento con metronidazol y 48 horas después de la última dosis."
+        }
+      ]
+    },
+    "litio": {
+      "nombre": "Litio (Estabilizador del ánimo)",
+      "grupo": "psiquiatria",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "sal",
+            "sodio",
+            "cloruro de sodio"
+          ],
+          "severidad": "moderado",
+          "motivo": "INTERACCIÓN: Los cambios bruscos en ingesta de sodio alteran los niveles de litio. Mantener ingesta constante."
+        },
+        {
+          "feature_ingrediente": [
+            "cafeina",
+            "cafe",
+            "te",
+            "mate"
+          ],
+          "severidad": "moderado",
+          "motivo": "INTERACCIÓN: La cafeína aumenta la excreción de litio, reduciendo su eficacia."
+        }
+      ]
+    },
+    "digoxina": {
+      "nombre": "Digoxina (Cardiotónico)",
+      "grupo": "cardiologia",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "hierba de san juan",
+            "hiperico"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN: La hierba de San Juan reduce los niveles de digoxina peligrosamente."
+        },
+        {
+          "feature_ingrediente": [
+            "regaliz",
+            "orozuz",
+            "licorice"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN: El regaliz causa hipocalemia que potencia la toxicidad de digoxina. Riesgo de arritmia."
+        }
+      ]
+    },
+    "anticonceptivo_oral": {
+      "nombre": "Anticonceptivos Orales (Estrógenos/Progestágenos)",
+      "grupo": "ginecologia",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "hierba de san juan",
+            "hiperico",
+            "st john"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN GRAVE: La hierba de San Juan reduce la eficacia del anticonceptivo. Riesgo de embarazo no deseado."
+        },
+        {
+          "feature_ingrediente": [
+            "pomelo",
+            "toronja",
+            "grapefruit"
+          ],
+          "severidad": "moderado",
+          "motivo": "INTERACCIÓN: El pomelo puede aumentar los niveles de estrógenos."
+        }
+      ]
+    },
+    "enalapril": {
+      "nombre": "Enalapril (IECA)",
+      "grupo": "antihipertensivos",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "potasio",
+            "cloruro de potasio",
+            "sal light",
+            "sal de potasio",
+            "suplemento de potasio"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN: Los IECA retienen potasio. Suplementos de potasio pueden causar hipercalemia peligrosa."
+        },
+        {
+          "feature_ingrediente": [
+            "regaliz",
+            "orozuz",
+            "licorice"
+          ],
+          "severidad": "moderado",
+          "motivo": "INTERACCIÓN: El regaliz antagoniza el efecto antihipertensivo."
+        }
+      ]
+    },
+    "losartan": {
+      "nombre": "Losartán (ARA-II)",
+      "grupo": "antihipertensivos",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "potasio",
+            "cloruro de potasio",
+            "sal light",
+            "suplemento de potasio"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN: Los ARA-II retienen potasio. Riesgo de hipercalemia con suplementos de potasio."
+        }
+      ]
+    },
+    "paracetamol": {
+      "nombre": "Paracetamol/Acetaminofén",
+      "grupo": "analgesicos",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "alcohol",
+            "cerveza",
+            "vino",
+            "licor"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN: Alcohol + paracetamol crónico = riesgo de hepatotoxicidad severa (daño hepático)."
+        }
+      ]
+    },
+    "disulfiram": {
+      "nombre": "Disulfiram (Anti-alcoholismo)",
+      "grupo": "psiquiatria",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "alcohol",
+            "cerveza",
+            "vino",
+            "licor",
+            "vodka",
+            "whisky",
+            "ron",
+            "pisco",
+            "vinagre de vino",
+            "extracto de vainilla"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN GRAVE: CUALQUIER cantidad de alcohol + disulfiram = reacción severa (vómitos, colapso cardiovascular).",
+          "ventana_horas": 48,
+          "ventana_texto": "Evitar alcohol durante el tratamiento con disulfiram y 48 horas después de la última dosis."
+        }
+      ]
+    },
+    "alopurinol": {
+      "nombre": "Alopurinol (Anti-gota)",
+      "grupo": "reumatologia",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "alcohol",
+            "cerveza",
+            "vino"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN: El alcohol reduce la eficacia del alopurinol y eleva ácido úrico."
+        }
+      ]
+    },
+    "metotrexato": {
+      "nombre": "Metotrexato (Inmunosupresor/Quimioterapia)",
+      "grupo": "oncologia_reumatologia",
+      "reglas": [
+        {
+          "feature_ingrediente": [
+            "alcohol",
+            "cerveza",
+            "vino",
+            "licor"
+          ],
+          "severidad": "critico",
+          "motivo": "INTERACCIÓN GRAVE: Alcohol + metotrexato = hepatotoxicidad severa. Prohibido."
+        },
+        {
+          "feature_ingrediente": [
+            "acido folico",
+            "folato"
+          ],
+          "severidad": "moderado",
+          "motivo": "NOTA: El ácido fólico se suplementa habitualmente con metotrexato. Consultar dosis con médico."
+        }
+      ]
+    }
+  },
+  "asma": {
+    "nombre": "Asma Bronquial",
+    "cluster": "respiratorio",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "sulfito",
+          "dioxido de azufre",
+          "e220",
+          "e221",
+          "e222",
+          "e223",
+          "e224",
+          "e226",
+          "e227",
+          "e228",
+          "conservante sulfito",
+          "bisulfito",
+          "metabisulfito"
+        ],
+        "severidad": "critico",
+        "motivo": "Los sulfitos (aditivos E220-E228) desencadenan broncoespasmo en asmáticos."
+      },
+      {
+        "feature_ingrediente": [
+          "tartrazina",
+          "colorante artificial",
+          "benzoato"
+        ],
+        "severidad": "moderado",
+        "motivo": "Aditivos asociados a exacerbaciones del asma."
+      },
+      {
+        "feature_ingrediente": [
+          "vino",
+          "cerveza",
+          "alcohol"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol, especialmente vino tinto, puede desencadenar broncoespasmo."
+      }
+    ]
+  },
+  "epoc": {
+    "nombre": "EPOC (Enfermedad Pulmonar Obstructiva Crónica)",
+    "cluster": "respiratorio",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "El sodio agrava la retención de líquidos y el corazón pulmonar."
+      },
+      {
+        "feature_ingrediente": [
+          "embutido",
+          "sopa instantanea",
+          "conservas"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimentos procesados con alta carga de sodio."
+      },
+      {
+        "feature_ingrediente": [
+          "gaseosa",
+          "bebida carbonatada",
+          "espumante"
+        ],
+        "severidad": "moderado",
+        "motivo": "Las bebidas carbonatadas generan distensión abdominal que dificulta la respiración."
+      }
+    ]
+  },
+  "apnea_sueno": {
+    "nombre": "Apnea Obstructiva del Sueño",
+    "cluster": "respiratorio",
+    "reglas": [
+      {
+        "feature_sello": "fat",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Alta densidad calórica. El control de peso es clave en apnea del sueño."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol relaja la musculatura faríngea y empeora los episodios de apnea."
+      },
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "energizante"
+        ],
+        "severidad": "moderado",
+        "motivo": "La cafeína altera la calidad del sueño ya comprometido en apnea."
+      }
+    ]
+  },
+  "fibrosis_quistica": {
+    "nombre": "Fibrosis Quística",
+    "cluster": "respiratorio",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "En fibrosis quística se PROMUEVE alto sodio (pérdida por sudor). Consulte a su médico."
+      },
+      {
+        "feature_ingrediente": [
+          "grasa",
+          "aceite"
+        ],
+        "severidad": "moderado",
+        "motivo": "Se requiere alta ingesta calórica. Tomar enzimas pancreáticas con las grasas."
+      }
+    ]
+  },
+  "depresion": {
+    "nombre": "Depresión Mayor",
+    "cluster": "psiquiatrico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "queso curado",
+          "queso azul",
+          "embutido curado",
+          "salame",
+          "vino tinto",
+          "salsa de soja",
+          "miso",
+          "fermentado",
+          "tiramina"
+        ],
+        "severidad": "critico",
+        "motivo": "Si toma IMAOs (antidepresivos), la tiramina puede causar crisis hipertensiva."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol es depresor del SNC y reduce eficacia de antidepresivos."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Picos de glucosa alteran el estado de ánimo y empeoran síntomas depresivos."
+      }
+    ]
+  },
+  "ansiedad_generalizada": {
+    "nombre": "Trastorno de Ansiedad Generalizada",
+    "cluster": "psiquiatrico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "te verde",
+          "guarana",
+          "taurina",
+          "energizante"
+        ],
+        "severidad": "critico",
+        "motivo": "Los estimulantes agravan síntomas de ansiedad y pueden desencadenar crisis de pánico."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol empeora la ansiedad al día siguiente (rebote) y afecta ansiolíticos."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Picos glucémicos pueden simular o amplificar síntomas de ansiedad."
+      }
+    ]
+  },
+  "trastorno_bipolar": {
+    "nombre": "Trastorno Bipolar",
+    "cluster": "psiquiatrico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "sal",
+          "sodio"
+        ],
+        "severidad": "moderado",
+        "motivo": "Si toma LITIO, cambios bruscos en sodio alteran niveles del medicamento."
+      },
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "guarana"
+        ],
+        "severidad": "moderado",
+        "motivo": "La cafeína aumenta la excreción de litio y puede desencadenar episodios maníacos."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol desestabiliza el ánimo y altera niveles de estabilizadores."
+      }
+    ]
+  },
+  "insomnio_cronico": {
+    "nombre": "Insomnio Crónico",
+    "cluster": "psiquiatrico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "te verde",
+          "guarana",
+          "energizante",
+          "mate"
+        ],
+        "severidad": "critico",
+        "motivo": "La cafeína tiene vida media de 5-7 horas. Evitar después del mediodía."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol fragmenta el sueño aunque induzca somnolencia inicial."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Azúcares antes de dormir causan despertares nocturnos."
+      }
+    ]
+  },
+  "adiccion_alcohol": {
+    "nombre": "Alcoholismo / Recuperación",
+    "cluster": "psiquiatrico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino",
+          "licor",
+          "vodka",
+          "whisky",
+          "ron",
+          "pisco",
+          "vinagre de vino",
+          "extracto de vainilla"
+        ],
+        "severidad": "critico",
+        "motivo": "Contraindicación absoluta. Riesgo de recaída y daño hepático."
+      },
+      {
+        "feature_ingrediente": [
+          "tiramina",
+          "queso curado",
+          "vino"
+        ],
+        "severidad": "moderado",
+        "motivo": "Si toma disulfiram o naltrexona, evitar trazas de alcohol y fermentados."
+      }
+    ]
+  },
+  "menopausia": {
+    "nombre": "Menopausia / Perimenopausia",
+    "cluster": "endocrino",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe"
+        ],
+        "severidad": "moderado",
+        "motivo": "La cafeína empeora sofocos y puede reducir absorción de calcio."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "vino",
+          "cerveza"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol intensifica sofocos y aumenta riesgo de osteoporosis."
+      },
+      {
+        "feature_ingrediente": [
+          "azucar refinado",
+          "harina blanca"
+        ],
+        "severidad": "moderado",
+        "motivo": "Agravan inestabilidad emocional y aumento de peso en menopausia."
+      }
+    ]
+  },
+  "sobrecrecimiento_bacteriano_sibo": {
+    "nombre": "SIBO (Sobrecrecimiento Bacteriano)",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "fodmap",
+          "ajo",
+          "cebolla",
+          "manzana",
+          "pera",
+          "mango",
+          "sandia",
+          "leche",
+          "lactosa",
+          "trigo",
+          "legumbre",
+          "lenteja",
+          "garbanzo",
+          "inulina",
+          "fructooligosacarido"
+        ],
+        "severidad": "critico",
+        "motivo": "Los FODMAPs fermentan y alimentan el sobrecrecimiento bacteriano."
+      },
+      {
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "fructosa",
+          "miel",
+          "agave"
+        ],
+        "severidad": "critico",
+        "motivo": "Los azúcares alimentan las bacterias del intestino delgado."
+      },
+      {
+        "feature_ingrediente": [
+          "probiotico",
+          "kefir",
+          "yogurt",
+          "chucrut",
+          "kimchi"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los probióticos pueden empeorar SIBO. Consulte a su gastroenterólogo."
+      }
+    ]
+  },
+  "helicobacter_pylori": {
+    "nombre": "Infección por H. Pylori",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe"
+        ],
+        "severidad": "moderado",
+        "motivo": "El café aumenta secreción ácida que irrita el estómago infectado."
+      },
+      {
+        "feature_ingrediente": [
+          "aji",
+          "chile",
+          "pimienta",
+          "picante"
+        ],
+        "severidad": "moderado",
+        "motivo": "Irritantes agravan la gastritis asociada a H. pylori."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol daña la mucosa gástrica y retarda la erradicación."
+      },
+      {
+        "feature_ingrediente": [
+          "aspirina",
+          "ibuprofeno",
+          "aine"
+        ],
+        "severidad": "critico",
+        "motivo": "Los AINEs junto a H. pylori causan úlcera severa."
+      }
+    ]
+  },
+  "deficit_enzima_dao": {
+    "nombre": "Déficit de DAO (Diaminooxidasa)",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "histamina",
+          "atun",
+          "sardina",
+          "caballa",
+          "anchoa",
+          "arenque",
+          "queso curado",
+          "queso azul",
+          "embutido curado",
+          "vino tinto",
+          "cerveza",
+          "champagne",
+          "vinagre",
+          "chucrut",
+          "kimchi",
+          "tomate",
+          "espinaca",
+          "berenjena",
+          "fresa",
+          "chocolate",
+          "cacao",
+          "mariscos"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimentos altos en histamina que el déficit de DAO no puede metabolizar."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol bloquea la enzima DAO empeorando síntomas."
+      }
+    ]
+  },
+  "vih_sida": {
+    "nombre": "VIH / SIDA",
+    "cluster": "infeccioso",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "pomelo",
+          "toronja",
+          "grapefruit",
+          "furanocumarina"
+        ],
+        "severidad": "critico",
+        "motivo": "El pomelo interfiere con varios antirretrovirales (inhibidores de proteasa)."
+      },
+      {
+        "feature_ingrediente": [
+          "hierba de san juan",
+          "hiperico"
+        ],
+        "severidad": "critico",
+        "motivo": "Reduce niveles de antirretrovirales peligrosamente."
+      },
+      {
+        "feature_ingrediente": [
+          "crudo",
+          "sashimi",
+          "ceviche",
+          "huevo crudo"
+        ],
+        "severidad": "critico",
+        "motivo": "Alimentos crudos tienen riesgo de infección en pacientes inmunocomprometidos."
+      },
+      {
+        "feature_ingrediente": [
+          "leche no pasteurizada",
+          "queso fresco artesanal"
+        ],
+        "severidad": "critico",
+        "motivo": "Riesgo de listeria y otras infecciones."
+      }
+    ]
+  },
+  "hepatitis_b_cronica": {
+    "nombre": "Hepatitis B Crónica",
+    "cluster": "infeccioso",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol acelera el daño hepático y progresión a cirrosis."
+      },
+      {
+        "feature_ingrediente": [
+          "hierro",
+          "suplemento de hierro"
+        ],
+        "severidad": "moderado",
+        "motivo": "El exceso de hierro es hepatotóxico en hepatitis crónica."
+      },
+      {
+        "feature_sello": "fat",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Las grasas saturadas sobrecargan el hígado inflamado."
+      }
+    ]
+  },
+  "hepatitis_c_cronica": {
+    "nombre": "Hepatitis C Crónica",
+    "cluster": "infeccioso",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol acelera el daño hepático en hepatitis C."
+      },
+      {
+        "feature_ingrediente": [
+          "pomelo",
+          "toronja",
+          "grapefruit"
+        ],
+        "severidad": "critico",
+        "motivo": "El pomelo interfiere con antivirales de acción directa (DAAs)."
+      },
+      {
+        "feature_ingrediente": [
+          "hierro",
+          "suplemento de hierro"
+        ],
+        "severidad": "moderado",
+        "motivo": "El hierro acumulado es hepatotóxico."
+      }
+    ]
+  },
+  "osteoartritis": {
+    "nombre": "Osteoartritis / Artrosis",
+    "cluster": "musculoesqueletico",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Los azúcares promueven inflamación que agrava el dolor articular."
+      },
+      {
+        "feature_ingrediente": [
+          "grasa trans",
+          "grasa hidrogenada",
+          "aceite de palma"
+        ],
+        "severidad": "moderado",
+        "motivo": "Grasas proinflamatorias empeoran el dolor de la artrosis."
+      }
+    ]
+  },
+  "sarcopenia": {
+    "nombre": "Sarcopenia",
+    "cluster": "musculoesqueletico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "diet",
+          "light",
+          "zero",
+          "sin azucar",
+          "bajo en calorias"
+        ],
+        "severidad": "moderado",
+        "motivo": "Las dietas hipocalóricas empeoran la pérdida muscular. Se requiere aporte proteico."
+      }
+    ]
+  },
+  "acne_severo": {
+    "nombre": "Acné Severo / Quístico",
+    "cluster": "dermatologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "leche",
+          "lactosa",
+          "suero",
+          "proteina de leche"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los lácteos (especialmente descremados) aumentan IGF-1 y agravan acné."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "El azúcar aumenta insulina e IGF-1, empeorando el acné."
+      },
+      {
+        "feature_ingrediente": [
+          "chocolate",
+          "cacao"
+        ],
+        "severidad": "moderado",
+        "motivo": "El chocolate (especialmente con leche) se asocia a brotes de acné."
+      }
+    ]
+  },
+  "urticaria_cronica": {
+    "nombre": "Urticaria Crónica",
+    "cluster": "dermatologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "sulfito",
+          "benzoato",
+          "tartrazina",
+          "conservante"
+        ],
+        "severidad": "critico",
+        "motivo": "Aditivos pseudoalérgicos disparadores comunes de urticaria crónica."
+      },
+      {
+        "feature_ingrediente": [
+          "histamina",
+          "vino",
+          "queso curado",
+          "embutido"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alimentos altos en histamina o liberadores agravan urticaria."
+      },
+      {
+        "feature_ingrediente": [
+          "salicilato",
+          "aspirina",
+          "ibuprofeno"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los salicilatos pueden desencadenar brotes."
+      }
+    ]
+  },
+  "hiperplasia_prostatica": {
+    "nombre": "Hiperplasia Prostática Benigna",
+    "cluster": "urologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "te verde"
+        ],
+        "severidad": "moderado",
+        "motivo": "La cafeína aumenta frecuencia urinaria y agrava síntomas."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol empeora síntomas urinarios y aumenta retención."
+      },
+      {
+        "feature_ingrediente": [
+          "picante",
+          "aji",
+          "chile"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los picantes pueden irritar la uretra y aumentar síntomas."
+      }
+    ]
+  },
+  "anemia_megaloblastica": {
+    "nombre": "Anemia Megaloblástica (déficit B12/Folato)",
+    "cluster": "hematologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol reduce absorción de B12 y folato, agravando la anemia."
+      }
+    ]
+  },
+  "anemia_hemolitica": {
+    "nombre": "Anemia Hemolítica",
+    "cluster": "hematologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "haba",
+          "fava"
+        ],
+        "severidad": "critico",
+        "motivo": "Si es déficit de G6PD, las habas causan crisis hemolítica grave."
+      },
+      {
+        "feature_ingrediente": [
+          "sulfito",
+          "metabisulfito"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los sulfitos pueden desencadenar hemólisis en G6PD."
+      }
+    ]
+  },
+  "policitemia_vera": {
+    "nombre": "Policitemia Vera",
+    "cluster": "hematologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "hierro",
+          "suplemento de hierro",
+          "higado",
+          "morcilla"
+        ],
+        "severidad": "critico",
+        "motivo": "El hierro alto empeora la policitemia. Evitar suplementación."
+      },
+      {
+        "feature_ingrediente": [
+          "vitamina c",
+          "acido ascorbico"
+        ],
+        "severidad": "moderado",
+        "motivo": "La vitamina C aumenta absorción de hierro."
+      }
+    ]
+  },
+  "resistencia_insulinica": {
+    "nombre": "Resistencia a la Insulina",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "El azúcar agrava la resistencia insulínica."
+      },
+      {
+        "feature_ingrediente": [
+          "harina refinada",
+          "harina blanca",
+          "arroz blanco"
+        ],
+        "severidad": "moderado",
+        "motivo": "Carbohidratos refinados aumentan la insulina rápidamente."
+      },
+      {
+        "feature_ingrediente": [
+          "fructosa",
+          "jarabe de maiz"
+        ],
+        "severidad": "critico",
+        "motivo": "La fructosa es el driver principal de resistencia insulínica hepática."
+      }
+    ]
+  },
+  "hipoglucemia_reactiva": {
+    "nombre": "Hipoglucemia Reactiva",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Los picos de azúcar desencadenan liberación excesiva de insulina y posterior hipoglucemia."
+      },
+      {
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "miel"
+        ],
+        "severidad": "critico",
+        "motivo": "Azúcares simples generan el ciclo hiperglucemia-hipoglucemia."
+      }
+    ]
+  },
+  "deficiencia_vitamina_d": {
+    "nombre": "Déficit de Vitamina D",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol interfiere con el metabolismo hepático de vitamina D."
+      }
+    ]
+  },
+  "hiponatremia": {
+    "nombre": "Hiponatremia Crónica",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "cerveza",
+          "agua destilada"
+        ],
+        "severidad": "critico",
+        "motivo": "El consumo excesivo de líquidos hipotónicos empeora la hiponatremia."
+      }
+    ]
+  },
+  "hipercalcemia": {
+    "nombre": "Hipercalcemia",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "calcio",
+          "leche",
+          "queso",
+          "yogurt",
+          "lacteo"
+        ],
+        "severidad": "critico",
+        "motivo": "Limitar ingesta de calcio en hipercalcemia."
+      },
+      {
+        "feature_ingrediente": [
+          "vitamina d",
+          "suplemento de vitamina d"
+        ],
+        "severidad": "critico",
+        "motivo": "La vitamina D aumenta absorción de calcio, empeorando hipercalcemia."
+      }
+    ]
+  },
+  "hipocalcemia": {
+    "nombre": "Hipocalcemia",
+    "cluster": "metabolico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico",
+          "gaseosa cola"
+        ],
+        "severidad": "moderado",
+        "motivo": "El exceso de fósforo desbalancea el calcio, agravando hipocalcemia."
+      }
+    ]
+  },
+  "caquexia_oncologica": {
+    "nombre": "Caquexia Oncológica",
+    "cluster": "oncologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "diet",
+          "light",
+          "zero",
+          "sin azucar",
+          "bajo en calorias"
+        ],
+        "severidad": "critico",
+        "motivo": "Se requiere ingesta calórica ALTA. Productos hipocalóricos están contraindicados."
+      }
+    ]
+  },
+  "quimioterapia_nauseas": {
+    "nombre": "Náuseas por Quimioterapia",
+    "cluster": "oncologico",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "picante",
+          "aji",
+          "chile",
+          "pimienta"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los alimentos picantes agravan las náuseas."
+      },
+      {
+        "feature_sello": "fat",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Las grasas empeoran las náuseas y retrasan el vaciamiento gástrico."
+      },
+      {
+        "feature_ingrediente": [
+          "aroma intenso",
+          "frito"
+        ],
+        "severidad": "moderado",
+        "motivo": "Aromas fuertes y frituras empeoran las náuseas."
+      }
+    ]
+  },
+  "sindrome_dumping": {
+    "nombre": "Síndrome de Dumping (Post-Bariátrica)",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Los azúcares concentrados disparan el síndrome de dumping."
+      },
+      {
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "glucosa",
+          "fructosa"
+        ],
+        "severidad": "critico",
+        "motivo": "Azúcares simples causan dumping temprano con síntomas severos."
+      },
+      {
+        "feature_ingrediente": [
+          "bebida carbonatada",
+          "gaseosa"
+        ],
+        "severidad": "moderado",
+        "motivo": "Líquidos con azúcar empeoran el dumping."
+      }
+    ]
+  },
+  "insuficiencia_pancreatica_exocrina": {
+    "nombre": "Insuficiencia Pancreática Exocrina",
+    "cluster": "digestivo",
+    "reglas": [
+      {
+        "feature_sello": "fat",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Requiere enzimas pancreáticas suplementarias con cada comida grasa."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol empeora la función pancreática."
+      }
+    ]
+  },
+  "colestasis_gestacional": {
+    "nombre": "Colestasis Intrahepática del Embarazo",
+    "cluster": "embarazo",
+    "reglas": [
+      {
+        "feature_sello": "fat",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Las grasas requieren bilis. Empeoran el prurito y función hepática."
+      },
+      {
+        "feature_ingrediente": [
+          "higado",
+          "viscera"
+        ],
+        "severidad": "moderado",
+        "motivo": "Alta carga hepática. Evitar en colestasis."
+      }
+    ]
+  },
+  "anemia_gestacional": {
+    "nombre": "Anemia Gestacional",
+    "cluster": "embarazo",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "te",
+          "cafe",
+          "tanino"
+        ],
+        "severidad": "moderado",
+        "motivo": "El té y café inhiben absorción de hierro. Separar 2h de suplementos."
+      },
+      {
+        "feature_ingrediente": [
+          "calcio",
+          "lacteo",
+          "suplemento de calcio"
+        ],
+        "severidad": "moderado",
+        "motivo": "El calcio inhibe absorción de hierro. Separar de la suplementación."
+      }
+    ]
+  },
+  "hiperemesis_gravidica": {
+    "nombre": "Hiperemesis Gravídica",
+    "cluster": "embarazo",
+    "reglas": [
+      {
+        "feature_sello": "fat",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Las grasas empeoran las náuseas severas. Preferir alimentos secos y fríos."
+      },
+      {
+        "feature_ingrediente": [
+          "aroma fuerte",
+          "frito",
+          "picante"
+        ],
+        "severidad": "moderado",
+        "motivo": "Disparadores de náusea. Evitar en hiperemesis."
+      }
+    ]
+  },
+  "deportista_alto_rendimiento": {
+    "nombre": "Deportista de Alto Rendimiento",
+    "cluster": "deportivo",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "diet",
+          "light",
+          "zero",
+          "sin azucar"
+        ],
+        "severidad": "moderado",
+        "motivo": "Requiere aporte calórico alto. Los light pueden ser insuficientes."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol afecta recuperación muscular y rendimiento."
+      }
+    ]
+  },
+  "deficit_energetico_relativo": {
+    "nombre": "Déficit Energético Relativo del Deporte (RED-S)",
+    "cluster": "deportivo",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "diet",
+          "light",
+          "zero",
+          "sin azucar",
+          "bajo en calorias"
+        ],
+        "severidad": "critico",
+        "motivo": "RED-S requiere aumentar ingesta calórica. Productos hipocalóricos contraindicados."
+      }
+    ]
+  },
+  "erc_estadio_1": {
+    "nombre": "ERC Estadio 1 (TFG >90, daño renal leve)",
+    "cluster": "renal",
+    "fase_de": "insuficiencia_renal_cronica",
+    "clasificacion": "KDIGO",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Control de sodio recomendado desde ERC temprana."
+      },
+      {
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico",
+          "polifosfato"
+        ],
+        "severidad": "moderado",
+        "motivo": "Limitar aditivos con fósforo como prevención."
+      }
+    ]
+  },
+  "erc_estadio_2": {
+    "nombre": "ERC Estadio 2 (TFG 60-89)",
+    "cluster": "renal",
+    "fase_de": "insuficiencia_renal_cronica",
+    "clasificacion": "KDIGO",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Sodio <2g/día recomendado en ERC estadio 2."
+      },
+      {
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico",
+          "polifosfato",
+          "pirofosfato"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los aditivos con fósforo aceleran la progresión renal."
+      }
+    ]
+  },
+  "erc_estadio_3a": {
+    "nombre": "ERC Estadio 3a (TFG 45-59)",
+    "cluster": "renal",
+    "fase_de": "insuficiencia_renal_cronica",
+    "clasificacion": "KDIGO",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Restricción de sodio estricta (<2g/día) en ERC 3a."
+      },
+      {
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico",
+          "polifosfato",
+          "pirofosfato"
+        ],
+        "severidad": "critico",
+        "motivo": "Los fosfatos agravan la ERC. Fósforo <1000mg/día."
+      },
+      {
+        "feature_ingrediente": [
+          "whey",
+          "proteina concentrada",
+          "suero de leche"
+        ],
+        "severidad": "moderado",
+        "motivo": "Moderar proteínas. Consultar nefrólogo para ajuste (0.8g/kg/día)."
+      }
+    ]
+  },
+  "erc_estadio_3b": {
+    "nombre": "ERC Estadio 3b (TFG 30-44)",
+    "cluster": "renal",
+    "fase_de": "insuficiencia_renal_cronica",
+    "clasificacion": "KDIGO",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Restricción estricta de sodio en ERC 3b."
+      },
+      {
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico",
+          "polifosfato",
+          "pirofosfato"
+        ],
+        "severidad": "critico",
+        "motivo": "Fósforo <800mg/día obligatorio."
+      },
+      {
+        "feature_ingrediente": [
+          "potasio",
+          "cloruro de potasio"
+        ],
+        "severidad": "moderado",
+        "motivo": "Empezar a vigilar potasio en ERC 3b. Control con exámenes."
+      },
+      {
+        "feature_ingrediente": [
+          "whey",
+          "proteina concentrada"
+        ],
+        "severidad": "critico",
+        "motivo": "Restricción proteica: 0.6-0.8g/kg/día."
+      }
+    ]
+  },
+  "erc_estadio_4": {
+    "nombre": "ERC Estadio 4 (TFG 15-29)",
+    "cluster": "renal",
+    "fase_de": "insuficiencia_renal_cronica",
+    "clasificacion": "KDIGO",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio estricto <1.5g/día en ERC 4."
+      },
+      {
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico",
+          "polifosfato",
+          "pirofosfato"
+        ],
+        "severidad": "critico",
+        "motivo": "Fósforo <800mg/día. Los fosfatos son extremadamente peligrosos."
+      },
+      {
+        "feature_ingrediente": [
+          "potasio",
+          "cloruro de potasio",
+          "platano",
+          "banana",
+          "naranja",
+          "tomate"
+        ],
+        "severidad": "critico",
+        "motivo": "PELIGRO: Potasio <2g/día en ERC 4. Riesgo de hipercalemia."
+      },
+      {
+        "feature_ingrediente": [
+          "whey",
+          "proteina concentrada"
+        ],
+        "severidad": "critico",
+        "motivo": "Proteína estricta: 0.6g/kg/día."
+      }
+    ]
+  },
+  "erc_estadio_5": {
+    "nombre": "ERC Estadio 5 Prediálisis (TFG <15)",
+    "cluster": "renal",
+    "fase_de": "insuficiencia_renal_cronica",
+    "clasificacion": "KDIGO",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio estrictísimo en ERC 5. Riesgo vital."
+      },
+      {
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico",
+          "polifosfato"
+        ],
+        "severidad": "critico",
+        "motivo": "Fósforo debe estar controlado. Peligro de calcificaciones."
+      },
+      {
+        "feature_ingrediente": [
+          "potasio",
+          "cloruro de potasio",
+          "platano",
+          "banana",
+          "naranja",
+          "tomate",
+          "papa",
+          "legumbre"
+        ],
+        "severidad": "critico",
+        "motivo": "PELIGRO VITAL: Potasio estrictamente limitado. Riesgo de arritmia cardíaca."
+      },
+      {
+        "feature_ingrediente": [
+          "whey",
+          "proteina concentrada"
+        ],
+        "severidad": "critico",
+        "motivo": "Proteína muy restringida: 0.6g/kg/día o menos."
+      },
+      {
+        "feature_ingrediente": [
+          "liquido",
+          "agua",
+          "jugo",
+          "leche"
+        ],
+        "severidad": "moderado",
+        "motivo": "Control de líquidos puede ser necesario. Consultar nefrólogo."
+      }
+    ]
+  },
+  "ic_nyha_1": {
+    "nombre": "Insuficiencia Cardíaca NYHA Clase I (sin síntomas)",
+    "cluster": "cardiovascular",
+    "fase_de": "insuficiencia_cardiaca",
+    "clasificacion": "NYHA",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Control de sodio preventivo en IC clase I. Máximo 2g/día."
+      }
+    ]
+  },
+  "ic_nyha_2": {
+    "nombre": "Insuficiencia Cardíaca NYHA Clase II (síntomas con esfuerzo ordinario)",
+    "cluster": "cardiovascular",
+    "fase_de": "insuficiencia_cardiaca",
+    "clasificacion": "NYHA",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio <2g/día obligatorio en IC clase II."
+      },
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "guarana",
+          "taurina"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los estimulantes pueden agravar arritmias."
+      }
+    ]
+  },
+  "ic_nyha_3": {
+    "nombre": "Insuficiencia Cardíaca NYHA Clase III (síntomas con esfuerzo mínimo)",
+    "cluster": "cardiovascular",
+    "fase_de": "insuficiencia_cardiaca",
+    "clasificacion": "NYHA",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio <1.5g/día en IC clase III. Retención de líquidos."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "moderate",
+        "severidad": "moderado",
+        "motivo": "Vigilar sodio moderado también."
+      },
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "guarana",
+          "taurina"
+        ],
+        "severidad": "critico",
+        "motivo": "Estimulantes pueden desencadenar arritmias graves."
+      }
+    ]
+  },
+  "ic_nyha_4": {
+    "nombre": "Insuficiencia Cardíaca NYHA Clase IV (síntomas en reposo)",
+    "cluster": "cardiovascular",
+    "fase_de": "insuficiencia_cardiaca",
+    "clasificacion": "NYHA",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio <1.5g/día estricto. Riesgo vital."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "moderate",
+        "severidad": "critico",
+        "motivo": "Incluso sodio moderado es peligroso en NYHA IV."
+      },
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "guarana",
+          "taurina"
+        ],
+        "severidad": "critico",
+        "motivo": "Estimulantes contraindicados. Riesgo de arritmia fatal."
+      },
+      {
+        "feature_ingrediente": [
+          "liquido",
+          "agua",
+          "jugo",
+          "sopa"
+        ],
+        "severidad": "moderado",
+        "motivo": "Restricción de líquidos <1.5L/día. Consultar cardiólogo."
+      }
+    ]
+  },
+  "cirrosis_child_a": {
+    "nombre": "Cirrosis Child-Pugh A (compensada)",
+    "cluster": "hepatico",
+    "fase_de": "cirrosis",
+    "clasificacion": "Child-Pugh",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Control de sodio preventivo en cirrosis compensada."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino",
+          "licor",
+          "vodka",
+          "whisky",
+          "ron",
+          "pisco",
+          "gin",
+          "sake",
+          "cerveza artesanal",
+          "bebida alcohólica",
+          "bebida fermentada",
+          "destilado",
+          "jerez",
+          "champagne",
+          "prosecco",
+          "sidra",
+          "brandy",
+          "coñac",
+          "aperitivo",
+          "digestivo",
+          "licor dulce"
+        ],
+        "severidad": "critico",
+        "motivo": "Alcohol ABSOLUTAMENTE contraindicado en cirrosis."
+      }
+    ]
+  },
+  "cirrosis_child_b": {
+    "nombre": "Cirrosis Child-Pugh B (moderada)",
+    "cluster": "hepatico",
+    "fase_de": "cirrosis",
+    "clasificacion": "Child-Pugh",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio <2g/día. Riesgo de ascitis."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino",
+          "licor",
+          "vodka",
+          "whisky",
+          "ron",
+          "pisco",
+          "gin",
+          "sake",
+          "cerveza artesanal",
+          "bebida alcohólica",
+          "bebida fermentada",
+          "destilado",
+          "jerez",
+          "champagne",
+          "prosecco",
+          "sidra",
+          "brandy",
+          "coñac",
+          "aperitivo",
+          "digestivo",
+          "licor dulce"
+        ],
+        "severidad": "critico",
+        "motivo": "Alcohol ABSOLUTAMENTE contraindicado."
+      },
+      {
+        "feature_ingrediente": [
+          "hierro",
+          "suplemento de hierro"
+        ],
+        "severidad": "moderado",
+        "motivo": "El hierro es hepatotóxico en cirrosis avanzada."
+      }
+    ]
+  },
+  "cirrosis_child_c": {
+    "nombre": "Cirrosis Child-Pugh C (severa/descompensada)",
+    "cluster": "hepatico",
+    "fase_de": "cirrosis",
+    "clasificacion": "Child-Pugh",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio estricto <1.5g/día. Ascitis severa."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino",
+          "licor",
+          "vodka",
+          "whisky",
+          "ron",
+          "pisco",
+          "gin",
+          "sake",
+          "cerveza artesanal",
+          "bebida alcohólica",
+          "bebida fermentada",
+          "destilado",
+          "jerez",
+          "champagne",
+          "prosecco",
+          "sidra",
+          "brandy",
+          "coñac",
+          "aperitivo",
+          "digestivo",
+          "licor dulce"
+        ],
+        "severidad": "critico",
+        "motivo": "Alcohol ABSOLUTAMENTE contraindicado."
+      },
+      {
+        "feature_ingrediente": [
+          "proteina",
+          "carne",
+          "whey",
+          "caseina"
+        ],
+        "severidad": "moderado",
+        "motivo": "Restricción proteica si hay encefalopatía hepática. Preferir proteínas vegetales."
+      },
+      {
+        "feature_ingrediente": [
+          "hierro",
+          "suplemento de hierro"
+        ],
+        "severidad": "critico",
+        "motivo": "El hierro es extremadamente hepatotóxico en Child C."
+      }
+    ]
+  },
+  "diabetes_t2_con_nefropatia": {
+    "nombre": "Diabetes T2 con Nefropatía Diabética",
+    "cluster": "metabolico",
+    "fase_de": "diabetes_t2",
+    "clasificacion": "Complicación",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sello ALTO EN AZÚCARES. Control glucémico estricto por nefropatía."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio restringido para proteger la función renal."
+      },
+      {
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico"
+        ],
+        "severidad": "critico",
+        "motivo": "Los fosfatos agravan la nefropatía diabética."
+      },
+      {
+        "feature_ingrediente": [
+          "potasio",
+          "cloruro de potasio"
+        ],
+        "severidad": "moderado",
+        "motivo": "Vigilar potasio si TFG disminuida."
+      },
+      {
+        "feature_ingrediente": [
+          "whey",
+          "proteina concentrada"
+        ],
+        "severidad": "moderado",
+        "motivo": "Restricción proteica (0.8g/kg/día) en nefropatía diabética."
+      }
+    ]
+  },
+  "diabetes_t2_con_neuropatia": {
+    "nombre": "Diabetes T2 con Neuropatía Diabética",
+    "cluster": "metabolico",
+    "fase_de": "diabetes_t2",
+    "clasificacion": "Complicación",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Control glucémico ESTRICTO. La hiperglucemia daña nervios."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol es directamente neurotóxico y empeora neuropatía."
+      },
+      {
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "fructosa",
+          "glucosa"
+        ],
+        "severidad": "critico",
+        "motivo": "Azúcares simples causan picos glucémicos que dañan nervios."
+      }
+    ]
+  },
+  "diabetes_t2_con_retinopatia": {
+    "nombre": "Diabetes T2 con Retinopatía Diabética",
+    "cluster": "metabolico",
+    "fase_de": "diabetes_t2",
+    "clasificacion": "Complicación",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Control glucémico estricto para frenar daño retiniano."
+      },
+      {
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "fructosa"
+        ],
+        "severidad": "critico",
+        "motivo": "Los picos glucémicos aceleran la retinopatía."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Controlar PA para proteger microvasculatura retiniana."
+      }
+    ]
+  },
+  "diabetes_t2_con_gastroparesia": {
+    "nombre": "Diabetes T2 con Gastroparesia",
+    "cluster": "metabolico",
+    "fase_de": "diabetes_t2",
+    "clasificacion": "Complicación",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Control glucémico necesario."
+      },
+      {
+        "feature_sello": "fat",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Las grasas retardan el vaciamiento gástrico. Empeoran gastroparesia."
+      },
+      {
+        "feature_ingrediente": [
+          "fibra insoluble",
+          "salvado",
+          "semilla"
+        ],
+        "severidad": "moderado",
+        "motivo": "La fibra insoluble puede formar bezoares en gastroparesia."
+      }
+    ]
+  },
+  "diabetes_t2_descompensada": {
+    "nombre": "Diabetes T2 Descompensada (HbA1c >9%)",
+    "cluster": "metabolico",
+    "fase_de": "diabetes_t2",
+    "clasificacion": "Complicación",
+    "reglas": [
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "PELIGRO: HbA1c >9%. Control glucémico urgente."
+      },
+      {
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "fructosa",
+          "glucosa",
+          "maltodextrina",
+          "dextrosa",
+          "sacarosa",
+          "miel",
+          "panela"
+        ],
+        "severidad": "critico",
+        "motivo": "Azúcares añadidos ESTRICTAMENTE prohibidos en diabetes descompensada."
+      },
+      {
+        "feature_ingrediente": [
+          "harina refinada",
+          "harina blanca",
+          "arroz blanco"
+        ],
+        "severidad": "moderado",
+        "motivo": "Carbohidratos refinados empeoran la descompensación."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino",
+          "licor",
+          "vodka",
+          "whisky",
+          "ron",
+          "pisco",
+          "gin",
+          "sake",
+          "cerveza artesanal",
+          "bebida alcohólica",
+          "bebida fermentada",
+          "destilado",
+          "jerez",
+          "champagne",
+          "prosecco",
+          "sidra",
+          "brandy",
+          "coñac",
+          "aperitivo",
+          "digestivo",
+          "licor dulce"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol desestabiliza glucemia en diabetes descompensada."
+      }
+    ]
+  },
+  "epoc_gold_1": {
+    "nombre": "EPOC GOLD 1 (Leve, FEV1 ≥80%)",
+    "cluster": "respiratorio",
+    "fase_de": "epoc",
+    "clasificacion": "GOLD",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Control de sodio preventivo en EPOC."
+      }
+    ]
+  },
+  "epoc_gold_2": {
+    "nombre": "EPOC GOLD 2 (Moderado, FEV1 50-79%)",
+    "cluster": "respiratorio",
+    "fase_de": "epoc",
+    "clasificacion": "GOLD",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Sodio agrava retención de líquidos pulmonares."
+      },
+      {
+        "feature_ingrediente": [
+          "gaseosa",
+          "bebida carbonatada"
+        ],
+        "severidad": "moderado",
+        "motivo": "La carbonatación genera distensión que dificulta respiración."
+      }
+    ]
+  },
+  "epoc_gold_3": {
+    "nombre": "EPOC GOLD 3 (Grave, FEV1 30-49%)",
+    "cluster": "respiratorio",
+    "fase_de": "epoc",
+    "clasificacion": "GOLD",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio estricto en EPOC grave."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Los carbohidratos generan más CO2 que las grasas. Preferir grasas saludables."
+      },
+      {
+        "feature_ingrediente": [
+          "gaseosa",
+          "bebida carbonatada"
+        ],
+        "severidad": "critico",
+        "motivo": "Contraindicadas en EPOC grave."
+      }
+    ]
+  },
+  "epoc_gold_4": {
+    "nombre": "EPOC GOLD 4 (Muy grave, FEV1 <30%)",
+    "cluster": "respiratorio",
+    "fase_de": "epoc",
+    "clasificacion": "GOLD",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio estrictísimo. Cor pulmonale posible."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "GOLD 4: Carbohidratos generan exceso de CO2. Dieta alta en grasas saludables."
+      },
+      {
+        "feature_ingrediente": [
+          "diet",
+          "light",
+          "bajo en calorias"
+        ],
+        "severidad": "moderado",
+        "motivo": "Caquexia frecuente en GOLD 4. Se necesita alta ingesta calórica."
+      }
+    ]
+  },
+  "crohn_remision": {
+    "nombre": "Enfermedad de Crohn en Remisión",
+    "cluster": "digestivo",
+    "fase_de": "crohn",
+    "clasificacion": "Actividad",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "emulsionante",
+          "carragenina",
+          "polisorbato",
+          "carboximetilcelulosa"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los emulsionantes pueden mantener inflamación subclínica. Evitar como prevención."
+      }
+    ]
+  },
+  "crohn_brote_leve": {
+    "nombre": "Enfermedad de Crohn — Brote Leve",
+    "cluster": "digestivo",
+    "fase_de": "crohn",
+    "clasificacion": "Actividad",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "emulsionante",
+          "carragenina",
+          "polisorbato",
+          "carboximetilcelulosa"
+        ],
+        "severidad": "critico",
+        "motivo": "Los emulsionantes agravan la inflamación intestinal en brote."
+      },
+      {
+        "feature_ingrediente": [
+          "fibra insoluble",
+          "salvado"
+        ],
+        "severidad": "moderado",
+        "motivo": "La fibra insoluble irrita el intestino inflamado."
+      },
+      {
+        "feature_ingrediente": [
+          "lactosa",
+          "leche"
+        ],
+        "severidad": "moderado",
+        "motivo": "La lactosa se tolera mal durante brotes de Crohn."
+      }
+    ]
+  },
+  "crohn_brote_severo": {
+    "nombre": "Enfermedad de Crohn — Brote Severo",
+    "cluster": "digestivo",
+    "fase_de": "crohn",
+    "clasificacion": "Actividad",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "emulsionante",
+          "carragenina",
+          "polisorbato"
+        ],
+        "severidad": "critico",
+        "motivo": "Emulsionantes PROHIBIDOS en brote severo."
+      },
+      {
+        "feature_ingrediente": [
+          "fibra insoluble",
+          "salvado",
+          "semilla",
+          "cascara"
+        ],
+        "severidad": "critico",
+        "motivo": "Fibra insoluble contraindicada. Riesgo de obstrucción."
+      },
+      {
+        "feature_ingrediente": [
+          "lactosa",
+          "leche"
+        ],
+        "severidad": "critico",
+        "motivo": "Lactosa contraindicada en brote severo."
+      },
+      {
+        "feature_ingrediente": [
+          "grasa",
+          "frito",
+          "aceite"
+        ],
+        "severidad": "moderado",
+        "motivo": "Grasas mal toleradas. Preferir dieta baja en residuos."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino",
+          "licor",
+          "vodka",
+          "whisky",
+          "ron",
+          "pisco",
+          "gin",
+          "sake",
+          "cerveza artesanal",
+          "bebida alcohólica",
+          "bebida fermentada",
+          "destilado",
+          "jerez",
+          "champagne",
+          "prosecco",
+          "sidra",
+          "brandy",
+          "coñac",
+          "aperitivo",
+          "digestivo",
+          "licor dulce"
+        ],
+        "severidad": "critico",
+        "motivo": "Alcohol contraindicado en brote severo."
+      }
+    ]
+  },
+  "crohn_posquirurgico": {
+    "nombre": "Enfermedad de Crohn — Post-Quirúrgico",
+    "cluster": "digestivo",
+    "fase_de": "crohn",
+    "clasificacion": "Actividad",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "grasa",
+          "aceite",
+          "manteca"
+        ],
+        "severidad": "moderado",
+        "motivo": "Malabsorción de grasas por intestino corto. Tomar con enzimas."
+      },
+      {
+        "feature_ingrediente": [
+          "lactosa",
+          "leche"
+        ],
+        "severidad": "moderado",
+        "motivo": "Lactosa mal tolerada post-resección ileal."
+      },
+      {
+        "feature_ingrediente": [
+          "oxalato",
+          "espinaca",
+          "ruibarbo",
+          "chocolate"
+        ],
+        "severidad": "moderado",
+        "motivo": "Riesgo de cálculos de oxalato por malabsorción de grasas."
+      }
+    ]
+  },
+  "cu_remision": {
+    "nombre": "Colitis Ulcerosa en Remisión",
+    "cluster": "digestivo",
+    "fase_de": "colitis_ulcerosa",
+    "clasificacion": "Mayo Score",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "emulsionante",
+          "carragenina",
+          "polisorbato"
+        ],
+        "severidad": "moderado",
+        "motivo": "Evitar emulsionantes como prevención de recaída."
+      }
+    ]
+  },
+  "cu_brote_leve_moderado": {
+    "nombre": "Colitis Ulcerosa — Brote Leve/Moderado",
+    "cluster": "digestivo",
+    "fase_de": "colitis_ulcerosa",
+    "clasificacion": "Mayo Score",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "emulsionante",
+          "carragenina",
+          "polisorbato"
+        ],
+        "severidad": "critico",
+        "motivo": "Emulsionantes agravan inflamación colónica."
+      },
+      {
+        "feature_ingrediente": [
+          "sulfito",
+          "dioxido de azufre"
+        ],
+        "severidad": "critico",
+        "motivo": "Sulfitos desencadenan brotes de colitis."
+      },
+      {
+        "feature_ingrediente": [
+          "fibra insoluble",
+          "salvado"
+        ],
+        "severidad": "moderado",
+        "motivo": "Fibra insoluble irrita el colon inflamado."
+      }
+    ]
+  },
+  "cu_brote_severo": {
+    "nombre": "Colitis Ulcerosa — Brote Severo",
+    "cluster": "digestivo",
+    "fase_de": "colitis_ulcerosa",
+    "clasificacion": "Mayo Score",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "emulsionante",
+          "carragenina",
+          "polisorbato"
+        ],
+        "severidad": "critico",
+        "motivo": "Emulsionantes PROHIBIDOS."
+      },
+      {
+        "feature_ingrediente": [
+          "sulfito",
+          "dioxido de azufre"
+        ],
+        "severidad": "critico",
+        "motivo": "Sulfitos contraindicados."
+      },
+      {
+        "feature_ingrediente": [
+          "fibra insoluble",
+          "salvado",
+          "semilla"
+        ],
+        "severidad": "critico",
+        "motivo": "Dieta sin residuos durante brote severo."
+      },
+      {
+        "feature_ingrediente": [
+          "lactosa",
+          "leche"
+        ],
+        "severidad": "critico",
+        "motivo": "Lactosa contraindicada en brote severo."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino",
+          "licor",
+          "vodka",
+          "whisky",
+          "ron",
+          "pisco",
+          "gin",
+          "sake",
+          "cerveza artesanal",
+          "bebida alcohólica",
+          "bebida fermentada",
+          "destilado",
+          "jerez",
+          "champagne",
+          "prosecco",
+          "sidra",
+          "brandy",
+          "coñac",
+          "aperitivo",
+          "digestivo",
+          "licor dulce"
+        ],
+        "severidad": "critico",
+        "motivo": "Alcohol irrita directamente el colon inflamado."
+      }
+    ]
+  },
+  "cancer_tratamiento_temprano": {
+    "nombre": "Cáncer en Tratamiento — Estadio Temprano",
+    "cluster": "oncologico",
+    "fase_de": "cancer_tratamiento",
+    "clasificacion": "Estadio",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "pomelo",
+          "toronja",
+          "grapefruit"
+        ],
+        "severidad": "critico",
+        "motivo": "El pomelo interfiere con quimioterapia."
+      },
+      {
+        "feature_ingrediente": [
+          "suplemento herbal",
+          "hierba de san juan",
+          "equinacea"
+        ],
+        "severidad": "moderado",
+        "motivo": "Los suplementos pueden interferir con el tratamiento."
+      },
+      {
+        "feature_ingrediente": [
+          "crudo",
+          "sashimi",
+          "ceviche"
+        ],
+        "severidad": "moderado",
+        "motivo": "Riesgo de infección por neutropenia. Cocinar bien los alimentos."
+      }
+    ]
+  },
+  "cancer_metastasico": {
+    "nombre": "Cáncer Metastásico en Tratamiento",
+    "cluster": "oncologico",
+    "fase_de": "cancer_tratamiento",
+    "clasificacion": "Estadio",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "pomelo",
+          "toronja",
+          "grapefruit"
+        ],
+        "severidad": "critico",
+        "motivo": "Pomelo interfiere con múltiples fármacos oncológicos."
+      },
+      {
+        "feature_ingrediente": [
+          "crudo",
+          "sashimi",
+          "ceviche",
+          "huevo crudo"
+        ],
+        "severidad": "critico",
+        "motivo": "PELIGRO: Alimentos crudos con riesgo alto de infección."
+      },
+      {
+        "feature_ingrediente": [
+          "suplemento herbal",
+          "hierba de san juan"
+        ],
+        "severidad": "critico",
+        "motivo": "Suplementos herbales contraindicados con quimioterapia avanzada."
+      },
+      {
+        "feature_ingrediente": [
+          "diet",
+          "light",
+          "bajo en calorias"
+        ],
+        "severidad": "moderado",
+        "motivo": "Se necesita alta ingesta calórica. Riesgo de caquexia."
+      }
+    ]
+  },
+  "cancer_remision_vigilancia": {
+    "nombre": "Cáncer en Remisión / Vigilancia",
+    "cluster": "oncologico",
+    "fase_de": "cancer_tratamiento",
+    "clasificacion": "Estadio",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "nitrito",
+          "nitrato",
+          "carne procesada"
+        ],
+        "severidad": "moderado",
+        "motivo": "Carnes procesadas son carcinógeno Grupo 1 (IARC). Prevención de recurrencia."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol aumenta riesgo de recurrencia en varios tipos de cáncer."
+      }
+    ]
+  },
+  "cancer_cuidados_paliativos": {
+    "nombre": "Cáncer — Cuidados Paliativos",
+    "cluster": "oncologico",
+    "fase_de": "cancer_tratamiento",
+    "clasificacion": "Estadio",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "pomelo",
+          "toronja"
+        ],
+        "severidad": "moderado",
+        "motivo": "Verificar interacciones con medicación paliativa."
+      }
+    ]
+  },
+  "embarazo_t1": {
+    "nombre": "Embarazo — Primer Trimestre",
+    "cluster": "embarazo",
+    "fase_de": "embarazo",
+    "clasificacion": "Trimestre",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino",
+          "licor",
+          "vodka",
+          "whisky",
+          "ron",
+          "pisco",
+          "gin",
+          "sake",
+          "cerveza artesanal",
+          "bebida alcohólica",
+          "bebida fermentada",
+          "destilado",
+          "jerez",
+          "champagne",
+          "prosecco",
+          "sidra",
+          "brandy",
+          "coñac",
+          "aperitivo",
+          "digestivo",
+          "licor dulce"
+        ],
+        "severidad": "critico",
+        "motivo": "Alcohol ABSOLUTAMENTE contraindicado. Máximo riesgo teratogénico en T1."
+      },
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "te",
+          "guarana"
+        ],
+        "severidad": "moderado",
+        "motivo": "Limitar cafeína a <200mg/día."
+      },
+      {
+        "feature_ingrediente": [
+          "crudo",
+          "sashimi",
+          "ceviche",
+          "queso fresco no pasteurizado"
+        ],
+        "severidad": "critico",
+        "motivo": "Riesgo de listeriosis y toxoplasmosis. Especialmente peligroso en T1."
+      },
+      {
+        "feature_ingrediente": [
+          "mercurio",
+          "atun",
+          "pez espada",
+          "tiburon"
+        ],
+        "severidad": "critico",
+        "motivo": "El mercurio es neurotóxico para el embrión en formación."
+      }
+    ]
+  },
+  "embarazo_t2": {
+    "nombre": "Embarazo — Segundo Trimestre",
+    "cluster": "embarazo",
+    "fase_de": "embarazo",
+    "clasificacion": "Trimestre",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino",
+          "licor",
+          "vodka",
+          "whisky",
+          "ron",
+          "pisco",
+          "gin",
+          "sake",
+          "cerveza artesanal",
+          "bebida alcohólica",
+          "bebida fermentada",
+          "destilado",
+          "jerez",
+          "champagne",
+          "prosecco",
+          "sidra",
+          "brandy",
+          "coñac",
+          "aperitivo",
+          "digestivo",
+          "licor dulce"
+        ],
+        "severidad": "critico",
+        "motivo": "Alcohol ABSOLUTAMENTE contraindicado en todo el embarazo."
+      },
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "guarana"
+        ],
+        "severidad": "moderado",
+        "motivo": "Limitar cafeína a <200mg/día."
+      },
+      {
+        "feature_ingrediente": [
+          "mercurio",
+          "atun",
+          "pez espada"
+        ],
+        "severidad": "critico",
+        "motivo": "El mercurio afecta el desarrollo neurológico fetal."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Screening de diabetes gestacional en T2. Controlar azúcares."
+      }
+    ]
+  },
+  "embarazo_t3": {
+    "nombre": "Embarazo — Tercer Trimestre",
+    "cluster": "embarazo",
+    "fase_de": "embarazo",
+    "clasificacion": "Trimestre",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino",
+          "licor",
+          "vodka",
+          "whisky",
+          "ron",
+          "pisco",
+          "gin",
+          "sake",
+          "cerveza artesanal",
+          "bebida alcohólica",
+          "bebida fermentada",
+          "destilado",
+          "jerez",
+          "champagne",
+          "prosecco",
+          "sidra",
+          "brandy",
+          "coñac",
+          "aperitivo",
+          "digestivo",
+          "licor dulce"
+        ],
+        "severidad": "critico",
+        "motivo": "Alcohol ABSOLUTAMENTE contraindicado."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Vigilar sodio por riesgo de preeclampsia en T3."
+      },
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe"
+        ],
+        "severidad": "moderado",
+        "motivo": "Limitar cafeína. Puede afectar peso al nacer."
+      },
+      {
+        "feature_ingrediente": [
+          "crudo",
+          "sashimi"
+        ],
+        "severidad": "critico",
+        "motivo": "Riesgo infeccioso. Mantener precauciones hasta el parto."
+      },
+      {
+        "feature_ingrediente": [
+          "atun",
+          "tuna",
+          "pez espada",
+          "tiburon",
+          "mercurio",
+          "pez grande"
+        ],
+        "severidad": "critico",
+        "motivo": "El mercurio es neurotóxico para el feto. Máximo 170g de atún al mes."
+      }
+    ]
+  },
+  "puerperio_lactancia": {
+    "nombre": "Puerperio / Lactancia",
+    "cluster": "embarazo",
+    "fase_de": "embarazo",
+    "clasificacion": "Trimestre",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino",
+          "licor",
+          "vodka",
+          "whisky",
+          "ron",
+          "pisco",
+          "gin",
+          "sake",
+          "cerveza artesanal",
+          "bebida alcohólica",
+          "bebida fermentada",
+          "destilado",
+          "jerez",
+          "champagne",
+          "prosecco",
+          "sidra",
+          "brandy",
+          "coñac",
+          "aperitivo",
+          "digestivo",
+          "licor dulce"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol pasa a la leche materna."
+      },
+      {
+        "feature_ingrediente": [
+          "cafeina",
+          "cafe",
+          "guarana"
+        ],
+        "severidad": "moderado",
+        "motivo": "La cafeína pasa a la leche. Limitar a 300mg/día."
+      },
+      {
+        "feature_ingrediente": [
+          "atun",
+          "tuna",
+          "pez espada",
+          "tiburon",
+          "mercurio",
+          "pez grande"
+        ],
+        "severidad": "critico",
+        "motivo": "El mercurio es neurotóxico para el feto. Máximo 170g de atún al mes."
+      }
+    ]
+  },
+  "ar_remision": {
+    "nombre": "Artritis Reumatoide en Remisión",
+    "cluster": "inflamatorio",
+    "fase_de": "artritis_reumatoide",
+    "clasificacion": "DAS28",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "grasa trans",
+          "grasa hidrogenada"
+        ],
+        "severidad": "moderado",
+        "motivo": "Grasas trans promueven inflamación subclínica. Prevención de brote."
+      }
+    ]
+  },
+  "ar_actividad_moderada_alta": {
+    "nombre": "Artritis Reumatoide — Actividad Moderada/Alta",
+    "cluster": "inflamatorio",
+    "fase_de": "artritis_reumatoide",
+    "clasificacion": "DAS28",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "aceite de girasol",
+          "aceite de maiz",
+          "aceite de soja",
+          "omega 6"
+        ],
+        "severidad": "critico",
+        "motivo": "Omega-6 en exceso promueve prostaglandinas proinflamatorias."
+      },
+      {
+        "feature_ingrediente": [
+          "azucar",
+          "jarabe",
+          "grasa trans",
+          "grasa hidrogenada"
+        ],
+        "severidad": "critico",
+        "motivo": "Azúcares y grasas trans amplifican la inflamación articular."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino",
+          "licor",
+          "vodka",
+          "whisky",
+          "ron",
+          "pisco",
+          "gin",
+          "sake",
+          "cerveza artesanal",
+          "bebida alcohólica",
+          "bebida fermentada",
+          "destilado",
+          "jerez",
+          "champagne",
+          "prosecco",
+          "sidra",
+          "brandy",
+          "coñac",
+          "aperitivo",
+          "digestivo",
+          "licor dulce"
+        ],
+        "severidad": "moderado",
+        "motivo": "El alcohol interactúa con metotrexato (hepatotóxico)."
+      }
+    ]
+  },
+  "lupus_remision": {
+    "nombre": "Lupus en Remisión",
+    "cluster": "inflamatorio",
+    "fase_de": "lupus",
+    "clasificacion": "SLEDAI",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alfalfa",
+          "brotes de alfalfa"
+        ],
+        "severidad": "critico",
+        "motivo": "La alfalfa puede desencadenar brotes incluso en remisión."
+      }
+    ]
+  },
+  "lupus_brote": {
+    "nombre": "Lupus — Brote Activo",
+    "cluster": "inflamatorio",
+    "fase_de": "lupus",
+    "clasificacion": "SLEDAI",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alfalfa",
+          "brotes de alfalfa"
+        ],
+        "severidad": "critico",
+        "motivo": "PELIGRO: La alfalfa activa el sistema inmune. Contraindicada."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio agrava nefritis lúpica y retención."
+      },
+      {
+        "feature_ingrediente": [
+          "grasa saturada",
+          "grasa trans"
+        ],
+        "severidad": "critico",
+        "motivo": "Grasas proinflamatorias empeoran el brote de lupus."
+      },
+      {
+        "feature_ingrediente": [
+          "alcohol",
+          "cerveza",
+          "vino",
+          "licor",
+          "vodka",
+          "whisky",
+          "ron",
+          "pisco",
+          "gin",
+          "sake",
+          "cerveza artesanal",
+          "bebida alcohólica",
+          "bebida fermentada",
+          "destilado",
+          "jerez",
+          "champagne",
+          "prosecco",
+          "sidra",
+          "brandy",
+          "coñac",
+          "aperitivo",
+          "digestivo",
+          "licor dulce"
+        ],
+        "severidad": "critico",
+        "motivo": "El alcohol interactúa con inmunosupresores del lupus."
+      }
+    ]
+  },
+  "lupus_con_nefritis": {
+    "nombre": "Lupus con Nefritis Lúpica",
+    "cluster": "inflamatorio",
+    "fase_de": "lupus",
+    "clasificacion": "SLEDAI",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "alfalfa"
+        ],
+        "severidad": "critico",
+        "motivo": "Alfalfa contraindicada en lupus."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio <2g/día por nefritis. Proteger función renal."
+      },
+      {
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico"
+        ],
+        "severidad": "moderado",
+        "motivo": "Limitar fosfatos si hay compromiso renal."
+      },
+      {
+        "feature_ingrediente": [
+          "potasio",
+          "cloruro de potasio"
+        ],
+        "severidad": "moderado",
+        "motivo": "Vigilar potasio si TFG disminuida por nefritis."
+      }
+    ]
+  },
+  "dialisis_hemodialisis": {
+    "nombre": "Hemodiálisis",
+    "cluster": "renal",
+    "fase_de": "dialisis",
+    "clasificacion": "Modalidad",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio estricto entre sesiones de hemodiálisis."
+      },
+      {
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico",
+          "polifosfato"
+        ],
+        "severidad": "critico",
+        "motivo": "Fósforo estrictísimo. Riesgo de calcificaciones."
+      },
+      {
+        "feature_ingrediente": [
+          "potasio",
+          "cloruro de potasio",
+          "platano",
+          "banana"
+        ],
+        "severidad": "critico",
+        "motivo": "PELIGRO VITAL: Potasio acumulado entre sesiones. Riesgo cardíaco."
+      },
+      {
+        "feature_ingrediente": [
+          "liquido",
+          "agua",
+          "jugo",
+          "sopa"
+        ],
+        "severidad": "moderado",
+        "motivo": "Restricción de líquidos entre sesiones (500ml + diuresis residual)."
+      }
+    ]
+  },
+  "dialisis_peritoneal": {
+    "nombre": "Diálisis Peritoneal",
+    "cluster": "renal",
+    "fase_de": "dialisis",
+    "clasificacion": "Modalidad",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Control de sodio en diálisis peritoneal."
+      },
+      {
+        "feature_ingrediente": [
+          "fosfato",
+          "acido fosforico",
+          "polifosfato"
+        ],
+        "severidad": "critico",
+        "motivo": "Fósforo estricto."
+      },
+      {
+        "feature_sello": "sugars",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "La diálisis peritoneal absorbe glucosa del dializado. Vigilar azúcares adicionales."
+      },
+      {
+        "feature_ingrediente": [
+          "potasio",
+          "cloruro de potasio"
+        ],
+        "severidad": "moderado",
+        "motivo": "Potasio menos restrictivo que en hemodiálisis, pero vigilar."
+      }
+    ]
+  },
+  "trasplante_post_inmediato": {
+    "nombre": "Trasplante Renal — Post-Operatorio (<3 meses)",
+    "cluster": "renal",
+    "fase_de": "transplante_renal",
+    "clasificacion": "Tiempo",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "critico",
+        "motivo": "Sodio estricto post-trasplante inmediato."
+      },
+      {
+        "feature_ingrediente": [
+          "pomelo",
+          "toronja",
+          "grapefruit"
+        ],
+        "severidad": "critico",
+        "motivo": "PELIGRO: El pomelo interfiere con ciclosporina/tacrolimus."
+      },
+      {
+        "feature_ingrediente": [
+          "crudo",
+          "sashimi",
+          "ceviche",
+          "queso no pasteurizado"
+        ],
+        "severidad": "critico",
+        "motivo": "Inmunosupresión máxima. Alimentos crudos contraindicados."
+      },
+      {
+        "feature_ingrediente": [
+          "hierba de san juan",
+          "equinacea",
+          "suplemento herbal"
+        ],
+        "severidad": "critico",
+        "motivo": "Suplementos herbales interfieren con inmunosupresores."
+      }
+    ]
+  },
+  "trasplante_estable": {
+    "nombre": "Trasplante Renal — Estable (3-12 meses)",
+    "cluster": "renal",
+    "fase_de": "transplante_renal",
+    "clasificacion": "Tiempo",
+    "reglas": [
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Control de sodio. Cuidar función del injerto."
+      },
+      {
+        "feature_ingrediente": [
+          "pomelo",
+          "toronja",
+          "grapefruit"
+        ],
+        "severidad": "critico",
+        "motivo": "Pomelo SIEMPRE contraindicado con inmunosupresores."
+      },
+      {
+        "feature_ingrediente": [
+          "crudo",
+          "sashimi"
+        ],
+        "severidad": "moderado",
+        "motivo": "Precaución con alimentos crudos mientras dure inmunosupresión alta."
+      }
+    ]
+  },
+  "trasplante_mantenimiento": {
+    "nombre": "Trasplante Renal — Mantenimiento (>12 meses)",
+    "cluster": "renal",
+    "fase_de": "transplante_renal",
+    "clasificacion": "Tiempo",
+    "reglas": [
+      {
+        "feature_ingrediente": [
+          "pomelo",
+          "toronja",
+          "grapefruit"
+        ],
+        "severidad": "critico",
+        "motivo": "Pomelo SIEMPRE contraindicado con ciclosporina/tacrolimus."
+      },
+      {
+        "feature_sello": "salt",
+        "limite": "high",
+        "severidad": "moderado",
+        "motivo": "Mantener control de sodio para cuidar el injerto."
+      }
+    ]
+  }
+}

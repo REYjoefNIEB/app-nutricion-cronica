@@ -221,6 +221,282 @@ body {
   box-shadow: 0 4px 14px 0 rgba(86, 182, 194, 0.3);
 }
 
+/* ── [LÓGICO BACKEND] Selector de cámaras ─────────────────── */
+
+.camera-select-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(86, 182, 194, 0.07);
+    border: 1px solid var(--secondary);
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.camera-select-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--secondary);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.camera-select {
+    flex: 1;
+    min-width: 0;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    color: var(--text-main);
+    font-size: 0.82rem;
+    padding: 0.35rem 0.6rem;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.camera-select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 2px rgba(86, 182, 194, 0.2);
+}
+
+/* ── [LÓGICO BACKEND] Stream de cámara real (html5-qrcode) ─── */
+
+/* Rellena el visor y oculta el fondo negro */
+#reader {
+    display: none; /* visible solo cuando la cámara está activa */
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: #000;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+/* Forzar que el video llene el contenedor sin barras */
+#reader video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+/* Ocultar UI interna del widget (botones de archivo, torch, etc.) */
+#reader img,
+#reader button,
+#reader select,
+#reader .html5-qrcode-element {
+    display: none !important;
+}
+
+/* Mantener visible solo el cuadro de escaneo del widget */
+#reader #qr-shaded-region {
+    border-color: rgba(229, 192, 123, 0.7) !important;
+}
+
+/* ── [LÓGICO BACKEND] Tarjeta de Resultado del Producto ────── */
+
+.result-card {
+    background: var(--input-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.result-card.result-card-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.result-header {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.product-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: var(--bg-color);
+    border: 1px solid var(--card-border);
+    flex-shrink: 0;
+}
+
+.product-meta {
+    flex: 1;
+    min-width: 0;
+}
+
+.product-name {
+    font-weight: 700;
+    font-size: 0.98rem;
+    color: var(--text-main);
+    margin-bottom: 0.45rem;
+    line-height: 1.35;
+    word-break: break-word;
+}
+
+/* ── Semáforo Clínico ──────────────────────────────────────── */
+
+.semaforo {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.semaforo-green {
+    background: rgba(152, 195, 121, 0.15);
+    color: var(--success);
+    border: 1px solid rgba(152, 195, 121, 0.4);
+}
+
+.semaforo-yellow {
+    background: rgba(229, 192, 123, 0.15);
+    color: var(--yellow-strong);
+    border: 1px solid rgba(229, 192, 123, 0.4);
+}
+
+.semaforo-red {
+    background: rgba(224, 108, 117, 0.15);
+    color: var(--orange-strong);
+    border: 1px solid rgba(224, 108, 117, 0.4);
+}
+
+/* ── Recomendación ─────────────────────────────────────────── */
+
+.product-recommendation {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 1rem;
+    padding-top: 0.25rem;
+    border-top: 1px solid var(--card-border);
+}
+
+/* ── Botones de Acción ─────────────────────────────────────── */
+
+.result-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn-action {
+    flex: 1;
+    padding: 0.65rem 0.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-action-register {
+    background: var(--success);
+    color: #1a1a2e;
+}
+
+.btn-action-register:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.btn-action-discard {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--card-border);
+}
+
+.btn-action-discard:hover {
+    border-color: var(--orange-strong);
+    color: var(--orange-strong);
+}
+
+/* ── Tarjeta de Alternativas Seguras ──────────────────────── */
+
+.alternatives-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1rem 1.25rem;
+    margin-top: 0.75rem;
+    animation: fadeSlideIn 0.35s ease both;
+}
+
+.alternatives-loading {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.alternatives-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--secondary);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.alternatives-icon {
+    font-size: 1.1rem;
+}
+
+.alternatives-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.alternative-item {
+    background: var(--bg-color);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 0.6rem 0.85rem;
+}
+
+.alternative-name {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    margin-bottom: 0.2rem;
+}
+
+.alternative-reason {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────── */
+
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-color); }
 ::-webkit-scrollbar-thumb { background: var(--input-border); border-radius: 4px; }

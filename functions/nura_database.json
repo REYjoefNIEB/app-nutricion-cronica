@@ -1,0 +1,2302 @@
+{
+  "78098152": {
+    "nombre": "Sal de selección - Lobos",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "high",
+        "message": "Sello ALTO EN SODIO."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7801610001196": {
+    "nombre": "Coca-Cola",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Sello ALTO EN AZÚCARES. Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7801505000419": {
+    "nombre": "Stevia + Sucralosa",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos. Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802920777542": {
+    "nombre": "Mi leche entera",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Lácteos. Derivados lácteos."
+      }
+    }
+  },
+  "7802800579518": {
+    "nombre": "Bebida instantánea en polvo sabor naranja",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos. Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802950002126": {
+    "nombre": "Nescafe Tradición",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "0021000026326": {
+    "nombre": "Real Mayo",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Sello ALTO EN GRASAS SATURADAS. Alto en grasas."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7809558102661": {
+    "nombre": "Stevia",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos. Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "0021000026968": {
+    "nombre": "kraft mayonesa",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Sello ALTO EN GRASAS SATURADAS. Alto en grasas."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "8801055709274": {
+    "nombre": "Nescafé fina selección",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7798151952332": {
+    "nombre": "Pasta de Maní Natural",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Sello ALTO EN GRASAS SATURADAS. Alto en grasas."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802950002324": {
+    "nombre": "Ecco",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Contiene Gluten. Cereales con gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802900001308": {
+    "nombre": "Leche Natural Entera",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7802920000930": {
+    "nombre": "Mi YOGHURT BATIDO SABOR FRUTILLA",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Lácteos. Derivados lácteos."
+      }
+    }
+  },
+  "7801235131117": {
+    "nombre": "Jurel al Natural",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7804651620074": {
+    "nombre": "Alulosa Gotas",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "medium",
+        "message": "Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7801610000571": {
+    "nombre": "Coca-Cola Original",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Sello ALTO EN AZÚCARES. Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "high",
+        "message": "Sello ALTO EN SODIO."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802920777214": {
+    "nombre": "Leche semi descremada chocolate",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos. Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7802575353047": {
+    "nombre": "Pomarola Italiana",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802920010588": {
+    "nombre": "Yoghurt Origen",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Lácteos. Derivados lácteos."
+      }
+    }
+  },
+  "7802200129863": {
+    "nombre": "Loop",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Sello ALTO EN AZÚCARES."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7613030049883": {
+    "nombre": "Leche Condensada",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Sello ALTO EN AZÚCARES. Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Lácteos. Derivados lácteos."
+      }
+    }
+  },
+  "7804651620180": {
+    "nombre": "GOTAS",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "medium",
+        "message": "Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7801505231912": {
+    "nombre": "Azúcar blanca granulada",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Sello ALTO EN AZÚCARES. Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7803403003240": {
+    "nombre": "Cero & Cero Pan Integral",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Cereales con gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802500037059": {
+    "nombre": "Desconocido",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Contiene Gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Lácteos."
+      }
+    }
+  },
+  "7802900105013": {
+    "nombre": "Crema de leche espesa",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Sello ALTO EN GRASAS SATURADAS. Alto en grasas."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7802920203300": {
+    "nombre": "Mantequilla (Colun)",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Sello ALTO EN GRASAS SATURADAS. Alto en grasas."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7801610001622": {
+    "nombre": "Coca-Cola",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802900001407": {
+    "nombre": "Protein",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "medium",
+        "message": "Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7803473002662": {
+    "nombre": "IDEAL Blanco",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "high",
+        "message": "Sello ALTO EN SODIO."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Contiene Gluten. Cereales con gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7801610350355": {
+    "nombre": "Coca-Cola sin azúcar lata",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos. Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "high",
+        "message": "Sello ALTO EN SODIO."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7808709500431": {
+    "nombre": "Leche Natural Entera",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Lácteos. Derivados lácteos."
+      }
+    }
+  },
+  "7801610350409": {
+    "nombre": "Coca-Cola Zero Azúcar",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802230086648": {
+    "nombre": "Soda Clasica",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Cereales con gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7802000014130": {
+    "nombre": "Avena Instantánea",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7808709501995": {
+    "nombre": "Surlat Sin Lactosa Balance Perfecto Rica & Liviana 0% Grasa Descremada",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7801620853396": {
+    "nombre": "nectar de fruta natural naranja light",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "medium",
+        "message": "Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7803520140026": {
+    "nombre": "Froota Frutilla",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos. Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Grasas nocivas."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Contiene Gluten. Cereales con gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7750727006665": {
+    "nombre": "Galletas de Maíz horneadas",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802575353054": {
+    "nombre": "Pomarola Natural",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7896019208468": {
+    "nombre": "Café Instantáneo",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7622201717636": {
+    "nombre": "CLUB SOCIAL ORIGINAL",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "high",
+        "message": "Sello ALTO EN SODIO."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Sello ALTO EN GRASAS SATURADAS."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Cereales con gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802215505287": {
+    "nombre": "Chocolate",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Sello ALTO EN AZÚCARES. Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Sello ALTO EN GRASAS SATURADAS. Alto en grasas. Grasas nocivas."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Contiene Gluten. Cereales con gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Lácteos. Derivados lácteos."
+      }
+    }
+  },
+  "7802930005352": {
+    "nombre": "Yogurt Griego Protein Natural",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Lácteos."
+      }
+    }
+  },
+  "0041789001987": {
+    "nombre": "Instant Lunch Con Camarón y Chile Piquín",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Grasas nocivas."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Contiene Gluten. Cereales con gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Lácteos. Derivados lácteos."
+      }
+    }
+  },
+  "7801420210139": {
+    "nombre": "Arroz Tucapel",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7800120170163": {
+    "nombre": "Vivo Avena instantánea",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "medium",
+        "message": "Avena (Verificar certificación)."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7803480020079": {
+    "nombre": "Masa Madre Integral",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Cereales con gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7893000065253": {
+    "nombre": "Cremosa",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Grasas nocivas."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7802900056070": {
+    "nombre": "Leche de chocolate",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "medium",
+        "message": "Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7802800500413": {
+    "nombre": "Monterrey Clásico",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7613032443191": {
+    "nombre": "VINO",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Sello ALTO EN AZÚCARES. Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Cereales con gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802920423814": {
+    "nombre": "Queso fino rallado Reggianito",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "high",
+        "message": "Sello ALTO EN SODIO."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Sello ALTO EN GRASAS SATURADAS. Alto en grasas."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7802575004437": {
+    "nombre": "Spaghetti 5",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Contiene Gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802800535569": {
+    "nombre": "Kryzpo Sabor Original",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "medium",
+        "message": "Alto en grasas."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7804918401651": {
+    "nombre": "Endulzante Stevia",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "medium",
+        "message": "Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7804000001431": {
+    "nombre": "Hojuelas sabor chocolate",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos. Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Contiene Gluten. Cereales con gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Lácteos. Derivados lácteos."
+      }
+    }
+  },
+  "7802615006551": {
+    "nombre": "Arroz Largo Ancho",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7801620001841": {
+    "nombre": "watt's",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos. Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7804673910078": {
+    "nombre": "Wild Protein Sabor Chocolate",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Sello ALTO EN AZÚCARES."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7802900121013": {
+    "nombre": "Mantequilla (Soprole)",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Sello ALTO EN AZÚCARES."
+      },
+      "hipertension": {
+        "risk": "high",
+        "message": "Sello ALTO EN SODIO."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Sello ALTO EN GRASAS SATURADAS. Alto en grasas."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7801620009717": {
+    "nombre": "Cachantun",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7801505000877": {
+    "nombre": "Iansa CeroK Stevia + Sucralosa",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos. Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802215303401": {
+    "nombre": "Chocman",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Sello ALTO EN AZÚCARES. Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Sello ALTO EN GRASAS SATURADAS."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Contiene Gluten. Cereales con gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Lácteos. Derivados lácteos."
+      }
+    }
+  },
+  "7802900001292": {
+    "nombre": "LECHE NATURAL SEMIDESCREMADA",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7804673910030": {
+    "nombre": "Protein Chocolate - Maní",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Grasas nocivas."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Lácteos."
+      }
+    }
+  },
+  "7804651620081": {
+    "nombre": "Desconocido",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "medium",
+        "message": "Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7800120169235": {
+    "nombre": "Vivo line con barries",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "medium",
+        "message": "Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Contiene Gluten. Cereales con gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "0070847009511": {
+    "nombre": "MONSTER ENERGY",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7613036467339": {
+    "nombre": "yogurt griego",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7802820700091": {
+    "nombre": "Néctar de Naranja",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "high",
+        "message": "Sello ALTO EN SODIO."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7801620008338": {
+    "nombre": "mas pina",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "medium",
+        "message": "Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7805000321550": {
+    "nombre": "Supreme",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "high",
+        "message": "Sello ALTO EN SODIO."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Sello ALTO EN GRASAS SATURADAS. Alto en grasas."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7801620009694": {
+    "nombre": "agua",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802225688475": {
+    "nombre": "Galletas de arroz",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802820550504": {
+    "nombre": "NÉCTAR DE DURAZNO",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos. Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802215101489": {
+    "nombre": "Cacao 72% Naranja",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Sello ALTO EN AZÚCARES. Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "high",
+        "message": "Sello ALTO EN GRASAS SATURADAS. Alto en grasas. Grasas nocivas."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7802910083509": {
+    "nombre": "Leche Natural Descremada",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  },
+  "7802095180123": {
+    "nombre": "BURRITOS Y WRAPS XL Tortillas Mexicanas",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7803600002503": {
+    "nombre": "Sal de Selección",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "high",
+        "message": "Sello ALTO EN SODIO."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802575002235": {
+    "nombre": "Espirales",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "high",
+        "message": "Contiene Gluten."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7801620005412": {
+    "nombre": "cachantun",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7801620006891": {
+    "nombre": "Pepsi Zero Azúcar",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802575353085": {
+    "nombre": "Pomarola Casera",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7801620330132": {
+    "nombre": "Bebida lata 350ml Orange Crush",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Sello ALTO EN AZÚCARES. Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7801610305287": {
+    "nombre": "coca cola zero",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "medium",
+        "message": "Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "high",
+        "message": "Sello ALTO EN SODIO."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7803908006173": {
+    "nombre": "guallarauco",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "medium",
+        "message": "Edulcorantes (precaución)."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7802930004911": {
+    "nombre": "Queso Vegano Gauda",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "medium",
+        "message": "Alto en grasas."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "0021000070237": {
+    "nombre": "Real Mayo Cremosa & Suave",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "high",
+        "message": "Azúcares añadidos."
+      },
+      "hipertension": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7800159001056": {
+    "nombre": "Mostaza Yellow Mustard",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "high",
+        "message": "Sello ALTO EN SODIO."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      }
+    }
+  },
+  "7801305004075": {
+    "nombre": "GARBANZOS",
+    "evaluaciones": {
+      "diabetes_t2": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "hipertension": {
+        "risk": "medium",
+        "message": "Sodio medio."
+      },
+      "dislipidemia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "celiaquia": {
+        "risk": "low",
+        "message": "Seguro según etiqueta."
+      },
+      "intolerancia_lactosa": {
+        "risk": "high",
+        "message": "Derivados lácteos."
+      }
+    }
+  }
+}

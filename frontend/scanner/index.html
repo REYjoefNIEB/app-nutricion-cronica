@@ -16,7 +16,7 @@
                 <h1 id="title"></h1>
                 <p id="subtitle"></p>
             </div>
-            
+
             <!-- Visor de la Cámara -->
             <div class="scanner-viewfinder">
                 <!-- Esquinas de target -->
@@ -24,14 +24,17 @@
                 <div class="corner top-right"></div>
                 <div class="corner bottom-left"></div>
                 <div class="corner bottom-right"></div>
-                
-                <!-- Laser Animado CSS -->
+
+                <!-- Láser Animado CSS (visible cuando no hay cámara real) -->
                 <div id="scanner-laser" class="scanner-laser"></div>
+
+                <!-- [LÓGICO BACKEND] Contenedor del stream de cámara real -->
+                <div id="reader"></div>
             </div>
-            
+
             <button type="button" id="btn-activate" class="btn-submit"></button>
-            
-            <!-- Panel Analítico Minimizado -->
+
+            <!-- Panel de Estado Minimizado -->
             <div id="interaction-panel" class="interaction-panel">
                 <div id="panel-header" class="panel-header">
                     <span id="panel-title"></span>
@@ -43,14 +46,37 @@
                     <p id="panel-status" class="panel-muted"></p>
                 </div>
             </div>
-            
+
+            <!-- [LÓGICO BACKEND] Tarjeta de Resultado del Producto (oculta por defecto) -->
+            <div id="result-card" class="result-card" style="display:none;">
+                <div class="result-header">
+                    <img id="product-image" class="product-image" src="" alt="">
+                    <div class="product-meta">
+                        <h3 id="product-name" class="product-name"></h3>
+                        <div id="semaforo" class="semaforo"></div>
+                    </div>
+                </div>
+                <p id="product-recommendation" class="product-recommendation"></p>
+                <div class="result-actions">
+                    <button type="button" id="btn-register" class="btn-action btn-action-register"></button>
+                    <button type="button" id="btn-discard" class="btn-action btn-action-discard"></button>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <!-- Scripts puramente visuales -->
+    <!-- CDN: Escáner de código de barras -->
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+
+    <!-- Scripts del sistema -->
     <script src="i18n.js"></script>
-    <!-- [LÓGICO BACKEND] Caché local AES-GCM — debe cargar antes de app.js -->
+    <!-- Caché local AES-GCM — debe cargar antes de app.js -->
     <script src="../shared/storage.js"></script>
+    <!-- Capa 1: Escudo Crítico (reglas de vida o muerte) -->
+    <script src="../shared/critical-rules.js"></script>
+    <!-- Capa 2: Agente de IA médica (Claude proxy) -->
+    <script src="../services/ai-medical-agent.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

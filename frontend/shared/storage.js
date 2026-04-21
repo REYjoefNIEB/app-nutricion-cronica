@@ -103,10 +103,14 @@ const MedicalStorage = (() => {
         if (error) return { ok: false, error };
         try {
             const payload = JSON.stringify({
-                weight:    profile.weight,
-                height:    profile.height,
-                pathology: profile.pathology,
-                savedAt:   new Date().toISOString()
+                weight:        profile.weight,
+                height:        profile.height,
+                pathology:     profile.pathology,
+                enfermedades:  Array.isArray(profile.enfermedades)  ? profile.enfermedades  : [],
+                medicamentos:  Array.isArray(profile.medicamentos)  ? profile.medicamentos  : [],
+                birthdate:     profile.birthdate || null,
+                medications:   Array.isArray(profile.medications)   ? profile.medications   : [],
+                savedAt:       new Date().toISOString()
             });
             localStorage.setItem('mcp_profile', await _encrypt(payload));
             return { ok: true, error: null };

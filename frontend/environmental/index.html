@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nura — Genética + Ambiente</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B85D6; --primary-end: #6BA5D8;
+            --gradient: linear-gradient(135deg, #8B85D6 0%, #6BA5D8 100%);
+            --bg: #F7F7F9; --card: #FFFFFF; --ink: #1A1A2E; --ink-60: #666680;
+            --radius: 16px; --radius-sm: 10px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+        .container { max-width: 720px; margin: 0 auto; padding: 24px 16px 60px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--primary); font-size: 13px; font-weight: 600; text-decoration: none; margin-bottom: 16px; }
+        .page-header { text-align: center; padding: 32px 24px; background: var(--card); border-radius: var(--radius); margin-bottom: 20px; box-shadow: 0 2px 12px rgba(139,133,214,0.08); }
+        .page-header h1 { font-size: 26px; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+        .page-header p { color: var(--ink-60); font-size: 14px; }
+        .card { background: var(--card); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+        .card h2 { font-size: 17px; font-weight: 700; margin-bottom: 16px; }
+        .disclaimer-box { background: #FFF9E6; border-left: 4px solid #F4C542; padding: 12px 14px; border-radius: 8px; font-size: 13px; color: #5A4A00; margin-bottom: 20px; }
+        .spinner { display: none; text-align: center; padding: 60px 20px; color: var(--ink-60); }
+        .spinner.active { display: block; }
+        .no-data { text-align: center; padding: 40px 20px; background: var(--card); border-radius: var(--radius); color: var(--ink-60); margin-bottom: 16px; }
+        .error-box { background: #FFF0F0; border-left: 4px solid #D45D5D; padding: 12px 14px; border-radius: 8px; font-size: 14px; color: #D45D5D; margin-top: 16px; display: none; }
+        .btn-analyze { width: 100%; padding: 14px; background: var(--gradient); color: #FFF; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; }
+
+        /* Location selector */
+        .loc-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .loc-select { flex: 1; min-width: 140px; padding: 11px 12px; border: 2px solid #E0E0EE; border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--ink); background: #FFF; cursor: pointer; }
+        .loc-select:focus { outline: none; border-color: var(--primary); }
+        .btn-loc { padding: 11px 18px; background: var(--gradient); color: #FFF; border: none; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+        .loc-note { font-size: 11px; color: var(--ink-60); margin-top: 8px; }
+
+        /* Score hero */
+        .score-hero { text-align: center; padding: 28px 20px; border-radius: var(--radius); margin-bottom: 16px; }
+        .score-circle { width: 110px; height: 110px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 16px; font-weight: 800; }
+        .score-circle .score-num { font-size: 36px; line-height: 1; }
+        .score-circle .score-lbl { font-size: 11px; font-weight: 600; opacity: 0.8; }
+        .score-title { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+        .score-sub { font-size: 13px; opacity: 0.75; }
+        /* Metrics */
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .metric-box { text-align: center; padding: 14px 10px; background: linear-gradient(135deg,rgba(139,133,214,0.06),rgba(107,165,216,0.06)); border-radius: 12px; }
+        .metric-icon { font-size: 24px; margin-bottom: 6px; }
+        .metric-label { font-size: 10px; font-weight: 700; color: var(--ink-60); text-transform: uppercase; letter-spacing: 0.04em; }
+        .metric-value { font-size: 18px; font-weight: 800; margin-top: 3px; }
+        .metric-unit { font-size: 10px; color: var(--ink-60); }
+        /* Risk rows */
+        .risk-row { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #F0F0F5; }
+        .risk-row:last-child { border-bottom: none; }
+        .risk-icon { font-size: 24px; min-width: 30px; }
+        .risk-body { flex: 1; }
+        .risk-body strong { display: block; font-size: 14px; margin-bottom: 2px; }
+        .risk-body p { font-size: 13px; color: var(--ink-60); line-height: 1.5; }
+        .risk-badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; display: inline-block; margin-top: 4px; }
+        .badge-high { background: rgba(212,93,93,0.12); color: #C62828; }
+        .badge-med  { background: rgba(244,197,66,0.16); color: #B7791F; }
+        .badge-low  { background: rgba(72,187,120,0.12); color: #2F855A; }
+        /* Recommendations */
+        .rec-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid #F0F0F5; }
+        .rec-item:last-child { border-bottom: none; }
+        .rec-icon { font-size: 22px; min-width: 28px; }
+        .rec-text { font-size: 14px; line-height: 1.5; flex: 1; }
+        .rec-text strong { display: block; margin-bottom: 2px; }
+        /* Tags */
+        .live-tag { display: inline-flex; align-items: center; gap: 4px; background: rgba(72,187,120,0.12); color: #2F855A; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+        .hist-tag { display: inline-flex; align-items: center; gap: 4px; background: rgba(160,160,160,0.12); color: #666; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+        .data-source { font-size: 11px; color: var(--ink-60); text-align: center; margin-top: 6px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="../dashboard/index.html" class="back-link">← Volver al Dashboard</a>
+
+    <div class="page-header">
+        <div style="font-size:48px;margin-bottom:12px;">🌿</div>
+        <h1>Genética + Ambiente</h1>
+        <p>Tu riesgo ambiental personalizado según tu genética · 15 países disponibles</p>
+    </div>
+
+    <div class="disclaimer-box">
+        <strong>Solo orientativo — no diagnóstico</strong>
+        Los riesgos ambientales son estimaciones basadas en datos históricos OMS/SINCA y variantes genéticas. No reemplazan evaluación médica. Ley 20.584 Chile.
+    </div>
+
+    <!-- Location selector -->
+    <div class="card">
+        <h2>📍 Tu Ubicación</h2>
+        <div class="loc-row">
+            <select class="loc-select" id="countrySelect" onchange="onCountryChange()">
+                <option value="">País...</option>
+            </select>
+            <select class="loc-select" id="citySelect">
+                <option value="">Ciudad...</option>
+            </select>
+            <button class="btn-loc" onclick="loadEnvironment()">Analizar</button>
+        </div>
+        <p class="loc-note" id="locNote">15 países · Chile con 21 ciudades · Datos SINCA históricos para Chile · OMS/IQAir para el resto</p>
+    </div>
+
+    <div id="noDataSection" class="no-data" style="display:none;">
+        <div style="font-size:48px;margin-bottom:12px;">🧬</div>
+        <p style="font-weight:600;margin-bottom:8px;">No hay datos genéticos</p>
+        <p>Sube tu archivo de ADN primero para el análisis personalizado.</p>
+        <a href="../genetics/index.html" style="display:inline-block;margin-top:16px;padding:10px 20px;background:var(--gradient);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">Subir mi ADN</a>
+    </div>
+
+    <div id="spinnerSection" class="spinner">
+        <div style="font-size:36px;margin-bottom:12px;">🌍</div>
+        <p>Calculando tu exposición ambiental personalizada…</p>
+        <p style="font-size:12px;margin-top:8px;color:var(--ink-60)">Esto puede tardar 15-30 segundos</p>
+    </div>
+
+    <div id="resultsSection" style="display:none;">
+
+        <!-- Score -->
+        <div class="score-hero card" id="scoreHero">
+            <div class="score-circle" id="scoreCircle">
+                <div class="score-num" id="scoreNum">—</div>
+                <div class="score-lbl">RIESGO HOY</div>
+            </div>
+            <div class="score-title" id="scoreTitle">—</div>
+            <div class="score-sub" id="scoreSub">—</div>
+            <div style="margin-top:10px;" id="sourceTag"></div>
+        </div>
+
+        <!-- Air quality -->
+        <div class="card">
+            <h2>💨 Calidad del Aire</h2>
+            <div class="metrics-grid" id="metricsGrid"></div>
+            <p class="data-source" id="metricsSource"></p>
+        </div>
+
+        <!-- Personalized risks -->
+        <div class="card">
+            <h2>🧬 Riesgos Personalizados por Genética</h2>
+            <div id="risksList"></div>
+        </div>
+
+        <!-- Alerts -->
+        <div class="card" id="alertsCard" style="display:none;">
+            <h2>🚨 Alertas del Día</h2>
+            <div id="alertsList"></div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="card">
+            <h2>✅ Recomendaciones de Hoy</h2>
+            <div id="recsList"></div>
+        </div>
+
+        <button class="btn-analyze" onclick="loadEnvironment()">Recalcular</button>
+    </div>
+
+    <div id="errorBox" class="error-box"></div>
+</div>
+
+<script type="module" src="../shared/firebase-config.js"></script>
+<script>
+let _user = null;
+
+// Countries + cities — mirrors backend WORLD_CITY_DATA + Chile
+const LOCATION_DATA = {
+    // Latam
+    'Chile':        ['Arica','Iquique','Antofagasta','Calama','Copiapó','La Serena','Coquimbo','Valparaíso','Santiago','Puente Alto','La Florida','Rancagua','Talca','Concepción','Los Ángeles','Temuco','Valdivia','Osorno','Puerto Montt','Coyhaique','Punta Arenas'],
+    'Argentina':    ['Buenos Aires','Córdoba','Rosario','Mendoza','Tucumán','Mar del Plata','Salta'],
+    'Bolivia':      ['La Paz','Santa Cruz','Cochabamba','Oruro'],
+    'Brasil':       ['São Paulo','Rio de Janeiro','Brasília','Manaus','Salvador','Fortaleza','Curitiba','Porto Alegre','Belo Horizonte'],
+    'Colombia':     ['Bogotá','Medellín','Cali','Barranquilla','Cartagena'],
+    'Ecuador':      ['Quito','Guayaquil','Cuenca'],
+    'México':       ['Ciudad de México','Guadalajara','Monterrey','Cancún','Puebla','Tijuana','León','Mérida'],
+    'Paraguay':     ['Asunción','Ciudad del Este'],
+    'Perú':         ['Lima','Arequipa','Cusco','Trujillo','Piura'],
+    'Uruguay':      ['Montevideo','Punta del Este'],
+    'Venezuela':    ['Caracas','Maracaibo','Valencia (VE)'],
+    // Europa
+    'Alemania':     ['Berlín','Múnich','Hamburgo','Colonia','Fráncfort'],
+    'España':       ['Madrid','Barcelona','Sevilla','Valencia','Bilbao','Málaga','Zaragoza'],
+    'Francia':      ['París','Lyon','Marsella','Toulouse','Niza'],
+    'Italia':       ['Roma','Milán','Nápoles','Turín','Bolonia','Florencia','Palermo'],
+    'Países Bajos': ['Ámsterdam','Rotterdam','La Haya'],
+    'Polonia':      ['Varsovia','Cracovia','Gdansk'],
+    'Portugal':     ['Lisboa','Oporto','Faro'],
+    'Reino Unido':  ['Londres','Manchester','Edimburgo','Birmingham','Glasgow','Bristol'],
+    // Norteamérica
+    'Canadá':       ['Toronto','Vancouver','Montreal','Calgary','Ottawa'],
+    'Estados Unidos':['Los Ángeles','Nueva York','Chicago','Miami','Houston','Dallas','San Francisco','Seattle','Atlanta','Boston','Phoenix','Denver'],
+    // Asia
+    'China':        ['Pekín','Shanghái','Cantón','Shenzhen','Chengdu'],
+    'Corea del Sur':['Seúl','Busan','Incheon'],
+    'Emiratos Árabes':['Dubái','Abu Dhabi'],
+    'India':        ['Delhi','Bombay','Bangalore','Calcuta','Chennai','Hyderabad'],
+    'Japón':        ['Tokio','Osaka','Kioto','Yokohama','Sapporo','Fukuoka'],
+    'Singapur':     ['Singapur'],
+    'Tailandia':    ['Bangkok','Chiang Mai','Phuket'],
+    'Turquía':      ['Estambul','Ankara','Esmirna'],
+    // Oceanía
+    'Australia':    ['Sídney','Melbourne','Brisbane','Perth','Adelaida','Canberra'],
+    'Nueva Zelanda':['Auckland','Wellington','Christchurch'],
+    // Africa
+    'Egipto':       ['El Cairo','Alejandría'],
+    'Kenia':        ['Nairobi','Mombasa'],
+    'Marruecos':    ['Casablanca','Rabat','Marrakech'],
+    'Nigeria':      ['Lagos','Abuja'],
+    'Sudáfrica':    ['Ciudad del Cabo','Johannesburgo','Durban','Pretoria'],
+};
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const cSel = document.getElementById('countrySelect');
+    Object.keys(LOCATION_DATA).forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c; opt.textContent = c;
+        cSel.appendChild(opt);
+    });
+
+    let tries = 0;
+    while (!window.NuraFirebase && tries < 40) {
+        await new Promise(r => setTimeout(r, 100));
+        tries++;
+    }
+    if (!window.NuraFirebase) return;
+    const { auth } = window.NuraFirebase;
+    await auth.authStateReady();
+    _user = auth.currentUser;
+    if (!_user) { window.location.href = '../auth/index.html'; return; }
+
+    try {
+        const { getFirestore, doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
+        const db = getFirestore(window.NuraFirebase.app);
+        const userSnap = await getDoc(doc(db, 'users', _user.uid));
+        if (!userSnap.data()?.hasGeneticData)
+            document.getElementById('noDataSection').style.display = 'block';
+        const envSnap = await getDoc(doc(db, 'users', _user.uid, 'geno_environment', 'result'));
+        if (envSnap.exists()) {
+            const d = envSnap.data();
+            const country = d.country || 'Chile';
+            const city    = d.ciudad  || 'Santiago';
+            document.getElementById('countrySelect').value = country;
+            onCountryChange();
+            setTimeout(() => { document.getElementById('citySelect').value = city; }, 0);
+            renderEnvironment(d);
+        }
+    } catch (e) { /* silent */ }
+});
+
+function onCountryChange() {
+    const country = document.getElementById('countrySelect').value;
+    const cSel    = document.getElementById('citySelect');
+    cSel.innerHTML = '<option value="">Ciudad...</option>';
+    (LOCATION_DATA[country] || []).forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c; opt.textContent = c;
+        cSel.appendChild(opt);
+    });
+}
+
+async function loadEnvironment() {
+    const country = document.getElementById('countrySelect').value;
+    const city    = document.getElementById('citySelect').value;
+    if (!country) { alert('Selecciona tu país primero.'); return; }
+    if (!city)    { alert('Selecciona tu ciudad primero.'); return; }
+
+    document.getElementById('resultsSection').style.display = 'none';
+    document.getElementById('errorBox').style.display       = 'none';
+    document.getElementById('spinnerSection').classList.add('active');
+    try {
+        const { getFunctions, httpsCallable } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js');
+        const fns = getFunctions(window.NuraFirebase.app, 'us-central1');
+        const fn  = httpsCallable(fns, 'analyzeGenoEnvironment', { timeout: 130000 });
+        const res = await fn({ country, city, ciudad: city });
+        document.getElementById('spinnerSection').classList.remove('active');
+        renderEnvironment(res.data);
+    } catch (err) {
+        document.getElementById('spinnerSection').classList.remove('active');
+        const box = document.getElementById('errorBox');
+        box.style.display = 'block';
+        box.textContent   = 'Error: ' + (err.message || 'Error desconocido');
+        if (err.message && err.message.includes('not-found'))
+            box.innerHTML = 'No se encontraron datos genéticos. <a href="../genetics/index.html" style="color:var(--primary)">Sube tu ADN primero →</a>';
+    }
+}
+
+function computeRiskScore(air, risks) {
+    let s = 0;
+    const pm25 = air?.pm25 || 0;
+    if (pm25 > 150) s += 45; else if (pm25 > 55) s += 30; else if (pm25 > 35) s += 18; else if (pm25 > 12) s += 8; else s += 3;
+    const uvi = air?.uvi || 0;
+    if (uvi > 11) s += 15; else if (uvi > 7) s += 8; else s += 2;
+    if (air?.arsenicWater) s += 15;
+    const highCount = (risks || []).filter(r => {
+        const lv = (r.risk || r.level || '').toUpperCase();
+        return lv === 'ALTO' || lv === 'HIGH' || lv === 'ELEVADO';
+    }).length;
+    s += Math.min(highCount * 8, 20);
+    return Math.min(Math.round(s), 100);
+}
+
+function computeRiskLabel(score) {
+    if (score >= 70) return 'Riesgo Alto';
+    if (score >= 45) return 'Riesgo Moderado';
+    if (score >= 20) return 'Riesgo Bajo-Moderado';
+    return 'Riesgo Bajo';
+}
+
+function scoreColors(score) {
+    if (score >= 70) return { bg: 'linear-gradient(135deg,#FFF0F0,#FFD7D7)', circle: '#D45D5D' };
+    if (score >= 40) return { bg: 'linear-gradient(135deg,#FFFBF0,#FFE8B0)', circle: '#D89E4F' };
+    return { bg: 'linear-gradient(135deg,#F0FFF4,#C6F6D5)', circle: '#48BB78' };
+}
+
+// Normalize a personalizedRisk item (variable field names per gene) to standard display format
+function normalizeRisk(r) {
+    const title = (r.gene || '?') + ' — ' + (r.trait || r.environmental_factor || '');
+    const desc  = r.advice || r.description || '—';
+    const rawRisk = (r.risk || r.level || '').toUpperCase();
+    const isHigh  = rawRisk === 'ALTO' || rawRisk === 'HIGH' || rawRisk === 'ELEVADO';
+    const isMed   = rawRisk === 'MEDIO' || rawRisk === 'MEDIUM' || rawRisk === 'MODERADO';
+    const levelClass  = isHigh ? 'badge-high' : isMed ? 'badge-med' : 'badge-low';
+    const levelLabel  = isHigh ? 'Riesgo ALTO' : isMed ? 'Riesgo MEDIO' : (rawRisk || 'Variable');
+    return { ...r, title, description: desc, levelClass, levelLabel };
+}
+
+function generateRecommendations(risks, air) {
+    const recs = [];
+    (risks || []).forEach(r => {
+        if (!r.advice) return;
+        const isHigh = (r.risk || r.level || '').toUpperCase() === 'ALTO';
+        recs.push({ icon: r.icon || '✅', title: (r.gene || '') + ' — ' + (r.trait || ''), description: r.advice, pri: isHigh ? 0 : 1 });
+    });
+    if (air?.leña)
+        recs.push({ icon: '🪵', title: 'Contaminación por leña', description: 'En temporada invernal, la combustión de leña eleva el PM2.5 drásticamente. Usa mascarilla en días de pre-emergencia ambiental.', pri: 1 });
+    if (air?.arsenicWater && !(risks || []).find(r => r.gene === 'AS3MT'))
+        recs.push({ icon: '💧', title: 'Arsénico en agua', description: 'Tu ciudad tiene presencia histórica de arsénico en agua. Usa agua filtrada para beber y cocinar.', pri: 0 });
+    recs.sort((a, b) => a.pri - b.pri);
+    return recs.slice(0, 6);
+}
+
+function renderEnvironment(data) {
+    document.getElementById('spinnerSection').classList.remove('active');
+    document.getElementById('resultsSection').style.display = 'block';
+
+    const air    = data.airQuality || {};
+    const risks  = data.personalizedRisks || [];
+    const score  = computeRiskScore(air, risks);
+    const label  = computeRiskLabel(score);
+    const colors = scoreColors(score);
+
+    // Score hero
+    const hero   = document.getElementById('scoreHero');
+    hero.style.background = colors.bg;
+    const circle = document.getElementById('scoreCircle');
+    circle.style.background = colors.circle + '22';
+    circle.style.border = '4px solid ' + colors.circle;
+    document.getElementById('scoreNum').style.color  = colors.circle;
+    document.getElementById('scoreNum').textContent  = score;
+    document.getElementById('scoreTitle').textContent = label;
+    const loc  = [data.ciudad, data.country].filter(Boolean).join(' · ');
+    const seas = air.season ? ' · ' + air.season : '';
+    document.getElementById('scoreSub').textContent  = loc + seas;
+
+    const srcEl = document.getElementById('sourceTag');
+    srcEl.innerHTML = air.isLive
+        ? '<span class="live-tag">🟢 Datos en tiempo real</span>'
+        : '<span class="hist-tag">📊 ' + (air.source || 'Datos históricos') + '</span>';
+
+    // Air quality metrics
+    const metricsGrid = document.getElementById('metricsGrid');
+    metricsGrid.innerHTML = `
+        <div class="metric-box">
+            <div class="metric-icon">🌫️</div>
+            <div class="metric-label">PM2.5</div>
+            <div class="metric-value">${air.pm25 ?? '—'}</div>
+            <div class="metric-unit">µg/m³ · ${air.category || '—'}</div>
+        </div>
+        <div class="metric-box">
+            <div class="metric-icon">☀️</div>
+            <div class="metric-label">UV Index</div>
+            <div class="metric-value">${air.uvi ?? '—'}</div>
+            <div class="metric-unit">${air.uvi > 11 ? '⚠️ Extremo' : air.uvi > 7 ? 'Alto' : 'Moderado'}</div>
+        </div>
+        <div class="metric-box">
+            <div class="metric-icon">💧</div>
+            <div class="metric-label">Arsénico</div>
+            <div class="metric-value">${air.arsenicWater ? '⚠️ Sí' : '✅ No'}</div>
+            <div class="metric-unit">en agua potable</div>
+        </div>
+    `;
+    if (air.note) {
+        const noteEl = document.createElement('p');
+        noteEl.style.cssText = 'font-size:13px;color:#C05621;background:#FFF9E6;padding:8px 12px;border-radius:8px;margin-top:12px;';
+        noteEl.textContent = air.note;
+        metricsGrid.parentElement.appendChild(noteEl);
+    }
+    document.getElementById('metricsSource').textContent = air.source || '';
+
+    // Personalized risks
+    const risksList = document.getElementById('risksList');
+    if (!risks.length) {
+        risksList.innerHTML = '<p style="color:var(--ink-60);font-size:14px;">No se detectaron variantes genéticas de riesgo ambiental en tus datos.</p>';
+    } else {
+        risksList.innerHTML = risks.map(r => {
+            const n = normalizeRisk(r);
+            return `<div class="risk-row">
+                <span class="risk-icon">${n.icon || '🔬'}</span>
+                <div class="risk-body">
+                    <strong>${n.title}</strong>
+                    <p>${n.description}</p>
+                    <span class="risk-badge ${n.levelClass}">${n.levelLabel}</span>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    // Alertas de hoy — acciones inmediatas según condiciones actuales
+    const todayAlerts = data.todayAlerts || data.alerts || [];
+    const alertsCard  = document.getElementById('alertsCard');
+    const alertsList  = document.getElementById('alertsList');
+    if (!todayAlerts.length) {
+        alertsCard.style.display = 'none';
+    } else {
+        alertsCard.style.display = 'block';
+        alertsList.innerHTML = todayAlerts.map(a => `
+            <div class="risk-row">
+                <span class="risk-icon">${a.icon || '🚨'}</span>
+                <div class="risk-body"><strong>${a.title}</strong><p>${a.message || a.description || ''}</p></div>
+            </div>
+        `).join('');
+    }
+
+    // Recomendaciones a largo plazo — cambios estructurales de estilo de vida
+    const longRecs = data.longTermRecommendations || generateRecommendations(risks, air);
+    const recsList = document.getElementById('recsList');
+    if (!longRecs.length) {
+        recsList.innerHTML = '<p style="color:var(--ink-60);font-size:14px;">Sigue las recomendaciones generales de calidad de vida.</p>';
+    } else {
+        recsList.innerHTML = longRecs.map(r => `
+            <div class="rec-item">
+                <span class="rec-icon">${r.icon || '✅'}</span>
+                <div class="rec-text"><strong>${r.title || r.category}</strong><p>${r.message || r.description || ''}</p></div>
+            </div>
+        `).join('');
+    }
+}
+</script>
+</body>
+</html>

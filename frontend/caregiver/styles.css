@@ -1,0 +1,429 @@
+/* =================================================================
+   Nura App — Modo Cuidador
+   Diseño Zero-Knowledge: sin historial, sin datos médicos en pantalla
+================================================================= */
+
+:root {
+  --bg-color:      #f8fafc;
+  --card-bg:       #ffffff;
+  --card-border:   #e2e8f0;
+  --text-main:     #282c34;
+  --text-muted:    #5c6370;
+  --primary:       #d19a66;
+  --secondary:     #56b6c2;
+  --success:       #98c379;
+  --yellow-strong: #e5c07b;
+  --orange-strong: #e06c75;
+  --input-bg:      #ffffff;
+  --input-border:  #abb2bf;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color:      #111827;
+    --card-bg:       #1f2937;
+    --card-border:   #374151;
+    --text-main:     #f9fafb;
+    --text-muted:    #9ca3af;
+    --input-bg:      #111827;
+    --input-border:  #4b5563;
+    --orange-strong: #e77680;
+    --secondary:     #63c9d4;
+    --yellow-strong: #eed08a;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--bg-color);
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(86,182,194,0.08), transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(198,120,221,0.08), transparent 40%);
+  color: var(--text-main);
+  min-height: 100vh;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.4rem;
+}
+
+.header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ── Pantallas ───────────────────────────────────────────────── */
+
+.screen { display: none; }
+.screen.active { display: block; }
+.hidden { display: none !important; }
+
+/* ── Tarjeta de PIN ──────────────────────────────────────────── */
+
+.pin-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+  animation: slideUp 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.pin-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.pin-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.pin-hint {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.pin-input {
+  display: block;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0.35em;
+  text-align: center;
+  text-transform: uppercase;
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+  border-radius: 14px;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.pin-input:focus {
+  border-color: var(--secondary);
+}
+
+.pin-error {
+  color: var(--orange-strong);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  min-height: 1.2em;
+}
+
+/* ── Botones ─────────────────────────────────────────────────── */
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 0.85rem;
+  background: var(--secondary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover  { opacity: 0.9; transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+.btn-secondary {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+/* ── Banner de expiración ────────────────────────────────────── */
+
+.expiry-banner {
+  background: rgba(229,192,123,0.15);
+  border: 1px solid rgba(229,192,123,0.5);
+  color: var(--yellow-strong);
+  border-radius: 12px;
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* ── Tarjeta de escaneo ──────────────────────────────────────── */
+
+.scan-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+  margin-bottom: 1rem;
+  animation: slideUp 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.scan-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.search-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.food-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: 12px;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.food-input:focus { border-color: var(--secondary); }
+
+.btn-search {
+  padding: 0.75rem 1rem;
+  background: var(--secondary);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+
+.btn-search:hover { opacity: 0.85; }
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.85rem 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--card-border);
+}
+
+.btn-scan-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.75rem;
+  background: transparent;
+  border: 1.5px solid var(--card-border);
+  border-radius: 12px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-scan-action:hover {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+/* ── Tarjeta de resultado ────────────────────────────────────── */
+
+.result-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+  margin-bottom: 1rem;
+  animation: slideUp 0.35s ease;
+}
+
+.result-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-main);
+}
+
+/* ── Semáforo ────────────────────────────────────────────────── */
+
+.semaforo {
+  display: inline-block;
+  padding: 0.5rem 1.1rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.01em;
+}
+
+.semaforo-green {
+  background: rgba(152,195,121,0.15);
+  color: var(--success);
+  border: 1px solid rgba(152,195,121,0.4);
+}
+
+.semaforo-yellow {
+  background: rgba(229,192,123,0.15);
+  color: var(--yellow-strong);
+  border: 1px solid rgba(229,192,123,0.4);
+}
+
+.semaforo-red {
+  background: rgba(224,108,117,0.15);
+  color: var(--orange-strong);
+  border: 1px solid rgba(224,108,117,0.4);
+}
+
+.semaforo-unknown {
+  background: rgba(156,163,175,0.15);
+  color: var(--text-muted);
+  border: 1px solid rgba(156,163,175,0.4);
+}
+
+/* ── Alternativas (solo nombres) ─────────────────────────────── */
+
+.alternatives-section {
+  border-top: 1px solid var(--card-border);
+  padding-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.alternatives-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--secondary);
+  margin-bottom: 0.6rem;
+}
+
+.alternatives-list-caregiver {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.alt-chip {
+  background: var(--bg-color);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* ── Loading ─────────────────────────────────────────────────── */
+
+.result-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--card-border);
+  border-top-color: var(--secondary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ── Pantalla de expirado ────────────────────────────────────── */
+
+.expired-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+  animation: slideUp 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.expired-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.expired-card h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.expired-card p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ── Animaciones ─────────────────────────────────────────────── */
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

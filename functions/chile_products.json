@@ -1,0 +1,1231 @@
+[
+  {
+    "allergens": "",
+    "code": "7801610001196",
+    "ingredients_text": "AGUACARBONAT AZUCAR COLORCARAMELOTACI FOSFORICO, SABORIZANTES NATURA CAFEINA. ELABORADO PORERA CENTRAL S.A. CALLE MIRAFLORES NO 8755 RENCA. RES. SESMA Nº 9938 DEL 2004.08 FABRICACION CHILEMA. MANTEGEREN LUGAR FRESCO. SECON PROTEGO DEL SOL. NO CONGELAR CONSUMIR ANTES FECHA INDICADA EN LA BASE DELIK LATA.COCA-COLAYCOCA-COLA ORIGINAL SON MARCAS REGISTRADAS DE THE COCA-COLA COMPANY INFORMACION AL CONSUMIDOR: 800 21 9999.",
+    "ingredients_text_es": "AGUACARBONAT AZUCAR COLORCARAMELOTACI FOSFORICO, SABORIZANTES NATURA CAFEINA. ELABORADO PORERA CENTRAL S.A. CALLE MIRAFLORES NO 8755 RENCA. RES. SESMA Nº 9938 DEL 2004.08 FABRICACION CHILEMA. MANTEGEREN LUGAR FRESCO. SECON PROTEGO DEL SOL. NO CONGELAR CONSUMIR ANTES FECHA INDICADA EN LA BASE DELIK LATA.COCA-COLAYCOCA-COLA ORIGINAL SON MARCAS REGISTRADAS DE THE COCA-COLA COMPANY INFORMACION AL CONSUMIDOR: 800 21 9999.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "sugars": "high"
+    },
+    "product_name": "Coca-Cola",
+    "product_name_es": "Coca-Cola"
+  },
+  {
+    "allergens": "",
+    "code": "7801505000419",
+    "ingredients_text": "Aua Purificada, ESTEVIA REBAUDIANA (2,4%), SUCRALOSA (2,3%), Fructosa, Ácido Citrico Anhidro, Citrato de Potasio, Benzoato de Sodio, Sorbato de Potasio.",
+    "ingredients_text_es": "Aua Purificada, ESTEVIA REBAUDIANA (2,4%), SUCRALOSA (2,3%), Fructosa, Ácido Citrico Anhidro, Citrato de Potasio, Benzoato de Sodio, Sorbato de Potasio.",
+    "nutrient_levels": {},
+    "product_name": "Stevia + Sucralosa",
+    "product_name_es": "Stevia + Sucralosa"
+  },
+  {
+    "allergens": "en:milk",
+    "code": "7802920777542",
+    "ingredients_text": "Leche fluida natural entera.",
+    "ingredients_text_es": "Leche fluida natural entera.",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "low",
+      "saturated-fat": "moderate",
+      "sugars": "low"
+    },
+    "product_name": "Mi leche entera",
+    "product_name_es": "Mi leche entera"
+  },
+  {
+    "allergens": "",
+    "code": "7802800579518",
+    "ingredients_text": "Azúcar, ácido cítrico, aspartamo, goma de celulosa, sabor naranja idéntico a natural, citrato de potasio, fosfato tricálcico, acesulfamo de potasio, vitamina C (0,15% m/m), colorantes (curcumina, antocianinas) (0,1% m/m), goma de acacia, dióxido de titanio, maltodextrina, Fenilalanina.",
+    "ingredients_text_es": "Azúcar, ácido cítrico, aspartamo, goma de celulosa, sabor naranja idéntico a natural, citrato de potasio, fosfato tricálcico, acesulfamo de potasio, vitamina C (0,15% m/m), colorantes (curcumina, antocianinas) (0,1% m/m), goma de acacia, dióxido de titanio, maltodextrina, Fenilalanina.",
+    "nutrient_levels": {},
+    "product_name": "Bebida instantánea en polvo sabor naranja",
+    "product_name_es": "Bebida instantánea en polvo sabor naranja"
+  },
+  {
+    "allergens": "",
+    "code": "7802950002126",
+    "ingredients_text": "Café (100%),",
+    "ingredients_text_es": "Café (100%).",
+    "nutrient_levels": {},
+    "product_name": "Cafe Nescafe Tradicion 170 GRS Polvo",
+    "product_name_es": "Nescafe Tradición"
+  },
+  {
+    "allergens": "en:eggs,en:mustard,en:soybeans,en:LEMON",
+    "code": "0021000026326",
+    "ingredients_text": "soybean oil, water,  eggs , vinegar, contains less than 2% of: sugar, salt,  egg  yolks, natural flavor (contains  mustard ), lemon juice concentrate, calcium disodium edta (to protect flavor), dried garlic, dried onions, paprika",
+    "nutrient_levels": {
+      "fat": "high",
+      "salt": "moderate",
+      "saturated-fat": "high",
+      "sugars": "low"
+    },
+    "product_name": "Real Mayo",
+    "product_name_es": "Real Mayo"
+  },
+  {
+    "allergens": "",
+    "code": "7809558102661",
+    "ingredients_text": "Libre de Calorias\nComposicion:\nCada 100 mi contiene:\nAgua purificada cC.S\nextracto Estevia\nRebaudiana (hoja\norganica) (2.4g.),\nSucralosa (2.3g.),\nfructosa (1.5g.), acido citrico\ncitrato de potasio,\nbenzoato de sodio,\nsorbato de potasio.\nEstevia Rebaudiana(LDA\nIngesta diaria admisible\n0-4 mg/kg peso corpora\no est\nFAO/OMS (Expresado cor\nEstevia Rebaudiana:6.0mapo\nporcion (.25m\nSucralosa (LDA)Ingesa\nadmisible: 0-15mka\ncoporal FA0\nSucralosa: 5.8mg",
+    "nutrient_levels": {},
+    "product_name": "Stevia"
+  },
+  {
+    "allergens": "en:eggs,en:mustard,en:soybeans",
+    "code": "0021000026968",
+    "ingredients_text": "soybean oil, water, eggs,vinegar, contains |less than 2% of sugar, salt, egg yolks, natural flavor |(contains mustard), lemon juice concentrate, calcum disodium edta (to protect flavor), dried garlic, dried onions,paprika contains: egg, source",
+    "nutrient_levels": {
+      "fat": "high",
+      "salt": "moderate",
+      "saturated-fat": "high",
+      "sugars": "low"
+    },
+    "product_name": "Real MAYO Creamy & Smooth",
+    "product_name_es": "kraft mayonesa"
+  },
+  {
+    "allergens": "",
+    "code": "8801055709274",
+    "ingredients_text": "Ingredientes: Cafe Soluble, Cafe en Grano Tostado y Molido (3%).\r\nFabricado en Corea por LOTTE-Nestle Korea Co., Ltd.,\r\nCheongJu-City, Republica de Corea. Importado por: Nestle Chile",
+    "nutrient_levels": {},
+    "product_name": "Nescafé fina selección",
+    "product_name_es": "Nescafé fina selección"
+  },
+  {
+    "allergens": "en:peanuts",
+    "code": "7798151952332",
+    "ingredients_text": "Maní",
+    "ingredients_text_es": "Maní",
+    "nutrient_levels": {
+      "fat": "high",
+      "salt": "low",
+      "saturated-fat": "high",
+      "sugars": "moderate"
+    },
+    "product_name": "Pasta de Maní Natural",
+    "product_name_es": "Pasta de Maní Natural"
+  },
+  {
+    "allergens": "",
+    "code": "7613032414580",
+    "nutrient_levels": {},
+    "product_name": "Crema de Leche"
+  },
+  {
+    "allergens": "en:gluten",
+    "code": "7802950002324",
+    "ingredients_text": "Cebada tostada, caramelo",
+    "ingredients_text_es": "Cebada tostada, caramelo",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "sugars": "low"
+    },
+    "product_name": "Ecco",
+    "product_name_es": "Ecco"
+  },
+  {
+    "allergens": "",
+    "code": "7802900001308",
+    "ingredients_text": "Leche",
+    "ingredients_text_es": "Leche",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "low",
+      "saturated-fat": "moderate",
+      "sugars": "low"
+    },
+    "product_name": "Leche Natural Entera",
+    "product_name_es": "Leche Natural Entera"
+  },
+  {
+    "allergens": "en:milk",
+    "code": "7802920000930",
+    "ingredients_text": "Leche semidescremada, azúcar, sólidos lácteos, espesante (almidón modificado de maíz), sabor idéntico a natural, conservante (sorbato de potasio), colorante natural (Cochinilla carmín), yoghurt, estabilizante (pectina), edulcorante natural Estevia, vitamina D3.",
+    "ingredients_text_es": "Leche semidescremada, azúcar, sólidos lácteos, espesante (almidón modificado de maíz), sabor idéntico a natural, conservante (sorbato de potasio), colorante natural (Cochinilla carmín), yoghurt, estabilizante (pectina), edulcorante natural Estevia, vitamina D3.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "moderate"
+    },
+    "product_name": "Mi YOGHURT BATIDO SABOR FRUTILLA",
+    "product_name_es": "Mi YOGHURT BATIDO SABOR FRUTILLA"
+  },
+  {
+    "allergens": "en:fish",
+    "code": "7801235131117",
+    "ingredients_text": "Jurel (pescado), agua, sal.",
+    "ingredients_text_es": "Jurel (pescado), agua, sal.",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "low",
+      "saturated-fat": "moderate",
+      "sugars": "low"
+    },
+    "product_name": "Jurel al Natural",
+    "product_name_es": "Jurel al Natural"
+  },
+  {
+    "allergens": "",
+    "code": "7804651620074",
+    "ingredients_text": "Agua purificada, Alulosa, SUCRALOSA 2.5%, Ácido cítrico, Sorbato de potasio, Benzoato de sodio.",
+    "ingredients_text_es": "Agua purificada, Alulosa, SUCRALOSA 2.5%, Ácido cítrico, Sorbato de potasio, Benzoato de sodio.",
+    "nutrient_levels": {},
+    "product_name": "Alulosa Gotas",
+    "product_name_es": "Alulosa Gotas"
+  },
+  {
+    "allergens": "",
+    "code": "7801610000571",
+    "ingredients_text": "AGUA CARBONATADA, AZUCAR, COLOR CARAMELO, ACIDO\r\nFOSFORICO, SABORIZANTES NATURALES Y CAFEINA.",
+    "ingredients_text_es": "AGUA CARBONATADA, AZUCAR, COLOR CARAMELO, ACIDO\r\nFOSFORICO, SABORIZANTES NATURALES Y CAFEINA.",
+    "nutrient_levels": {
+      "salt": "high",
+      "sugars": "high"
+    },
+    "product_name": "Coca-Cola Original",
+    "product_name_es": "Coca-Cola Original"
+  },
+  {
+    "allergens": "",
+    "code": "7802920777214",
+    "ingredients_text": "Leche  descremada, cacao (lecitina de soya), fructosa, espesantes (carboximetilcelulosa, maltodextrina, y carragenina), fosfato disódico, cloruro de sodio, Estevia, Sucralosa",
+    "ingredients_text_es": "Leche  descremada, cacao (lecitina de soya), fructosa, espesantes (carboximetilcelulosa, maltodextrina, y carragenina), fosfato disódico, cloruro de sodio, Estevia, Sucralosa",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "moderate"
+    },
+    "product_name": "Leche semi descremada chocolate",
+    "product_name_es": "Leche semi descremada chocolate"
+  },
+  {
+    "allergens": "",
+    "code": "7802575353047",
+    "ingredients_text": "Agua, concentrado de tomates, sal, azúcar, carragenina, cebolla, sorbato de potasio, benzoato de sodio, ácido cítrico, orégano, ajo, pimienta.",
+    "ingredients_text_es": "Agua, concentrado de tomates, sal, azúcar, carragenina, cebolla, sorbato de potasio, benzoato de sodio, ácido cítrico, orégano, ajo, pimienta.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "moderate",
+      "saturated-fat": "low",
+      "sugars": "moderate"
+    },
+    "product_name": "Pomarola Italiana",
+    "product_name_es": "Pomarola Italiana"
+  },
+  {
+    "allergens": "en:milk",
+    "code": "7802920010588",
+    "ingredients_text": "Leche descremada, crema, leche en polvo descremada, cultivos lácticos (Lactobacillus bulgaricus, Streptococcus thermophilus), vitamina D.",
+    "ingredients_text_es": "Leche descremada, crema, leche en polvo descremada, cultivos lácticos (Lactobacillus bulgaricus, Streptococcus thermophilus), vitamina D.",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "low",
+      "saturated-fat": "moderate",
+      "sugars": "moderate"
+    },
+    "product_name": "Yoghurt Origen",
+    "product_name_es": "Yoghurt Origen"
+  },
+  {
+    "allergens": "",
+    "code": "7802200129863",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "high"
+    },
+    "product_name": "Loop",
+    "product_name_es": "Loop"
+  },
+  {
+    "allergens": "en:milk",
+    "code": "7613030049883",
+    "ingredients_text": "Leche parcialmente descremada, azúcar.",
+    "ingredients_text_es": "Leche parcialmente descremada, azúcar.",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "high"
+    },
+    "product_name": "Leche Condensada",
+    "product_name_es": "Leche Condensada"
+  },
+  {
+    "allergens": "",
+    "code": "7804651620180",
+    "ingredients_text": "Agua purificada, Alulosa, Sucralosa, Ácido cítrico, Benzoato de sodio",
+    "ingredients_text_es": "Agua purificada, Alulosa, Sucralosa, Ácido cítrico, Benzoato de sodio",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "GOTAS",
+    "product_name_es": "GOTAS"
+  },
+  {
+    "allergens": "",
+    "code": "7801505231912",
+    "ingredients_text": "Azúcar",
+    "ingredients_text_es": "Azúcar",
+    "nutrient_levels": {
+      "salt": "low",
+      "sugars": "high"
+    },
+    "product_name": "Azúcar blanca granulada",
+    "product_name_es": "Azúcar blanca granulada"
+  },
+  {
+    "allergens": "",
+    "code": "7803403003240",
+    "ingredients_text": "Harina de Trigo Integral de Grano Entero, Agua, Levadura, Gluten, Salvado de Trigo, Sal, Harina de Trigo Fermentada, Ácido Láctico y Ascórbico de Origen Natural, Fibra de Soya, Saborizante Natural.",
+    "ingredients_text_es": "Harina de Trigo Integral de Grano Entero, Agua, Levadura, Gluten, Salvado de Trigo, Sal, Harina de Trigo Fermentada, Ácido Láctico y Ascórbico de Origen Natural, Fibra de Soya, Saborizante Natural.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "moderate",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Cero & Cero Pan Integral",
+    "product_name_es": "Cero & Cero Pan Integral"
+  },
+  {
+    "allergens": "en:gluten,en:soybeans,en:huevo,en:leche,en:sulfito",
+    "code": "7802500037059",
+    "ingredients_text": "Agua, concentrado de tomate, dextrosa, almidón de maíz, sal, cloruro de potasio, cebolla, ácido cítrico, orégano, ajo, benzoato de sodio, sorbato de potasio, sabor a sal. Este producto puede contener trazas de _soya_, de _leche_ y sus productos derivados, de _gluten_, _sulfito_ y _huevo_.",
+    "ingredients_text_es": "",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "moderate",
+      "sugars": "moderate"
+    },
+    "product_name": "",
+    "product_name_es": ""
+  },
+  {
+    "allergens": "",
+    "code": "7802900105013",
+    "ingredients_text": "Crema de leche (25% materia grasa), azúcar, carragenina, goma saborizante idéntico a natural",
+    "ingredients_text_es": "Crema de leche (25% materia grasa), azúcar, carragenina, goma saborizante idéntico a natural",
+    "nutrient_levels": {
+      "fat": "high",
+      "salt": "low",
+      "saturated-fat": "high",
+      "sugars": "low"
+    },
+    "product_name": "Crema de leche espesa",
+    "product_name_es": "Crema de leche espesa"
+  },
+  {
+    "allergens": "",
+    "code": "7802920203300",
+    "ingredients_text": "Crema de leche pasteurizada sal y vitamina D3 Calorias 53 3% Gras Tota 5,8 8% % del Valor Diar Referencia para un en base a 2000 del Sur Baze! gia del ✅ 9029068OZT £202/90/Z L la magia del Sun to Sun toda la magia del Se Voola TVS 22",
+    "ingredients_text_es": "Crema de leche pasteurizada sal y vitamina D3 Calorias 53 3% Gras Tota 5,8 8% % del Valor Diar Referencia para un en base a 2000 del Sur Baze! gia del ✅ 9029068OZT £202/90/Z L la magia del Sun to Sun toda la magia del Se Voola TVS 22",
+    "nutrient_levels": {
+      "fat": "high",
+      "salt": "moderate",
+      "saturated-fat": "high",
+      "sugars": "low"
+    },
+    "product_name": "Mantequilla (Colun)",
+    "product_name_es": "Mantequilla (Colun)"
+  },
+  {
+    "allergens": "",
+    "code": "78098152",
+    "ingredients_text": "Cloruro de sodio, dióxido de silicio y yodato de potasio",
+    "ingredients_text_es": "Cloruro de sodio, dióxido de silicio y yodato de potasio",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "high",
+      "sugars": "low"
+    },
+    "product_name": "Sal de selección - Lobos",
+    "product_name_es": "Sal de selección - Lobos"
+  },
+  {
+    "allergens": "",
+    "code": "7801610001622",
+    "ingredients_text": "",
+    "ingredients_text_es": "",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Coca-Cola",
+    "product_name_es": "Coca-Cola"
+  },
+  {
+    "allergens": "",
+    "code": "7802900001407",
+    "ingredients_text": "Leche natural parcialmente descremada, sólidos lacteos, gelatina, sorbato de potasio, lactasa, sucralosa, cepas de yoghurt (L. bulgaricus y S. thermophilus), estevia, saborizante idéntico a natural y colorante rojo allura AC.",
+    "ingredients_text_es": "Leche natural parcialmente descremada, sólidos lacteos, gelatina, sorbato de potasio, lactasa, sucralosa, cepas de yoghurt (L. bulgaricus y S. thermophilus), estevia, saborizante idéntico a natural y colorante rojo allura AC.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Protein",
+    "product_name_es": "Protein"
+  },
+  {
+    "allergens": "en:gluten",
+    "code": "7803473002662",
+    "ingredients_text": "Harina de Trigo (Gluten), Agua,\nLevadura, Azucar, Gluten de Trigo, Mezcia de Aceites\nVegetales (Palme y Soya) Refinados Hidrogenados\n(Galato de Propilo, Palmitato de Ascorbilo), Sal,\nPropioneto de Calcio, Acido Lactico, I\nMonocalcico, Emulsificante (Esteres de Glicerol de\nAcidos Grasos y Acido Diacetiltartarico,\nMonogliceridos Destilados), Carbonato de Calcio,\nEnzimas, Acido Sorbico, Acido Ascorbico, Suero de\nLeche, Sorbato de Potasio, Lecitina de Soya,\nContiene Gluten, Leche, Soya,\nBaborado en Lines donde se procesan productos con\nNuez, Miel, Linaza, Semilla de Mar1villa, Siam\nChia, Quinoa, Arroz, Semilla de Amapola, Somila de\nCalabeza, Mija, Ciruela,\nFosfato\nFABRICADO POR IDEAL S,A, CANAVERAL N100,\nQUILICURA, TELEFONO 226758200, RES, SESMA\n*2008 DEL 09-02-95, FABRICACION CHILENA,\nDUSADA BAJO LICENCIA DE GRUPO BIMBO SAB\nDE C,V, CONSERVAR EN LUGAR FRESCO Y SECO\nrt, 60% HR,)",
+    "ingredients_text_es": "Harina de Trigo (Gluten), Agua,\nLevadura, Azucar, Gluten de Trigo, Mezcia de Aceites\nVegetales (Palme y Soya) Refinados Hidrogenados\n(Galato de Propilo, Palmitato de Ascorbilo), Sal,\nPropioneto de Calcio, Acido Lactico, I\nMonocalcico, Emulsificante (Esteres de Glicerol de\nAcidos Grasos y Acido Diacetiltartarico,\nMonogliceridos Destilados), Carbonato de Calcio,\nEnzimas, Acido Sorbico, Acido Ascorbico, Suero de\nLeche, Sorbato de Potasio, Lecitina de Soya,\nContiene Gluten, Leche, Soya,\nBaborado en Lines donde se procesan productos con\nNuez, Miel, Linaza, Semilla de Mar1villa, Siam\nChia, Quinoa, Arroz, Semilla de Amapola, Somila de\nCalabeza, Mija, Ciruela,\nFosfato\nFABRICADO POR IDEAL S,A, CANAVERAL N100,\nQUILICURA, TELEFONO 226758200, RES, SESMA\n*2008 DEL 09-02-95, FABRICACION CHILENA,\nDUSADA BAJO LICENCIA DE GRUPO BIMBO SAB\nDE C,V, CONSERVAR EN LUGAR FRESCO Y SECO\nrt, 60% HR,)",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "high",
+      "saturated-fat": "moderate",
+      "sugars": "moderate"
+    },
+    "product_name": "IDEAL Blanco",
+    "product_name_es": "IDEAL Blanco"
+  },
+  {
+    "allergens": "",
+    "code": "7801610350355",
+    "ingredients_text": "SIN AZÚCAR MONTEGRERE ROUA CARBONATADA, COLOR CARAMELO ACIDO FOSFORICO, ASPARTAMO, SABORIZANTES NATURALES, BENZOATO DE SODIO, ACESULFAMO DE POTASIO, CITRATO DE SODIO Y CAFEINA FENILCETONURICOS: CONTIENE FENILALANINA. . FABRICADO POR ENVASES CENTRAL S.A. CALLE MIRAFLORES N 8755 RENCA, R.M. RES. SESMA N° 9938 DEL 20-04-95 FABRICACION CHILENA. MANTENER EN LUGAR FRESCO, SECOY PROTEGIDO DEL SOL. NO CONGELAR. CONSUMIR ANTES DE LA FECHA INDICADA EN LA BASE DE LA LATA. COCA-COLA Y COCA-COLA ZERO SON MARCAS REGISTRADAS DE THE COCA-COLA COMPANY. 2017 THE COCA-COLA COMPANY INFORMACION AL CONSUMIDOR: 800 21 99 99. Esta lata de 350 ml contiene: CALORIAS AZUCARES TOTALES GRASAS GRASAS SATURADAS SODIO 61 mg 38066 1 0% Og 0% 0.0 g 0.0 g 0% 0% 3% DEL VALOR DIARIO DE REFERENCIA PARA UN ADULTO EN BASE A",
+    "ingredients_text_es": "",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "high",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Coca Cola Zero",
+    "product_name_es": "Coca-Cola sin azúcar lata"
+  },
+  {
+    "allergens": "",
+    "code": "7802810002099",
+    "nutrient_levels": {},
+    "product_name": "Aceite 100% Maravilla",
+    "product_name_es": "Aceite Maravilla"
+  },
+  {
+    "allergens": "en:milk",
+    "code": "7808709500431",
+    "ingredients_text": "Leche entera (31 g/litro M.G.), emulsionante (polifosfato de sodio). Contiene ingredientes alérgenos caseína-lactosa (leche). Elaborado en líneas que también procesan soya. Leche Entera sometida a tratamiento U.H.T a 141°C por 4 seg.",
+    "ingredients_text_es": "Leche entera (31 g/litro M.G.), emulsionante (polifosfato de sodio). Contiene ingredientes alérgenos caseína-lactosa (leche). Elaborado en líneas que también procesan soya. Leche Entera sometida a tratamiento U.H.T a 141°C por 4 seg.",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "saturated-fat": "moderate",
+      "sugars": "low"
+    },
+    "product_name": "leche entera",
+    "product_name_es": "Leche Natural Entera"
+  },
+  {
+    "allergens": "",
+    "code": "7801610350409",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "moderate",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Coca-Cola Zero Azúcar",
+    "product_name_es": "Coca-Cola Zero Azúcar"
+  },
+  {
+    "allergens": "",
+    "code": "7802230086648",
+    "ingredients_text": "Harina de Trigo, Aceite Vegetal de Soya (con antioxidantes: TBHQ y Acido Cítrico), Jarabe de Glucosa, Extracto de Malta (Cebada), Leudantes (Bicarbonato de Sodio y Fosfato Monocálcico), Cloruro de Potasio, Sal, Emulsionante (Estearoil Lactilato de Sodio) y Levadura.\nContiene: Gluten y Soya.\nPuede contener: Huevo y Leche.",
+    "ingredients_text_es": "Harina de Trigo, Aceite Vegetal de Soya (con antioxidantes: TBHQ y Acido Cítrico), Jarabe de Glucosa, Extracto de Malta (Cebada), Leudantes (Bicarbonato de Sodio y Fosfato Monocálcico), Cloruro de Potasio, Sal, Emulsionante (Estearoil Lactilato de Sodio) y Levadura.\nContiene: Gluten y Soya.\nPuede contener: Huevo y Leche.",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "moderate",
+      "saturated-fat": "moderate",
+      "sugars": "low"
+    },
+    "product_name": "Soda clásica",
+    "product_name_es": "Soda Clasica"
+  },
+  {
+    "allergens": "",
+    "code": "7802000014130",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "low",
+      "saturated-fat": "moderate",
+      "sugars": "low"
+    },
+    "product_name": "Avena Instantánea"
+  },
+  {
+    "allergens": "",
+    "code": "7808709501995",
+    "ingredients_text": "Leche natural descremada, enzima Lactasa, vitamina D3.",
+    "ingredients_text_es": "Leche natural descremada, enzima Lactasa, vitamina D3.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Surlat Sin Lactosa Balance Perfecto Rica & Liviana 0% Grasa Descremada",
+    "product_name_es": "Surlat Sin Lactosa Balance Perfecto Rica & Liviana 0% Grasa Descremada"
+  },
+  {
+    "allergens": "",
+    "code": "7801620853396",
+    "ingredients_text": "AGUA, JUGO DE NARANJA, ACIDO CITRICO, ASPARTAMO, SABORIZANTE IDENTICO A NATURAL, ACIDO ASCORBICO, BENZOATO DE SODIO, SORBATO DE POTASIO Y COLORANTE BETACAROTENO.",
+    "ingredients_text_es": "AGUA, JUGO DE NARANJA, ACIDO CITRICO, ASPARTAMO, SABORIZANTE IDENTICO A NATURAL, ACIDO ASCORBICO, BENZOATO DE SODIO, SORBATO DE POTASIO Y COLORANTE BETACAROTENO.",
+    "nutrient_levels": {
+      "fat": "low",
+      "sugars": "moderate"
+    },
+    "product_name": "nectar de fruta natural naranja light"
+  },
+  {
+    "allergens": "en:gluten",
+    "code": "7803520140026",
+    "ingredients_text": "Galleta 82% (Harina de _trigo_ enriquecida según RSA, Jarabe de maltitol, Aceite puro de maravilla, Manteca vegetal de palma, Maltitol en polvo, Salvado de trigo, Almidón de papa, Polidextrosa, Sal, Emulsionante (lecitina bidestilada de soya), Leudantes (Bicarbonato de sodio, Bicarbonato de amonio, Fosfato monocálcico), Saborizante idéntico al natural, Colorante betacaroteno, Sucralosa y Colorante caramelo), Relleno 18% (Jarabe de sorbitol, Maltitol, Agua, Akmidón modificado, Fibra soluble de malz, Pulpa de frutilla, Maltodextrina, Agar, Pectina, Goma guar, Cloruro de calcio, Acido citrico, Saborizante artificial e idéntico al natural, Sorbato de potasio, Benzoato de sodio, Sal, Carmoisina, Amarillo crepúsculo, Sucralosa)",
+    "ingredients_text_es": "Galleta 82% (Harina de _trigo_ enriquecida según RSA, Jarabe de maltitol, Aceite puro de maravilla, Manteca vegetal de palma, Maltitol en polvo, Salvado de trigo, Almidón de papa, Polidextrosa, Sal, Emulsionante (lecitina bidestilada de soya), Leudantes (Bicarbonato de sodio, Bicarbonato de amonio, Fosfato monocálcico), Saborizante idéntico al natural, Colorante betacaroteno, Sucralosa y Colorante caramelo), Relleno 18% (Jarabe de sorbitol, Maltitol, Agua, Akmidón modificado, Fibra soluble de malz, Pulpa de frutilla, Maltodextrina, Agar, Pectina, Goma guar, Cloruro de calcio, Acido citrico, Saborizante artificial e idéntico al natural, Sorbato de potasio, Benzoato de sodio, Sal, Carmoisina, Amarillo crepúsculo, Sucralosa)",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "moderate",
+      "saturated-fat": "moderate",
+      "sugars": "low"
+    },
+    "product_name": "Froota Frutilla",
+    "product_name_es": "Froota Frutilla"
+  },
+  {
+    "allergens": "",
+    "code": "7750727006665",
+    "ingredients_text": "Harina de maíz nixtamalizada, sal de mar, regulador de acidez (hidróxido de calcio), antioxidante (tocoferol concentrado, mezcla).",
+    "ingredients_text_es": "Harina de maíz nixtamalizada, sal de mar, regulador de acidez (hidróxido de calcio), antioxidante (tocoferol concentrado, mezcla).",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "moderate",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Galletas de Maíz horneadas"
+  },
+  {
+    "allergens": "",
+    "code": "7802575353054",
+    "ingredients_text": "AGUA, CONCENTRADO DE TOMATES, SAL, SORBATO DE POTASIO, BENZOATO DE SODIO.",
+    "ingredients_text_es": "AGUA, CONCENTRADO DE TOMATES, SAL, SORBATO DE POTASIO, BENZOATO DE SODIO.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "moderate",
+      "sugars": "moderate"
+    },
+    "product_name": "Pomarola Natural",
+    "product_name_es": "Pomarola Natural"
+  },
+  {
+    "allergens": "",
+    "code": "7896019208468",
+    "ingredients_text": "Coffee",
+    "ingredients_text_es": "Café",
+    "nutrient_levels": {},
+    "product_name": "Café Instantáneo"
+  },
+  {
+    "allergens": "",
+    "code": "7622201717636",
+    "ingredients_text": "Harina de trigo fortificada (hierro, niacina, zinc, tiamina, riboflavina y ácido fóilico), aceite vegetal (palma), jarabe de azúcar invertido, azúcar, leudantes (bicarbonato de amonio, fosfato monocálcico bicarbonato de sodio), sal y lecitina de soya (emulsionante).",
+    "ingredients_text_es": "Harina de trigo fortificada (hierro, niacina, zinc, tiamina, riboflavina y ácido fóilico), aceite vegetal (palma), jarabe de azúcar invertido, azúcar, leudantes (bicarbonato de amonio, fosfato monocálcico bicarbonato de sodio), sal y lecitina de soya (emulsionante).",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "high",
+      "saturated-fat": "high",
+      "sugars": "moderate"
+    },
+    "product_name": "CLUB SOCIAL ORIGINAL",
+    "product_name_es": "CLUB SOCIAL ORIGINAL"
+  },
+  {
+    "allergens": "en:eggs,en:gluten,en:milk,en:soybeans",
+    "code": "7802215505287",
+    "ingredients_text": "Harina de Trigo, Azúcar, Aceite de Palma Fraccionado, Margarina de Repostería, Huevos, Cacao en Polvo, Suero de Leche en Polvo, Jarabe de Fructosa, Color Caramelo, Glucosa, Sal Bicarbonato de Sodio (Leudante), Saborizante idéntico a Natural, Almidón de Maíz, Bicarbonato de Amonio (Leudante), Lecitina de Soya (Emulsificante), Fosfato Monocálcico (Regulador de Acidez)",
+    "ingredients_text_es": "Harina de Trigo, Azúcar, Aceite de Palma Fraccionado, Margarina de Repostería, Huevos, Cacao en Polvo, Suero de Leche en Polvo, Jarabe de Fructosa, Color Caramelo, Glucosa, Sal Bicarbonato de Sodio (Leudante), Saborizante idéntico a Natural, Almidón de Maíz, Bicarbonato de Amonio (Leudante), Lecitina de Soya (Emulsificante), Fosfato Monocálcico (Regulador de Acidez)",
+    "nutrient_levels": {
+      "fat": "high",
+      "salt": "moderate",
+      "saturated-fat": "high",
+      "sugars": "high"
+    },
+    "product_name": "Chocolate",
+    "product_name_es": "Chocolate"
+  },
+  {
+    "allergens": "en:milk,es:CREMA DE LECHE",
+    "code": "7802930005352",
+    "ingredients_text": "_LECHE_ DESCREMADA ULTRAFILTRADA, _LECHE_ NATURAL ENTERA, _CREMA DE LECHE_, ALMIDON MODIFICADO, GELATINA, POLIFOSFATO DE SODIO, ENZIMA LACTASA, SORBATO DE POTASIO, CULTIVOS LÁCTEOS (LACTOBACILLUS BULGARICUS, STREPTOCOCCUS THERMOPHILUS).",
+    "ingredients_text_es": "_LECHE_ DESCREMADA ULTRAFILTRADA, _LECHE_ NATURAL ENTERA, _CREMA DE LECHE_, ALMIDON MODIFICADO, GELATINA, POLIFOSFATO DE SODIO, ENZIMA LACTASA, SORBATO DE POTASIO, CULTIVOS LÁCTEOS (LACTOBACILLUS BULGARICUS, STREPTOCOCCUS THERMOPHILUS).",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Yogurt Griego Protein Natural",
+    "product_name_es": "Yogurt Griego Protein Natural"
+  },
+  {
+    "allergens": "en:crustaceans,en:gluten,en:milk,en:sesame-seeds,en:soybeans",
+    "code": "0041789001987",
+    "ingredients_text": "HARINA DE TRIGO ENRIQUECIDA (HARINA DE TRIGO, NIACINA, HIERRO REDUCIDO, MONONITRATO DE TIAMINA, RIBOFLAVINA, ÁCIDO FÓLICO), ACEITE VEGETAL (ACEITE DE PALMA, ACEITE DE CANOLA, SEMILLA DE ALGODÓN CONSERVADO CON TBHQ, AJONJOLÍ), SAL, MALTODEXTRINA, VEGETALES DESHIDRATADOS 1% (ZANAHORIA, CEBOLLÍN, AJO, CEBOLLA), CAMARONES DESHIDRATADOS 0.44%, GLUTAMATO MONOSÓDICO, AZÚCARES AÑADIDOS (AZÚCAR, LACTOSA), ESPECIAS (PIMIENTA BLANCA, ORÉGANO), PROTEÍNA HIDROLIZADA (MAÍZ, TRIGO, SOYA), MEZCLA DE CHILES (HOJUELA DE CHILE, CHILE PIQUIN 0.08%), CARAMELO CLASE IV, SALSA DE SOYA DESHIDRATADA (TRIGO, SOYA, SAL), CARBONATO DE POTASIO, EXTRACTO DE LEVADURA, CARBONATO DE SODIO, SABORIZANTES NATURALES, HEXAMETAFOSFATO DE SODIO, GUANILATO DE SODIO, INOSINATO DE SODIO, TRIPOLIFOSFATO DE SODIO, FOSFATO MONOSÓDICO.",
+    "ingredients_text_es": "HARINA DE TRIGO ENRIQUECIDA (HARINA DE TRIGO, NIACINA, HIERRO REDUCIDO, MONONITRATO DE TIAMINA, RIBOFLAVINA, ÁCIDO FÓLICO), ACEITE VEGETAL (ACEITE DE PALMA, ACEITE DE CANOLA, SEMILLA DE ALGODÓN CONSERVADO CON TBHQ, AJONJOLÍ), SAL, MALTODEXTRINA, VEGETALES DESHIDRATADOS 1% (ZANAHORIA, CEBOLLÍN, AJO, CEBOLLA), CAMARONES DESHIDRATADOS 0.44%, GLUTAMATO MONOSÓDICO, AZÚCARES AÑADIDOS (AZÚCAR, LACTOSA), ESPECIAS (PIMIENTA BLANCA, ORÉGANO), PROTEÍNA HIDROLIZADA (MAÍZ, TRIGO, SOYA), MEZCLA DE CHILES (HOJUELA DE CHILE, CHILE PIQUIN 0.08%), CARAMELO CLASE IV, SALSA DE SOYA DESHIDRATADA (TRIGO, SOYA, SAL), CARBONATO DE POTASIO, EXTRACTO DE LEVADURA, CARBONATO DE SODIO, SABORIZANTES NATURALES, HEXAMETAFOSFATO DE SODIO, GUANILATO DE SODIO, INOSINATO DE SODIO, TRIPOLIFOSFATO DE SODIO, FOSFATO MONOSÓDICO.",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "moderate",
+      "saturated-fat": "moderate",
+      "sugars": "low"
+    },
+    "product_name": "Instant Lunch Con Camarón y Chile Piquín",
+    "product_name_es": "Instant Lunch Con Camarón y Chile Piquín"
+  },
+  {
+    "allergens": "",
+    "code": "7801420210139",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "sugars": "low"
+    },
+    "product_name": "Arroz Tucapel",
+    "product_name_es": "Arroz Tucapel"
+  },
+  {
+    "allergens": "",
+    "code": "7802420007293",
+    "nutrient_levels": {},
+    "product_name": "Cacao Amargo",
+    "product_name_es": "Cacao Amargo"
+  },
+  {
+    "allergens": "",
+    "code": "7802215504594",
+    "nutrient_levels": {}
+  },
+  {
+    "allergens": "",
+    "code": "7800120170163",
+    "ingredients_text": "Avena instantánea",
+    "ingredients_text_es": "Avena instantánea",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "low",
+      "saturated-fat": "moderate",
+      "sugars": "low"
+    },
+    "product_name": "Vivo Avena instantánea",
+    "product_name_es": "Vivo Avena instantánea"
+  },
+  {
+    "allergens": "",
+    "code": "7803480020079",
+    "ingredients_text": "Harina de Trigo Integral de Grano Entero, Harina de Trigo, Agua, Levadura, Gluten, Masa Madre (5%) (Harina de Trigo Fermentada), Sal, Aceite de Maravilla (Aceite de Girasol), Vinagre, Azúcar, Harina de Cebada Tostada, Harina de Trigo Fermentada y Tostada, Emulsionante: Lecitina de Soya, Aditivo de Origen Natural, Saborizante Natural.",
+    "ingredients_text_es": "Harina de Trigo Integral de Grano Entero, Harina de Trigo, Agua, Levadura, Gluten, Masa Madre (5%) (Harina de Trigo Fermentada), Sal, Aceite de Maravilla (Aceite de Girasol), Vinagre, Azúcar, Harina de Cebada Tostada, Harina de Trigo Fermentada y Tostada, Emulsionante: Lecitina de Soya, Aditivo de Origen Natural, Saborizante Natural.",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "moderate",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Masa Madre Integral",
+    "product_name_es": "Masa Madre Integral"
+  },
+  {
+    "allergens": "en:soybeans",
+    "code": "7893000065253",
+    "ingredients_text": "aceite de soja, agua (18%), manteca de palmiste interesterificada, Manteca de Palma interesterificada, sal, suero de leche en polvo, cloruro de potasio, lecticina de soja, mono y digliceridos de ácidos grasos, leche en polvo descremada, sorbato de potásio, benzoato de sódio, ácido citrico, aromatizante idéntico al natural, TBHQ, BHT, EDTA disódico cálcico, vitamina A, Annato, cucumina, betacaroteno (sintético).",
+    "ingredients_text_es": "aceite de soja, agua (18%), manteca de palmiste interesterificada, Manteca de Palma interesterificada, sal, suero de leche en polvo, cloruro de potasio, lecticina de soja, mono y digliceridos de ácidos grasos, leche en polvo descremada, sorbato de potásio, benzoato de sódio, ácido citrico, aromatizante idéntico al natural, TBHQ, BHT, EDTA disódico cálcico, vitamina A, Annato, cucumina, betacaroteno (sintético).",
+    "nutrient_levels": {},
+    "product_name": "Cremosa",
+    "product_name_es": "Cremosa"
+  },
+  {
+    "allergens": "",
+    "code": "7802900056070",
+    "ingredients_text": "Leche natural semidescremada, cacao (1.2%), celulosa trisódico, fosfato disódico, cloruro de sodio, estevia y sucralosa. Dosis de sucralosa: 6,8 mg/100 ml y 13,6 mg/porción; I.D.A. de sucralosa: 0-15 mg/kg de peso corporal. Dosis de estevia: 10,2 mg/100 ml y 20,4 mg/porción; I.D.A. de estevia: 0-4 mg/kg de peso corporal (expresada como esteviol). Leche con Cacao Soprole Larga Vida ha sido esterilizada bajo proceso de Leche natural (1,2%), citrato саcao microcristalina, Tltre Alte T",
+    "ingredients_text_es": "Leche natural semidescremada, cacao (1.2%), celulosa trisódico, fosfato disódico, cloruro de sodio, estevia y sucralosa. Dosis de sucralosa: 6,8 mg/100 ml y 13,6 mg/porción; I.D.A. de sucralosa: 0-15 mg/kg de peso corporal. Dosis de estevia: 10,2 mg/100 ml y 20,4 mg/porción; I.D.A. de estevia: 0-4 mg/kg de peso corporal (expresada como esteviol). Leche con Cacao Soprole Larga Vida ha sido esterilizada bajo proceso de Leche natural (1,2%), citrato саcao microcristalina, Tltre Alte T",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "moderate",
+      "saturated-fat": "moderate",
+      "sugars": "moderate"
+    },
+    "product_name": "Leche de chocolate",
+    "product_name_es": "Leche de chocolate"
+  },
+  {
+    "allergens": "",
+    "code": "7802800500413",
+    "ingredients_text": "Café tostado, caramelo.",
+    "ingredients_text_es": "Café tostado, caramelo.",
+    "nutrient_levels": {},
+    "product_name": "Monterrey Clásico",
+    "product_name_es": "Monterrey Clásico"
+  },
+  {
+    "allergens": "",
+    "code": "7613032443191",
+    "ingredients_text": "Harina de Trigo, Antioxidantes, Abejas, Jarabe, Bicarbonato, Metabisulfito, Sulfitos. Puede",
+    "ingredients_text_es": "Harina de Trigo, Antioxidantes, Abejas, Jarabe, Bicarbonato, Metabisulfito, Sulfitos. Puede",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "moderate",
+      "saturated-fat": "moderate",
+      "sugars": "high"
+    },
+    "product_name": "VINO",
+    "product_name_es": "VINO"
+  },
+  {
+    "allergens": "",
+    "code": "7802920423814",
+    "ingredients_text": "Leche pasteurizada, sal, cloruro de calcio, cuajo, nitrato de sodio y cultivos lácteos.",
+    "ingredients_text_es": "Leche pasteurizada, sal, cloruro de calcio, cuajo, nitrato de sodio y cultivos lácteos.",
+    "nutrient_levels": {
+      "fat": "high",
+      "salt": "high",
+      "saturated-fat": "high",
+      "sugars": "low"
+    },
+    "product_name": "Queso fino rallado Reggianito",
+    "product_name_es": "Queso fino rallado Reggianito"
+  },
+  {
+    "allergens": "en:gluten",
+    "code": "7802575004437",
+    "ingredients_text": "SÉMOLA DE TRIGOS DUROS SELECCIONADOS, NIACINA, HIERRO (SULFATO FERROSO), TIAMINA, RIBOFLAVINA.",
+    "ingredients_text_es": "SÉMOLA DE TRIGOS DUROS SELECCIONADOS, NIACINA, HIERRO (SULFATO FERROSO), TIAMINA, RIBOFLAVINA.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Spaghetti 5",
+    "product_name_es": "Spaghetti 5"
+  },
+  {
+    "allergens": "",
+    "code": "7802800535569",
+    "ingredients_text": "Papas deshidratadas, aceite de maravilla alto oleico, maltodextrina, almidón de papa, almidón de papa modificado, sal, emulsificante (monoglicéridos y diglicéridos de ácidos grasos), cloruro de potasio, dextrosa, dióxido de silicio (antiaglomerante). Este producto contiene sulfito. Puede contener trazas de soya, leche y sus derivados y gluten.",
+    "ingredients_text_es": "Papas deshidratadas, aceite de maravilla alto oleico, maltodextrina, almidón de papa, almidón de papa modificado, sal, emulsificante (monoglicéridos y diglicéridos de ácidos grasos), cloruro de potasio, dextrosa, dióxido de silicio (antiaglomerante). Este producto contiene sulfito. Puede contener trazas de soya, leche y sus derivados y gluten.",
+    "nutrient_levels": {
+      "fat": "high",
+      "salt": "moderate",
+      "saturated-fat": "moderate",
+      "sugars": "low"
+    },
+    "product_name": "Kryzpo Sabor Original",
+    "product_name_es": "Kryzpo Sabor Original"
+  },
+  {
+    "allergens": "",
+    "code": "7804918401651",
+    "ingredients_text": "Agua Purificada, Estevia 2.4% (Extracto de Estevia Rebaudiana), SUCRALOSA 2.3%, Ácido Cítrico, Citrato de Sodio, Benzoato de Sodio.",
+    "ingredients_text_es": "Agua Purificada, Estevia 2.4% (Extracto de Estevia Rebaudiana), SUCRALOSA 2.3%, Ácido Cítrico, Citrato de Sodio, Benzoato de Sodio.",
+    "nutrient_levels": {},
+    "product_name": "Endulzante Stevia",
+    "product_name_es": "Endulzante Stevia"
+  },
+  {
+    "allergens": "en:gluten,en:milk,en:soybeans",
+    "code": "7804000001431",
+    "ingredients_text": "Granos de Cereal 60,0% (harina de maíz 36,7%, semolina de maíz 16,7% y salvado de trigo 6,7%), jarabe de maltitol, agua, polidextrosa, cacao en polvo 7,4%, leche descremada en polvo, licor de cacao 0,7%, saborizante idéntico al natural, carbonato de calcio, lecitina de soya, stevia, sucralosa y vainillina.",
+    "ingredients_text_es": "Granos de Cereal 60,0% (harina de maíz 36,7%, semolina de maíz 16,7% y salvado de trigo 6,7%), jarabe de maltitol, agua, polidextrosa, cacao en polvo 7,4%, leche descremada en polvo, licor de cacao 0,7%, saborizante idéntico al natural, carbonato de calcio, lecitina de soya, stevia, sucralosa y vainillina.",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "low",
+      "saturated-fat": "moderate",
+      "sugars": "low"
+    },
+    "product_name": "Hojuelas sabor chocolate",
+    "product_name_es": "Hojuelas sabor chocolate"
+  },
+  {
+    "allergens": "",
+    "code": "7802615006551",
+    "ingredients_text": "Arroz grano largo ancho.",
+    "ingredients_text_es": "Arroz grano largo ancho.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Arroz Largo Ancho",
+    "product_name_es": "Arroz Largo Ancho"
+  },
+  {
+    "allergens": "",
+    "code": "7801620001841",
+    "ingredients_text": "AGUA, PULPA DE MANZANA, AZUCAR, PULPA DE CIRUELA, JUGO DE FRUTILLA, ACIDO CITRICO, SABORIZANTES NATURAL E IDENTICO A NATURAL, GOMA XANTICA, SORBATO DE POTASIO, ESTEVIA (GLICOSIDOS DE\r\nESTEVIOL), SUCRALOSA, COLORANTE ROJO ALLURA AC Y  DIMETILPOLISILOXANO,",
+    "ingredients_text_es": "AGUA, PULPA DE MANZANA, AZUCAR, PULPA DE CIRUELA, JUGO DE FRUTILLA, ACIDO CITRICO, SABORIZANTES NATURAL E IDENTICO A NATURAL, GOMA XANTICA, SORBATO DE POTASIO, ESTEVIA (GLICOSIDOS DE\r\nESTEVIOL), SUCRALOSA, COLORANTE ROJO ALLURA AC Y  DIMETILPOLISILOXANO,",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "sugars": "moderate"
+    },
+    "product_name": "watt's",
+    "product_name_es": "watt's"
+  },
+  {
+    "allergens": "",
+    "code": "7804673910078",
+    "ingredients_text": "Proteína aislada de soya, pasta de dátil (22%), maltitol, proteína concentrada de suero de leche, chocolate (10%) (pasta de cacao, maltitol, lecitina de colza, poliricinoleato de poliglicerol, saborizante natural), pasta de maní, cacao en polvo, almidón de tapioca, saborizante idéntico a natural, lecitina.",
+    "ingredients_text_es": "Proteína aislada de soya, pasta de dátil (22%), maltitol, proteína concentrada de suero de leche, chocolate (10%) (pasta de cacao, maltitol, lecitina de colza, poliricinoleato de poliglicerol, saborizante natural), pasta de maní, cacao en polvo, almidón de tapioca, saborizante idéntico a natural, lecitina.",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "moderate",
+      "saturated-fat": "moderate",
+      "sugars": "high"
+    },
+    "product_name": "Wild Protein Sabor Chocolate",
+    "product_name_es": "Wild Protein Sabor Chocolate"
+  },
+  {
+    "allergens": "",
+    "code": "7802900121013",
+    "ingredients_text": "Crema de leche y sal.",
+    "ingredients_text_es": "Crema de leche y sal.",
+    "nutrient_levels": {
+      "fat": "high",
+      "salt": "high",
+      "saturated-fat": "high",
+      "sugars": "high"
+    },
+    "product_name": "Mantequilla (Soprole)",
+    "product_name_es": "Mantequilla (Soprole)"
+  },
+  {
+    "allergens": "",
+    "code": "7801620009717",
+    "ingredients_text": "Agua mineral",
+    "ingredients_text_es": "Agua mineral",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Cachantun",
+    "product_name_es": "Cachantun"
+  },
+  {
+    "allergens": "",
+    "code": "7802820443356",
+    "nutrient_levels": {},
+    "product_name": "Benedictino c gas x 3 L"
+  },
+  {
+    "allergens": "",
+    "code": "7730976822384",
+    "nutrient_levels": {},
+    "product_name": "Puré tomate",
+    "product_name_es": "Puré tomate"
+  },
+  {
+    "allergens": "",
+    "code": "7809558101725",
+    "ingredients_text": "",
+    "nutrient_levels": {},
+    "product_name": ""
+  },
+  {
+    "allergens": "",
+    "code": "7801505000877",
+    "ingredients_text": "Agua Purificada, ESTEVIA REBAUDIANA (2,3%), SUCRALOSA (2,2%), Fructosa, Ácido Cítrico Anhidro, Citrato de Potasio, Benzoato de Sodio, Sorbato de Potasio.",
+    "ingredients_text_es": "Agua Purificada, ESTEVIA REBAUDIANA (2,3%), SUCRALOSA (2,2%), Fructosa, Ácido Cítrico Anhidro, Citrato de Potasio, Benzoato de Sodio, Sorbato de Potasio.",
+    "nutrient_levels": {},
+    "product_name": "Iansa CeroK Stevia + Sucralosa",
+    "product_name_es": "Iansa CeroK Stevia + Sucralosa"
+  },
+  {
+    "allergens": "en:eggs,en:gluten,en:milk,en:none,en:soybeans,en:sulphur-dioxide-and-sulphites",
+    "code": "7802215303401",
+    "ingredients_text": "Azúcar, Harina de Trigo, Aceite Vegetal (Palma Fraccionado e interesterificado, Palmiste Fraccionado, Palma Hidrogenado), Huevos, Jarabe de Fructosa, Leche Entera en Polvo, Suero de Leche en Polvo, Glicerina, Sorbitol, Aceite Vegetal (Maravilla, Soya), Cacao en Polvo, Glucosa, Proteína de Leche, Etanol, Emulsificante (Mono y Diglicéridos), Almidón Modificado, Sal, Lecitina de Soya, Bicarbonato de Sodio, Preservante (Sorbato de Potasio, Difosfato Disódico (SIN 450i)), Carboximetilcelulosa, Agar Agar, Propionato de Calcio, Saborizantes Idénticos a Natural, Saborizante Artificial, Preservante (Benzoato de Sodio, Ácido Láctico).",
+    "ingredients_text_es": "Azúcar, Harina de Trigo, Aceite Vegetal (Palma Fraccionado e interesterificado, Palmiste Fraccionado, Palma Hidrogenado), Huevos, Jarabe de Fructosa, Leche Entera en Polvo, Suero de Leche en Polvo, Glicerina, Sorbitol, Aceite Vegetal (Maravilla, Soya), Cacao en Polvo, Glucosa, Proteína de Leche, Etanol, Emulsificante (Mono y Diglicéridos), Almidón Modificado, Sal, Lecitina de Soya, Bicarbonato de Sodio, Preservante (Sorbato de Potasio, Difosfato Disódico (SIN 450i)), Carboximetilcelulosa, Agar Agar, Propionato de Calcio, Saborizantes Idénticos a Natural, Saborizante Artificial, Preservante (Benzoato de Sodio, Ácido Láctico).",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "moderate",
+      "saturated-fat": "high",
+      "sugars": "high"
+    },
+    "product_name": "Chocman",
+    "product_name_es": "Chocman"
+  },
+  {
+    "allergens": "",
+    "code": "7802900001292",
+    "ingredients_text": "Leche natural semidescremada.",
+    "ingredients_text_es": "Leche natural semidescremada.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "LECHE NATURAL SEMIDESCREMADA",
+    "product_name_es": "LECHE NATURAL SEMIDESCREMADA"
+  },
+  {
+    "allergens": "en:milk,en:nuts,en:soybeans,en:sulphur-dioxide-and-sulphites",
+    "code": "7804673910030",
+    "ingredients_text": "Proteína aislada de soya, pasta de dátiles, cobertura sabor chocolate (6%) (pasta de cacao, manteca de cacao, emulsionante: lecitina de soya), almendras, manteca de cacao, saborizante natural, emulsionante: lecitina de soya, sal.",
+    "ingredients_text_es": "Proteína aislada de soya, pasta de dátiles, cobertura sabor chocolate (6%) (pasta de cacao, manteca de cacao, emulsionante: lecitina de soya), almendras, manteca de cacao, saborizante natural, emulsionante: lecitina de soya, sal.",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "moderate",
+      "saturated-fat": "moderate",
+      "sugars": "low"
+    },
+    "product_name": "Protein Chocolate - Maní",
+    "product_name_es": "Protein Chocolate - Maní"
+  },
+  {
+    "allergens": "",
+    "code": "7804651620081",
+    "ingredients_text": "Agua purificada, alulosa, SUCRALOSA, Sorbato de potasio, ácido cítrico, benzoato de sodio",
+    "ingredients_text_es": "Agua purificada, alulosa, SUCRALOSA, Sorbato de potasio, ácido cítrico, benzoato de sodio",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "",
+    "product_name_es": ""
+  },
+  {
+    "allergens": "en:gluten",
+    "code": "7800120169235",
+    "ingredients_text": "Semolina de Maix 34%, grano de arroz 19%, Harina de Trigo 13%, Grano Integral de Trigo 11%, Maltitol, Frutillas deshidratadas 3%, Salvado de Trigo, Isomaltitol, Fibra Solubre de Maiz, Fosfato Tricalcico, Sal, Saborizante Idéntico a Natural, Maltodrextrina, Sucralosa, Vitamina C, Colorante Carmin de Cochinilla, Niacina, Antoxidante BHT, Oxido de Zinc, Pirofosfato ferrico, Vitamina B6, Vitamina B2, Vitamina B1, Acido folico, Vitamina B12.",
+    "ingredients_text_es": "Semolina de Maix 34%, grano de arroz 19%, Harina de Trigo 13%, Grano Integral de Trigo 11%, Maltitol, Frutillas deshidratadas 3%, Salvado de Trigo, Isomaltitol, Fibra Solubre de Maiz, Fosfato Tricalcico, Sal, Saborizante Idéntico a Natural, Maltodrextrina, Sucralosa, Vitamina C, Colorante Carmin de Cochinilla, Niacina, Antoxidante BHT, Oxido de Zinc, Pirofosfato ferrico, Vitamina B6, Vitamina B2, Vitamina B1, Acido folico, Vitamina B12.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "moderate",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Vivo line con barries",
+    "product_name_es": "Vivo line con barries"
+  },
+  {
+    "allergens": "",
+    "code": "0070847009511",
+    "ingredients_text": "AGUA CARBONATADA, SACAROSA, GLUCOSA, ÁCIDO CÍTRICO, SABORIZANTES NATURALES Y ARTIFICIALES, CITRATO DE SODIO, TAURINA, L-CARNITINAL-TARTRATA, CAFEINA, ÁCIDO SÓRBICO, ÁCIDO BENZOICO, COLORANTE (CONCENTRADO DE UVA ROJA), NIACINAMIDA (VIT. B3), CLORURO DE SODIO, D-GLUCURONOLACTONA, EXTRACTO DE SEMILLA DE GUARANA, INOSITOL, HCI PIRIDOXINA (VIT. B6), RIBOFLAVINA (VIT. B2), MALTODEXTRINA, CIANOCOBALAMINA (VIT. B12).",
+    "ingredients_text_es": "AGUA CARBONATADA, SACAROSA, GLUCOSA, ÁCIDO CÍTRICO, SABORIZANTES NATURALES Y ARTIFICIALES, CITRATO DE SODIO, TAURINA, L-CARNITINAL-TARTRATA, CAFEINA, ÁCIDO SÓRBICO, ÁCIDO BENZOICO, COLORANTE (CONCENTRADO DE UVA ROJA), NIACINAMIDA (VIT. B3), CLORURO DE SODIO, D-GLUCURONOLACTONA, EXTRACTO DE SEMILLA DE GUARANA, INOSITOL, HCI PIRIDOXINA (VIT. B6), RIBOFLAVINA (VIT. B2), MALTODEXTRINA, CIANOCOBALAMINA (VIT. B12).",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "moderate"
+    },
+    "product_name": "MONSTER ENERGY",
+    "product_name_es": "MONSTER ENERGY"
+  },
+  {
+    "allergens": "",
+    "code": "7613036467339",
+    "ingredients_text": "Leches descremada y entera reconstituidas, crema de leche, espesante (almidón modificado de maiz, concentrado de proteína láctea, gelatina, preservante (sorbato de potasio) y cultivos lácteos (S.Thermophilus, L.Bulgaricus) Fabricado en Chile por Nestlé Chile S.A., Av. Las Condes Nº 11.287,Las Condes-Santiago. Fca.Macul. Av.Vicuña Mackenna N°4.230.Resol. N°22.328, de 24.11.95, del S.Salud del Ambiente R.M.Marcas Registradas, Procesos y Asistencia Técnica, bajo licencia de Societé des Produits Neśtlé S.A., Vevey, Suiza.",
+    "ingredients_text_es": "Leches descremada y entera reconstituidas, crema de leche, espesante (almidón modificado de maiz, concentrado de proteína láctea, gelatina, preservante (sorbato de potasio) y cultivos lácteos (S.Thermophilus, L.Bulgaricus) Fabricado en Chile por Nestlé Chile S.A., Av. Las Condes Nº 11.287,Las Condes-Santiago. Fca.Macul. Av.Vicuña Mackenna N°4.230.Resol. N°22.328, de 24.11.95, del S.Salud del Ambiente R.M.Marcas Registradas, Procesos y Asistencia Técnica, bajo licencia de Societé des Produits Neśtlé S.A., Vevey, Suiza.",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "low",
+      "saturated-fat": "moderate",
+      "sugars": "moderate"
+    },
+    "product_name": "yogurt griego",
+    "product_name_es": "yogurt griego"
+  },
+  {
+    "allergens": "",
+    "code": "7802820700091",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "high",
+      "sugars": "low"
+    },
+    "product_name_es": "Néctar de Naranja"
+  },
+  {
+    "allergens": "",
+    "code": "7801620008338",
+    "ingredients_text": "Agua, jugo concentrado de piña clara (10% m/m SS), ácido cítrico, saborizantes naturales, sorbato de potasio, benzoato de sodio, sucralosa y estevia",
+    "ingredients_text_es": "Agua, jugo concentrado de piña clara (10% m/m SS), ácido cítrico, saborizantes naturales, sorbato de potasio, benzoato de sodio, sucralosa y estevia",
+    "nutrient_levels": {},
+    "product_name": "mas pina"
+  },
+  {
+    "allergens": "",
+    "code": "7805000321550",
+    "ingredients_text": "ACEITES VEGETALES (SOYA, MARAVILLA), AGUA, HUEVO PASTEURIZADO, VINAGRE, AZÚCAR, SAL, ÁCIDO SORBICO, SABORIZANTES NATURALES, JUGO DE LIMÓN, GOMA XANTÁN, EDTA DISÓDICO CÁLCICO, AJO Y CEBOLLA EN POLVO",
+    "ingredients_text_es": "ACEITES VEGETALES (SOYA, MARAVILLA), AGUA, HUEVO PASTEURIZADO, VINAGRE, AZÚCAR, SAL, ÁCIDO SORBICO, SABORIZANTES NATURALES, JUGO DE LIMÓN, GOMA XANTÁN, EDTA DISÓDICO CÁLCICO, AJO Y CEBOLLA EN POLVO",
+    "nutrient_levels": {
+      "fat": "high",
+      "salt": "high",
+      "saturated-fat": "high",
+      "sugars": "low"
+    },
+    "product_name": "SUPREME",
+    "product_name_es": "Supreme"
+  },
+  {
+    "allergens": "",
+    "code": "7801620009694",
+    "ingredients_text": "agua",
+    "ingredients_text_es": "agua",
+    "nutrient_levels": {},
+    "product_name": "agua",
+    "product_name_es": "agua"
+  },
+  {
+    "allergens": "",
+    "code": "7802225688475",
+    "ingredients_text": "ARROZ BLANCO, ARROZ INTEGRAL, SAL",
+    "ingredients_text_es": "ARROZ BLANCO, ARROZ INTEGRAL, SAL",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "moderate",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Galletas de arroz",
+    "product_name_es": "Galletas de arroz"
+  },
+  {
+    "allergens": "",
+    "code": "7802820550504",
+    "ingredients_text": "INFORMACION NUTRICIONAL\r\nPorcion: 1 vaso (200 ml)\r\nPorciones por envase: 1\r\n100 ml 1 Porcin\r\nEnergia (kcal\r\nProteinas (gl\r\nGrasa Total\r\nH. de C Disp. (\r\nAzucares totales() 4\r\nSodio (mg\r\n40\r\n48 9.6\r\n94\r\ns20 s40\r\nINGREDIENTES: Agua, pulpa de\r\ndurazno, azucar, CMC, acido\r\ncitrico, acido ascorbico\r\nsaborizantes identico a natural\r\ny artificial, sucralosa, pectina\r\ny dimetilpolisiloxano.",
+    "ingredients_text_es": "INFORMACION NUTRICIONAL\r\nPorcion: 1 vaso (200 ml)\r\nPorciones por envase: 1\r\n100 ml 1 Porcin\r\nEnergia (kcal\r\nProteinas (gl\r\nGrasa Total\r\nH. de C Disp. (\r\nAzucares totales() 4\r\nSodio (mg\r\n40\r\n48 9.6\r\n94\r\ns20 s40\r\nINGREDIENTES: Agua, pulpa de\r\ndurazno, azucar, CMC, acido\r\ncitrico, acido ascorbico\r\nsaborizantes identico a natural\r\ny artificial, sucralosa, pectina\r\ny dimetilpolisiloxano.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "NÉCTAR DE DURAZNO",
+    "product_name_es": "NÉCTAR DE DURAZNO"
+  },
+  {
+    "allergens": "",
+    "code": "7802215101489",
+    "ingredients_text": "Pasta de cacao, azúcar, manteca de cacao, emulsionante lecitina de soya (INS 322), aroma, colorante natural (betacaroteno). Puede contener trazas de leche, almendras, avellanas, nueces y otros frutos secos.",
+    "ingredients_text_es": "Pasta de cacao, azúcar, manteca de cacao, emulsionante lecitina de soya (INS 322), aroma, colorante natural (betacaroteno). Puede contener trazas de leche, almendras, avellanas, nueces y otros frutos secos.",
+    "nutrient_levels": {
+      "fat": "high",
+      "salt": "moderate",
+      "saturated-fat": "high",
+      "sugars": "high"
+    },
+    "product_name": "Cacao 72% Naranja",
+    "product_name_es": "Cacao 72% Naranja"
+  },
+  {
+    "allergens": "",
+    "code": "7802910083509",
+    "ingredients_text": "Leche fluida natural descremada, enzima lactasa y vitamina D3 (maltodextrina y vitamina D3 (colecalciferol)).",
+    "ingredients_text_es": "Leche fluida natural descremada, enzima lactasa y vitamina D3 (maltodextrina y vitamina D3 (colecalciferol)).",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Leche Natural Descremada",
+    "product_name_es": "Leche Natural Descremada"
+  },
+  {
+    "allergens": "",
+    "code": "7802095180123",
+    "nutrient_levels": {
+      "fat": "moderate"
+    },
+    "product_name": "BURRITOS Y WRAPS XL Tortillas Mexicanas",
+    "product_name_es": "BURRITOS Y WRAPS XL Tortillas Mexicanas"
+  },
+  {
+    "allergens": "",
+    "code": "7803600002503",
+    "ingredients_text": "Cloruro de Sodio, Dióxido de Silicio (antiaglomerante), Yodato de Potasio.",
+    "ingredients_text_es": "Cloruro de Sodio, Dióxido de Silicio (antiaglomerante), Yodato de Potasio.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "high",
+      "sugars": "low"
+    },
+    "product_name": "Sal de Selección",
+    "product_name_es": "Sal de Selección"
+  },
+  {
+    "allergens": "en:gluten",
+    "code": "7802575002235",
+    "ingredients_text": "SÉMOLA DE TRIGOS DUROS SELECCIONADOS, NIACINA, HIERRO (SULFATO FERROSO), TIAMINA, RIBOFLAVINA.",
+    "ingredients_text_es": "SÉMOLA DE TRIGOS DUROS SELECCIONADOS, NIACINA, HIERRO (SULFATO FERROSO), TIAMINA, RIBOFLAVINA.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Espirales",
+    "product_name_es": "Espirales"
+  },
+  {
+    "allergens": "",
+    "code": "7801620005412",
+    "ingredients_text": "Agua mineral",
+    "ingredients_text_es": "Agua mineral",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "cachantun",
+    "product_name_es": "cachantun"
+  },
+  {
+    "allergens": "",
+    "code": "7801620006891",
+    "ingredients_text": "Agua carbonatada, colorante caramelo IV, ácido fosfórico, aspartame, ciclamato de sodio, acesulfame K, benzoato de potasio, ácido cítrico, fenilalanina.",
+    "ingredients_text_es": "Agua carbonatada, colorante caramelo IV, ácido fosfórico, aspartame, ciclamato de sodio, acesulfame K, benzoato de potasio, ácido cítrico, fenilalanina.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Pepsi Zero Azúcar",
+    "product_name_es": "Pepsi Zero Azúcar"
+  },
+  {
+    "allergens": "",
+    "code": "7802575353085",
+    "ingredients_text": "Concentrado de tomates, agua, tomates en cubos (20%), sal, sorbato de potasio, benzoato de sodio",
+    "ingredients_text_es": "Concentrado de tomates, agua, tomates en cubos (20%), sal, sorbato de potasio, benzoato de sodio",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "moderate",
+      "sugars": "low"
+    },
+    "product_name": "Pomarola Casera",
+    "product_name_es": "Pomarola Casera"
+  },
+  {
+    "allergens": "en:AMARILLO CREPÚSCULO",
+    "code": "7801620330132",
+    "ingredients_text": "Agua Carbonatada, Azúcar, Ácido Cítrico, Goma Arábiga, Sorbato de Potasio, Saborizantes Naturales, Goma Rosin, Ácido Ascórbico, AMARILLO CREPÚSCULO, Allura Red AC y BHA",
+    "ingredients_text_es": "Agua Carbonatada, Azúcar, Ácido Cítrico, Goma Arábiga, Sorbato de Potasio, Saborizantes Naturales, Goma Rosin, Ácido Ascórbico, AMARILLO CREPÚSCULO, Allura Red AC y BHA",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "high"
+    },
+    "product_name": "Bebida lata 350ml Orange Crush",
+    "product_name_es": "Bebida lata 350ml Orange Crush"
+  },
+  {
+    "allergens": "",
+    "code": "7802225689847",
+    "nutrient_levels": {},
+    "product_name": "salvado linaza"
+  },
+  {
+    "allergens": "",
+    "code": "7801610305287",
+    "ingredients_text": "AGUA CARBONATADA, COLOR CARAMELO, ÁCIDO FOSFORICO, INFGESLACIÓN NUTRICIONAL Porciones por esse Enerpla Micall Proteinas ist M. de C. Disp. Arkares totales ASPARTAMO, SABORIZANTES NATURALES, BENZOATO DE SODIO, Porce ACESULFAMO DE POTASIO, CITRATO DE SODIO, CAFEÍNA Y GLICOSIDOS DE ESTEVIOL. FENILCETONURICOS: CONTIENE FENILALANINA.",
+    "ingredients_text_es": "AGUA CARBONATADA, COLOR CARAMELO, ÁCIDO FOSFORICO, INFGESLACIÓN NUTRICIONAL Porciones por esse Enerpla Micall Proteinas ist M. de C. Disp. Arkares totales ASPARTAMO, SABORIZANTES NATURALES, BENZOATO DE SODIO, Porce ACESULFAMO DE POTASIO, CITRATO DE SODIO, CAFEÍNA Y GLICOSIDOS DE ESTEVIOL. FENILCETONURICOS: CONTIENE FENILALANINA.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "high",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "coca cola zero",
+    "product_name_es": "coca cola zero"
+  },
+  {
+    "allergens": "",
+    "code": "7803908006173",
+    "ingredients_text": "AGUA,MANGO, ÁCIDO CÍTRICO, ÁCIDO ASCORBICO,, BENZOATO DE SODIO, CARBOXIMETIL CELULOSA SODICA (CMC), ESTEVIA, SORBATO DE POTASIO Y SUCRALOSA, ELABORADO Y ENVASADO PARA AMERICO VESPUCIO 1651, SANTIAGO, CHILE, RES. SESMA N COMERCIALIZADORA NOVAVERDE S.A. POR VJ S.A., 8976 DEL 09.06.93. PRODUCTO CHILENO. MANTENER A TEMPERATURA AMBIENTE,",
+    "ingredients_text_es": "AGUA,MANGO, ÁCIDO CÍTRICO, ÁCIDO ASCORBICO,, BENZOATO DE SODIO, CARBOXIMETIL CELULOSA SODICA (CMC), ESTEVIA, SORBATO DE POTASIO Y SUCRALOSA, ELABORADO Y ENVASADO PARA AMERICO VESPUCIO 1651, SANTIAGO, CHILE, RES. SESMA N COMERCIALIZADORA NOVAVERDE S.A. POR VJ S.A., 8976 DEL 09.06.93. PRODUCTO CHILENO. MANTENER A TEMPERATURA AMBIENTE,",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "low",
+      "saturated-fat": "low",
+      "sugars": "moderate"
+    },
+    "product_name": "guallarauco",
+    "product_name_es": "guallarauco"
+  },
+  {
+    "allergens": "",
+    "code": "7802930004911",
+    "ingredients_text": "AGUA, ACEITE DE COCO, ALMIDON MODIFICADO, MALTODEXTRINA, PROTEINA DE HABA ALMIDON DE MANDIOCA, FOSFATO DISÓDICO Y TRICALCICO, SAL, ÁCIDO LÁCTICO, SORBATO DE POTASIO, PROTEÍNA DE ARVEJA, GOMA XANTHAN, SABORIZANTE IDENTICO AL NATURAL, CURCUMINA, EXTRACTO NATURAL DE ROCÚ Y VITAMINA B12.",
+    "ingredients_text_es": "AGUA, ACEITE DE COCO, ALMIDON MODIFICADO, MALTODEXTRINA, PROTEINA DE HABA ALMIDON DE MANDIOCA, FOSFATO DISÓDICO Y TRICALCICO, SAL, ÁCIDO LÁCTICO, SORBATO DE POTASIO, PROTEÍNA DE ARVEJA, GOMA XANTHAN, SABORIZANTE IDENTICO AL NATURAL, CURCUMINA, EXTRACTO NATURAL DE ROCÚ Y VITAMINA B12.",
+    "nutrient_levels": {
+      "fat": "high",
+      "salt": "moderate"
+    },
+    "product_name": "Queso Vegano Gauda",
+    "product_name_es": "Queso Vegano Gauda"
+  },
+  {
+    "allergens": "en:eggs,en:mustard,en:soybeans",
+    "code": "0021000070237",
+    "ingredients_text": "ACEITE DE SOYA, AGUA, HUEVO PASTEURIZADO, VINAGRE, CONTIENE MENOS DE 2% DE AZÚCAR, SAL, YEMA DE HUEVO PASTEURIZADA, SABOR NATURAL (CONTIENE MOSTAZA), JUGO DE LIMON CONCENTRADO, EDTA CÁLCICO DISÓDICO, AJO DESHIDRATADO, CEBOLLA DESHIDRATADA, PAPRIKA",
+    "ingredients_text_es": "ACEITE DE SOYA, AGUA, HUEVO PASTEURIZADO, VINAGRE, CONTIENE MENOS DE 2% DE AZÚCAR, SAL, YEMA DE HUEVO PASTEURIZADA, SABOR NATURAL (CONTIENE MOSTAZA), JUGO DE LIMON CONCENTRADO, EDTA CÁLCICO DISÓDICO, AJO DESHIDRATADO, CEBOLLA DESHIDRATADA, PAPRIKA",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "low",
+      "saturated-fat": "moderate",
+      "sugars": "low"
+    },
+    "product_name": "Real Mayo Cremosa & Suave",
+    "product_name_es": "Real Mayo Cremosa & Suave"
+  },
+  {
+    "allergens": "",
+    "code": "7800159001056",
+    "ingredients_text": "Agua, vinagre, semilla de mostaza, sal, cúrcuma y paprika.",
+    "ingredients_text_es": "Agua, vinagre, semilla de mostaza, sal, cúrcuma y paprika.",
+    "nutrient_levels": {
+      "fat": "moderate",
+      "salt": "high",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "Mostaza Yellow Mustard",
+    "product_name_es": "Mostaza Yellow Mustard"
+  },
+  {
+    "allergens": "",
+    "code": "7801305004075",
+    "ingredients_text": "Garbanzos, agua, sal y aroma idéntico a natural. Elaborado en líneas que también procesan productos con leche, soya y gluten.",
+    "ingredients_text_es": "Garbanzos, agua, sal y aroma idéntico a natural. Elaborado en líneas que también procesan productos con leche, soya y gluten.",
+    "nutrient_levels": {
+      "fat": "low",
+      "salt": "moderate",
+      "saturated-fat": "low",
+      "sugars": "low"
+    },
+    "product_name": "GARBANZOS",
+    "product_name_es": "GARBANZOS"
+  }
+]

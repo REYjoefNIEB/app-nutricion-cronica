@@ -68,6 +68,255 @@ document.addEventListener('DOMContentLoaded', () => {
         selectPathology.appendChild(option);
     });
 
+    // ── Buscador de patologías (chips + select oculto para validación y guardado) ──
+    const pathologySearch = document.getElementById('pathology-search');
+    const suggestionsList = document.getElementById('pathology-suggestions');
+    const chipsContainer  = document.getElementById('pathology-chips');
+
+    if (pathologySearch && suggestionsList && chipsContainer) {
+        pathologySearch.placeholder = t.pathologySearchPlaceholder;
+
+        const _optByValue = (value) =>
+            Array.from(selectPathology.options).find(o => o.value === String(value));
+
+        function getAvailableOptions() {
+            return Array.from(selectPathology.options)
+                .filter(opt => opt.value !== '' && !opt.disabled)
+                .map(opt => ({ value: opt.value, label: opt.textContent.trim() }));
+        }
+
+        function deselectPlaceholder() {
+            const ph = selectPathology.querySelector('option[value=""]');
+            if (ph) ph.selected = false;
+        }
+
+        function reselectPlaceholderIfEmpty() {
+            const hasReal = Array.from(selectPathology.selectedOptions).some(o => o.value !== '');
+            if (!hasReal) {
+                const ph = selectPathology.querySelector('option[value=""]');
+                if (ph) ph.selected = true;
+            }
+        }
+
+        function setSuggestionsOpen(open) {
+            pathologySearch.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+
+        function renderFasesPanel() {
+            const panel = document.getElementById('onboarding-fases-panel');
+            if (!panel) return;
+            const FASES = window.NURA_FASES_CLINICAS || {};
+            const FASE_PARENT = window.NURA_FASE_PARENT || {};
+
+            const selectedValues = Array.from(selectPathology.selectedOptions)
+                .map(o => o.value).filter(v => v !== '');
+
+            const parentsToShow = {};
+            selectedValues.forEach(val => {
+                if (FASES[val]) {
+                    if (!(val in parentsToShow)) parentsToShow[val] = null;
+                } else if (FASE_PARENT[val]) {
+                    parentsToShow[FASE_PARENT[val]] = val;
+                }
+            });
+
+            const parentIds = Object.keys(parentsToShow);
+            if (parentIds.length === 0) {
+                panel.classList.add('hidden');
+                panel.innerHTML = '';
+                return;
+            }
+
+            panel.innerHTML = '';
+            panel.classList.remove('hidden');
+
+            parentIds.forEach(parentId => {
+                const config = FASES[parentId];
+                if (!config) return;
+                const selectedFaseId = parentsToShow[parentId];
+
+                const section = document.createElement('div');
+                section.className = 'fases-section';
+
+                const title = document.createElement('p');
+                title.className = 'fases-panel-title';
+                title.textContent = config.titulo;
+
+                const clsf = document.createElement('span');
+                clsf.className = 'fases-panel-clasificacion';
+                clsf.textContent = config.clasificacion;
+
+                const wrap = document.createElement('div');
+                wrap.className = 'fases-chips-wrap';
+
+                config.fases.forEach(fase => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'fase-chip' + (selectedFaseId === fase.id ? ' selected' : '');
+                    btn.dataset.fase = fase.id;
+                    btn.dataset.parent = parentId;
+
+                    const nameSpan = document.createElement('span');
+                    nameSpan.textContent = fase.label;
+                    btn.appendChild(nameSpan);
+
+                    if (fase.desc) {
+                        const desc = document.createElement('span');
+                        desc.className = 'fase-chip-desc';
+                        desc.textContent = fase.desc;
+                        btn.appendChild(desc);
+                    }
+                    wrap.appendChild(btn);
+                });
+
+                const noSeBtn = document.createElement('button');
+                noSeBtn.type = 'button';
+                noSeBtn.className = 'fase-chip fase-no-se' + (selectedFaseId === null ? ' selected' : '');
+                noSeBtn.dataset.fase = '__parent__';
+                noSeBtn.dataset.parent = parentId;
+                noSeBtn.textContent = t.fasesNoSeLabel || 'No sé mi estadio';
+                wrap.appendChild(noSeBtn);
+
+                section.appendChild(title);
+                section.appendChild(clsf);
+                section.appendChild(wrap);
+                panel.appendChild(section);
+            });
+
+            panel.onclick = (e) => {
+                const btn = e.target.closest('.fase-chip');
+                if (!btn) return;
+                const faseId = btn.dataset.fase;
+                const parentId = btn.dataset.parent;
+                const config = (window.NURA_FASES_CLINICAS || {})[parentId];
+                if (!config) return;
+
+                if (faseId === '__parent__') {
+                    const parentOpt = _optByValue(parentId);
+                    if (parentOpt) { parentOpt.selected = true; deselectPlaceholder(); }
+                    config.fases.forEach(f => {
+                        const o = _optByValue(f.id);
+                        if (o) o.selected = false;
+                    });
+                } else {
+                    const faseOpt = _optByValue(faseId);
+                    if (faseOpt) { faseOpt.selected = true; deselectPlaceholder(); }
+                    const parentOpt = _optByValue(parentId);
+                    if (parentOpt) parentOpt.selected = false;
+                    config.fases.forEach(f => {
+                        if (f.id !== faseId) {
+                            const o = _optByValue(f.id);
+                            if (o) o.selected = false;
+                        }
+                    });
+                }
+                renderChips();
+            };
+        }
+
+        function renderChips() {
+            chipsContainer.innerHTML = '';
+            Array.from(selectPathology.selectedOptions).forEach(opt => {
+                if (opt.value === '') return;
+                const chip = document.createElement('div');
+                chip.className = 'pathology-chip';
+
+                const label = document.createElement('span');
+                label.className = 'pathology-chip-label';
+                label.textContent = opt.textContent;
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'pathology-chip-remove';
+                btn.dataset.value = opt.value;
+                btn.setAttribute('aria-label', t.pathologyChipRemoveAria);
+                btn.innerHTML = '\u00D7';
+
+                chip.appendChild(label);
+                chip.appendChild(btn);
+                chipsContainer.appendChild(chip);
+            });
+            renderFasesPanel();
+        }
+
+        chipsContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('.pathology-chip-remove');
+            if (!btn) return;
+            const valueToRemove = btn.getAttribute('data-value');
+            const optionToDeselect = _optByValue(valueToRemove);
+            if (optionToDeselect) optionToDeselect.selected = false;
+            // Cleanup related fases or parent
+            const FASES = window.NURA_FASES_CLINICAS || {};
+            const FASE_PARENT = window.NURA_FASE_PARENT || {};
+            if (FASES[valueToRemove]) {
+                FASES[valueToRemove].fases.forEach(f => {
+                    const o = _optByValue(f.id);
+                    if (o) o.selected = false;
+                });
+            } else if (FASE_PARENT[valueToRemove]) {
+                const parentOpt = _optByValue(FASE_PARENT[valueToRemove]);
+                if (parentOpt) parentOpt.selected = false;
+            }
+            reselectPlaceholderIfEmpty();
+            renderChips();
+        });
+
+        pathologySearch.addEventListener('input', () => {
+            const raw = pathologySearch.value;
+            const query = raw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            suggestionsList.innerHTML = '';
+
+            if (query.length === 0) {
+                suggestionsList.classList.add('hidden');
+                setSuggestionsOpen(false);
+                return;
+            }
+
+            const filtered = getAvailableOptions().filter(opt => {
+                const cleanLabel = opt.label.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                const o = _optByValue(opt.value);
+                const isNotSelected = o && !o.selected;
+                return cleanLabel.includes(query) && isNotSelected;
+            });
+
+            if (filtered.length > 0) {
+                filtered.forEach(opt => {
+                    const li = document.createElement('li');
+                    li.className = 'pathology-suggestion-item';
+                    li.setAttribute('role', 'option');
+                    li.textContent = opt.label;
+                    li.addEventListener('mousedown', (ev) => ev.preventDefault());
+                    li.addEventListener('click', () => {
+                        const o = _optByValue(opt.value);
+                        if (o) {
+                            o.selected = true;
+                            deselectPlaceholder();
+                        }
+                        pathologySearch.value = '';
+                        suggestionsList.classList.add('hidden');
+                        setSuggestionsOpen(false);
+                        renderChips();
+                    });
+                    suggestionsList.appendChild(li);
+                });
+                suggestionsList.classList.remove('hidden');
+                setSuggestionsOpen(true);
+            } else {
+                suggestionsList.classList.add('hidden');
+                setSuggestionsOpen(false);
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.autocomplete-wrapper')) {
+                suggestionsList.classList.add('hidden');
+                setSuggestionsOpen(false);
+            }
+        });
+
+        renderChips();
+    }
+
     document.getElementById('btn-submit').textContent  = t.submitBtn;
     document.getElementById('btn-export').textContent  = t.exportBtn;
     document.getElementById('footer-text').textContent = t.footerText;
@@ -188,11 +437,18 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Capturamos todas las opciones seleccionadas del select múltiple (excl. placeholder)
+        const selectPathology = document.getElementById('select-pathology');
+        const selectedValues = Array.from(selectPathology.selectedOptions)
+            .map(opt => opt.value)
+            .filter(v => v !== '');
+
         const profile = {
             birthdate: birthdateStr,
-            weight:    parseFloat(document.getElementById('input-weight').value),
-            height:    parseInt(document.getElementById('input-height').value, 10),
-            pathology: document.getElementById('select-pathology').value
+            weight: parseFloat(document.getElementById('input-weight').value),
+            height: parseInt(document.getElementById('input-height').value, 10),
+            pathology: selectedValues.length > 0 ? selectedValues[0] : 'none', // Mantiene la compatibilidad con código viejo
+            enfermedades: selectedValues // Guarda la lista completa de enfermedades
         };
 
         // 2. Guard de sesión PRIMERO — antes de cualquier operación costosa
@@ -252,6 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 weight:      profile.weight,
                 height:      profile.height,
                 pathology:   profile.pathology,
+                enfermedades: profile.enfermedades,
                 legal_consent: {
                     terms_accepted:     true,
                     ai_training_opt_in: document.getElementById('check-ai-training').checked,
@@ -270,8 +527,9 @@ document.addEventListener('DOMContentLoaded', () => {
             );
 
             console.log('[Onboarding] Perfil guardado en Firestore:', {
-                uid:       user.uid,
-                pathology: profile.pathology
+                uid:          user.uid,
+                pathology:  profile.pathology,
+                enfermedades: profile.enfermedades
             });
 
             // 7. Éxito — redirigir al dashboard

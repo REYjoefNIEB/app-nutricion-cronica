@@ -29,6 +29,9 @@ import { getFirestore } from
 import { getAuth } from
     'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 
+import { getStorage } from
+    'https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js';
+
 // -----------------------------------------------------------------
 // Configuración del proyecto Firebase (provisionada por CEO)
 // Aprobado por Auditor Médico — 2026-04-02
@@ -45,9 +48,10 @@ const firebaseConfig = {
 // -----------------------------------------------------------------
 // Inicialización de servicios Firebase
 // -----------------------------------------------------------------
-const app  = initializeApp(firebaseConfig);
-const db   = getFirestore(app);
-const auth = getAuth(app);
+const app     = initializeApp(firebaseConfig);
+const db      = getFirestore(app);
+const auth    = getAuth(app);
+const storage = getStorage(app);
 
 // -----------------------------------------------------------------
 // Exportación al scope global
@@ -56,7 +60,7 @@ const auth = getAuth(app);
 // Leer SIEMPRE dentro de DOMContentLoaded para respetar el orden
 // de ejecución del módulo diferido.
 // -----------------------------------------------------------------
-window.NuraFirebase = Object.freeze({ app, db, auth });
+window.NuraFirebase = Object.freeze({ app, db, auth, storage });
 
 console.log('[NuraFirebase] Servicios inicializados:', {
     projectId: firebaseConfig.projectId,

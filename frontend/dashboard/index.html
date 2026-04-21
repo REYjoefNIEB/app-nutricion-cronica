@@ -8,20 +8,75 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
+    <!-- Nura SVG Gradients Defs -->
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="nura-brand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#8B85D6" />
+          <stop offset="100%" stop-color="#6BA5D8" />
+        </linearGradient>
+      </defs>
+    </svg>
     <div class="container">
         
         <!-- Contenedor Principal Header -->
         <div class="header">
-            <h1 id="title"></h1>
+            <h1 id="title" style="background: linear-gradient(135deg, #8B85D6, #6BA5D8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; text-align: center;">Resumen Clínico</h1>
             <p id="subtitle"></p>
+        </div>
+        
+        <!-- Barra de Búsqueda Híbrida -->
+        <div class="dashboard-card hybrid-search-container" style="margin-bottom: 1rem; padding: 1.5rem;">
+            <div class="search-input-group">
+                <input type="text" id="input-food-search">
+                <button type="button" id="btn-search-food" class="btn-search" aria-label="Buscar">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+            
+            <button type="button" id="btn-scan-barcode" class="btn-scan-action">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                <span id="txt-scan-barcode"></span>
+            </button>
+            
+            <!-- Visor de Cámara -->
+            <div id="reader" style="width:100%; display:none; margin-top: 1rem; border-radius: 12px; overflow: hidden; background: #000; min-height: 200px;"></div>
+        </div>
+
+        <!-- Tarjeta de Resultados (Oculta por defecto) -->
+        <div id="scan-result-card" class="dashboard-card result-card" style="display: none; border-color: var(--secondary); margin-bottom: 1.5rem;">
+            <div class="result-header">
+                <div class="product-photo" id="product-photo">
+                    <svg width="32" height="32" fill="none" stroke="var(--text-muted)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18v18H3zM8 3v18m8-18v18M3 8h18m-18 8h18"></path></svg>
+                </div>
+                <div class="product-details">
+                    <h3 id="result-product-name"></h3>
+                    <div class="traffic-light-container">
+                        <div id="traffic-light" class="traffic-light"></div>
+                        <span id="traffic-light-label" class="traffic-label"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="result-diagnosis" id="result-diagnosis">
+                <p id="result-diagnosis-lead" class="result-diagnosis-lead"></p>
+                <ul id="result-conflicts-list" class="result-conflicts-list hidden" aria-label="Alertas del motor clínico"></ul>
+                <p id="result-diagnosis-source" class="result-diagnosis-source"></p>
+            </div>
+            <button type="button" id="btn-close-result" class="btn-secondary" style="width: 100%; margin-top: 1rem;"></button>
         </div>
         
         <!-- Tarjeta Principal: Estado Metabólico -->
         <div class="dashboard-card main-card">
-            <h2 id="card-metabolic-title" class="card-title"></h2>
-            
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.25rem;">
+                <h2 id="card-metabolic-title" class="card-title" style="margin-bottom:0;"></h2>
+                <button type="button" id="btn-edit-metrics" class="btn-metric-edit" aria-label="Editar peso y altura">
+                    <i data-lucide="pencil" style="width:14px;height:14px;"></i>
+                </button>
+            </div>
+
             <div class="metrics-grid">
                 <div class="metric-box">
                     <span id="val-weight" class="metric-value"></span>
@@ -32,7 +87,27 @@
                     <span id="label-height" class="metric-label"></span>
                 </div>
             </div>
-            
+
+            <div id="metrics-edit-form" class="metrics-edit-form hidden">
+                <div class="metrics-edit-row">
+                    <div class="metrics-edit-field">
+                        <label for="input-edit-weight" class="metrics-edit-label">Peso (kg)</label>
+                        <input type="number" id="input-edit-weight" class="metrics-edit-input"
+                               min="20" max="300" step="0.1" placeholder="ej. 72">
+                    </div>
+                    <div class="metrics-edit-field">
+                        <label for="input-edit-height" class="metrics-edit-label">Altura (cm)</label>
+                        <input type="number" id="input-edit-height" class="metrics-edit-input"
+                               min="50" max="250" step="1" placeholder="ej. 170">
+                    </div>
+                </div>
+                <div style="display:flex;gap:0.5rem;margin-top:0.6rem;">
+                    <button type="button" id="btn-save-metrics" class="btn-metrics-save">Guardar</button>
+                    <button type="button" id="btn-cancel-metrics" class="btn-metrics-cancel">Cancelar</button>
+                </div>
+                <p id="metrics-save-status" class="metrics-save-status" aria-live="polite"></p>
+            </div>
+
             <div class="bmi-container">
                 <div class="bmi-header">
                     <span id="bmi-title" class="bmi-title"></span>
@@ -44,7 +119,7 @@
                 
                 <!-- Medidor visual de gradiente simulado -->
                 <div class="bmi-meter">
-                    <div class="bmi-marker" style="left: 60%;"></div>
+                    <div class="bmi-marker" style="left: 15%;"></div>
                 </div>
                 <div class="bmi-labels">
                     <span>Bajo</span>
@@ -53,30 +128,817 @@
                 </div>
             </div>
         </div>
+
+        <!-- Mis Patologías (edición sin volver al onboarding completo) -->
+        <div class="dashboard-card pathology-section" id="dashboard-pathology-field">
+            <h2 id="pathology-card-title" class="card-title"></h2>
+            <p id="pathology-card-hint" class="pathology-card-hint"></p>
+            <div class="pathology-chips-field input-wrapper autocomplete-wrapper">
+                <div id="dashboard-pathology-chips" class="pathology-chips" aria-live="polite"></div>
+                <div class="pathology-search-wrap">
+                    <input type="text"
+                           id="dashboard-pathology-search"
+                           class="pathology-search-input"
+                           autocomplete="off"
+                           autocapitalize="none"
+                           spellcheck="false"
+                           role="combobox"
+                           aria-autocomplete="list"
+                           aria-expanded="false"
+                           aria-controls="dashboard-pathology-suggestions">
+                    <ul id="dashboard-pathology-suggestions" class="pathology-suggestions hidden" role="listbox"></ul>
+                </div>
+                <select id="dashboard-select-pathology" multiple class="pathology-select-hidden" aria-hidden="true" tabindex="-1"></select>
+            </div>
+            <div id="dashboard-fases-panel" class="fases-panel hidden" aria-live="polite"></div>
+            <p id="pathology-save-status" class="pathology-save-status" aria-live="polite"></p>
+        </div>
         
+        <!-- Escudo Farmacológico: Selector de Medicamentos (V2 — 24 fármacos) -->
+        <div class="dashboard-card med-selector-section" id="dashboard-med-field">
+            <h2 class="card-title"><i data-lucide="shield-check" style="width:20px;height:20px;color:var(--nura-accent-teal);margin-right:8px;"></i> Escudo Farmacológico</h2>
+            <p class="med-card-hint">Selecciona tus medicamentos actuales. Los IDs se envían al motor clínico para detectar interacciones.</p>
+
+            <!-- Botón Ninguno — span completo -->
+            <button type="button" class="med-chip med-chip-none active" data-med-id="none"
+                    aria-pressed="true" id="med-chip-none" style="width:100%;margin-bottom:0.75rem;">
+                <span class="med-chip-icon"><i data-lucide="x-circle" style="width:16px;height:16px;"></i></span>
+                <span class="med-chip-label">Ninguno / Limpiar selección</span>
+            </button>
+
+            <!-- Grupo: Cardiología / Hipertensión -->
+            <details class="med-group" open>
+                <summary class="med-group-header">
+                    <span class="med-group-icon"><i data-lucide="heart"></i></span>
+                    <span class="med-group-name">Cardiología / Hipertensión</span>
+                    <span class="med-group-arrow">›</span>
+                </summary>
+                <div class="med-chips-grid">
+                    <button type="button" class="med-chip" data-med-id="enalapril" aria-pressed="false" id="med-chip-enalapril">
+                        <span class="med-chip-label">Enalapril</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="losartan" aria-pressed="false" id="med-chip-losartan">
+                        <span class="med-chip-label">Losartán</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="digoxina" aria-pressed="false" id="med-chip-digoxina">
+                        <span class="med-chip-label">Digoxina</span>
+                    </button>
+                </div>
+            </details>
+
+            <!-- Grupo: Colesterol (Estatinas) -->
+            <details class="med-group">
+                <summary class="med-group-header">
+                    <span class="med-group-icon"><i data-lucide="droplet"></i></span>
+                    <span class="med-group-name">Colesterol — Estatinas</span>
+                    <span class="med-group-arrow">›</span>
+                </summary>
+                <div class="med-chips-grid">
+                    <button type="button" class="med-chip" data-med-id="atorvastatina" aria-pressed="false" id="med-chip-atorvastatina">
+                        <span class="med-chip-label">Atorvastatina</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="simvastatina" aria-pressed="false" id="med-chip-simvastatina">
+                        <span class="med-chip-label">Simvastatina</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="lovastatina" aria-pressed="false" id="med-chip-lovastatina">
+                        <span class="med-chip-label">Lovastatina</span>
+                    </button>
+                </div>
+            </details>
+
+            <!-- Grupo: Anticoagulantes -->
+            <details class="med-group">
+                <summary class="med-group-header">
+                    <span class="med-group-icon"><i data-lucide="droplets"></i></span>
+                    <span class="med-group-name">Anticoagulantes</span>
+                    <span class="med-group-arrow">›</span>
+                </summary>
+                <div class="med-chips-grid">
+                    <button type="button" class="med-chip" data-med-id="warfarina" aria-pressed="false" id="med-chip-warfarina">
+                        <span class="med-chip-label">Warfarina</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="acenocumarol" aria-pressed="false" id="med-chip-acenocumarol">
+                        <span class="med-chip-label">Acenocumarol</span>
+                    </button>
+                </div>
+            </details>
+
+            <!-- Grupo: Diabetes / Tiroides -->
+            <details class="med-group">
+                <summary class="med-group-header">
+                    <span class="med-group-icon"><i data-lucide="activity"></i></span>
+                    <span class="med-group-name">Diabetes / Tiroides</span>
+                    <span class="med-group-arrow">›</span>
+                </summary>
+                <div class="med-chips-grid">
+                    <button type="button" class="med-chip" data-med-id="metformina" aria-pressed="false" id="med-chip-metformina">
+                        <span class="med-chip-label">Metformina</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="levotiroxina" aria-pressed="false" id="med-chip-levotiroxina">
+                        <span class="med-chip-label">Levotiroxina</span>
+                    </button>
+                </div>
+            </details>
+
+            <!-- Grupo: Psiquiatría / Neurología -->
+            <details class="med-group">
+                <summary class="med-group-header">
+                    <span class="med-group-icon"><i data-lucide="brain"></i></span>
+                    <span class="med-group-name">Psiquiatría / Neurología</span>
+                    <span class="med-group-arrow">›</span>
+                </summary>
+                <div class="med-chips-grid">
+                    <button type="button" class="med-chip" data-med-id="litio" aria-pressed="false" id="med-chip-litio">
+                        <span class="med-chip-label">Litio</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="disulfiram" aria-pressed="false" id="med-chip-disulfiram">
+                        <span class="med-chip-label">Disulfiram</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="fenelzina" aria-pressed="false" id="med-chip-fenelzina">
+                        <span class="med-chip-label">Fenelzina</span>
+                        <span class="med-chip-sub">IMAO</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="tranilcipromina" aria-pressed="false" id="med-chip-tranilcipromina">
+                        <span class="med-chip-label">Tranilcipromina</span>
+                        <span class="med-chip-sub">IMAO</span>
+                    </button>
+                </div>
+            </details>
+
+            <!-- Grupo: Antibióticos / Antiparasitarios -->
+            <details class="med-group">
+                <summary class="med-group-header">
+                    <span class="med-group-icon"><i data-lucide="pill"></i></span>
+                    <span class="med-group-name">Antibióticos / Antiparasitarios</span>
+                    <span class="med-group-arrow">›</span>
+                </summary>
+                <div class="med-chips-grid">
+                    <button type="button" class="med-chip" data-med-id="ciprofloxacino" aria-pressed="false" id="med-chip-ciprofloxacino">
+                        <span class="med-chip-label">Ciprofloxacino</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="tetraciclina" aria-pressed="false" id="med-chip-tetraciclina">
+                        <span class="med-chip-label">Tetraciclina</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="doxiciclina" aria-pressed="false" id="med-chip-doxiciclina">
+                        <span class="med-chip-label">Doxiciclina</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="metronidazol" aria-pressed="false" id="med-chip-metronidazol">
+                        <span class="med-chip-label">Metronidazol</span>
+                    </button>
+                </div>
+            </details>
+
+            <!-- Grupo: Inmunosupresores -->
+            <details class="med-group">
+                <summary class="med-group-header">
+                    <span class="med-group-icon"><i data-lucide="shield"></i></span>
+                    <span class="med-group-name">Inmunosupresores</span>
+                    <span class="med-group-arrow">›</span>
+                </summary>
+                <div class="med-chips-grid">
+                    <button type="button" class="med-chip" data-med-id="ciclosporina" aria-pressed="false" id="med-chip-ciclosporina">
+                        <span class="med-chip-label">Ciclosporina</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="tacrolimus" aria-pressed="false" id="med-chip-tacrolimus">
+                        <span class="med-chip-label">Tacrolimus</span>
+                    </button>
+                </div>
+            </details>
+
+            <!-- Grupo: Otros -->
+            <details class="med-group">
+                <summary class="med-group-header">
+                    <span class="med-group-icon"><i data-lucide="more-horizontal"></i></span>
+                    <span class="med-group-name">Otros</span>
+                    <span class="med-group-arrow">›</span>
+                </summary>
+                <div class="med-chips-grid">
+                    <button type="button" class="med-chip" data-med-id="paracetamol" aria-pressed="false" id="med-chip-paracetamol">
+                        <span class="med-chip-label">Paracetamol</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="anticonceptivo_oral" aria-pressed="false" id="med-chip-anticonceptivo_oral">
+                        <span class="med-chip-label">Anticonceptivo Oral</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="alopurinol" aria-pressed="false" id="med-chip-alopurinol">
+                        <span class="med-chip-label">Alopurinol</span>
+                    </button>
+                    <button type="button" class="med-chip" data-med-id="metotrexato" aria-pressed="false" id="med-chip-metotrexato">
+                        <span class="med-chip-label">Metotrexato</span>
+                    </button>
+                </div>
+            </details>
+
+            <!-- Badge de selección activa + status -->
+            <div id="med-active-badge" class="med-active-badge" style="display:none;">
+                <span id="med-active-count"></span>
+            </div>
+            <p id="med-save-status" class="med-save-status" aria-live="polite"></p>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════
+             Lector de Exámenes Clínicos — Fase 3 Paso 2
+             ══════════════════════════════════════════════════════ -->
+        <div class="dashboard-card exam-upload-section" id="exam-section">
+            <h2 class="card-title exam-section-title">
+                <span class="exam-title-icon"><i data-lucide="flask-conical"></i></span>
+                Subir Examen Clínico
+            </h2>
+            <p class="exam-section-hint">Sube tu examen de laboratorio (PDF, JPG o PNG). La IA de Nura extraerá tus biomarcadores automáticamente.</p>
+
+            <!-- Zona de arrastre e ingreso manual, apilados verticalmente -->
+            <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:0;">
+
+                <!-- Estado 1: Drag & Drop (ancho completo, arriba) -->
+                <div id="exam-dropzone" class="exam-dropzone" role="button" tabindex="0"
+                     aria-label="Zona de arrastre para subir examen" style="width:100%;margin:0;">
+                <div class="exam-dropzone-icon"><i data-lucide="file-text" style="width:48px;height:48px;color:var(--nura-accent-teal);"></i></div>
+                <p class="exam-dropzone-title">Arrastra tus exámenes aquí</p>
+                <p class="exam-dropzone-sub">o haz clic para seleccionar uno o varios archivos</p>
+                <p class="exam-dropzone-types">PDF · JPG · PNG · múltiples archivos · máx. 10 MB c/u</p>
+                <p id="exam-file-count-label" class="exam-file-count-label" style="display:none;"></p>
+                <input type="file" id="exam-file-input" accept=".pdf,.jpg,.jpeg,.png" multiple aria-hidden="true" tabindex="-1">
+                </div><!-- /exam-dropzone -->
+
+                <!-- Botón secundario: Ingresar manual (ancho completo, abajo) -->
+                <div id="modeManual" class="mode-card" onclick="selectMode('manual')"
+                     style="width:100%;padding:12px 16px;border:2px solid #e5e7eb;border-radius:12px;
+                            cursor:pointer;display:flex;flex-direction:row;align-items:center;gap:12px;">
+                    <div style="font-size:22px;flex-shrink:0;">✏️</div>
+                    <div style="text-align:left;">
+                        <div style="font-weight:500;font-size:14px;">Ingresar manual</div>
+                        <div style="font-size:12px;color:#666;">Escribe los valores tú mismo</div>
+                    </div>
+                </div>
+
+            </div><!-- /flex wrapper -->
+
+            <!-- Estado 2: Analizando (oculto por defecto) -->
+            <div id="exam-analyzing" class="exam-analyzing hidden">
+                <div class="exam-analyzing-spinner"></div>
+                <p class="exam-analyzing-title">Analizando examen con IA de Nura…</p>
+                <p id="exam-multi-progress" class="exam-multi-progress" style="display:none;"></p>
+                <p class="exam-analyzing-sub">Tus archivos serán destruidos por seguridad en breves segundos.</p>
+                <div class="exam-progress-bar"><div id="exam-progress-fill" class="exam-progress-fill"></div></div>
+            </div>
+
+            <!-- Estado 3: Error (oculto por defecto) -->
+            <div id="exam-error" class="exam-error hidden">
+                <span class="exam-error-icon"><i data-lucide="alert-triangle"></i></span>
+                <p id="exam-error-msg" class="exam-error-msg"></p>
+                <button type="button" id="btn-exam-retry" class="btn-exam-retry">Intentar de nuevo</button>
+            </div>
+        </div>
+
+        <!-- Formulario de Verificación Híbrida (oculto hasta recibir respuesta) -->
+        <div id="exam-results-section" class="dashboard-card exam-results-section hidden">
+
+            <!-- Cabecera del resultado -->
+            <div class="exam-results-header">
+                <span class="exam-results-icon"><i data-lucide="check-circle"></i></span>
+                <div>
+                    <h2 class="exam-results-title">Verifica tus resultados</h2>
+                    <p id="exam-meta-lab" class="exam-meta"></p>
+                </div>
+                <button type="button" id="btn-exam-back" class="btn-exam-back" title="Subir otro examen">↩</button>
+            </div>
+
+            <p class="exam-confidence-legend">
+                <span class="conf-dot conf-alta"></span> Normal &nbsp;
+                <span class="conf-dot conf-media"></span> Verificar &nbsp;
+                <span class="conf-dot conf-baja"></span> Revisar
+            </p>
+
+            <!-- Botones de utilidad para los grupos -->
+            <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+                <button type="button" onclick="expandAll()" class="btn-util-group">Expandir todo</button>
+                <button type="button" onclick="collapseAll()" class="btn-util-group">Colapsar todo</button>
+                <button type="button" onclick="expandAltered()" class="btn-util-group btn-util-altered">Solo alterados</button>
+            </div>
+
+            <form id="exam-verification-form" novalidate>
+
+                <!-- Grupo: Metabólicos -->
+                <details class="exam-group">
+                    <summary class="exam-group-header">
+                        <span class="exam-group-icon"><i data-lucide="activity"></i></span>
+                        <span class="exam-group-name">Metabólicos</span>
+                        <span class="exam-group-count" id="count-metabolicos"></span>
+                    </summary>
+                    <div class="exam-fields-grid" id="group-metabolicos"></div>
+                </details>
+
+                <!-- Grupo: Lípidos -->
+                <details class="exam-group">
+                    <summary class="exam-group-header">
+                        <span class="exam-group-icon"><i data-lucide="droplet"></i></span>
+                        <span class="exam-group-name">Lípidos</span>
+                        <span class="exam-group-count" id="count-lipidos"></span>
+                    </summary>
+                    <div class="exam-fields-grid" id="group-lipidos"></div>
+                </details>
+
+                <!-- Grupo: Renal -->
+                <details class="exam-group">
+                    <summary class="exam-group-header">
+                        <span class="exam-group-icon"><i data-lucide="activity"></i></span>
+                        <span class="exam-group-name">Función Renal</span>
+                        <span class="exam-group-count" id="count-renal"></span>
+                    </summary>
+                    <div class="exam-fields-grid" id="group-renal"></div>
+                </details>
+
+                <!-- Grupo: Hepático — colapsado por defecto -->
+                <details class="exam-group">
+                    <summary class="exam-group-header">
+                        <span class="exam-group-icon"><i data-lucide="circle"></i></span>
+                        <span class="exam-group-name">Hepático</span>
+                        <span class="exam-group-count" id="count-hepatico"></span>
+                    </summary>
+                    <div class="exam-fields-grid" id="group-hepatico"></div>
+                </details>
+
+                <!-- Grupo: Hematológico — colapsado por defecto -->
+                <details class="exam-group">
+                    <summary class="exam-group-header">
+                        <span class="exam-group-icon"><i data-lucide="droplets"></i></span>
+                        <span class="exam-group-name">Hematológico e Hierro</span>
+                        <span class="exam-group-count" id="count-hematologico"></span>
+                    </summary>
+                    <div class="exam-fields-grid" id="group-hematologico"></div>
+                </details>
+
+                <!-- Grupo: Tiroides — colapsado por defecto -->
+                <details class="exam-group">
+                    <summary class="exam-group-header">
+                        <span class="exam-group-icon"><i data-lucide="activity"></i></span>
+                        <span class="exam-group-name">Tiroides</span>
+                        <span class="exam-group-count" id="count-tiroides"></span>
+                    </summary>
+                    <div class="exam-fields-grid" id="group-tiroides"></div>
+                </details>
+
+                <!-- Grupo: Coagulación — colapsado por defecto -->
+                <details class="exam-group">
+                    <summary class="exam-group-header">
+                        <span class="exam-group-icon"><i data-lucide="activity"></i></span>
+                        <span class="exam-group-name">Coagulación</span>
+                        <span class="exam-group-count" id="count-coagulacion"></span>
+                    </summary>
+                    <div class="exam-fields-grid" id="group-coagulacion"></div>
+                </details>
+
+                <!-- Grupo: Minerales — colapsado por defecto -->
+                <details class="exam-group">
+                    <summary class="exam-group-header">
+                        <span class="exam-group-icon"><i data-lucide="zap"></i></span>
+                        <span class="exam-group-name">Minerales</span>
+                        <span class="exam-group-count" id="count-minerales"></span>
+                    </summary>
+                    <div class="exam-fields-grid" id="group-minerales"></div>
+                </details>
+
+                <!-- Grupo: Inflamación — colapsado por defecto -->
+                <details class="exam-group">
+                    <summary class="exam-group-header">
+                        <span class="exam-group-icon"><i data-lucide="thermometer"></i></span>
+                        <span class="exam-group-name">Inflamación</span>
+                        <span class="exam-group-count" id="count-inflamacion"></span>
+                    </summary>
+                    <div class="exam-fields-grid" id="group-inflamacion"></div>
+                </details>
+
+                <!-- Grupo: Hormonal — colapsado por defecto -->
+                <details class="exam-group">
+                    <summary class="exam-group-header">
+                        <span class="exam-group-icon"><i data-lucide="flask-conical"></i></span>
+                        <span class="exam-group-name">Hormonal y Otros</span>
+                        <span class="exam-group-count" id="count-hormonal"></span>
+                    </summary>
+                    <div class="exam-fields-grid" id="group-hormonal"></div>
+                </details>
+
+                <!-- Disclaimer -->
+                <p class="exam-disclaimer">Este análisis es orientativo y no reemplaza la interpretación médica profesional.</p>
+
+                <!-- Controles del formulario -->
+                <div class="exam-form-actions">
+                    <button type="button" id="btn-clear-form" class="btn-clear-form">
+                        Limpiar todo
+                    </button>
+                    <button type="button" id="btn-exam-continue" class="btn-exam-continue">
+                        Siguiente: Evaluar mi Perfil →
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════
+             Score Metabólico + Brief — Fase 3, Paso 3
+             ══════════════════════════════════════════════════════ -->
+        <div id="exam-score-section" class="dashboard-card exam-score-section hidden">
+
+            <!-- Cabecera -->
+            <div class="score-header">
+                <button type="button" id="btn-score-back" class="btn-exam-back" title="Volver a verificación">↩</button>
+                <h2 class="score-main-title">Resumen de Examen</h2>
+            </div>
+
+            <!-- Gauge de Score Metabólico — Anillo dinámico -->
+            <div class="score-gauge-wrapper" style="position:relative;width:160px;height:160px;margin:1.5rem auto 0;">
+                <svg viewBox="0 0 100 100" aria-hidden="true" style="width:100%;height:100%;transform:rotate(-90deg);">
+                    <!-- Track gris neutro -->
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#E2E8F0" stroke-width="8"/>
+                    <!-- Arco dinámico: color y longitud controlados por JS -->
+                    <circle id="score-dynamic-ring" cx="50" cy="50" r="40" fill="none"
+                            stroke="var(--current-score-color,#2A9D8F)"
+                            stroke-width="8"
+                            stroke-dasharray="251.2"
+                            stroke-dashoffset="251.2"
+                            stroke-linecap="round"
+                            style="transition:stroke-dashoffset 1s ease-in-out,stroke 0.5s ease;"/>
+                </svg>
+                <div style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;">
+                    <span id="metabolic-score-value" class="score-value" style="font-size:2.8rem;font-weight:900;line-height:1;color:var(--current-score-color,#2A9D8F);">—</span>
+                    <span class="score-label" style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted,#64748b);margin-top:0.2rem;">SCORE</span>
+                </div>
+            </div>
+            <p id="score-tier-label" class="score-tier-label"></p>
+
+            <!-- Chips de alertas legales -->
+            <div id="score-chips" class="score-chips"></div>
+
+            <!-- Biomarcadores fuera de rango (para brief y pantalla) -->
+            <div id="score-alerts-list" class="score-alerts-list"></div>
+
+            <!-- Mapa de Correlaciones Clínicas -->
+            <div id="score-correlaciones" class="score-correlaciones hidden"></div>
+
+            <!-- Calculadora de Riesgo Cardiovascular (Framingham) -->
+            <details id="score-framingham" class="score-framingham hidden">
+                <summary class="fw-summary">Riesgo Cardiovascular — Framingham</summary>
+                <div class="fw-body">
+                    <p class="fw-intro">Estima tu riesgo de infarto o ACV a 10 años según el <em>Framingham Heart Study</em> (1998). Los valores de tu examen se incorporan automáticamente.</p>
+
+                    <div class="fw-row">
+                        <div class="fw-field">
+                            <label class="fw-label" for="fw-col-total">Colesterol Total <span class="fw-unit">mg/dL</span></label>
+                            <div class="fw-input-wrap">
+                                <input type="number" id="fw-col-total" class="fw-input" min="100" max="400" placeholder="ej: 200">
+                                <span class="fw-badge-auto hidden" id="fw-col-badge">Del examen ✓</span>
+                            </div>
+                        </div>
+                        <div class="fw-field">
+                            <label class="fw-label" for="fw-hdl">HDL <span class="fw-unit">mg/dL</span></label>
+                            <div class="fw-input-wrap">
+                                <input type="number" id="fw-hdl" class="fw-input" min="10" max="120" placeholder="ej: 50">
+                                <span class="fw-badge-auto hidden" id="fw-hdl-badge">Del examen ✓</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fw-row">
+                        <div class="fw-field fw-field--slider">
+                            <div class="fw-slider-header">
+                                <label class="fw-label" for="fw-edad">Edad</label>
+                                <span class="fw-slider-display">
+                                    <output class="fw-slider-output" id="fw-edad-output">45</output>
+                                    <span class="fw-unit">años</span>
+                                </span>
+                                <span class="fw-badge-auto hidden" id="fw-edad-badge">Perfil ✓</span>
+                            </div>
+                            <input type="range" id="fw-edad" class="fw-slider" min="20" max="79" value="45" step="1">
+                            <div class="fw-slider-ticks"><span>20</span><span>79</span></div>
+                        </div>
+                        <div class="fw-field fw-field--slider">
+                            <div class="fw-slider-header">
+                                <label class="fw-label" for="fw-pas">Presión sistólica</label>
+                                <span class="fw-slider-display">
+                                    <output class="fw-slider-output" id="fw-pas-output">120</output>
+                                    <span class="fw-unit">mmHg</span>
+                                </span>
+                            </div>
+                            <input type="range" id="fw-pas" class="fw-slider" min="90" max="220" value="120" step="5">
+                            <div class="fw-slider-ticks"><span>90</span><span>220</span></div>
+                        </div>
+                    </div>
+
+                    <div class="fw-row">
+                        <div class="fw-field">
+                            <label class="fw-label">Sexo biológico</label>
+                            <div class="fw-toggle-group" id="fw-sexo">
+                                <button type="button" class="fw-toggle" data-value="hombre">Hombre</button>
+                                <button type="button" class="fw-toggle" data-value="mujer">Mujer</button>
+                            </div>
+                        </div>
+                        <div class="fw-field">
+                            <label class="fw-label">¿Medicación para la PA?</label>
+                            <div class="fw-toggle-group" id="fw-hta-med">
+                                <button type="button" class="fw-toggle" data-value="no">No</button>
+                                <button type="button" class="fw-toggle" data-value="si">Sí</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fw-row">
+                        <div class="fw-field">
+                            <label class="fw-label">¿Fumas actualmente?</label>
+                            <div class="fw-toggle-group" id="fw-tabaco">
+                                <button type="button" class="fw-toggle" data-value="no">No</button>
+                                <button type="button" class="fw-toggle" data-value="si">Sí</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="fw-error hidden" id="fw-error"></p>
+
+                    <button type="button" id="btn-fw-calc" class="btn-fw-calc">
+                        Calcular mi Riesgo
+                    </button>
+
+                    <!-- Resultado -->
+                    <div id="fw-result" class="fw-result hidden">
+                        <div class="fw-result-header">
+                            <span class="fw-result-pct" id="fw-result-pct">—</span>
+                            <span class="fw-result-sub">riesgo a 10 años</span>
+                        </div>
+                        <p class="fw-result-nivel" id="fw-result-nivel">—</p>
+                        <p class="fw-result-disclaimer">Cálculo estimado según Framingham Heart Study (1998). Basado en factores limitados. Consulte a su cardiólogo para evaluación completa.</p>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Comparador Poblacional — OMS Global Health Observatory -->
+            <details id="score-percentiles" class="score-percentiles hidden">
+                <summary class="perc-summary">Comparación Poblacional — OMS</summary>
+                <div class="perc-body">
+                    <!-- Toggle de sexo (requerido para cálculo; no está en perfil aún) -->
+                    <div class="oms-sex-row">
+                        <span class="oms-sex-label">Tu sexo biológico</span>
+                        <div class="oms-sex-group">
+                            <button type="button" class="oms-sex-btn" data-sex="H">Hombre</button>
+                            <button type="button" class="oms-sex-btn" data-sex="M">Mujer</button>
+                        </div>
+                    </div>
+                    <div class="perc-list" id="perc-list"></div>
+                </div>
+            </details>
+
+            <!-- Biomarcadores en rango normal (colapsable) -->
+            <details id="score-normal-details" class="score-normal-details hidden">
+                <summary class="score-normal-summary">
+                    <span id="score-normal-count"></span>
+                </summary>
+                <div id="score-normal-list" class="score-normal-list"></div>
+            </details>
+
+            <!-- Alerta de Tendencia Predictiva (requiere ≥2 exámenes) -->
+            <div id="score-tendencias" class="score-tendencias hidden">
+                <h3 class="tend-title">Tendencias desde tu último control</h3>
+                <div class="tend-list"></div>
+            </div>
+
+            <!-- Simulador "Qué pasa si" -->
+            <details id="score-simulador" class="score-simulador hidden">
+                <summary class="sim-summary">Simulador — ¿Qué pasa si mejoras un valor?</summary>
+                <div class="sim-body">
+                    <p class="sim-intro">Mueve los sliders para simular cómo mejorarían tu score y tu riesgo si cambias cada valor.</p>
+                    <div class="sim-list" id="sim-list"></div>
+                </div>
+            </details>
+
+            <!-- Plan de Acción Nutricional -->
+            <div id="score-recommendations" class="score-recommendations hidden">
+                <h3 class="score-rec-title">Plan de Acción Nura</h3>
+                <div id="score-rec-list" class="score-rec-list"></div>
+                <p class="score-rec-disclaimer">Recomendaciones informativas. Consulte a su médico antes de realizar cambios en su dieta.</p>
+            </div>
+
+            <!-- Próximo control: el contenido se muestra en #calendario-section (nivel dashboard) -->
+
+            <!-- Sinergia Fase 1 -->
+            <div id="score-sinergia" class="score-sinergia hidden">
+                <span class="sinergia-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                </span>
+                <p class="sinergia-text">Tu perfil ha sido actualizado con los datos de tu examen. Cuando escanees alimentos, las alertas considerarán estos nuevos datos.</p>
+            </div>
+
+            <!-- Disclaimer legal -->
+            <p class="score-disclaimer">
+                Información orientativa. Consulte a su médico.<br>
+                Este análisis no constituye diagnóstico médico.
+            </p>
+
+            <!-- Acciones -->
+            <div class="score-actions">
+                <button type="button" id="btn-print-brief" class="btn-print-brief">
+                    <i data-lucide="file-down" style="width:16px;height:16px;flex-shrink:0;"></i>
+                    <span id="btn-print-brief-label">Brief para Médico</span>
+                </button>
+                <button type="button" id="btn-score-to-dashboard" class="btn-score-to-dashboard hidden">
+                    ← Volver al Dashboard
+                </button>
+            </div>
+
+            <!-- ── Contenido solo visible al imprimir ─────────────── -->
+            <div id="print-brief" class="print-brief">
+                <h1 class="print-title">Resumen de Biomarcadores — Nura</h1>
+                <p id="print-date" class="print-date"></p>
+                <table id="print-table" class="print-table">
+                    <thead>
+                        <tr>
+                            <th>Biomarcador</th>
+                            <th>Valor</th>
+                            <th>Unidad</th>
+                            <th>Estado</th>
+                            <th>Rango Normal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="print-table-body"></tbody>
+                </table>
+                <p class="print-disclaimer">
+                    Información orientativa generada por Nura App. No constituye diagnóstico médico.
+                    Consulte a su médico tratante para la interpretación clínica de estos resultados.
+                </p>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════
+             Historial de Exámenes — Fase 3, Verificación 4
+             ══════════════════════════════════════════════════════ -->
+        <div class="dashboard-card exam-history-section" id="exam-history-section">
+            <div class="history-header">
+                <h2 class="card-title history-title">
+                    <span class="history-icon"><i data-lucide="clipboard-list"></i></span>
+                    Historial de Exámenes
+                </h2>
+                <button type="button" id="btn-history-refresh" class="btn-history-refresh" title="Actualizar">↻</button>
+            </div>
+
+            <!-- Estado: cargando -->
+            <div id="history-loading" class="history-loading">
+                <div class="history-spinner"></div>
+                <p>Cargando historial…</p>
+            </div>
+
+            <!-- Estado: vacío -->
+            <div id="history-empty" class="history-empty hidden">
+                <span class="history-empty-icon"><i data-lucide="flask-conical"></i></span>
+                <p>Aún no tienes exámenes guardados.</p>
+                <p class="history-empty-sub">Sube tu primer examen usando la sección de arriba.</p>
+            </div>
+
+            <!-- Estado: error -->
+            <div id="history-error" class="history-error hidden">
+                <p>No se pudo cargar el historial. Verifica tu conexión.</p>
+            </div>
+
+            <!-- Lista de entradas -->
+            <ul id="history-list" class="history-list hidden" aria-label="Historial de exámenes"></ul>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════
+             Mi Calendario de Salud — Fase 4
+             ══════════════════════════════════════════════════════ -->
+        <div class="dashboard-card nura-card-glass" id="calendario-section">
+            <h2 class="card-title nura-title-gradient">
+                <i data-lucide="calendar"></i> Mi Calendario de Salud
+            </h2>
+            <p style="font-size:14px;color:#6B7280;margin-bottom:16px;">
+                Gestiona tus próximos controles y recordatorios médicos.
+            </p>
+
+            <!-- Próximo control sugerido (poblado por JS tras analizar un examen) -->
+            <div id="score-reexamen" class="score-reexamen hidden">
+                <div class="reexamen-header">
+                    <span class="reexamen-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </span>
+                    <div class="reexamen-header-text">
+                        <p class="reexamen-label">Próximo control sugerido</p>
+                        <p class="reexamen-fecha" id="nextControlDate">—</p>
+                    </div>
+                    <span class="reexamen-intervalo" id="reexamen-intervalo"></span>
+                </div>
+                <p class="reexamen-motivo" id="reexamen-motivo"></p>
+                <button type="button" id="btn-reexamen-calendar" class="btn-reexamen-calendar">
+                    Guardar en Calendario (.ics)
+                </button>
+                <p class="reexamen-disclaimer">Fecha orientativa. No reemplaza la indicación de su médico tratante.</p>
+            </div>
+
+            <!-- ── Navegación del mini calendario ── -->
+            <div class="cal-header">
+                <button id="cal-prev" class="cal-nav-btn" aria-label="Mes anterior">‹</button>
+                <span id="cal-month-label" class="cal-month-label">Cargando…</span>
+                <button id="cal-next" class="cal-nav-btn" aria-label="Mes siguiente">›</button>
+            </div>
+
+            <!-- Grid: 7 columnas (Lu–Do) + celdas generadas por JS -->
+            <div class="cal-grid" id="cal-grid">
+                <div class="cal-weekday">Lu</div>
+                <div class="cal-weekday">Ma</div>
+                <div class="cal-weekday">Mi</div>
+                <div class="cal-weekday">Ju</div>
+                <div class="cal-weekday">Vi</div>
+                <div class="cal-weekday">Sa</div>
+                <div class="cal-weekday">Do</div>
+            </div>
+
+            <!-- Leyenda de tipos de evento -->
+            <div class="cal-legend">
+                <span class="cal-dot cal-dot--cita_medica"></span><span>Cita médica</span>
+                <span class="cal-dot cal-dot--examen_lab"></span><span>Examen lab</span>
+                <span class="cal-dot cal-dot--medicamento"></span><span>Medicamento</span>
+            </div>
+
+            <!-- Panel del día seleccionado (oculto hasta que el usuario toca un día) -->
+            <div id="cal-day-events" class="cal-day-events hidden">
+                <p id="cal-day-title" class="cal-day-title"></p>
+                <div id="cal-events-list" class="cal-events-list"></div>
+            </div>
+
+            <!-- Placeholder cuando no hay día seleccionado -->
+            <div id="calendario-placeholder" class="calendario-placeholder">
+                <p style="font-size:13px;color:#9ca3af;text-align:center;padding:8px 0;">
+                    Toca un día para ver o agregar eventos.
+                </p>
+            </div>
+
+            <!-- Botón agregar evento -->
+            <button type="button" id="btn-add-event" class="btn-add-event">
+                + Agregar evento de salud
+            </button>
+        </div>
+
         <!-- Sección Acciones Rápidas -->
         <div class="actions-container">
             <a href="../onboarding/index.html" class="action-btn">
-                <div class="action-icon icon-profile">👤</div>
+                <div class="action-icon icon-profile"><i data-lucide="user-circle"></i></div>
                 <span id="txt-profile" class="action-text"></span>
                 <span class="action-arrow">→</span>
             </a>
-            
+
             <a href="../medications/index.html" class="action-btn">
-                <div class="action-icon icon-meds">💊</div>
+                <div class="action-icon icon-meds"><i data-lucide="pill"></i></div>
                 <span id="txt-meds" class="action-text"></span>
                 <span class="action-arrow">→</span>
             </a>
-            
+
             <a href="../scanner/index.html" class="action-btn">
-                <div class="action-icon icon-scan">🔍</div>
+                <div class="action-icon icon-scan"><i data-lucide="search"></i></div>
                 <span id="txt-scan" class="action-text"></span>
                 <span class="action-arrow">→</span>
             </a>
+
+            <a href="../genetics/index.html" class="action-btn">
+                <div class="action-icon" style="background: rgba(139,133,214,0.12);"><i data-lucide="dna" style="color:#8B85D6;"></i></div>
+                <span class="action-text">Análisis Genético</span>
+                <span class="action-arrow">→</span>
+            </a>
+
+            <button type="button" id="btn-caregiver-pin" class="action-btn" style="width:100%;text-align:left;background:none;border:none;cursor:pointer;">
+                <div class="action-icon" style="background:rgba(86,182,194,0.12);"><i data-lucide="shield-check"></i></div>
+                <span class="action-text">Generar Pase de Cuidador</span>
+                <span class="action-arrow">→</span>
+            </button>
+        </div>
+
+        <!-- ── Modal: Pase de Cuidador ──────────────────────────── -->
+        <div id="caregiver-modal-overlay" class="caregiver-modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="caregiver-modal-title">
+            <div class="caregiver-modal">
+                <button type="button" id="btn-close-caregiver-modal" class="modal-close-btn" aria-label="Cerrar">&times;</button>
+                <div class="modal-icon"><i data-lucide="shield-check"></i></div>
+                <h2 id="caregiver-modal-title" class="modal-title">Pase de Cuidador</h2>
+                <p class="modal-hint">Comparte este PIN con la persona que te asistirá. Expira en 24 horas y no da acceso a tu historial médico.</p>
+
+                <!-- Estado: generando -->
+                <div id="caregiver-pin-loading" class="pin-modal-loading">
+                    <div class="modal-spinner"></div>
+                    <p>Generando código seguro…</p>
+                </div>
+
+                <!-- Estado: PIN generado -->
+                <div id="caregiver-pin-content" class="hidden">
+                    <div id="caregiver-qr" class="caregiver-qr"></div>
+                    <div class="caregiver-pin-display" id="caregiver-pin-text"></div>
+                    <p id="caregiver-expiry-label" class="caregiver-expiry-label"></p>
+                    <p class="caregiver-url-label">URL para el cuidador:</p>
+                    <a id="caregiver-url-link" href="../caregiver/index.html" class="caregiver-url-link" target="_blank">Abrir vista Cuidador →</a>
+                </div>
+
+                <!-- Estado: error -->
+                <div id="caregiver-pin-error" class="pin-modal-error hidden">
+                    <p>No se pudo generar el PIN. Verifica tu conexión e intenta de nuevo.</p>
+                    <button type="button" id="btn-retry-caregiver" class="btn-modal-retry">Reintentar</button>
+                </div>
+            </div>
         </div>
         
     </div>
 
+    <!-- CDN: Generador de QR para el Pase de Cuidador -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <!-- Carga Visual de Archivos Estáticos -->
     <script src="i18n.js"></script>
     <!-- [AGENTE 01] LEGAL_VERSION — requerida por el Guardia de Ruta en app.js -->
@@ -85,6 +947,134 @@
     <script src="../shared/storage.js"></script>
     <!-- [LÓGICO BACKEND] Inicializa window.NuraFirebase antes de DOMContentLoaded -->
     <script type="module" src="../shared/firebase-config.js"></script>
+    <!-- CDN: Escáner de código de barras -->
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <!-- Capa 1: Escudo Crítico (reglas de vida o muerte) -->
+    <script src="../shared/critical-rules.js"></script>
+    <script src="../shared/clinical-phases.js"></script>
+    <script> window.NURA_SEARCH_FOOD_URL = 'https://us-central1-nura-33fc1.cloudfunctions.net/searchFoodText'; </script>
+    <!-- Capa 2: Agente de IA médica (Motor Nura V2 vía Cloud Function) -->
+    <script src="../services/ai-medical-agent.js"></script>
+    <!-- Widget escáner: expone NuraDashboardUI.renderFoodAnalysis para app.js -->
+    <script src="scanner.js"></script>
+    <script src="pathology-manager.js"></script>
     <script src="app.js"></script>
+    <script src="calendar.js"></script>
+
+    <!-- ══ Modal: Explicación Clínica de Biomarcador ═══════════════ -->
+    <div id="explicacion-modal" class="expl-overlay hidden"
+         role="dialog" aria-modal="true" aria-labelledby="expl-nombre">
+        <div class="expl-panel">
+            <button type="button" id="expl-close" class="expl-close" aria-label="Cerrar">✕</button>
+            <div class="expl-header">
+                <span class="expl-icono" id="expl-icono"><i data-lucide="stethoscope"></i></span>
+                <div class="expl-header-meta">
+                    <p class="expl-organo-label">Órgano / Sistema</p>
+                    <p class="expl-organo" id="expl-organo">—</p>
+                </div>
+            </div>
+            <h3 class="expl-nombre" id="expl-nombre">—</h3>
+            <div class="expl-body">
+                <div class="expl-item">
+                    <p class="expl-item-label">¿Qué mide?</p>
+                    <p class="expl-item-text" id="expl-que-es">—</p>
+                </div>
+                <div class="expl-item">
+                    <p class="expl-item-label">¿Por qué importa?</p>
+                    <p class="expl-item-text" id="expl-importa">—</p>
+                </div>
+                <div class="expl-item">
+                    <p class="expl-item-label">Antes del examen</p>
+                    <p class="expl-item-text" id="expl-consejo">—</p>
+                </div>
+            </div>
+            <p class="expl-disclaimer">Información educativa. No constituye diagnóstico ni consejo médico.</p>
+        </div>
+    </div>
+    
+    <!-- ══ Modal: Nuevo Evento de Salud (Calendario Fase 4) ═════════ -->
+    <div id="cal-modal" class="cal-modal-overlay hidden"
+         role="dialog" aria-modal="true" aria-labelledby="cal-modal-heading">
+        <div class="cal-modal-box">
+            <div class="cal-modal-header">
+                <h3 id="cal-modal-heading" class="cal-modal-title">Nuevo Evento de Salud</h3>
+                <button id="cal-modal-close" class="cal-modal-close" aria-label="Cerrar">✕</button>
+            </div>
+
+            <!-- Tabs: tipo de evento -->
+            <div class="cal-tabs" role="tablist">
+                <button class="cal-tab" data-tab="cita_medica" role="tab">🔵 Cita médica</button>
+                <button class="cal-tab" data-tab="examen_lab" role="tab">🟢 Examen</button>
+                <button class="cal-tab" data-tab="medicamento" role="tab">🟣 Medicamento</button>
+            </div>
+
+            <!-- ── Tab: Cita Médica ── -->
+            <div class="cal-tab-content" data-tab="cita_medica">
+                <label class="cal-label">Motivo de la cita
+                    <input type="text" id="cal-cita-titulo" class="cal-input" placeholder="Ej: Control cardiológico">
+                </label>
+                <label class="cal-label">Fecha
+                    <input type="date" id="cal-cita-fecha" class="cal-input cal-input-date">
+                </label>
+                <label class="cal-label">Hora
+                    <input type="time" id="cal-cita-hora" class="cal-input cal-input-time" value="09:00">
+                </label>
+                <label class="cal-label">Médico / Especialidad (opcional)
+                    <input type="text" id="cal-cita-doctor" class="cal-input" placeholder="Dr. García — Cardiología">
+                </label>
+                <label class="cal-label">Lugar / Centro (opcional)
+                    <input type="text" id="cal-cita-lugar" class="cal-input" placeholder="Clínica Alemana, Piso 3">
+                </label>
+            </div>
+
+            <!-- ── Tab: Examen de Laboratorio ── -->
+            <div class="cal-tab-content hidden" data-tab="examen_lab">
+                <label class="cal-label">Tipo de examen
+                    <select id="cal-examen-tipo" class="cal-input cal-select">
+                        <option value="">— Seleccionar examen —</option>
+                    </select>
+                </label>
+                <div id="cal-preparativo-preview" class="cal-preparativo-preview hidden"></div>
+                <label class="cal-label">Fecha
+                    <input type="date" id="cal-examen-fecha" class="cal-input cal-input-date">
+                </label>
+                <label class="cal-label">Hora (idealmente mañana)
+                    <input type="time" id="cal-examen-hora" class="cal-input cal-input-time" value="08:00">
+                </label>
+            </div>
+
+            <!-- ── Tab: Medicamento ── -->
+            <div class="cal-tab-content hidden" data-tab="medicamento">
+                <label class="cal-label">Del perfil de medicamentos
+                    <select id="cal-med-sugeridos" class="cal-input cal-select">
+                        <option value="">— Seleccionar del perfil —</option>
+                    </select>
+                </label>
+                <label class="cal-label">Nombre del medicamento
+                    <input type="text" id="cal-med-nombre" class="cal-input" placeholder="Ej: Metformina 500mg">
+                </label>
+                <label class="cal-label">Primera toma del día
+                    <input type="time" id="cal-med-hora1" class="cal-input cal-input-time">
+                </label>
+                <label class="cal-label">Segunda toma (opcional)
+                    <input type="time" id="cal-med-hora2" class="cal-input cal-input-time">
+                </label>
+                <label class="cal-label">Frecuencia
+                    <select id="cal-med-frecuencia" class="cal-input cal-select">
+                        <option value="diario">Diario</option>
+                        <option value="dias_alternos">Días alternos</option>
+                        <option value="semanal">Semanal</option>
+                    </select>
+                </label>
+                <label class="cal-label">Fecha de inicio
+                    <input type="date" id="cal-med-fecha" class="cal-input cal-input-date">
+                </label>
+            </div>
+
+            <button type="button" id="btn-save-event" class="btn-save-event">Guardar evento</button>
+        </div>
+    </div>
+
+    <script>lucide.createIcons();</script>
 </body>
 </html>

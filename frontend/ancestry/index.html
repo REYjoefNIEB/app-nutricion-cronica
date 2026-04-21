@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nura — Ancestría Genética</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --primary: #8B85D6; --primary-end: #6BA5D8;
+            --gradient: linear-gradient(135deg, #8B85D6 0%, #6BA5D8 100%);
+            --bg: #F7F7F9; --card: #FFFFFF; --ink: #1A1A2E; --ink-60: #666680;
+            --radius: 16px; --radius-sm: 10px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+        .container { max-width: 720px; margin: 0 auto; padding: 24px 16px 60px; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--primary); font-size: 13px; font-weight: 600; text-decoration: none; margin-bottom: 16px; }
+        .page-header { text-align: center; padding: 32px 24px; background: var(--card); border-radius: var(--radius); margin-bottom: 20px; box-shadow: 0 2px 12px rgba(139,133,214,0.08); }
+        .page-header h1 { font-size: 26px; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+        .page-header p { color: var(--ink-60); font-size: 14px; }
+        .card { background: var(--card); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+        .card h2 { font-size: 17px; font-weight: 700; margin-bottom: 16px; }
+        .disclaimer-box { background: #FFF9E6; border-left: 4px solid #F4C542; padding: 12px 14px; border-radius: 8px; font-size: 13px; color: #5A4A00; margin-bottom: 20px; }
+        .disclaimer-box strong { display: block; margin-bottom: 3px; }
+        .chart-wrap { max-width: 280px; margin: 0 auto 24px; }
+        .pop-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #F0F0F5; }
+        .pop-row:last-child { border-bottom: none; }
+        .pop-flag { font-size: 22px; min-width: 28px; }
+        .pop-name { flex: 1; font-size: 14px; font-weight: 500; }
+        .pop-bar-wrap { width: 120px; height: 8px; background: #EEE; border-radius: 4px; overflow: hidden; }
+        .pop-bar { height: 100%; border-radius: 4px; background: var(--gradient); }
+        .pop-pct { font-size: 15px; font-weight: 700; min-width: 46px; text-align: right; }
+        .confidence-badge { display: inline-flex; align-items: center; gap: 5px; background: rgba(139,133,214,0.1); color: var(--primary); font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 20px; margin-bottom: 12px; }
+        .insight-box { background: linear-gradient(135deg,rgba(139,133,214,0.08),rgba(107,165,216,0.08)); border-radius: 12px; padding: 16px; font-size: 14px; line-height: 1.6; }
+        .btn-analyze { width: 100%; padding: 14px; background: var(--gradient); color: #FFF; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; }
+        .btn-analyze:disabled { opacity: 0.5; cursor: not-allowed; }
+        .spinner { display: none; text-align: center; padding: 40px; color: var(--ink-60); }
+        .spinner.active { display: block; }
+        .error-box { background: #FFF0F0; border-left: 4px solid #D45D5D; padding: 12px 14px; border-radius: 8px; font-size: 14px; color: #D45D5D; margin-top: 16px; display: none; }
+        .no-data { text-align: center; padding: 40px 20px; color: var(--ink-60); }
+        .no-data a { color: var(--primary); font-weight: 600; }
+        .accuracy-note { font-size: 12px; color: var(--ink-60); text-align: center; margin-top: 8px; }
+        /* Sub-populations */
+        .subpop-section { margin-top: 20px; }
+        .subpop-header { font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; }
+        .subpop-group { margin-bottom: 14px; }
+        .subpop-group-name { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+        .subpop-group-pct { font-size: 13px; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .subpop-pill-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+        .subpop-pill { font-size: 12px; padding: 4px 10px; border-radius: 20px; background: rgba(139,133,214,0.08); color: var(--ink); }
+        /* World regions */
+        .regions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        @media (max-width: 480px) { .regions-grid { grid-template-columns: repeat(2, 1fr); } }
+        .region-box { text-align: center; padding: 14px 10px; border-radius: 12px; position: relative; overflow: hidden; }
+        .region-box::before { content: ''; position: absolute; inset: 0; opacity: 0.12; background: var(--rbg); border-radius: 12px; }
+        .region-flag { font-size: 28px; margin-bottom: 6px; }
+        .region-name { font-size: 11px; font-weight: 700; color: var(--ink-60); text-transform: uppercase; letter-spacing: 0.03em; }
+        .region-pct { font-size: 20px; font-weight: 800; margin-top: 2px; }
+        .region-bar-wrap { height: 4px; background: #EEE; border-radius: 2px; margin-top: 6px; overflow: hidden; }
+        .region-bar { height: 100%; border-radius: 2px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="../dashboard/index.html" class="back-link">← Volver al Dashboard</a>
+
+    <div class="page-header">
+        <div style="font-size:48px;margin-bottom:12px;">🌍</div>
+        <h1>Tu Ancestría Genética</h1>
+        <p>Estimación basada en marcadores AIM del Proyecto 1000 Genomes · UNESCO 2003</p>
+    </div>
+
+    <div class="disclaimer-box">
+        <strong>Información orientativa — no genealógica</strong>
+        Los porcentajes son estimaciones estadísticas (±6-15%). No reemplazan pruebas genealógicas oficiales ni tests de ADN mitocondrial/Y. Ley 20.584 Chile.
+    </div>
+
+    <div id="spinnerSection" class="spinner">
+        <div style="font-size:36px;margin-bottom:12px;">🧬</div>
+        <p>Calculando tu ancestría…</p>
+        <p style="font-size:12px;margin-top:8px;color:var(--ink-60)">Esto puede tardar 15-30 segundos</p>
+    </div>
+
+    <div id="noDataSection" class="card no-data" style="display:none;">
+        <div style="font-size:48px;margin-bottom:12px;">🧬</div>
+        <p style="font-weight:600;margin-bottom:8px;">No hay datos genéticos</p>
+        <p>Sube tu archivo de ADN primero para ver tu ancestría.</p>
+        <a href="../genetics/index.html" style="display:inline-block;margin-top:16px;padding:10px 20px;background:var(--gradient);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">Subir mi ADN</a>
+    </div>
+
+    <div id="resultsSection" style="display:none;">
+        <div class="card">
+            <div id="confidenceBadge" class="confidence-badge"></div>
+            <h2>Distribución de ancestría</h2>
+            <div class="chart-wrap">
+                <canvas id="ancestryDonut"></canvas>
+            </div>
+            <div id="popBreakdown"></div>
+            <p class="accuracy-note" id="accuracyNote"></p>
+        </div>
+
+        <!-- World regions visual -->
+        <div class="card">
+            <h2>🗺️ Distribución por Regiones del Mundo</h2>
+            <div class="regions-grid" id="regionsGrid"></div>
+        </div>
+
+        <!-- Sub-populations breakdown -->
+        <div class="card">
+            <h2>🔍 Sub-poblaciones Detectadas</h2>
+            <div class="subpop-section" id="subpopSection"></div>
+        </div>
+
+        <div class="card">
+            <h2>🧠 ¿Qué significa esto?</h2>
+            <div class="insight-box" id="insightText"></div>
+        </div>
+
+        <button class="btn-analyze" id="btnReanalyze" onclick="loadAncestry()">Recalcular ancestría</button>
+    </div>
+
+    <div class="card" id="analyzeSection" style="display:none;">
+        <p style="font-size:14px;color:var(--ink-60);margin-bottom:16px;">Tienes datos genéticos cargados. Calcula tu ancestría ahora.</p>
+        <button class="btn-analyze" id="btnAnalyze" onclick="loadAncestry()">Calcular mi ancestría</button>
+    </div>
+
+    <div id="errorBox" class="error-box"></div>
+</div>
+
+<script type="module" src="../shared/firebase-config.js"></script>
+<script>
+let _user  = null;
+let _chart = null;
+
+const COLORS = {
+    EUR:     '#AFA9EC', AFR: '#F4A6A6', EAS: '#FFD77A',
+    SAS:     '#FDB5B5', AMR_NAT: '#A8E6CF', OCE: '#B5D8F5'
+};
+
+document.addEventListener('DOMContentLoaded', async () => {
+    let tries = 0;
+    while (!window.NuraFirebase && tries < 40) {
+        await new Promise(r => setTimeout(r, 100));
+        tries++;
+    }
+    if (!window.NuraFirebase) return;
+
+    const { auth } = window.NuraFirebase;
+    await auth.authStateReady();
+    _user = auth.currentUser;
+    if (!_user) { window.location.href = '../auth/index.html'; return; }
+
+    // Verificar si ya existe un resultado guardado
+    await tryLoadExisting();
+});
+
+async function tryLoadExisting() {
+    try {
+        const { getFirestore, doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
+        const db   = getFirestore(window.NuraFirebase.app);
+        const snap = await getDoc(doc(db, 'users', _user.uid, 'ancestry', 'result'));
+
+        if (snap.exists()) {
+            renderResults(snap.data());
+        } else {
+            // Verificar si tiene datos genéticos
+            const userSnap = await getDoc(doc(db, 'users', _user.uid));
+            if (userSnap.data()?.hasGeneticData) {
+                document.getElementById('analyzeSection').style.display = 'block';
+            } else {
+                document.getElementById('noDataSection').style.display = 'block';
+            }
+        }
+    } catch (err) {
+        document.getElementById('noDataSection').style.display = 'block';
+    }
+}
+
+async function loadAncestry() {
+    document.getElementById('analyzeSection').style.display  = 'none';
+    document.getElementById('resultsSection').style.display  = 'none';
+    document.getElementById('errorBox').style.display        = 'none';
+    document.getElementById('spinnerSection').classList.add('active');
+
+    try {
+        const { getFunctions, httpsCallable } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js');
+        const fns  = getFunctions(window.NuraFirebase.app, 'us-central1');
+        const fn   = httpsCallable(fns, 'analyzeAncestry', { timeout: 130000 });
+        const res  = await fn();
+        document.getElementById('spinnerSection').classList.remove('active');
+        renderResults(res.data.ancestry);
+    } catch (err) {
+        document.getElementById('spinnerSection').classList.remove('active');
+        const box = document.getElementById('errorBox');
+        box.style.display = 'block';
+        box.textContent   = 'Error: ' + (err.message || 'Error desconocido');
+        if (err.message && err.message.includes('not-found')) {
+            box.innerHTML = 'No se encontraron datos genéticos. <a href="../genetics/index.html" style="color:var(--primary)">Sube tu ADN primero →</a>';
+        }
+    }
+}
+
+function renderResults(data) {
+    document.getElementById('spinnerSection').classList.remove('active');
+    document.getElementById('resultsSection').style.display = 'block';
+    document.getElementById('analyzeSection').style.display = 'none';
+    document.getElementById('noDataSection').style.display  = 'none';
+
+    const pops = data.populations || [];
+
+    // Badge de confianza
+    const confMap = { high: '🟢 Alta confianza', medium: '🟡 Confianza moderada', low: '🟠 Confianza baja' };
+    const badge   = document.getElementById('confidenceBadge');
+    badge.textContent = (confMap[data.confidence] || '🔵 Estimación') + ' · ' + (data.accuracy || '');
+
+    // Donut Chart
+    if (_chart) _chart.destroy();
+    const ctx = document.getElementById('ancestryDonut').getContext('2d');
+    _chart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels:   pops.map(p => p.flag + ' ' + p.nameEs),
+            datasets: [{ data: pops.map(p => p.percentage), backgroundColor: pops.map(p => COLORS[p.population] || '#CCC'), borderWidth: 2, borderColor: '#fff' }]
+        },
+        options: { cutout: '65%', plugins: { legend: { display: false } } }
+    });
+
+    // Desglose con barras
+    const breakdown = document.getElementById('popBreakdown');
+    breakdown.innerHTML = pops.map(p => `
+        <div class="pop-row">
+            <span class="pop-flag">${p.flag}</span>
+            <span class="pop-name">${p.nameEs}</span>
+            <div class="pop-bar-wrap"><div class="pop-bar" style="width:${p.percentage}%;background:${COLORS[p.population] || 'var(--gradient)'}"></div></div>
+            <span class="pop-pct">${p.percentage}%</span>
+        </div>
+    `).join('');
+
+    document.getElementById('accuracyNote').textContent =
+        `Basado en ${data.aimsAnalyzed || 0} marcadores AIM de ${data.totalAimsInDb || 0} disponibles · Precisión ${data.accuracy || ''}`;
+
+    // World regions visual
+    renderWorldRegions(pops);
+
+    // Sub-populations breakdown
+    renderSubpopulations(pops);
+
+    // Insight personalizado
+    generateInsight(pops);
+}
+
+function renderWorldRegions(pops) {
+    const REGION_META = {
+        EUR:     { name: 'Europa',       flag: '🇪🇺', color: '#AFA9EC' },
+        AFR:     { name: 'África',       flag: '🌍',  color: '#F4A6A6' },
+        EAS:     { name: 'Asia del Este',flag: '🌏',  color: '#FFD77A' },
+        SAS:     { name: 'Sur de Asia',  flag: '🇮🇳',  color: '#FDB5B5' },
+        AMR_NAT: { name: 'Amerindio',    flag: '🌎',  color: '#A8E6CF' },
+        OCE:     { name: 'Oceanía',      flag: '🌊',  color: '#B5D8F5' },
+    };
+    const ALL_POPS = Object.keys(REGION_META);
+    const popMap   = {};
+    pops.forEach(p => { popMap[p.population] = p; });
+
+    const grid = document.getElementById('regionsGrid');
+    grid.innerHTML = ALL_POPS.map(pid => {
+        const meta = REGION_META[pid];
+        const p    = popMap[pid];
+        const pct  = p ? p.percentage : 0;
+        const opacity = pct > 0 ? Math.max(0.15, Math.min(1, pct / 60)) : 0.05;
+        return `
+            <div class="region-box" style="--rbg:${meta.color}; opacity:${pct > 0 ? 1 : 0.5}">
+                <div class="region-flag">${meta.flag}</div>
+                <div class="region-name">${meta.name}</div>
+                <div class="region-pct" style="color:${pct > 0 ? meta.color : '#CCC'}">${pct > 0 ? pct + '%' : '—'}</div>
+                <div class="region-bar-wrap">
+                    <div class="region-bar" style="width:${pct}%;background:${meta.color}"></div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function renderSubpopulations(pops) {
+    const section = document.getElementById('subpopSection');
+    if (!pops.length) { section.innerHTML = '<p style="color:var(--ink-60);font-size:14px;">No hay datos suficientes para mostrar sub-poblaciones.</p>'; return; }
+
+    const significant = pops.filter(p => p.percentage >= 2 && p.subpopulations && Object.keys(p.subpopulations).length > 0);
+    if (!significant.length) { section.innerHTML = '<p style="color:var(--ink-60);font-size:14px;">No se detectaron componentes mayores con sub-poblaciones.</p>'; return; }
+
+    section.innerHTML = significant.map(p => {
+        const subpops  = Object.values(p.subpopulations || {});
+        const pills    = subpops.map(s => `<span class="subpop-pill">${s.flag || ''} ${s.name}</span>`).join('');
+        const barColor = COLORS[p.population] || '#CCC';
+        return `
+            <div class="subpop-group">
+                <div class="subpop-group-name">
+                    <span style="width:12px;height:12px;border-radius:50%;background:${barColor};display:inline-block;flex-shrink:0"></span>
+                    <span>${p.flag} ${p.nameEs}</span>
+                    <span class="subpop-group-pct">${p.percentage}%</span>
+                </div>
+                <div class="subpop-pill-wrap">${pills}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+function generateInsight(pops) {
+    const box = document.getElementById('insightText');
+    if (!pops.length) { box.textContent = 'No hay suficientes datos para generar insights.'; return; }
+
+    const top  = pops[0];
+    const eur  = pops.find(p => p.population === 'EUR');
+    const amr  = pops.find(p => p.population === 'AMR_NAT');
+    const eas  = pops.find(p => p.population === 'EAS');
+    const afr  = pops.find(p => p.population === 'AFR');
+
+    let text = '';
+
+    if (eur && amr && eur.percentage > 30 && amr.percentage > 20) {
+        text += `<strong>Patrón latinoamericano mestizo</strong><br>Tienes ${eur.percentage}% europeo y ${amr.percentage}% amerindio, un patrón típico en la población chilena y latinoamericana. Esta mezcla es el resultado de la historia colonial de América del Sur desde el siglo XVI.<br><br>`;
+    } else if (eur && eur.percentage > 55) {
+        text += `<strong>Predominancia europea</strong><br>Tu genética muestra ${eur.percentage}% de ancestría europea. Es posible que tus antepasados provengan principalmente de Europa, con mayor peso en ${eur.percentage > 70 ? 'Europa del Norte u Oeste' : 'Europa del Sur (España, Italia, Portugal)'}.<br><br>`;
+    } else if (amr && amr.percentage > 50) {
+        text += `<strong>Fuerte componente amerindio</strong><br>Con ${amr.percentage}% de ancestría amerindia, tu genética refleja un importante legado de los pueblos originarios de América. En Chile, esto puede incluir herencia mapuche, aymara, diaguita o rapa nui.<br><br>`;
+    } else if (eas && eas.percentage > 35) {
+        text += `<strong>Ancestría asiática del Este</strong><br>Tienes ${eas.percentage}% de ancestría de Asia Oriental. Este componente es también relevante en algunos pueblos amerindios, dada la migración original a través del Estrecho de Bering hace ~15.000 años.<br><br>`;
+    } else if (afr && afr.percentage > 20) {
+        text += `<strong>Componente africano significativo</strong><br>Con ${afr.percentage}% de ancestría africana, tu genética refleja historia afrodescendiente. En Chile, esto puede estar asociado a comunidades de Arica o Atacama.<br><br>`;
+    } else {
+        text += `<strong>Mezcla genética diversa</strong><br>Tu genética muestra una mezcla de múltiples orígenes geográficos.<br><br>`;
+    }
+
+    text += `<em style="font-size:12px;color:#888">Estos porcentajes son estimaciones estadísticas con precisión ±6-15%. Para genealogía precisa consulta un genealogista certificado o test de ADN mitocondrial.</em>`;
+    box.innerHTML = text;
+}
+</script>
+</body>
+</html>

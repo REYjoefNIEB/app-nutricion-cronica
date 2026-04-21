@@ -1,0 +1,67 @@
+rules_version = '2';
+
+// =================================================================
+// Nura — Reglas de Firebase Storage
+// Versión: 1.0.0 — Fase 3 (Lector de Exámenes Clínicos)
+// Cumplimiento: Ley 19.628 (Chile) · GDPR · HIPAA
+//
+// PRINCIPIO DE DISEÑO:
+//   El cliente solo puede ESCRIBIR en su propia carpeta temporal.
+//   La LECTURA y ELIMINACIÓN son exclusivas del Admin SDK (backend),
+//   que garantiza la eliminación del archivo en ≤60 segundos.
+// =================================================================
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // ── Carpeta temporal de exámenes médicos ─────────────────────
+    //
+    // Condiciones de escritura (TODAS deben cumplirse):
+    //   1. Usuario autenticado con Firebase Auth
+    //   2. El UID del token coincide con el segmento {uid} del path
+    //      (evita que un usuario escriba en la carpeta de otro)
+    //   3. Tamaño ≤ 10 MB
+    //   4. Content-Type: PDF, JPEG o PNG exclusivamente
+    //
+    match /uploads/temp_exams/{uid}/{filename} {
+
+      allow write: if request.auth != null
+                   && request.auth.uid == uid
+                   && request.resource.size <= 10 * 1024 * 1024
+                   && request.resource.contentType.matches(
+                        'application/pdf|image/jpeg|image/png'
+                      );
+
+      // Lectura bloqueada desde el cliente:
+      //   El backend (Admin SDK) descarga directamente desde GCS.
+      //   El cliente no necesita ni debe poder leer el archivo subido.
+      allow read:   if false;
+
+      // Eliminación bloqueada desde el cliente:
+      //   La eliminación la ejecuta el backend en el bloque finally{}
+      //   de processMedicalExam, garantizando que ocurra siempre.
+      allow delete: if false;
+    }
+
+    // ── Archivos crudos de ADN (temporal, auto-eliminado por backend) ──
+    //
+    // El cliente sube el archivo; el backend lo lee, procesa y elimina.
+    // La lectura desde el cliente está bloqueada — solo Admin SDK accede.
+    match /genetic-raw/{userId}/{fileName} {
+      allow write: if request.auth != null
+                   && request.auth.uid == userId
+                   && request.resource.size <= 50 * 1024 * 1024
+                   && (request.resource.contentType.matches('text/.*')
+                       || request.resource.contentType == 'application/octet-stream'
+                       || request.resource.contentType == 'application/zip');
+
+      allow read:   if false;
+      allow delete: if false;
+    }
+
+    // ── Denegar todo acceso a cualquier otra ruta ────────────────
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

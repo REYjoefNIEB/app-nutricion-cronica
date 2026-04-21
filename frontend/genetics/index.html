@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nura — Análisis Genético</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B85D6;
+            --primary-end: #6BA5D8;
+            --gradient: linear-gradient(135deg, #8B85D6 0%, #6BA5D8 100%);
+            --ok: #4BA876;
+            --warn: #D89E4F;
+            --alert: #D45D5D;
+            --bg: #F7F7F9;
+            --card: #FFFFFF;
+            --ink: #1A1A2E;
+            --ink-60: #666680;
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+
+        .container { max-width: 680px; margin: 0 auto; padding: 24px 16px 60px; }
+
+        /* Header */
+        .page-header { text-align: center; padding: 32px 24px 28px; background: var(--card); border-radius: var(--radius); margin-bottom: 20px; box-shadow: 0 2px 12px rgba(139,133,214,0.08); }
+        .page-header h1 { font-size: 26px; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+        .page-header p { color: var(--ink-60); font-size: 14px; }
+        .dna-icon { font-size: 48px; margin-bottom: 12px; }
+
+        /* Back link */
+        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--primary); font-size: 13px; font-weight: 600; text-decoration: none; margin-bottom: 16px; }
+        .back-link:hover { opacity: 0.8; }
+
+        /* Card */
+        .card { background: var(--card); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+
+        /* Upload zone */
+        .upload-zone {
+            border: 2px dashed #C8C4F0;
+            border-radius: var(--radius);
+            padding: 48px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+            background: #FAFAFE;
+        }
+        .upload-zone:hover, .upload-zone.dragover { border-color: var(--primary); background: #F3F2FD; }
+        .upload-zone .upload-icon { font-size: 52px; margin-bottom: 16px; }
+        .upload-zone h3 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+        .upload-zone p { font-size: 13px; color: var(--ink-60); }
+        .upload-badge { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 6px 14px; background: rgba(139,133,214,0.1); color: var(--primary); border-radius: 20px; font-size: 12px; font-weight: 600; }
+
+        /* Privacy note */
+        .privacy-note { display: flex; align-items: flex-start; gap: 10px; background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-sm); padding: 14px 16px; font-size: 13px; color: #166534; }
+        .privacy-note .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+        /* Disclaimer */
+        .disclaimer-box { background: #FFFBEB; border: 1px solid #FCD34D; border-radius: var(--radius-sm); padding: 14px 16px; font-size: 12px; color: #78350F; line-height: 1.6; }
+        .disclaimer-box strong { display: block; margin-bottom: 4px; }
+
+        /* Consent modal */
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 200; justify-content: center; align-items: center; padding: 16px; }
+        .modal-overlay.active { display: flex; }
+        .modal-box { background: var(--card); border-radius: var(--radius); padding: 28px 24px; max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto; }
+        .modal-box h2 { font-size: 20px; font-weight: 800; margin-bottom: 16px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .modal-section { margin-bottom: 16px; }
+        .modal-section h4 { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+        .modal-section p { font-size: 13px; color: var(--ink-60); line-height: 1.6; }
+        .consent-check { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border: 1.5px solid #E0DFEF; border-radius: var(--radius-sm); margin-bottom: 10px; cursor: pointer; transition: border-color 0.2s; }
+        .consent-check:has(input:checked) { border-color: var(--primary); background: #F3F2FD; }
+        .consent-check input { width: 16px; height: 16px; accent-color: var(--primary); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
+        .consent-check span { font-size: 13px; color: var(--ink); line-height: 1.5; }
+        .modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 20px; }
+        .btn-cancel { padding: 10px 20px; border: 1.5px solid #E0DFEF; background: transparent; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; color: var(--ink-60); cursor: pointer; }
+        .btn-primary { padding: 10px 24px; background: var(--gradient); border: none; border-radius: var(--radius-sm); font-size: 14px; font-weight: 700; color: white; cursor: pointer; transition: opacity 0.2s; }
+        .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-primary:not(:disabled):hover { opacity: 0.88; }
+
+        /* Progress */
+        .progress-section { display: none; text-align: center; padding: 48px 24px; }
+        .progress-spinner { width: 56px; height: 56px; border: 4px solid #E0DFEF; border-top-color: var(--primary); border-radius: 50%; animation: spin 0.9s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .progress-section h3 { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+        .progress-section p { font-size: 13px; color: var(--ink-60); }
+        .progress-bar-wrap { width: 100%; max-width: 260px; height: 6px; background: #E0DFEF; border-radius: 3px; margin: 16px auto 6px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: var(--gradient); border-radius: 3px; transition: width 0.4s ease; }
+        #progressMsg { font-size: 13px; color: var(--ink-60); margin-top: 4px; }
+
+        /* Results */
+        .results-section { display: none; }
+        .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+        .summary-pill { background: var(--card); border-radius: var(--radius-sm); padding: 14px 12px; text-align: center; border: 1.5px solid #F0EFF9; }
+        .summary-pill .count { font-size: 28px; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .summary-pill .label { font-size: 11px; color: var(--ink-60); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; }
+
+        /* Category sections */
+        .cat-section { margin-bottom: 16px; }
+        .cat-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .cat-header h3 { font-size: 16px; font-weight: 700; color: var(--ink); }
+        .cat-icon { font-size: 20px; }
+
+        /* Finding cards */
+        .finding-card { border-radius: var(--radius-sm); padding: 16px; margin-bottom: 10px; border-left: 4px solid #E0DFEF; background: #FAFAFE; }
+        .finding-card.risk { border-left-color: var(--alert); }
+        .finding-card.risk.high { border-left-color: var(--alert); background: #FEF2F2; }
+        .finding-card.protective { border-left-color: var(--ok); }
+        .finding-card .gene-badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700; background: rgba(139,133,214,0.12); color: var(--primary); margin-bottom: 8px; }
+        .finding-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--ink); }
+        .finding-card p { font-size: 13px; color: var(--ink-60); line-height: 1.5; }
+        .high-alert-banner { display: flex; align-items: flex-start; gap: 8px; background: #FEF2F2; border: 1px solid #FECACA; border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; font-size: 12px; font-weight: 600; color: #991B1B; }
+        .acmg-badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 700; background: #FEE2E2; color: #991B1B; margin-top: 6px; }
+        .safe-text { font-size: 13px; color: var(--ok); font-weight: 600; }
+
+        /* Delete button */
+        .btn-delete { display: flex; align-items: center; gap: 8px; margin: 0 auto; padding: 10px 20px; background: transparent; border: 1.5px solid #FCA5A5; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; color: var(--alert); cursor: pointer; transition: background 0.2s; }
+        .btn-delete:hover { background: #FEF2F2; }
+
+        /* Back to dashboard */
+        .btn-back-dash { display: block; width: 100%; padding: 14px; background: var(--gradient); border: none; border-radius: var(--radius); font-size: 15px; font-weight: 700; color: white; cursor: pointer; text-align: center; margin-top: 20px; text-decoration: none; }
+
+        /* Genetic tabs */
+        .genetic-tabs-nav { display: flex; gap: 4px; background: var(--card); border-radius: var(--radius); padding: 6px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); overflow-x: auto; }
+        .genetic-tab-btn { flex: 1; min-width: 0; white-space: nowrap; padding: 9px 12px; border: none; background: transparent; border-radius: var(--radius-sm); font-size: 12px; font-weight: 600; color: var(--ink-60); cursor: pointer; transition: background 0.15s, color 0.15s; }
+        .genetic-tab-btn.active { background: var(--gradient); color: white; }
+        .genetic-tab-btn:not(.active):hover { background: rgba(139,133,214,0.08); color: var(--primary); }
+        .genetic-tab-panel { display: none; }
+        .genetic-tab-panel.active { display: block; }
+        .genetic-tab-frame { width: 100%; height: 800px; border: none; border-radius: var(--radius); background: var(--bg); }
+
+        /* Existing report notice */
+        .existing-report-banner { background: linear-gradient(135deg, rgba(139,133,214,0.08), rgba(107,165,216,0.08)); border: 1.5px solid rgba(139,133,214,0.25); border-radius: var(--radius); padding: 20px; text-align: center; margin-bottom: 20px; }
+        .existing-report-banner h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+        .existing-report-banner p { font-size: 13px; color: var(--ink-60); }
+        .btn-view-report { display: inline-block; margin-top: 12px; padding: 8px 20px; background: var(--gradient); color: white; border: none; border-radius: var(--radius-sm); font-size: 13px; font-weight: 700; cursor: pointer; }
+        .btn-new-upload  { display: inline-block; margin-top: 12px; margin-left: 10px; padding: 8px 20px; background: transparent; color: var(--primary); border: 1.5px solid var(--primary); border-radius: var(--radius-sm); font-size: 13px; font-weight: 700; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <a href="../dashboard/index.html" class="back-link">← Volver al Dashboard</a>
+
+    <div class="page-header">
+        <div class="dna-icon">🧬</div>
+        <h1>Análisis Genético</h1>
+        <p>Intolerancias · Alergias · Riesgos Metabólicos · Farmacogenómica</p>
+    </div>
+
+    <!-- Estado: sin reporte previo / verificando -->
+    <div id="checkingState" style="text-align:center; padding: 32px; color: var(--ink-60); font-size: 14px;">
+        Verificando datos…
+    </div>
+
+    <!-- Estado: reporte previo existe -->
+    <div id="existingReportBanner" class="existing-report-banner" style="display:none;">
+        <h3>Ya tienes un análisis genético</h3>
+        <p id="existingReportDate"></p>
+        <button class="btn-view-report" onclick="loadAndShowReport()">Ver mi análisis</button>
+        <button class="btn-new-upload" onclick="showUploadSection()">Cargar nuevo archivo</button>
+    </div>
+
+    <!-- Sección de carga -->
+    <div id="uploadSection" style="display:none;">
+
+        <div class="card" style="padding: 0; overflow: hidden;">
+            <div class="upload-zone" id="uploadZone">
+                <div class="upload-icon">📂</div>
+                <h3>Sube tu archivo de ADN</h3>
+                <p>Arrastra aquí o haz clic para seleccionar</p>
+                <div class="upload-badge">
+                    <span>23andMe</span> · <span>AncestryDNA</span> · <span>MyHeritage</span>
+                </div>
+                <p style="margin-top: 12px; font-size: 12px; color: var(--ink-60);">.txt o .csv · hasta 50 MB</p>
+            </div>
+        </div>
+        <input type="file" id="dnaFileInput" accept=".txt,.csv,.zip" style="display:none">
+
+        <div class="privacy-note">
+            <span class="icon">🔒</span>
+            <span>Tus datos genéticos son <strong>encriptados automáticamente</strong> y nunca se comparten con terceros. Puedes eliminarlos en cualquier momento. Cumple Ley 20.120 (Chile) y GDPR.</span>
+        </div>
+
+        <div class="disclaimer-box">
+            <strong>Información importante</strong>
+            Los resultados son orientativos. No reemplazan evaluación clínica ni diagnóstico médico.
+            Hallazgos oncológicos siempre requieren consulta con oncogenetista (OMS/NCCN).
+        </div>
+    </div>
+
+    <!-- Modal de consentimiento informado (GDPR · Ley 20.120 · Ley 21.719 · UNESCO 2003) -->
+    <div class="modal-overlay" id="consentModal">
+        <div class="modal-box">
+            <h2>🧬 Consentimiento Informado</h2>
+
+            <div class="modal-section">
+                <h4>¿Qué analizamos?</h4>
+                <p>SNPs en 5 categorías: intolerancias alimentarias, alergias, riesgos metabólicos, predisposiciones oncológicas y farmacogenómica. También ancestría, rasgos físicos y perfil de fitness.</p>
+            </div>
+            <div class="modal-section">
+                <h4>¿Qué NO es?</h4>
+                <p>NO es diagnóstico clínico. Los chips SNP analizan ~1 millón de variantes de ~3 mil millones totales. No detecta variantes raras ni variantes estructurales.</p>
+            </div>
+            <div class="modal-section" style="background:#FFF3F3;border-left:3px solid #D45D5D;padding:10px 12px;border-radius:8px;">
+                <h4 style="color:#D45D5D;">⚠️ Hallazgos oncogenéticos</h4>
+                <p>Variantes BRCA1, BRCA2, APC o MUTYH son predisposiciones estadísticas, NO diagnósticos. Requieren confirmación en laboratorio clínico y evaluación por oncogenetista (OMS/NCCN).</p>
+            </div>
+            <div class="modal-section">
+                <h4>Privacidad y eliminación</h4>
+                <p>Datos cifrados AES-256. No se comparten con terceros. Puedes eliminar todo permanentemente en un clic. Cumple GDPR, Ley 20.120, 19.628 y 21.719 de Chile.</p>
+            </div>
+
+            <label class="consent-check">
+                <input type="checkbox" class="consent-cb" id="consent1">
+                <span>He leído y comprendo este Consentimiento Informado en su totalidad.</span>
+            </label>
+            <label class="consent-check">
+                <input type="checkbox" class="consent-cb" id="consent2">
+                <span>Tengo al menos <strong>18 años</strong> cumplidos.</span>
+            </label>
+            <label class="consent-check">
+                <input type="checkbox" class="consent-cb" id="consent3">
+                <span>Entiendo que los resultados <strong>NO son diagnósticos médicos</strong> sino información orientativa probabilística (Ley 20.584).</span>
+            </label>
+            <label class="consent-check">
+                <input type="checkbox" class="consent-cb" id="consent4">
+                <span>Entiendo las <strong>limitaciones técnicas</strong> del análisis (chip SNP, no secuenciación completa del genoma).</span>
+            </label>
+            <label class="consent-check">
+                <input type="checkbox" class="consent-cb" id="consent5">
+                <span>Acepto los riesgos de descubrimientos inesperados, incluyendo información sobre ancestría o relaciones familiares.</span>
+            </label>
+            <label class="consent-check">
+                <input type="checkbox" class="consent-cb" id="consent6">
+                <span>Entiendo que los <strong>hallazgos oncogenéticos</strong> requieren confirmación en laboratorio clínico certificado y evaluación por especialista.</span>
+            </label>
+            <label class="consent-check">
+                <input type="checkbox" class="consent-cb" id="consent7">
+                <span>Autorizo a Nura a analizar mi archivo genético conforme a las Leyes 20.120, 19.628 y 21.719 de Chile, GDPR (UE) y UNESCO 2003.</span>
+            </label>
+
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeConsent()">Cancelar</button>
+                <button class="btn-primary" id="btnAccept" disabled onclick="acceptConsent()">Acepto — Analizar mi ADN</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de progreso -->
+    <div class="progress-section" id="progressSection">
+        <div class="progress-spinner"></div>
+        <h3 id="progressTitle">Subiendo tu ADN…</h3>
+        <p id="progressMsg">Esto puede tardar unos segundos</p>
+        <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+        </div>
+    </div>
+
+    <!-- Tabs de Análisis Genético (visible solo tras cargar resultados) -->
+    <div id="geneticTabs" style="display:none;">
+        <nav class="genetic-tabs-nav" role="tablist">
+            <button class="genetic-tab-btn active" role="tab" onclick="switchTab('clinical')">🏥 Clínico</button>
+            <button class="genetic-tab-btn" role="tab" onclick="switchTab('traits')">🧬 Rasgos</button>
+            <button class="genetic-tab-btn" role="tab" onclick="switchTab('ancestry')">🌍 Ancestría</button>
+            <button class="genetic-tab-btn" role="tab" onclick="switchTab('fitness')">🏋️ Fitness</button>
+            <button class="genetic-tab-btn" role="tab" onclick="switchTab('environment')">🌿 Geno+Ambiente</button>
+        </nav>
+
+        <div id="tab-clinical" class="genetic-tab-panel active">
+            <!-- Se rellena dinámicamente por renderResults() -->
+            <div class="results-section" id="resultsSection"></div>
+            <a href="../dashboard/index.html" class="btn-back-dash">← Volver al Dashboard</a>
+        </div>
+
+        <div id="tab-traits" class="genetic-tab-panel">
+            <iframe id="frame-traits" class="genetic-tab-frame" title="Rasgos Genéticos"></iframe>
+        </div>
+
+        <div id="tab-ancestry" class="genetic-tab-panel">
+            <iframe id="frame-ancestry" class="genetic-tab-frame" title="Ancestría Genética"></iframe>
+        </div>
+
+        <div id="tab-fitness" class="genetic-tab-panel">
+            <iframe id="frame-fitness" class="genetic-tab-frame" title="Genética Deportiva"></iframe>
+        </div>
+
+        <div id="tab-environment" class="genetic-tab-panel">
+            <iframe id="frame-environment" class="genetic-tab-frame" title="Genética y Ambiente"></iframe>
+        </div>
+    </div>
+
+</div>
+
+<!-- Firebase -->
+<script type="module" src="../shared/firebase-config.js"></script>
+<script>
+// Espera a que NuraFirebase esté listo
+let _user = null;
+let _selectedFile = null;
+
+document.addEventListener('DOMContentLoaded', async () => {
+    // Polling ligero por NuraFirebase (módulo ES6 asíncrono)
+    let tries = 0;
+    while (!window.NuraFirebase && tries < 40) {
+        await new Promise(r => setTimeout(r, 100));
+        tries++;
+    }
+    if (!window.NuraFirebase) {
+        document.getElementById('checkingState').textContent = 'Error al cargar Firebase.';
+        return;
+    }
+
+    const { auth } = window.NuraFirebase;
+    await auth.authStateReady();
+    _user = auth.currentUser;
+
+    if (!_user) {
+        window.location.href = '../auth/index.html';
+        return;
+    }
+
+    await checkExistingReport();
+    initUpload();
+});
+
+async function checkExistingReport() {
+    try {
+        const { getFunctions, httpsCallable } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js');
+        const fns = getFunctions(window.NuraFirebase.app, 'us-central1');
+        const getReport = httpsCallable(fns, 'getGeneticReport');
+        const result = await getReport();
+        document.getElementById('checkingState').style.display = 'none';
+
+        if (result.data && result.data.hasReport) {
+            const date = result.data.report.generated_at
+                ? new Date(result.data.report.generated_at).toLocaleDateString('es-CL', { day:'2-digit', month:'long', year:'numeric' })
+                : 'Fecha desconocida';
+            document.getElementById('existingReportDate').textContent = `Generado el ${date}`;
+            document.getElementById('existingReportBanner').style.display = 'block';
+            // Pre-cargar resultados para mostrarlos rápido
+            window._cachedReport = result.data.report;
+        } else {
+            document.getElementById('uploadSection').style.display = 'block';
+        }
+    } catch (e) {
+        document.getElementById('checkingState').style.display = 'none';
+        document.getElementById('uploadSection').style.display = 'block';
+    }
+}
+
+function showUploadSection() {
+    document.getElementById('existingReportBanner').style.display = 'none';
+    document.getElementById('uploadSection').style.display = 'block';
+}
+
+async function loadAndShowReport() {
+    document.getElementById('existingReportBanner').style.display = 'none';
+    if (window._cachedReport) {
+        renderResults(window._cachedReport);
+    } else {
+        document.getElementById('progressSection').style.display = 'block';
+        try {
+            const { getFunctions, httpsCallable } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js');
+            const fns = getFunctions(window.NuraFirebase.app, 'us-central1');
+            const getReport = httpsCallable(fns, 'getGeneticReport');
+            const result = await getReport();
+            document.getElementById('progressSection').style.display = 'none';
+            if (result.data.hasReport) renderResults(result.data.report);
+        } catch (e) {
+            document.getElementById('progressSection').style.display = 'none';
+            alert('Error al cargar el reporte: ' + e.message);
+        }
+    }
+}
+
+function initUpload() {
+    const fileInput  = document.getElementById('dnaFileInput');
+    const uploadZone = document.getElementById('uploadZone');
+
+    uploadZone.addEventListener('click', () => fileInput.click());
+    uploadZone.addEventListener('dragover',  e => { e.preventDefault(); uploadZone.classList.add('dragover'); });
+    uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+    uploadZone.addEventListener('drop', e => {
+        e.preventDefault();
+        uploadZone.classList.remove('dragover');
+        if (e.dataTransfer.files.length) { _selectedFile = e.dataTransfer.files[0]; openConsent(); }
+    });
+    fileInput.addEventListener('change', e => {
+        if (e.target.files.length) { _selectedFile = e.target.files[0]; openConsent(); }
+    });
+
+    const checkboxes = document.querySelectorAll('.consent-cb');
+    const btn = document.getElementById('btnAccept');
+    checkboxes.forEach(cb => cb.addEventListener('change', () => {
+        btn.disabled = !Array.from(checkboxes).every(c => c.checked);
+    }));
+}
+
+function openConsent() {
+    document.getElementById('consentModal').classList.add('active');
+}
+window.closeConsent = () => {
+    document.getElementById('consentModal').classList.remove('active');
+    document.querySelectorAll('.consent-cb').forEach(c => { c.checked = false; });
+    document.getElementById('btnAccept').disabled = true;
+    _selectedFile = null;
+};
+
+window.acceptConsent = async () => {
+    document.getElementById('consentModal').classList.remove('active');
+    document.getElementById('uploadSection').style.display = 'none';
+    document.getElementById('progressSection').style.display = 'block';
+
+    const setProgress = (msg, pct) => {
+        document.getElementById('progressMsg').textContent  = msg;
+        document.getElementById('progressBar').style.width  = pct + '%';
+    };
+    const setTitle = (t) => { document.getElementById('progressTitle').textContent = t; };
+
+    try {
+        // 1. Registrar consentimiento en Firestore (audit trail)
+        const { getFirestore, collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
+        const db = getFirestore(window.NuraFirebase.app);
+        const checkboxStates = {};
+        document.querySelectorAll('.consent-cb').forEach(cb => { checkboxStates[cb.id] = cb.checked; });
+        await addDoc(collection(db, 'users', _user.uid, 'consents'), {
+            type:       'GENETIC_ANALYSIS',
+            version:    '1.0',
+            timestamp:  serverTimestamp(),
+            userAgent:  navigator.userAgent,
+            checkboxes: checkboxStates
+        });
+
+        setProgress('Preparando archivo…', 5);
+
+        // 2. Subir archivo a Firebase Storage (acepta hasta 50 MB sin límites de payload)
+        const { getStorage, ref, uploadBytesResumable } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js');
+        const storage   = getStorage(window.NuraFirebase.app);
+        const timestamp = Date.now();
+        const safeName  = _selectedFile.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+        const filePath  = `genetic-raw/${_user.uid}/${timestamp}_${safeName}`;
+        const fileRef   = ref(storage, filePath);
+
+        setTitle('Subiendo tu ADN…');
+        setProgress('Iniciando subida…', 10);
+
+        await new Promise((resolve, reject) => {
+            const task = uploadBytesResumable(fileRef, _selectedFile, {
+                contentType: 'text/plain'
+            });
+            task.on('state_changed',
+                (snap) => {
+                    const pct = 10 + (snap.bytesTransferred / snap.totalBytes) * 45;
+                    const mb  = (snap.bytesTransferred / 1048576).toFixed(1);
+                    const tot = (snap.totalBytes / 1048576).toFixed(1);
+                    setProgress(`Subiendo: ${mb} / ${tot} MB`, pct);
+                },
+                reject,
+                resolve
+            );
+        });
+
+        setTitle('Analizando tu ADN…');
+        setProgress('Archivo subido. Iniciando análisis…', 55);
+
+        // 3. Llamar Cloud Function con solo el path (< 1 KB en el request)
+        const { getFunctions, httpsCallable } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js');
+        const fns             = getFunctions(window.NuraFirebase.app, 'us-central1');
+        const processGenetics = httpsCallable(fns, 'processGeneticData', { timeout: 320000 });
+
+        setProgress('Procesando variantes genéticas…', 65);
+        const result = await processGenetics({
+            storagePath: filePath,
+            fileName:    _selectedFile.name,
+            fileSize:    _selectedFile.size
+        });
+
+        setProgress('¡Análisis completado!', 100);
+
+        setTimeout(() => {
+            document.getElementById('progressSection').style.display = 'none';
+            renderResults(result.data);
+        }, 600);
+
+    } catch (error) {
+        document.getElementById('progressSection').style.display = 'none';
+        document.getElementById('uploadSection').style.display = 'block';
+        alert('Error al procesar archivo: ' + (error.message || 'Error desconocido'));
+    }
+};
+
+// ── TAB SWITCHING ─────────────────────────────────────────────────
+const TAB_FRAMES = {
+    traits:      { id: 'frame-traits',       src: '../traits/index.html' },
+    ancestry:    { id: 'frame-ancestry',     src: '../ancestry/index.html' },
+    fitness:     { id: 'frame-fitness',      src: '../fitness/index.html' },
+    environment: { id: 'frame-environment',  src: '../environmental/index.html' }
+};
+
+window.switchTab = function(tab) {
+    document.querySelectorAll('.genetic-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.genetic-tab-panel').forEach(p => p.classList.remove('active'));
+    const panelEl = document.getElementById('tab-' + tab);
+    if (panelEl) panelEl.classList.add('active');
+    const btns = document.querySelectorAll('.genetic-tab-btn');
+    const tabOrder = ['clinical', 'traits', 'ancestry', 'fitness', 'environment'];
+    const idx = tabOrder.indexOf(tab);
+    if (idx >= 0 && btns[idx]) btns[idx].classList.add('active');
+
+    // Lazy-load iframes
+    if (TAB_FRAMES[tab]) {
+        const frame = document.getElementById(TAB_FRAMES[tab].id);
+        if (frame && !frame.src.includes('index.html')) {
+            frame.src = TAB_FRAMES[tab].src;
+        }
+    }
+};
+
+// ── RENDERIZADO DE RESULTADOS ─────────────────────────────────────
+
+function renderResults(data) {
+    document.getElementById('geneticTabs').style.display = 'block';
+    const section = document.getElementById('resultsSection');
+    section.style.display = 'block';
+
+    const dr = data.detailed_results || {};
+    const allRisks = [
+        ...(dr.food_intolerances || []),
+        ...(dr.food_allergies    || []),
+        ...(dr.metabolic_risks   || []),
+        ...(dr.cancer_risks      || []),
+        ...(dr.pharmacogenomics  || [])
+    ].filter(r => r.status === 'risk').length;
+
+    const medConsults = (data.summary?.overall_alerts?.medical_consults_recommended) || 0;
+
+    let html = `
+      <div class="card">
+        <div class="cat-header"><div class="cat-icon">📊</div><h3>Resumen del análisis</h3></div>
+        <div class="summary-grid">
+          <div class="summary-pill"><div class="count">${data.summary?.total_snps_analyzed || 0}</div><div class="label">SNPs analizados</div></div>
+          <div class="summary-pill"><div class="count">${allRisks}</div><div class="label">Variantes de riesgo</div></div>
+          <div class="summary-pill"><div class="count">${medConsults}</div><div class="label">Consultas sugeridas</div></div>
+        </div>
+        <div class="disclaimer-box">
+          <strong>Aviso legal</strong>
+          ${data.disclaimer?.legal || ''} ${data.disclaimer?.genetic || ''}
+        </div>
+      </div>
+    `;
+
+    html += renderCategory('🍽️ Intolerancias Alimentarias',  dr.food_intolerances  || [], false);
+    html += renderCategory('⚠️ Alergias Alimentarias',       dr.food_allergies     || [], true);
+    html += renderCategory('⚕️ Riesgos Metabólicos',          dr.metabolic_risks    || [], false);
+    html += renderCancerSection(dr.cancer_risks || []);
+    html += renderCategory('💊 Farmacogenómica',              dr.pharmacogenomics   || [], false);
+
+    // Botones finales
+    html += `
+      <div class="card" style="text-align:center;">
+        <p style="font-size:13px;color:var(--ink-60);margin-bottom:16px;">
+          Tus datos genéticos están encriptados y protegidos. Puedes eliminarlos en cualquier momento.
+        </p>
+        <button class="btn-delete" onclick="confirmDelete()">🗑 Eliminar mis datos genéticos</button>
+      </div>
+    `;
+
+    section.innerHTML = html;
+}
+
+function renderCategory(title, items, isAllergy) {
+    if (!items || items.length === 0) return '';
+    const risks = items.filter(r => r.status === 'risk');
+    if (risks.length === 0) return '';
+
+    let html = `<div class="card cat-section"><div class="cat-header"><h3>${title}</h3></div>`;
+    for (const r of risks) {
+        const isHigh = r.highAlert || isAllergy;
+        html += `
+          <div class="finding-card risk ${isHigh ? 'high' : ''}">
+            <span class="gene-badge">${r.gene || ''}</span>
+            <h4>${r.name}</h4>
+            ${r.highAlert ? `<div class="high-alert-banner">⚠️ Requiere consulta médica — ${r.referralSpecialty || 'especialista'}</div>` : ''}
+            <p>${r.action || ''}</p>
+            ${r.linkedFoods && r.linkedFoods.length ? `<p style="margin-top:8px;font-size:12px;color:var(--ink-60);">Alimentos relacionados: ${r.linkedFoods.slice(0,5).join(', ')}</p>` : ''}
+            ${r.affectedDrugs && r.affectedDrugs.length ? `<p style="margin-top:8px;font-size:12px;color:var(--ink-60);">Medicamentos afectados: ${r.affectedDrugs.join(', ')}</p>` : ''}
+          </div>
+        `;
+    }
+    html += '</div>';
+    return html;
+}
+
+function renderCancerSection(items) {
+    if (!items || items.length === 0) return '';
+    const risks = items.filter(r => r.status === 'risk');
+    const safeCount = items.filter(r => r.status !== 'risk').length;
+
+    let html = `<div class="card cat-section">
+      <div class="cat-header"><h3>🏥 Evaluación Oncogenética</h3></div>
+      <div class="disclaimer-box" style="margin-bottom:16px;">
+        <strong>Estándar OMS / NCCN</strong>
+        Cualquier hallazgo en esta sección requiere evaluación por oncogenetista. NO es diagnóstico de cáncer.
+        Ley 20.584 — información orientativa.
+      </div>`;
+
+    if (risks.length === 0) {
+        html += `<p class="safe-text" style="text-align:center;padding:12px 0;">✓ No se detectaron variantes de riesgo oncológico en las ${items.length} variantes analizadas.</p>`;
+    } else {
+        for (const r of risks) {
+            html += `
+              <div class="finding-card risk high">
+                <span class="gene-badge">${r.gene}</span>
+                <h4>${r.name}</h4>
+                <div class="high-alert-banner">⚠️ Consulta obligatoria: ${r.referralSpecialty || 'oncogenetista'}</div>
+                <p>${r.action || ''}</p>
+                ${r.acmgClassification ? `<span class="acmg-badge">ACMG: ${r.acmgClassification}</span>` : ''}
+              </div>
+            `;
+        }
+    }
+    html += '</div>';
+    return html;
+}
+
+window.confirmDelete = async () => {
+    if (!confirm('¿Seguro que quieres eliminar todos tus datos genéticos? Esta acción es irreversible.')) return;
+    try {
+        const { getFunctions, httpsCallable } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js');
+        const fns = getFunctions(window.NuraFirebase.app, 'us-central1');
+        const deleteFn = httpsCallable(fns, 'deleteGeneticData');
+        await deleteFn();
+        alert('Datos genéticos eliminados correctamente.');
+        window.location.reload();
+    } catch (e) {
+        alert('Error al eliminar: ' + e.message);
+    }
+};
+</script>
+
+</body>
+</html>

@@ -41,6 +41,90 @@ service cloud.firestore {
       // Eliminación: no permitida desde el cliente.
       // La baja de cuenta se gestiona desde el backend (Admin SDK).
       allow delete: if false;
+
+      // ── Historial de exámenes clínicos ─────────────────────────
+      // Subcolección: users/{userId}/exam_history/{document}
+      // El propietario puede leer, crear y eliminar sus propios registros.
+      // Update bloqueado — los resultados de examen son inmutables una vez guardados.
+      match /exam_history/{examId} {
+        allow read, create, delete: if request.auth != null
+                                    && request.auth.uid == userId;
+        allow update: if false;
+      }
+
+      // ── Reportes genéticos ──────────────────────────────────────
+      // Subcolección: users/{userId}/genetic_reports/{reportId}
+      // Solo lectura y creación permitidas al propietario con consentimiento.
+      // Update y delete bloqueados desde el cliente (se gestiona via Cloud Function).
+      // Ley 20.120 (Chile) · EU GDPR Art. 9 · Datos genéticos = sensibles.
+      match /genetic_reports/{reportId} {
+        allow read: if request.auth != null
+                    && request.auth.uid == userId;
+        allow create: if request.auth != null
+                      && request.auth.uid == userId
+                      && request.resource.data.consentGiven == true;
+        allow update: if false;
+        allow delete: if false;
+      }
+
+      // ── Perfil genético cifrado (SNPs crudos) ───────────────────
+      // Subcolección: users/{userId}/genetic_data/{document}
+      // Solo lectura por el propietario.
+      // Escritura solo via Cloud Functions (Admin SDK bypasa reglas).
+      match /genetic_data/{document=**} {
+        allow read: if request.auth != null
+                    && request.auth.uid == userId;
+        allow write: if false;
+      }
+
+      // ── Análisis derivados (FASE 1-4) ───────────────────────────
+      // Solo lectura por propietario; escritura solo via Cloud Functions.
+      match /ancestry/{document=**} {
+        allow read: if request.auth != null && request.auth.uid == userId;
+        allow write: if false;
+      }
+
+      match /physical_traits/{document=**} {
+        allow read: if request.auth != null && request.auth.uid == userId;
+        allow write: if false;
+      }
+
+      match /fitness_profile/{document=**} {
+        allow read: if request.auth != null && request.auth.uid == userId;
+        allow write: if false;
+      }
+
+      match /geno_environment/{document=**} {
+        allow read: if request.auth != null && request.auth.uid == userId;
+        allow write: if false;
+      }
+
+      // ── Consentimientos (FASE 0) ────────────────────────────────
+      // El cliente puede crear y leer sus propios registros de consentimiento.
+      // Inmutables una vez creados (igual que legal_consent).
+      match /consents/{consentId} {
+        allow read, create: if request.auth != null
+                            && request.auth.uid == userId;
+        allow update, delete: if false;
+      }
+
+      // ── Alertas de seguridad ────────────────────────────────────
+      match /security_alerts/{alertId} {
+        allow read: if request.auth != null && request.auth.uid == userId;
+        allow write: if false;
+      }
+    }
+
+    // ── Audit logs — solo admins pueden leer, nadie puede escribir desde cliente ──
+    match /audit_logs/{logId} {
+      allow read: if request.auth != null
+                  && request.auth.token.admin == true;
+      allow write: if false;
+    }
+
+    // ── Cola de eliminación de backups — solo admin ──────────────
+    match /backup_deletion_queue/{docId} {
+      allow read, write: if false;
     }
 
     // ── Denegar acceso a cualquier otra colección ────────────────

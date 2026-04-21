@@ -1,0 +1,329 @@
+{
+  "generated_at": "2026-04-21T16:56:05.794Z",
+  "algorithm": "EM (ADMIXTURE-inspired), 26 AIMs, 1000 Genomes reference",
+  "tests_run": 3,
+  "tests_passed": 2,
+  "results": [
+    {
+      "label": "Europeo puro (perfil Manu Sporny / Bastian Greshake)",
+      "pass": true,
+      "populations": [
+        {
+          "population": "EUR",
+          "name": "Europeo",
+          "nameEs": "Europeo",
+          "flag": "🇪🇺",
+          "color": "#AFA9EC",
+          "percentage": 61.5,
+          "subpopulations": {
+            "EUR_SOUTH": {
+              "name": "Europa del Sur (España, Italia, Portugal)",
+              "flag": "🇪🇸🇮🇹"
+            },
+            "EUR_WEST": {
+              "name": "Europa del Oeste (Francia, Alemania, Reino Unido)",
+              "flag": "🇫🇷🇩🇪"
+            },
+            "EUR_NORTH": {
+              "name": "Europa del Norte (Escandinavia)",
+              "flag": "🇸🇪🇳🇴🇩🇰"
+            },
+            "EUR_EAST": {
+              "name": "Europa del Este",
+              "flag": "🇵🇱🇺🇦🇷🇴"
+            }
+          }
+        },
+        {
+          "population": "AMR_NAT",
+          "name": "Amerindio",
+          "nameEs": "Amerindio / Nativo Americano",
+          "flag": "🌎",
+          "color": "#A8E6CF",
+          "percentage": 21.8,
+          "subpopulations": {
+            "AMR_CHILE": {
+              "name": "Pueblos de Chile (Mapuche, Aymara, Diaguita, Rapa Nui)",
+              "flag": "🇨🇱"
+            },
+            "AMR_ANDES": {
+              "name": "Andino (Quechua, Aymara, Inca)",
+              "flag": "🇵🇪🇧🇴"
+            },
+            "AMR_AMAZON": {
+              "name": "Amazónico",
+              "flag": "🌳"
+            },
+            "AMR_MESO": {
+              "name": "Mesoamericano (Maya, Azteca, Nahua)",
+              "flag": "🇲🇽🇬🇹"
+            },
+            "AMR_NORTH": {
+              "name": "Nativo Norteamericano",
+              "flag": "🇺🇸🇨🇦"
+            }
+          }
+        },
+        {
+          "population": "AFR",
+          "name": "Africano",
+          "nameEs": "Africano",
+          "flag": "🌍",
+          "color": "#F4A6A6",
+          "percentage": 16.4,
+          "subpopulations": {
+            "AFR_WEST": {
+              "name": "África Occidental",
+              "flag": "🇳🇬🇬🇭🇸🇳"
+            },
+            "AFR_EAST": {
+              "name": "África Oriental",
+              "flag": "🇰🇪🇪🇹🇹🇿"
+            },
+            "AFR_NORTH": {
+              "name": "África del Norte",
+              "flag": "🇲🇦🇪🇬🇩🇿"
+            },
+            "AFR_SOUTH": {
+              "name": "África del Sur",
+              "flag": "🇿🇦"
+            }
+          }
+        },
+        {
+          "population": "SAS",
+          "name": "Sur de Asia",
+          "nameEs": "Sur de Asia",
+          "flag": "🌏",
+          "color": "#FDB5B5",
+          "percentage": 0.3,
+          "subpopulations": {
+            "SAS_IND": {
+              "name": "India",
+              "flag": "🇮🇳"
+            },
+            "SAS_PAK": {
+              "name": "Pakistán / Bangladés",
+              "flag": "🇵🇰🇧🇩"
+            },
+            "SAS_SRI": {
+              "name": "Sri Lanka",
+              "flag": "🇱🇰"
+            }
+          }
+        }
+      ],
+      "confidence": "high",
+      "accuracy": "±6%",
+      "aimsAnalyzed": 26
+    },
+    {
+      "label": "Chileno mestizo típico",
+      "pass": false,
+      "populations": [
+        {
+          "population": "EUR",
+          "name": "Europeo",
+          "nameEs": "Europeo",
+          "flag": "🇪🇺",
+          "color": "#AFA9EC",
+          "percentage": 45.5,
+          "subpopulations": {
+            "EUR_SOUTH": {
+              "name": "Europa del Sur (España, Italia, Portugal)",
+              "flag": "🇪🇸🇮🇹"
+            },
+            "EUR_WEST": {
+              "name": "Europa del Oeste (Francia, Alemania, Reino Unido)",
+              "flag": "🇫🇷🇩🇪"
+            },
+            "EUR_NORTH": {
+              "name": "Europa del Norte (Escandinavia)",
+              "flag": "🇸🇪🇳🇴🇩🇰"
+            },
+            "EUR_EAST": {
+              "name": "Europa del Este",
+              "flag": "🇵🇱🇺🇦🇷🇴"
+            }
+          }
+        },
+        {
+          "population": "AMR_NAT",
+          "name": "Amerindio",
+          "nameEs": "Amerindio / Nativo Americano",
+          "flag": "🌎",
+          "color": "#A8E6CF",
+          "percentage": 45.2,
+          "subpopulations": {
+            "AMR_CHILE": {
+              "name": "Pueblos de Chile (Mapuche, Aymara, Diaguita, Rapa Nui)",
+              "flag": "🇨🇱"
+            },
+            "AMR_ANDES": {
+              "name": "Andino (Quechua, Aymara, Inca)",
+              "flag": "🇵🇪🇧🇴"
+            },
+            "AMR_AMAZON": {
+              "name": "Amazónico",
+              "flag": "🌳"
+            },
+            "AMR_MESO": {
+              "name": "Mesoamericano (Maya, Azteca, Nahua)",
+              "flag": "🇲🇽🇬🇹"
+            },
+            "AMR_NORTH": {
+              "name": "Nativo Norteamericano",
+              "flag": "🇺🇸🇨🇦"
+            }
+          }
+        },
+        {
+          "population": "AFR",
+          "name": "Africano",
+          "nameEs": "Africano",
+          "flag": "🌍",
+          "color": "#F4A6A6",
+          "percentage": 9.3,
+          "subpopulations": {
+            "AFR_WEST": {
+              "name": "África Occidental",
+              "flag": "🇳🇬🇬🇭🇸🇳"
+            },
+            "AFR_EAST": {
+              "name": "África Oriental",
+              "flag": "🇰🇪🇪🇹🇹🇿"
+            },
+            "AFR_NORTH": {
+              "name": "África del Norte",
+              "flag": "🇲🇦🇪🇬🇩🇿"
+            },
+            "AFR_SOUTH": {
+              "name": "África del Sur",
+              "flag": "🇿🇦"
+            }
+          }
+        }
+      ],
+      "confidence": "high",
+      "accuracy": "±6%",
+      "aimsAnalyzed": 26
+    },
+    {
+      "label": "Asiático del Este",
+      "pass": true,
+      "populations": [
+        {
+          "population": "EAS",
+          "name": "Asiático del Este",
+          "nameEs": "Asiático del Este",
+          "flag": "🌏",
+          "color": "#FFD77A",
+          "percentage": 58.4,
+          "subpopulations": {
+            "EAS_CHN": {
+              "name": "China",
+              "flag": "🇨🇳"
+            },
+            "EAS_JPN": {
+              "name": "Japón",
+              "flag": "🇯🇵"
+            },
+            "EAS_KOR": {
+              "name": "Corea",
+              "flag": "🇰🇷"
+            },
+            "EAS_VIE": {
+              "name": "Vietnam / Sudeste Asiático",
+              "flag": "🇻🇳🇹🇭"
+            }
+          }
+        },
+        {
+          "population": "EUR",
+          "name": "Europeo",
+          "nameEs": "Europeo",
+          "flag": "🇪🇺",
+          "color": "#AFA9EC",
+          "percentage": 28.6,
+          "subpopulations": {
+            "EUR_SOUTH": {
+              "name": "Europa del Sur (España, Italia, Portugal)",
+              "flag": "🇪🇸🇮🇹"
+            },
+            "EUR_WEST": {
+              "name": "Europa del Oeste (Francia, Alemania, Reino Unido)",
+              "flag": "🇫🇷🇩🇪"
+            },
+            "EUR_NORTH": {
+              "name": "Europa del Norte (Escandinavia)",
+              "flag": "🇸🇪🇳🇴🇩🇰"
+            },
+            "EUR_EAST": {
+              "name": "Europa del Este",
+              "flag": "🇵🇱🇺🇦🇷🇴"
+            }
+          }
+        },
+        {
+          "population": "AFR",
+          "name": "Africano",
+          "nameEs": "Africano",
+          "flag": "🌍",
+          "color": "#F4A6A6",
+          "percentage": 12.3,
+          "subpopulations": {
+            "AFR_WEST": {
+              "name": "África Occidental",
+              "flag": "🇳🇬🇬🇭🇸🇳"
+            },
+            "AFR_EAST": {
+              "name": "África Oriental",
+              "flag": "🇰🇪🇪🇹🇹🇿"
+            },
+            "AFR_NORTH": {
+              "name": "África del Norte",
+              "flag": "🇲🇦🇪🇬🇩🇿"
+            },
+            "AFR_SOUTH": {
+              "name": "África del Sur",
+              "flag": "🇿🇦"
+            }
+          }
+        },
+        {
+          "population": "AMR_NAT",
+          "name": "Amerindio",
+          "nameEs": "Amerindio / Nativo Americano",
+          "flag": "🌎",
+          "color": "#A8E6CF",
+          "percentage": 0.7,
+          "subpopulations": {
+            "AMR_CHILE": {
+              "name": "Pueblos de Chile (Mapuche, Aymara, Diaguita, Rapa Nui)",
+              "flag": "🇨🇱"
+            },
+            "AMR_ANDES": {
+              "name": "Andino (Quechua, Aymara, Inca)",
+              "flag": "🇵🇪🇧🇴"
+            },
+            "AMR_AMAZON": {
+              "name": "Amazónico",
+              "flag": "🌳"
+            },
+            "AMR_MESO": {
+              "name": "Mesoamericano (Maya, Azteca, Nahua)",
+              "flag": "🇲🇽🇬🇹"
+            },
+            "AMR_NORTH": {
+              "name": "Nativo Norteamericano",
+              "flag": "🇺🇸🇨🇦"
+            }
+          }
+        }
+      ],
+      "confidence": "high",
+      "accuracy": "±6%",
+      "aimsAnalyzed": 26
+    }
+  ]
+}
