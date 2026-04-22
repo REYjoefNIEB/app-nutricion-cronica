@@ -19,10 +19,10 @@
             --c-medical:     #FECACA;
             --c-personality: #BAE6FD;
             --c-lifestyle:   #FEF3C7;
-            /* Spectrum gradient vars per category */
-            --cat-color-light: #E0DEFF;
-            --cat-color-mid:   #AFA9EC;
-            --cat-color-dark:  #7C3AED;
+            /* Spectrum gradient vars per category — Aurora Muted defaults */
+            --cat-color-light: #E0D5F0;
+            --cat-color-mid:   #B09BD8;
+            --cat-color-dark:  #8975BB;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
@@ -41,14 +41,15 @@
         .analyze-card { background: var(--card); border-radius: var(--radius); padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); display: none; }
 
         /* Per-category spectrum gradient variables */
-        .cat-appearance  { --cat-color-light: #DDD6FE; --cat-color-mid: #A78BFA; --cat-color-dark: #7C3AED; }
+        /* Aurora Muted — luminosidad homogénea en las 8 categorías */
+        .cat-appearance  { --cat-color-light: #E0D5F0; --cat-color-mid: #B09BD8; --cat-color-dark: #8975BB; }
         .cat-physiology  { --cat-color-light: #FECDD3; --cat-color-mid: #FB7185; --cat-color-dark: #E11D48; }
         .cat-taste       { --cat-color-light: #FED7AA; --cat-color-mid: #FB923C; --cat-color-dark: #EA580C; }
-        .cat-metabolism  { --cat-color-light: #BBF7D0; --cat-color-mid: #4ADE80; --cat-color-dark: #16A34A; }
+        .cat-metabolism  { --cat-color-light: #D4EDE1; --cat-color-mid: #8ECDB8; --cat-color-dark: #5FA893; }
         .cat-fitness     { --cat-color-light: #BFDBFE; --cat-color-mid: #60A5FA; --cat-color-dark: #2563EB; }
-        .cat-medical     { --cat-color-light: #FECACA; --cat-color-mid: #F87171; --cat-color-dark: #DC2626; }
+        .cat-medical     { --cat-color-light: #EDDFD0; --cat-color-mid: #D8B496; --cat-color-dark: #BA9375; }
         .cat-personality { --cat-color-light: #BAE6FD; --cat-color-mid: #38BDF8; --cat-color-dark: #0891B2; }
-        .cat-lifestyle   { --cat-color-light: #FEF3C7; --cat-color-mid: #FBBF24; --cat-color-dark: #D97706; }
+        .cat-lifestyle   { --cat-color-light: #EEE8C5; --cat-color-mid: #D4C78C; --cat-color-dark: #AEA269; }
 
         /* Category sections */
         .cat-section { margin-bottom: 8px; }
@@ -74,7 +75,7 @@
         .trait-icon { font-size: 28px; min-width: 32px; }
         .trait-name { font-size: 12px; font-weight: 700; color: var(--ink-60); text-transform: uppercase; letter-spacing: 0.04em; flex: 1; }
 
-        /* Slider — Estilo A: gradiente suave + puntitos en extremos */
+        /* Slider — Estilo A: gradiente suave */
         .slider-wrap { margin: 12px 0 6px; padding: 0 4px; }
         .slider-track {
             height: 8px;
@@ -89,23 +90,6 @@
             margin: 10px 0;
             box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
         }
-        /* Puntitos en los extremos */
-        .slider-track::before,
-        .slider-track::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--cat-color-dark);
-            border: 2px solid #FFF;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.18);
-            z-index: 1;
-        }
-        .slider-track::before { left: 0; }
-        .slider-track::after  { left: 100%; }
         /* Marker prominente del usuario */
         .slider-marker {
             position: absolute;

@@ -154,20 +154,20 @@ let _user  = null;
 let _chart = null;
 
 const COLORS = {
-    EUR:     '#7C3AED',  // usado por donut (K=6 completo)
-    EUR_S:   '#7C3AED',  // Ibérico-Mediterráneo
-    EUR_N:   '#3B82F6',  // Europeo del Noroeste
-    AFR:     '#D97706', EAS: '#DC2626',
-    SAS:     '#DB2777', AMR_NAT: '#16A34A', OCE: '#0284C7'
+    EUR:     '#B09BD8',  // usado por donut (K=6 completo) — Aurora violeta
+    EUR_S:   '#B09BD8',  // Ibérico-Mediterráneo
+    EUR_N:   '#8BA7D8',  // Europeo del Noroeste — Aurora azul cielo
+    AFR:     '#D4C78C', EAS: '#D8B496',
+    SAS:     '#D4A5C4', AMR_NAT: '#8ECDB8', OCE: '#0284C7'
 };
 
 const REGION_META = {
-    AMR_NAT: { name: 'Amerindio / Andino',    flag: '🌎', color: '#16A34A' },
-    EUR_S:   { name: 'Ibérico-Mediterráneo',  flag: '🌍', color: '#7C3AED' },
-    EUR_N:   { name: 'Europeo del Noroeste',  flag: '🌍', color: '#3B82F6' },
-    SAS:     { name: 'Sur Asiático',          flag: '🌏', color: '#DB2777' },
-    EAS:     { name: 'Asiático del Este',     flag: '🌏', color: '#DC2626' },
-    AFR:     { name: 'Africano Sub-sah.',     flag: '🌍', color: '#D97706' },
+    AMR_NAT: { name: 'Amerindio / Andino',    flag: '🌎', color: '#8ECDB8' },
+    EUR_S:   { name: 'Ibérico-Mediterráneo',  flag: '🌍', color: '#B09BD8' },
+    EUR_N:   { name: 'Europeo del Noroeste',  flag: '🌍', color: '#8BA7D8' },
+    SAS:     { name: 'Sur Asiático',          flag: '🌏', color: '#D4A5C4' },
+    EAS:     { name: 'Asiático del Este',     flag: '🌏', color: '#D8B496' },
+    AFR:     { name: 'Africano Sub-sah.',     flag: '🌍', color: '#D4C78C' },
     OCE:     { name: 'Oceánico / Austral',    flag: '🌊', color: '#0284C7' },
 };
 
@@ -329,25 +329,25 @@ function renderWorldMap(pops, subPops) {
         // Configs de región: [label, pct_0_100, color_hex, [ISO-2 codes]]
         const regionConfigs = [
             // AMR_ANDEAN — solo 6 países andinos (no México, Brasil, Caribe)
-            ['Amerindio Andino',       popMap.AMR_NAT || 0, 0x16A34A,
+            ['Amerindio Andino',       popMap.AMR_NAT || 0, 0x8ECDB8,
              ['CL','PE','BO','EC','AR','CO']],
 
             // EUR_IBERIAN (de subPops.EUR_S)
-            ['Ibérico-Mediterráneo',   eurSPct, 0x7C3AED,
+            ['Ibérico-Mediterráneo',   eurSPct, 0xB09BD8,
              ['ES','PT','IT','GR','MT','FR']],
 
             // EUR_NORTHWEST (de subPops.EUR_N)
-            ['Europeo del Noroeste',   eurNPct, 0x3B82F6,
+            ['Europeo del Noroeste',   eurNPct, 0x8BA7D8,
              ['DE','GB','IE','NL','BE','LU','DK','SE','NO','FI','IS','AT','CH','PL','CZ','SK','HU']],
 
             // Resto desde K=6 pops
-            ['Africano Sub-sahariano', popMap.AFR || 0, 0xD97706,
+            ['Africano Sub-sahariano', popMap.AFR || 0, 0xD4C78C,
              ['NG','GH','SN','ML','CI','GN','BF','LR','SL','TG','BJ','GW','GM','MR','NE',
               'KE','ET','TZ','UG','RW','BI','SO','ER','DJ','SS',
               'ZA','BW','NA','ZW','MZ','ZM','MW','AO','LS','SZ','CM','CD','CF','CG','TD']],
-            ['Asiático del Este',      popMap.EAS || 0, 0xDC2626,
+            ['Asiático del Este',      popMap.EAS || 0, 0xD8B496,
              ['CN','TW','HK','MO','JP','KR','MN','VN','TH','PH','ID','MY','MM','KH','LA','SG','BN']],
-            ['Sur Asiático',           popMap.SAS || 0, 0xDB2777,
+            ['Sur Asiático',           popMap.SAS || 0, 0xD4A5C4,
              ['IN','PK','BD','LK','NP','BT','MV']],
             ['Oceánico / Austral',     popMap.OCE || 0, 0x0284C7,
              ['AU','NZ','PG','FJ','WS','TO','VU','SB','KI','FM','MH','PW']]
@@ -381,7 +381,7 @@ function renderWorldMap(pops, subPops) {
                 projection: am5map.geoMercator(),
                 panX: 'rotateX',
                 panY: 'translateY',
-                background: am5.Rectangle.new(root, { fill: am5.color(0xFFFFFF), fillOpacity: 1 })
+                background: am5.Rectangle.new(root, { fill: am5.color(0xFAFAFC), fillOpacity: 1 })
             })
         );
 
@@ -395,8 +395,8 @@ function renderWorldMap(pops, subPops) {
         // Default: gris neutro para países sin afinidad activa
         polygonSeries.mapPolygons.template.setAll({
             tooltipText: '{name}',
-            fill: am5.color(0xE5E7EB),
-            fillOpacity: 0.25,
+            fill: am5.color(0xE8E8EE),
+            fillOpacity: 0.65,
             stroke: am5.color(0xFFFFFF),
             strokeWidth: 0.5,
             interactive: true,
@@ -413,12 +413,12 @@ function renderWorldMap(pops, subPops) {
         polygonSeries.mapPolygons.template.adapters.add('fill', (fill, target) => {
             const d = target.dataItem?.dataContext;
             if (typeof d?.mapColor === 'number') return am5.color(d.mapColor);
-            return am5.color(0xE5E7EB);
+            return am5.color(0xE8E8EE);
         });
 
         polygonSeries.mapPolygons.template.adapters.add('fillOpacity', (fo, target) => {
             const d = target.dataItem?.dataContext;
-            return typeof d?.mapOpacity === 'number' ? d.mapOpacity : 0.18;
+            return typeof d?.mapOpacity === 'number' ? d.mapOpacity : 0.65;
         });
 
         polygonSeries.mapPolygons.template.adapters.add('tooltipText', (text, target) => {
