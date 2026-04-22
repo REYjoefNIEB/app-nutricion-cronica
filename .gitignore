@@ -56,3 +56,9 @@ $RECYCLE.BIN/
 
 .firebase/
 
+# ── Scripts de test ───────────────────────────────────────────────
+scripts/nura-33fc1-service-account.json
+scripts/.env
+scripts/test-data/*.txt
+scripts/test-data/*.csv
+scripts/test-results/

@@ -1,0 +1,27 @@
+{
+  "name": "app-nutricion-cronica",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/REYjoefNIEB/app-nutricion-cronica.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/REYjoefNIEB/app-nutricion-cronica/issues"
+  },
+  "homepage": "https://github.com/REYjoefNIEB/app-nutricion-cronica#readme",
+  "devDependencies": {
+    "dotenv": "^16.6.1",
+    "firebase-admin": "^12.7.0",
+    "js-yaml": "^4.1.1",
+    "node-fetch": "^3.3.2"
+  }
+}
