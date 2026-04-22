@@ -2250,30 +2250,34 @@ const { parseDNAFile, extractRelevantSNPs } = require('./genetics/parser');
 const { generateGeneticReport }             = require('./genetics/analyzer');
 const { NURA_SNP_DATABASE }                 = require('./genetics/snpDatabase');
 
-// SNPs necesarios para todas las funciones de análisis genético (ancestría, rasgos, fitness, ambiente, clínico).
-// Filtrar a este set antes de guardar en Firestore evita el límite de 10 MB por documento gRPC.
-const _NEEDED_SNPS = new Set([
-    // Ancestry AIMs (26)
-    'rs1426654','rs16891982','rs1042602','rs12913832','rs1805007','rs2814778',
-    'rs1834640','rs2402130','rs3827760','rs2250072','rs671','rs17822931',
-    'rs4778241','rs7554936','rs10883099','rs3794102','rs2187668','rs9268516',
-    'rs4988235','rs7903146','rs1800562','rs762551','rs1801133','rs1800795',
-    'rs2282679','rs4680',
+// Ancestry AIMs: loaded dynamically from the active panel (referenceData.js).
+// This keeps _NEEDED_SNPS in sync with the panel automatically — no manual update needed
+// when the panel changes (e.g., 4.1-C upgrade, AYM/MAP addition, etc.).
+const { AIMS: _CLG_AIMS } = require('./ancestry/referenceData');
+const _ANCESTRY_RSIDS = _CLG_AIMS.map(aim => aim.rsid);  // 141 CLG AIMs (v2-CLG141-K9)
+
+// Non-ancestry SNPs used by other genetic features (traits, fitness, clinical, environmental).
+// Kept as a static list — these don't change with panel upgrades.
+const _OTHER_FEATURE_RSIDS = [
     // Fitness
     'rs1815739','rs8192678','rs12722','rs1042713','rs1799883','rs4244285',
     // Environmental
     'rs1695','rs1049793','rs3740393','rs36053993',
-    // Traits (SNPs not already listed above)
+    // Traits
     'rs72921001','rs713598','rs4481887','rs35874116',
-    // Clinical (SNPs not already listed above)
+    // Clinical
     'rs1801155','rs1801282','rs2476601','rs6511720','rs2251746',
     'rs13119723','rs4343','rs429358','rs80357713','rs80357906','rs80359550',
     'rs3892097','rs9923231','rs2069812','rs1799752','rs7454108','rs1800546',
-    // Medical conditions traits (new EXP A)
+    // Medical conditions traits
     'rs6152','rs524952','rs10757274','rs6025','rs7412','rs193922747',
-    // Personality / lifestyle traits (new EXP A)
+    // Personality / lifestyle traits
     'rs4633','rs6265','rs4570625','rs2740390','rs1800497',
-]);
+];
+
+// Union: ancestry AIMs (dynamic) + other features (static). Set deduplicates overlaps.
+const _NEEDED_SNPS = new Set([..._ANCESTRY_RSIDS, ..._OTHER_FEATURE_RSIDS]);
+console.log(`[INDEX] _NEEDED_SNPS: ${_NEEDED_SNPS.size} SNPs (${_ANCESTRY_RSIDS.length} ancestry AIMs + ${_OTHER_FEATURE_RSIDS.length} feature SNPs)`);
 
 /** Filtra un mapa de SNPs a solo los que necesitan las funciones genéticas. */
 function _filterNeededSnps(allSnps) {
