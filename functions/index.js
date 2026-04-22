@@ -2259,20 +2259,79 @@ const _ANCESTRY_RSIDS = _CLG_AIMS.map(aim => aim.rsid);  // 141 CLG AIMs (v2-CLG
 // Non-ancestry SNPs used by other genetic features (traits, fitness, clinical, environmental).
 // Kept as a static list — these don't change with panel upgrades.
 const _OTHER_FEATURE_RSIDS = [
-    // Fitness
+    // Fitness (original)
     'rs1815739','rs8192678','rs12722','rs1042713','rs1799883','rs4244285',
     // Environmental
     'rs1695','rs1049793','rs3740393','rs36053993',
-    // Traits
+    // Traits (original)
     'rs72921001','rs713598','rs4481887','rs35874116',
     // Clinical
     'rs1801155','rs1801282','rs2476601','rs6511720','rs2251746',
     'rs13119723','rs4343','rs429358','rs80357713','rs80357906','rs80359550',
     'rs3892097','rs9923231','rs2069812','rs1799752','rs7454108','rs1800546',
-    // Medical conditions traits
+    // Medical conditions traits (original)
     'rs6152','rs524952','rs10757274','rs6025','rs7412','rs193922747',
-    // Personality / lifestyle traits
+    // Personality / lifestyle traits (original)
     'rs4633','rs6265','rs4570625','rs2740390','rs1800497',
+    // ── v3 expansion traits (59 new) ───────────────────────────────────────
+    // Appearance expansion
+    'rs1800407',  // OCA2 — eye color intensity
+    'rs12821256', // KITLG — hair blonde
+    'rs1805008',  // MC1R R160W — hair red
+    'rs12203592', // IRF4 — hair graying / freckles / moles
+    'rs11803731', // TCHH — hair waviness
+    'rs3827760',  // EDAR — beard, monobrow (also in existing hair_texture)
+    'rs4911414',  // ASIP — tanning
+    'rs4636294',  // MTAP — moles density
+    'rs16891982', // SLC45A2 — skin pigmentation
+    'rs17822931', // ABCC11 — body odor / earwax / sweating (already in ear_wax)
+    'rs1042725',  // HMGA2 — height
+    'rs1571880',  // earlobe attachment
+    'rs11196369', // AXIN2 — diastema
+    // Senses / taste expansion
+    'rs34160107', // TAS1R1 — umami
+    'rs8065080',  // TRPV1 — spicy
+    'rs10427255', // ACHOO photic sneeze reflex
+    'rs2382520',  // OR5A1 — floral odor
+    // Metabolism expansion
+    'rs5751876',  // ADORA2A — caffeine adenosine sensitivity
+    'rs1229984',  // ADH1B — alcohol fast metabolism
+    'rs1693482',  // ADH1C — alcohol tolerance
+    'rs601338',   // FUT2 — B12 absorption
+    'rs174537',   // FADS1 — omega-3 endogenous
+    'rs9939609',  // FTO — obesity risk
+    'rs17782313', // MC4R — appetite satiety
+    'rs662799',   // APOA5 — triglycerides
+    'rs699',      // AGT — salt sensitivity
+    'rs6548238',  // TMEM18 — BMI tendency
+    // Fitness expansion
+    'rs1800795',  // IL6 — muscle recovery (also in inflammatory_tendency)
+    'rs1800012',  // COL1A1 — ACL injury
+    'rs4646994',  // ACE I/D — running economy
+    'rs1049434',  // MCT1 — lactic acid
+    'rs1805086',  // MSTN — muscle mass
+    'rs2530310',  // PDE10A — freediving curiosity
+    // Sleep / lifestyle expansion
+    'rs228697',   // PER2 — chronotype
+    'rs11046205', // ABCC9 — sleep duration
+    'rs121912617',// DEC2 — short sleeper (rare)
+    'rs2300478',  // MEIS1 — insomnia
+    'rs2640908',  // PER3 — jet lag
+    'rs13021497', // WDR27 — snoring
+    'rs2071286',  // HLA-DQB1 — sleepwalking
+    'rs12969657', // sleep apnea locus
+    // Personality expansion
+    'rs1360780',  // FKBP5 — stress sensitivity
+    'rs53576',    // OXTR — empathy
+    'rs1799971',  // OPRM1 — pain
+    'rs6746030',  // SCN9A — chronic pain
+    'rs1840597',  // PVRL3 — motion sickness
+    'rs25531',    // SLC6A4 — anxiety
+    'rs17070145', // KIBRA — episodic memory
+    // Physiology / curiosities expansion
+    'rs13419896', // EPAS1 — altitude resistance
+    'rs1800592',  // UCP1 — cold tolerance
+    'rs9652490',  // LINGO1 — essential tremor
 ];
 
 // Union: ancestry AIMs (dynamic) + other features (static). Set deduplicates overlaps.

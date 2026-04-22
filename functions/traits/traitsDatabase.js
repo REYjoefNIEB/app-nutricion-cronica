@@ -1,14 +1,18 @@
+'use strict';
 /**
- * Base de datos de rasgos físicos predichos por genética — v2.0
+ * Base de datos de rasgos físicos predichos por genética — v3.0
  *
- * 27 rasgos en 5 categorías. Cada interpret() devuelve:
- * { value, confidence, note?, position }
+ * v2: 42 rasgos originales (PHYSICAL_TRAITS)
+ * v3: +59 rasgos de expansión (EXPANSION_TRAITS) → ~101 rasgos totales
  *
+ * Cada interpret() devuelve: { value, confidence, note?, position }
  * position: 0-100 para la barra deslizante (0 = sliderMin, 100 = sliderMax).
  *
- * Fuentes: SNPedia, 23andMe Research, GWAS Catalog, Pubmed.
+ * Fuentes: SNPedia, GWAS Catalog, PubMed, 23andMe Research.
  * IMPORTANTE: Las predicciones son probabilísticas (±15-30%).
  */
+
+const EXPANSION_TRAITS = require('./traitsDatabase_v2_expansion');
 
 const PHYSICAL_TRAITS = {
 
@@ -802,4 +806,6 @@ const PHYSICAL_TRAITS = {
     }
 };
 
-module.exports = { PHYSICAL_TRAITS };
+const ALL_TRAITS = { ...PHYSICAL_TRAITS, ...EXPANSION_TRAITS };
+
+module.exports = { PHYSICAL_TRAITS: ALL_TRAITS };

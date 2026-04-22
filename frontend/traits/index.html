@@ -87,7 +87,7 @@
     <div class="page-header">
         <div style="font-size:48px;margin-bottom:12px;">🧬</div>
         <h1>Rasgos Físicos Genéticos</h1>
-        <p>27 rasgos en 5 categorías · Predicciones basadas en variantes genéticas estudiadas</p>
+        <p>~100 rasgos en 8 categorías · Predicciones basadas en variantes genéticas estudiadas</p>
     </div>
 
     <div class="disclaimer-box">
@@ -109,15 +109,15 @@
     </div>
 
     <div id="analyzeCard" class="analyze-card">
-        <p style="font-size:14px;color:var(--ink-60);margin-bottom:4px;">Tienes datos genéticos. Analiza tus 27 rasgos físicos ahora.</p>
-        <button class="btn-analyze" onclick="loadTraits()">Analizar mis rasgos físicos</button>
+        <p style="font-size:14px;color:var(--ink-60);margin-bottom:4px;">Tienes datos genéticos. Analiza hasta ~100 rasgos genéticos ahora.</p>
+        <button class="btn-analyze" onclick="loadTraits()">Analizar mis rasgos genéticos</button>
     </div>
 
     <div id="resultsSection" style="display:none;">
         <div class="stats-bar">
             <div class="stats-item"><div class="stats-num" id="statAnalyzed">—</div><div class="stats-label">Rasgos analizados</div></div>
             <div class="stats-item"><div class="stats-num" id="statFound">—</div><div class="stats-label">Variantes encontradas</div></div>
-            <div class="stats-item"><div class="stats-num" id="statCategories">5</div><div class="stats-label">Categorías</div></div>
+            <div class="stats-item"><div class="stats-num" id="statCategories">8</div><div class="stats-label">Categorías</div></div>
         </div>
 
         <div class="cat-section cat-appearance" id="secAppearance" style="display:none;">
@@ -269,8 +269,10 @@ function renderTraits(traits, analyzed, found) {
         const g = document.getElementById(m.grid);
         if (g) g.innerHTML = '';
     });
-    ['secAppearance','secPhysiology','secTaste','secMetabolism','secFitness'].forEach(id => {
-        document.getElementById(id).style.display = 'none';
+    ['secAppearance','secPhysiology','secTaste','secMetabolism','secFitness',
+     'secMedical','secPersonality','secLifestyle'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
     });
 
     Object.entries(traits).forEach(([key, trait]) => {
