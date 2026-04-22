@@ -60,6 +60,7 @@
         .map-subtitle { font-size: 13px; color: var(--ink-60); margin-bottom: 16px; }
         #world-ancestry-map { width: 100%; height: 420px; border-radius: 12px; overflow: hidden; background: #fff; }
         @media (max-width: 480px) { #world-ancestry-map { height: 280px; } }
+        .map-region-note { font-size: 12px; color: var(--ink-60); line-height: 1.5; margin-top: 12px; padding: 10px 14px; background: #F8F9FB; border-radius: 8px; border-left: 3px solid var(--primary); }
         /* World regions */
         .regions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
         @media (max-width: 480px) { .regions-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -114,13 +115,14 @@
         <!-- amCharts world map -->
         <div class="card" id="mapCard" style="display:none;">
             <p class="map-title">🗺️ Distribución geográfica de tu ADN</p>
-            <p class="map-subtitle">Los colores más intensos indican mayor afinidad genética con esas regiones</p>
+            <p class="map-subtitle">Cada región tiene su propio color · La intensidad refleja el porcentaje de afinidad genética</p>
             <div id="world-ancestry-map"></div>
+            <p class="map-region-note">ℹ️ El mapa muestra <strong>afinidad con regiones ancestrales</strong>, no países modernos. Los chilenos comparten componente amerindio con Perú, Bolivia y Ecuador porque descendemos de poblaciones andinas comunes. Las fronteras políticas actuales no reflejan la distribución genética histórica.</p>
         </div>
 
-        <!-- World regions visual (fallback grid) -->
+        <!-- World regions visual -->
         <div class="card">
-            <h2>📊 Distribución por Regiones del Mundo</h2>
+            <h2>📊 Distribución por Regiones Ancestrales</h2>
             <div class="regions-grid" id="regionsGrid"></div>
         </div>
 
@@ -152,17 +154,17 @@ let _user  = null;
 let _chart = null;
 
 const COLORS = {
-    EUR:     '#AFA9EC', AFR: '#F4A6A6', EAS: '#FFD77A',
-    SAS:     '#FDB5B5', AMR_NAT: '#A8E6CF', OCE: '#B5D8F5'
+    EUR:     '#7C3AED', AFR: '#D97706', EAS: '#DC2626',
+    SAS:     '#DB2777', AMR_NAT: '#16A34A', OCE: '#0284C7'
 };
 
 const REGION_META = {
-    EUR:     { name: 'Europa',         flag: '🌍', color: '#AFA9EC' },
-    AFR:     { name: 'África',         flag: '🌍', color: '#F4A6A6' },
-    EAS:     { name: 'Asia del Este',  flag: '🌏', color: '#FFD77A' },
-    SAS:     { name: 'Sur de Asia',    flag: '🌏', color: '#FDB5B5' },
-    AMR_NAT: { name: 'Amerindio',      flag: '🌎', color: '#A8E6CF' },
-    OCE:     { name: 'Oceanía',        flag: '🌊', color: '#B5D8F5' },
+    EUR:     { name: 'Europeo',             flag: '🌍', color: '#7C3AED' },
+    AFR:     { name: 'Africano Sub-sah.',   flag: '🌍', color: '#D97706' },
+    EAS:     { name: 'Asiático del Este',   flag: '🌏', color: '#DC2626' },
+    SAS:     { name: 'Sur Asiático',        flag: '🌏', color: '#DB2777' },
+    AMR_NAT: { name: 'Amerindio / Andino',  flag: '🌎', color: '#16A34A' },
+    OCE:     { name: 'Oceánico / Austral',  flag: '🌊', color: '#0284C7' },
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -285,97 +287,104 @@ function renderResults(data) {
 }
 
 // ── amCharts World Map ────────────────────────────────────────────
-let _amRoot = null; // referencia global para destruir si se re-renderiza
+let _amRoot = null;
 
 function renderWorldMap(pops) {
     const mapCard = document.getElementById('mapCard');
-    const mapDiv  = document.getElementById('world-ancestry-map');
 
-    // Limpiar instancia anterior si existe
     if (_amRoot) {
         try { _amRoot.dispose(); } catch(e) {}
         _amRoot = null;
     }
 
-    // Verificar que amCharts cargó completamente
     if (typeof am5 === 'undefined' || typeof am5map === 'undefined' ||
         typeof am5geodata_worldLow === 'undefined' || typeof am5themes_Animated === 'undefined') {
-        // CDN no disponible — el grid de regiones sigue como fallback
-        console.warn('[AncestryMap] amCharts no disponible, usando grid de regiones.');
+        console.warn('[AncestryMap] amCharts no disponible.');
         return;
     }
 
     try {
-        // Mapa principal población → países ISO
-        const POPULATION_TO_COUNTRIES = {
-            'EUR': [
-                'ES','PT',                          // Ibéricos
-                'IT',                               // Italiano
-                'FR','DE','BE','LU','NL','CH',       // Franco-germánico
-                'GB','IE',                          // Británico
-                'SE','NO','DK','FI','IS',            // Escandinavo
-                'PL','UA','CZ','HU','RO','RU','BG',  // Europa del Este
-                'AT','GR','HR','RS','SK','SI','LT','LV','EE','AL','MK','ME','BA','MD','BY'
-            ],
-            'AFR': [
-                'NG','GH','SN','ML','CI','GN','BF',  // África Occidental
-                'KE','ET','TZ','UG','SO','RW','BI',  // África Oriental
-                'ZA','BW','NA','ZW','MZ',            // África Austral
-                'MA','DZ','TN','LY','EG','SD',       // África del Norte
-                'CM','CD','CF','CG','TD','NE','ER','DJ','GM','GW','LR','SL','TG','BJ','AO'
-            ],
-            'EAS': [
-                'CN','TW','HK','MO',                // Chino
-                'JP',                               // Japonés
-                'KR','KP',                          // Coreano
-                'VN','TH','PH','ID','MY','MM','KH','LA','SG','MN','BN'  // Sudeste Asiático
-            ],
-            'SAS': [
-                'IN','PK','BD','LK','NP','BT','MV','AF'
-            ],
-            'AMR_NAT': [
-                'CL',                               // AMR Chile
-                'PE','BO','EC',                     // Andino
-                'BR','CO','VE','GY','SR',            // Amazónico
-                'MX','GT','HN','SV','NI','CR','PA',  // Mesoamericano
-                'US','CA',                          // Norteamericano
-                'AR','PY','UY','DO','CU','PR','JM','HT'
-            ],
-            'OCE': [
-                'NZ',                               // Polinesio
-                'AU',                               // Australiano
-                'PG','FJ','WS','TO','VU','SB','KI','FM','MH','PW'
-            ]
+        // Región ancestral → países ISO + color vivido
+        // Enfocado en países de afinidad genética real, no en todos los países del continente
+        const POP_CONFIG = {
+            AMR_NAT: {
+                label: 'Amerindio / Andino',
+                color: 0x16A34A,
+                countries: [
+                    'CL','PE','BO','EC',                        // Andino núcleo
+                    'CO','VE','GY','SR',                        // Norteandino/Caribeño continental
+                    'BR','PY','AR','UY',                        // Cono Sur
+                    'MX','GT','BZ','HN','SV','NI','CR','PA',   // Mesoamérica
+                    'CU','DO','HT','JM','TT'                   // Caribe
+                ]
+            },
+            EUR: {
+                label: 'Europeo',
+                color: 0x7C3AED,
+                countries: [
+                    'ES','PT','IT','GR','MT',                  // Mediterráneo/Ibérico
+                    'FR','DE','BE','LU','NL','CH','AT',         // Europa Central
+                    'GB','IE',                                  // Islas Británicas
+                    'SE','NO','DK','FI','IS',                  // Escandinavia
+                    'PL','CZ','SK','HU','RO','SI','HR',        // Europa Central-Este
+                    'UA','BY','RU','BG','LT','LV','EE',
+                    'RS','AL','MK','ME','BA','MD'
+                ]
+            },
+            AFR: {
+                label: 'Africano Sub-sahariano',
+                color: 0xD97706,
+                countries: [
+                    'NG','GH','SN','ML','CI','GN','BF','LR','SL','TG','BJ','GW','GM','MR','NE',
+                    'KE','ET','TZ','UG','RW','BI','SO','ER','DJ','SS',
+                    'ZA','BW','NA','ZW','MZ','ZM','MW','AO','LS','SZ',
+                    'CM','CD','CF','CG','TD'
+                ]
+            },
+            EAS: {
+                label: 'Asiático del Este',
+                color: 0xDC2626,
+                countries: [
+                    'CN','TW','HK','MO','JP','KR','MN',
+                    'VN','TH','PH','ID','MY','MM','KH','LA','SG','BN'
+                ]
+            },
+            SAS: {
+                label: 'Sur Asiático',
+                color: 0xDB2777,
+                countries: ['IN','PK','BD','LK','NP','BT','MV']
+            },
+            OCE: {
+                label: 'Oceánico / Austral',
+                color: 0x0284C7,
+                countries: ['AU','NZ','PG','FJ','WS','TO','VU','SB','KI','FM','MH','PW']
+            }
         };
 
-        // WAS_MIDDLE_EAST — asignar a SAS si no existe como componente propio
-        // (mapeado como sub-región de SAS en nuestra DB)
-        const WAS_COUNTRIES = ['SA','AE','IR','LB','SY','TR','IQ','JO','YE','OM','IL','KW','QA','BH'];
-
-        // Calcular valor acumulado por país
-        const countryValues = {};
+        // Construir datos por país: color y opacity desde la población
+        const countryData = {};
         pops.forEach(p => {
-            const countries = POPULATION_TO_COUNTRIES[p.population] || [];
-            countries.forEach(c => {
-                countryValues[c] = (countryValues[c] || 0) + p.percentage;
+            const cfg = POP_CONFIG[p.population];
+            if (!cfg) return;
+            const opacity = Math.max(0.12, Math.min(0.88, p.percentage / 100));
+            cfg.countries.forEach(code => {
+                const existing = countryData[code];
+                if (!existing || p.percentage > existing._pct) {
+                    countryData[code] = {
+                        id: code,
+                        mapColor: cfg.color,
+                        mapOpacity: opacity,
+                        popLabel: cfg.label,
+                        popPct: p.percentage,
+                        _pct: p.percentage
+                    };
+                }
             });
         });
 
-        // WAS: si hay componente SAS, distribuir 30% a Oriente Medio
-        const sasComp = pops.find(p => p.population === 'SAS');
-        if (sasComp && sasComp.percentage > 2) {
-            const wasValue = Math.round(sasComp.percentage * 0.3 * 10) / 10;
-            WAS_COUNTRIES.forEach(c => {
-                countryValues[c] = (countryValues[c] || 0) + wasValue;
-            });
-        }
+        const mapData = Object.values(countryData).map(({ _pct, ...d }) => d);
 
-        // Construir datos para amCharts
-        const mapData = Object.entries(countryValues)
-            .filter(([, v]) => v > 0)
-            .map(([id, value]) => ({ id, value: Math.round(value * 10) / 10 }));
-
-        // ── Crear el mapa ──────────────────────────────────────────────
+        // ── Crear mapa ────────────────────────────────────────────────
         const root = am5.Root.new('world-ancestry-map');
         root.setThemes([am5themes_Animated.new(root)]);
         _amRoot = root;
@@ -392,15 +401,15 @@ function renderWorldMap(pops) {
         const polygonSeries = chart.series.push(
             am5map.MapPolygonSeries.new(root, {
                 geoJSON: am5geodata_worldLow,
-                exclude: ['AQ'],
-                valueField: 'value',
-                calculateAggregates: true
+                exclude: ['AQ']
             })
         );
 
+        // Default: gris neutro para países sin afinidad activa
         polygonSeries.mapPolygons.template.setAll({
-            tooltipText: '{name}: {value}%',
+            tooltipText: '{name}',
             fill: am5.color(0xE5E7EB),
+            fillOpacity: 0.25,
             stroke: am5.color(0xFFFFFF),
             strokeWidth: 0.5,
             interactive: true,
@@ -408,32 +417,38 @@ function renderWorldMap(pops) {
         });
 
         polygonSeries.mapPolygons.template.states.create('hover', {
-            fill: am5.color(0x8B85D6),
-            strokeWidth: 1
+            fillOpacity: 1.0,
+            strokeWidth: 1.5,
+            stroke: am5.color(0x374151)
         });
 
-        // Gradiente de color según porcentaje de ancestría
-        polygonSeries.set('heatRules', [{
-            target: polygonSeries.mapPolygons.template,
-            dataField: 'value',
-            min: am5.color(0xE5E7EB),
-            max: am5.color(0x6366F1),
-            key: 'fill',
-            logarithmic: false
-        }]);
+        // Adapters: color y opacity distintos por región genética
+        polygonSeries.mapPolygons.template.adapters.add('fill', (fill, target) => {
+            const d = target.dataItem?.dataContext;
+            if (typeof d?.mapColor === 'number') return am5.color(d.mapColor);
+            return am5.color(0xE5E7EB);
+        });
+
+        polygonSeries.mapPolygons.template.adapters.add('fillOpacity', (fo, target) => {
+            const d = target.dataItem?.dataContext;
+            return typeof d?.mapOpacity === 'number' ? d.mapOpacity : 0.18;
+        });
+
+        polygonSeries.mapPolygons.template.adapters.add('tooltipText', (text, target) => {
+            const d = target.dataItem?.dataContext;
+            return d?.popLabel ? ('{name}\n' + d.popLabel + ' · ' + d.popPct + '%') : '{name}';
+        });
 
         polygonSeries.data.setAll(mapData);
 
-        // Zoom control en esquina inferior derecha
         const zoomControl = am5map.ZoomControl.new(root, {});
         zoomControl.homeButton.set('visible', true);
         chart.set('zoomControl', zoomControl);
 
-        // Mostrar la tarjeta del mapa
         mapCard.style.display = 'block';
 
-    } catch (e) {
-        console.warn('[AncestryMap] Error al renderizar mapa (fallback al grid):', e.message);
+    } catch(e) {
+        console.warn('[AncestryMap] Error al renderizar mapa:', e.message);
         mapCard.style.display = 'none';
     }
 }
