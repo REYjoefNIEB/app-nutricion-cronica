@@ -241,28 +241,37 @@ async function readAncestryResult(uid) {
     throw new Error(`No se encontró resultado de ancestría para uid=${uid}`);
 }
 
-// ── Capturar logs de analyzeAncestry ─────────────────────────────
-function captureLogs() {
+// ── Capturar logs de analyzeAncestry desde un instante específico ─
+// sinceMs: timestamp en ms (Date.now()) del momento previo a la llamada.
+// Retorna solo las líneas cuyo timestamp ISO >= since, filtrando ruido
+// de corridas anteriores. Esto evita que logs de usuario A contaminen
+// el análisis de usuario B (bug original del runner).
+function captureLogsSince(sinceMs) {
     try {
         const raw = execSync(
-            'firebase functions:log --only analyzeAncestry --lines 200',
+            'firebase functions:log --only analyzeAncestry --lines 100',
             { encoding: 'utf8', cwd: REPO_ROOT, timeout: 30000 }
         );
-        return raw;
+        // Cada línea del log de Firebase empieza con un ISO timestamp:
+        // "2026-04-22T00:54:09.582768Z ? analyzeancestry: [ANCESTRY] ..."
+        // Filtramos solo las líneas con timestamp >= sinceMs.
+        const sinceIso = new Date(sinceMs).toISOString();
+        return raw.split('\n').filter(line => {
+            const tsMatch = line.match(/^(\d{4}-\d{2}-\d{2}T[\d:.]+Z)/);
+            return tsMatch ? tsMatch[1] >= sinceIso : false;
+        }).join('\n');
     } catch (e) {
         console.warn(`  ⚠️ No se pudieron capturar logs: ${e.message}`);
         return '';
     }
 }
 
-// ── Parsear logs para un uid concreto ────────────────────────────
-// Formato real de [ANCESTRY] logs en calculator.js:
-//   [ANCESTRY] AIMs encontrados: N/26
-//   [ANCESTRY] Q inicial: EUR=X.X%, AFR=X.X%, EAS=X.X%, SAS=X.X%, AMR_NAT=X.X%, OCE=X.X%
-//   [ANCESTRY] EM convergió en iteración N
-//   [ANCESTRY] Q final: EUR=X.X%, AFR=X.X%, EAS=X.X%, SAS=X.X%, AMR_NAT=X.X%, OCE=X.X%
+// ── Parsear bloque [ANCESTRY] de logs ya filtrados por timestamp ──
+// Recibe las líneas ya filtradas por captureLogsSince() — solo las de
+// la ventana de tiempo de este usuario. Toma la PRIMERA ocurrencia de
+// cada patrón para evitar contaminación de corridas previas del mismo
+// archivo de ADN (por ejemplo si el usuario re-ejecuta el test).
 function parseQVector(logLine) {
-    // Extrae "EUR=12.3%, AFR=5.0%, ..." → { EUR: 0.123, AFR: 0.05, ... }
     const q = {};
     const regex = /(\w+)=([\d.]+)%/g;
     let m;
@@ -272,36 +281,29 @@ function parseQVector(logLine) {
     return Object.keys(q).length > 0 ? q : null;
 }
 
-function parseLogsForUid(allLogs, uid) {
+function parseAncestryBlock(filteredLogs, uid) {
     const metrics = {
         uid,
-        aimsEncontrados:  null,
-        qInicial:         null,
-        qFinal:           null,
-        iteracionesEM:    null,
-        errors:           []
+        aimsEncontrados: null,
+        qInicial:        null,
+        qFinal:          null,
+        iteracionesEM:   null,
+        errors:          []
     };
 
-    // Filtrar líneas que tengan uid (el uid aparece en el contexto de la llamada)
-    // o líneas [ANCESTRY] cercanas en el tiempo
-    const lines = allLogs.split('\n');
-
-    // Encontrar el bloque de líneas que pertenecen a este uid
-    // Las Cloud Functions v2 incluyen el uid en el log de verificación
-    // Estrategia: tomar las últimas ocurrencias de cada patrón [ANCESTRY]
-    // (funciona porque los usuarios se procesan secuencialmente)
-    for (const line of lines) {
+    for (const line of filteredLogs.split('\n')) {
+        // PRIMERA ocurrencia de cada patrón (las líneas ya están filtradas por tiempo)
         const aimsM = line.match(/\[ANCESTRY\] AIMs encontrados: (\d+)\/\d+/);
-        if (aimsM) metrics.aimsEncontrados = parseInt(aimsM[1]);
+        if (aimsM && metrics.aimsEncontrados === null) metrics.aimsEncontrados = parseInt(aimsM[1]);
 
         const qIniM = line.match(/\[ANCESTRY\] Q inicial: (.+)/);
-        if (qIniM) metrics.qInicial = parseQVector(qIniM[1]);
+        if (qIniM && metrics.qInicial === null) metrics.qInicial = parseQVector(qIniM[1]);
 
         const convM = line.match(/\[ANCESTRY\] EM convergió en iteración (\d+)/);
-        if (convM) metrics.iteracionesEM = parseInt(convM[1]);
+        if (convM && metrics.iteracionesEM === null) metrics.iteracionesEM = parseInt(convM[1]);
 
         const qFinM = line.match(/\[ANCESTRY\] Q final: (.+)/);
-        if (qFinM) metrics.qFinal = parseQVector(qFinM[1]);
+        if (qFinM && metrics.qFinal === null) metrics.qFinal = parseQVector(qFinM[1]);
 
         if (line.match(/INTERNAL|Unhandled error|crashed|uncaughtException/i)) {
             metrics.errors.push(line.trim().substring(0, 200));
@@ -323,12 +325,29 @@ function l2Distance(qA, qB) {
     return Math.sqrt(sumSq);
 }
 
-// Extraer Q-vector del resultado Firestore (array de { population, percentage })
-function extractQFromFirestore(ancestryData) {
-    const items = ancestryData.data;
-    if (!Array.isArray(items)) return null;
+// Extraer Q-vector del resultado Firestore.
+// calculateAncestry() retorna { populations: [...], aimsAnalyzed, ... }
+// → Firestore guarda { populations: [...], analyzedAt, aimsAnalyzed, ... }
+// Bug original: se chequeaba Array.isArray(items) pero items es el doc completo.
+function extractQFromFirestore(fsResult) {
+    const populations = fsResult?.data?.populations;
+    if (!Array.isArray(populations) || populations.length === 0) return null;
     const q = {};
-    for (const item of items) {
+    for (const item of populations) {
+        if (item.population && item.percentage !== undefined) {
+            q[item.population] = item.percentage / 100;
+        }
+    }
+    return Object.keys(q).length > 0 ? q : null;
+}
+
+// Extraer Q-vector del JSON de respuesta de analyzeAncestry.
+// La respuesta tiene { success, ancestry: { populations: [...], ... }, disclaimer }.
+function extractQFromResponse(ancestryResp) {
+    const populations = ancestryResp?.ancestry?.populations;
+    if (!Array.isArray(populations) || populations.length === 0) return null;
+    const q = {};
+    for (const item of populations) {
         if (item.population && item.percentage !== undefined) {
             q[item.population] = item.percentage / 100;
         }
@@ -469,8 +488,19 @@ async function main() {
         console.log(`  ✅ Completado en ${elapsedA}s`);
 
         console.log(`📊 [A] Ejecutando analyzeAncestry...`);
+        const t_ancestryA = Date.now() - 10000; // margen de 10s por arranque de instancia
         const ancestryRespA = await callFunction('analyzeAncestry', userA.idToken, {});
         console.log(`  ✅ analyzeAncestry OK`);
+
+        // Capturar logs de A INMEDIATAMENTE — antes de que B los sobreescriba.
+        // 5s de espera para que Cloud Logging propague los logs.
+        console.log(`📜 [A] Capturando logs...`);
+        await new Promise(r => setTimeout(r, 5000));
+        const logsA    = captureLogsSince(t_ancestryA);
+        const metricsA = parseAncestryBlock(logsA, userA.uid);
+        // Prioridad para qFinal: respuesta JSON > logs (más confiable que logs)
+        metricsA.qFinal = extractQFromResponse(ancestryRespA) || metricsA.qFinal;
+        console.log(`  ✅ Logs A: ${logsA.split('\n').filter(l => l.includes('[ANCESTRY]')).length} líneas [ANCESTRY]`);
 
         // ──────────────────────────────────────────────────────────
         // USUARIO B
@@ -493,11 +523,19 @@ async function main() {
         console.log(`  ✅ Completado en ${elapsedB}s`);
 
         console.log(`📊 [B] Ejecutando analyzeAncestry...`);
+        const t_ancestryB = Date.now() - 10000;
         const ancestryRespB = await callFunction('analyzeAncestry', userB.idToken, {});
         console.log(`  ✅ analyzeAncestry OK`);
 
+        console.log(`📜 [B] Capturando logs...`);
+        await new Promise(r => setTimeout(r, 5000));
+        const logsB    = captureLogsSince(t_ancestryB);
+        const metricsB = parseAncestryBlock(logsB, userB.uid);
+        metricsB.qFinal = extractQFromResponse(ancestryRespB) || metricsB.qFinal;
+        console.log(`  ✅ Logs B: ${logsB.split('\n').filter(l => l.includes('[ANCESTRY]')).length} líneas [ANCESTRY]`);
+
         // ──────────────────────────────────────────────────────────
-        // LEER RESULTADOS DE FIRESTORE
+        // LEER RESULTADOS DE FIRESTORE (fuente de verdad alternativa)
         // ──────────────────────────────────────────────────────────
         console.log('\n📂 Leyendo resultados de Firestore...');
         const fsResultA = await readAncestryResult(userA.uid);
@@ -505,33 +543,6 @@ async function main() {
         const qA_store  = extractQFromFirestore(fsResultA);
         const qB_store  = extractQFromFirestore(fsResultB);
         console.log(`  ✅ Leídos: ${fsResultA.path} / ${fsResultB.path}`);
-
-        // ──────────────────────────────────────────────────────────
-        // CAPTURAR LOGS
-        // ──────────────────────────────────────────────────────────
-        console.log('\n📜 Capturando logs de Cloud Functions (últimas 200 líneas)...');
-        // Pequeña pausa para que los logs lleguen a Cloud Logging
-        await new Promise(r => setTimeout(r, 3000));
-        const allLogs = captureLogs();
-
-        const metricsA = parseLogsForUid(allLogs, userA.uid);
-        const metricsB = parseLogsForUid(allLogs, userB.uid);
-
-        // Usar Q del response directo si los logs no los tienen
-        if (!metricsA.qFinal && ancestryRespA?.ancestry) {
-            const q = {};
-            for (const item of ancestryRespA.ancestry) {
-                q[item.population] = item.percentage / 100;
-            }
-            metricsA.qFinal = q;
-        }
-        if (!metricsB.qFinal && ancestryRespB?.ancestry) {
-            const q = {};
-            for (const item of ancestryRespB.ancestry) {
-                q[item.population] = item.percentage / 100;
-            }
-            metricsB.qFinal = q;
-        }
 
         metricsA.tiempoProcesamiento = parseFloat(elapsedA);
         metricsB.tiempoProcesamiento = parseFloat(elapsedB);
@@ -586,10 +597,12 @@ async function main() {
 
         const ts         = Date.now();
         const reportPath = path.join(RESULTS_DIR, `test1-report-${ts}.yaml`);
-        const logsPath   = path.join(RESULTS_DIR, `logs-${ts}.txt`);
+        const logsPathA  = path.join(RESULTS_DIR, `logs-A-${ts}.txt`);
+        const logsPathB  = path.join(RESULTS_DIR, `logs-B-${ts}.txt`);
 
         fs.writeFileSync(reportPath, yaml.dump(report, { lineWidth: 120 }));
-        fs.writeFileSync(logsPath,   allLogs || '(sin logs capturados)');
+        fs.writeFileSync(logsPathA,  logsA || '(sin logs capturados)');
+        fs.writeFileSync(logsPathB,  logsB || '(sin logs capturados)');
 
         // ──────────────────────────────────────────────────────────
         // OUTPUT FINAL
@@ -617,7 +630,8 @@ async function main() {
         }
 
         console.log(`\n📁 Reporte: ${path.relative(REPO_ROOT, reportPath)}`);
-        console.log(`📁 Logs:    ${path.relative(REPO_ROOT, logsPath)}`);
+        console.log(`📁 Logs A:  ${path.relative(REPO_ROOT, logsPathA)}`);
+        console.log(`📁 Logs B:  ${path.relative(REPO_ROOT, logsPathB)}`);
         console.log(`\n➡️  ${report.proximo_paso}`);
 
     } catch (err) {

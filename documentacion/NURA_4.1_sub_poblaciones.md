@@ -108,3 +108,30 @@ function aggregateResults(Q22) {
 | Over-fitting con K=22 y solo 120 AIMs | Regularización Dirichlet con prior α=0.1 |
 | Costo computacional O(K×N) mayor | Aceptable: 22×120 = 2640 ops, <5ms |
 | Licencia datos 1000G en app comercial | 1000G es CC0 — sin restricciones |
+
+---
+
+## Bugs científicos detectados en Test #1 (22-abr-2026)
+
+### `_countMinorAlleles` usa 'G' global en vez de `minorAllele` por SNP
+
+**Síntoma:** Todos los usuarios europeos convergen a AMR_NAT ≈ 44-49%, lo que es
+biológicamente implausible. Ejemplo: rs3827760 (EDAR) en un español con genotipo
+AA (alelo ancestral europeo) es contado como 2 copias del alelo amerindio.
+
+**Causa:** `functions/ancestry/calculator.js` → `_countMinorAlleles()` asume alelo
+menor global = cualquier base que no sea G. El alelo menor real depende del SNP específico
+y de la convención de strand usada por el chip (23andMe usa forward strand).
+
+**Fix requerido (parte de 4.1):**
+1. Agregar campo `minorAllele: 'A'|'C'|'T'|'G'` por cada AIM en `referenceData.js`
+2. Nueva firma: `_countMinorAlleles(genotype, minorAllele)` — cuenta solo copias de `minorAllele`
+3. Actualizar llamadas en el E-step del EM para pasar `AIM_SNPS[rsid].minorAllele`
+4. Verificar y recalibrar `popFreq` values contra datos reales de 1000 Genomes Phase 3
+
+**Nota técnica:** El test de personalización (Test #1) sí pasa (L2=0.063 entre dos europeos),
+porque el algoritmo produce outputs distintos aunque implausibles. El bug afecta la
+**exactitud clínica** del resultado, no la personalización por usuario.
+
+**Prioridad:** ALTA. Bloquea validación clínica real del algoritmo, aunque el
+test técnico de personalización ahora pase.
