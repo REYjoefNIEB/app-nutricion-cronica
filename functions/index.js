@@ -2256,8 +2256,13 @@ const { NURA_SNP_DATABASE }                 = require('./genetics/snpDatabase');
 const { AIMS: _CLG_AIMS } = require('./ancestry/referenceData');
 const _ANCESTRY_RSIDS = _CLG_AIMS.map(aim => aim.rsid);  // 141 CLG AIMs (v2-CLG141-K9)
 
+// Trait SNPs: built dynamically from PHYSICAL_TRAITS so new traits auto-register.
+// This prevents the manual-sync gap that caused 16 primarySnps to be missing.
+const { PHYSICAL_TRAITS: _TRAITS_DB } = require('./traits/traitsDatabase');
+const _TRAIT_SNPS = [...new Set(Object.values(_TRAITS_DB).map(t => t.primarySnp).filter(Boolean))];
+
 // Non-ancestry SNPs used by other genetic features (traits, fitness, clinical, environmental).
-// Kept as a static list — these don't change with panel upgrades.
+// Legacy static list kept as safety net — _TRAIT_SNPS now handles trait coverage dynamically.
 const _OTHER_FEATURE_RSIDS = [
     // Fitness (original)
     'rs1815739','rs8192678','rs12722','rs1042713','rs1799883','rs4244285',
@@ -2334,9 +2339,10 @@ const _OTHER_FEATURE_RSIDS = [
     'rs9652490',  // LINGO1 — essential tremor
 ];
 
-// Union: ancestry AIMs (dynamic) + other features (static). Set deduplicates overlaps.
-const _NEEDED_SNPS = new Set([..._ANCESTRY_RSIDS, ..._OTHER_FEATURE_RSIDS]);
-console.log(`[INDEX] _NEEDED_SNPS: ${_NEEDED_SNPS.size} SNPs (${_ANCESTRY_RSIDS.length} ancestry AIMs + ${_OTHER_FEATURE_RSIDS.length} feature SNPs)`);
+// Union: ancestry AIMs + trait SNPs (both dynamic) + other features (static legacy).
+// Set deduplicates overlaps across all three sources.
+const _NEEDED_SNPS = new Set([..._ANCESTRY_RSIDS, ..._TRAIT_SNPS, ..._OTHER_FEATURE_RSIDS]);
+console.log(`[INDEX] _NEEDED_SNPS: ${_NEEDED_SNPS.size} SNPs (${_ANCESTRY_RSIDS.length} ancestry AIMs + ${_TRAIT_SNPS.length} trait SNPs + ${_OTHER_FEATURE_RSIDS.length} feature SNPs)`);
 
 /** Filtra un mapa de SNPs a solo los que necesitan las funciones genéticas. */
 function _filterNeededSnps(allSnps) {
