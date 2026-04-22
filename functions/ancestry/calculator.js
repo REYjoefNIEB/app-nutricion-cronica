@@ -19,17 +19,16 @@ const CONVERGENCE      = 0.0001;
 const MIN_SNPS         = 8; // mínimo de AIMs encontrados para dar resultado confiable
 
 /**
- * Cuenta cuántos alelos "menores" hay en un genotipo bi-alélico.
- * Asume que los alelos C y A son los alelos de referencia "menos frecuentes"
- * en la mayoría de los SNPs incluidos (simplificación).
- * En una implementación completa se usaría el alelo de referencia por SNP.
+ * Cuenta cuántas copias del minorAllele canónico hay en el genotipo (0, 1 ó 2).
+ * @param {string} genotype  — dos caracteres, ej. "AG", "GG", "CT"
+ * @param {string} minorAllele — alelo AIM-informativo específico del SNP, ej. "A", "G", "T"
  */
-function _countMinorAlleles(genotype) {
-    if (!genotype || genotype.length < 2) return 0;
-    const [a, b] = [genotype[0].toUpperCase(), genotype[1].toUpperCase()];
-    // Alelos que típicamente son "minors" en nuestro set de AIMs
-    const MINOR_ALLELES = new Set(['A', 'C', 'T']);
-    return (MINOR_ALLELES.has(a) ? 1 : 0) + (MINOR_ALLELES.has(b) ? 1 : 0);
+function _countMinorAlleles(genotype, minorAllele) {
+    if (!genotype || genotype.length < 2 || !minorAllele) return 0;
+    const target = minorAllele.toUpperCase();
+    const a = genotype[0].toUpperCase();
+    const b = genotype[1].toUpperCase();
+    return (a === target ? 1 : 0) + (b === target ? 1 : 0);
 }
 
 /**
@@ -52,10 +51,19 @@ function calculateAncestry(userSnps) {
     for (const [rsid, gt] of Object.entries(userAims)) {
         console.log(`[ANCESTRY]   ${rsid}: ${gt}`);
     }
+    console.log(`[CALC_ANCESTRY_v2] algoritmo v2 — minorAllele canónico por SNP activo`);
 
     if (aimCount < MIN_SNPS) {
         throw new Error(`Solo se encontraron ${aimCount} marcadores AIM (mínimo ${MIN_SNPS}). Verifica que el archivo tenga suficiente cobertura.`);
     }
+
+    // Log per-SNP allele counts with canonical minorAllele for debug
+    const alleleCounts = Object.entries(userAims).map(([rsid, gt]) => {
+        const snpDef = AIM_SNPS[rsid];
+        const count = _countMinorAlleles(gt, snpDef?.minorAllele);
+        return `${rsid}(${snpDef?.minorAllele ?? '?'})=${count}`;
+    });
+    console.log(`[CALC_ANCESTRY_v2] allele_counts: ${alleleCounts.join(' ')}`);
 
     // Inicialización determinista basada en similitud observada con cada población
     // Evita que diferentes usuarios converjan al mismo mínimo local
@@ -65,9 +73,10 @@ function calculateAncestry(userSnps) {
         let sim = 0;
         let n = 0;
         for (const [rsid, gt] of Object.entries(userAims)) {
-            const freq = AIM_SNPS[rsid]?.popFreq?.[pop];
+            const snpDef = AIM_SNPS[rsid];
+            const freq = snpDef?.popFreq?.[pop];
             if (freq === undefined) continue;
-            const minor = _countMinorAlleles(gt);
+            const minor = _countMinorAlleles(gt, snpDef.minorAllele);
             const expected = freq * 2; // diploid expected minor allele count
             sim += 1 - Math.abs(minor - expected) / 2;
             n++;
@@ -90,7 +99,7 @@ function calculateAncestry(userSnps) {
         for (const rsid of Object.keys(userAims)) {
             const snp      = AIM_SNPS[rsid];
             const genotype = userAims[rsid];
-            const minorCount = _countMinorAlleles(genotype);
+            const minorCount = _countMinorAlleles(genotype, snp.minorAllele);
 
             // Para cada uno de los 2 alelos
             for (let alleleIdx = 0; alleleIdx < 2; alleleIdx++) {
