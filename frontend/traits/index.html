@@ -11,11 +11,14 @@
             --gradient: linear-gradient(135deg, #8B85D6 0%, #6BA5D8 100%);
             --bg: #F7F7F9; --card: #FFFFFF; --ink: #1A1A2E; --ink-60: #666680;
             --radius: 16px;
-            --c-appearance: #AFA9EC;
-            --c-physiology: #F4A6A6;
-            --c-taste:      #FFD77A;
-            --c-metabolism: #A8E6CF;
-            --c-fitness:    #6BA5D8;
+            --c-appearance:  #AFA9EC;
+            --c-physiology:  #F4A6A6;
+            --c-taste:       #FFD77A;
+            --c-metabolism:  #A8E6CF;
+            --c-fitness:     #6BA5D8;
+            --c-medical:     #FECACA;
+            --c-personality: #BAE6FD;
+            --c-lifestyle:   #FEF3C7;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
@@ -37,15 +40,16 @@
         .cat-section { margin-bottom: 8px; }
         .cat-header { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-radius: 12px 12px 0 0; margin-bottom: 2px; }
         .cat-header .cat-icon { font-size: 22px; }
-        .cat-header h3 { font-size: 15px; font-weight: 700; color: #FFF; margin: 0; }
-        .cat-header .cat-count { font-size: 12px; font-weight: 600; background: rgba(255,255,255,0.2); color: #FFF; padding: 2px 8px; border-radius: 20px; margin-left: auto; }
-        .cat-appearance .cat-header { background: var(--c-appearance); }
-        .cat-physiology .cat-header { background: var(--c-physiology); }
-        .cat-taste .cat-header { background: var(--c-taste); }
-        .cat-taste .cat-header h3, .cat-taste .cat-header .cat-count { color: #5A4A00; }
-        .cat-metabolism .cat-header { background: var(--c-metabolism); }
-        .cat-metabolism .cat-header h3, .cat-metabolism .cat-header .cat-count { color: #1A4A35; }
-        .cat-fitness .cat-header { background: var(--c-fitness); }
+        .cat-header h3 { font-size: 15px; font-weight: 700; color: #1A1A2E; margin: 0; }
+        .cat-header .cat-count { font-size: 12px; font-weight: 600; background: rgba(0,0,0,0.12); color: #1A1A2E; padding: 2px 8px; border-radius: 20px; margin-left: auto; }
+        .cat-appearance .cat-header  { background: var(--c-appearance); }
+        .cat-physiology .cat-header  { background: var(--c-physiology); }
+        .cat-taste .cat-header       { background: var(--c-taste); }
+        .cat-metabolism .cat-header  { background: var(--c-metabolism); }
+        .cat-fitness .cat-header     { background: var(--c-fitness); }
+        .cat-medical .cat-header     { background: var(--c-medical); }
+        .cat-personality .cat-header { background: var(--c-personality); }
+        .cat-lifestyle .cat-header   { background: var(--c-lifestyle); }
         .cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: #EEE; border-radius: 0 0 12px 12px; overflow: hidden; }
         @media (max-width: 480px) { .cat-grid { grid-template-columns: 1fr; } }
 
@@ -57,21 +61,44 @@
         .trait-name { font-size: 12px; font-weight: 700; color: var(--ink-60); text-transform: uppercase; letter-spacing: 0.04em; flex: 1; }
 
         /* Slider */
-        .slider-wrap { margin-bottom: 8px; }
-        .slider-labels { display: flex; justify-content: space-between; font-size: 10px; font-weight: 600; color: var(--ink-60); margin-bottom: 5px; }
-        .slider-track { height: 8px; background: #EEE; border-radius: 4px; position: relative; }
-        .slider-fill { position: absolute; left: 0; top: 0; height: 100%; border-radius: 4px; }
-        .slider-marker { position: absolute; top: -4px; width: 16px; height: 16px; border-radius: 50%; border: 2px solid #FFF; box-shadow: 0 1px 4px rgba(0,0,0,0.25); transform: translateX(-50%); }
+        .slider-wrap { margin: 10px 0 6px; }
+        .slider-track {
+            height: 20px;
+            background:
+                repeating-linear-gradient(90deg, rgba(0,0,0,0.13) 0px, rgba(0,0,0,0.13) 1px, transparent 1px, transparent 5px),
+                #E2E8F0;
+            border-radius: 10px;
+            position: relative;
+        }
+        .slider-marker { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 20px; height: 20px; border-radius: 50%; border: 3px solid #FFF; box-shadow: 0 2px 6px rgba(0,0,0,0.28); }
+        .slider-labels { display: flex; justify-content: space-between; font-size: 10px; font-weight: 600; color: var(--ink-60); margin-top: 4px; }
 
-        .cat-appearance .slider-fill, .cat-appearance .slider-marker { background: var(--c-appearance); }
-        .cat-physiology .slider-fill, .cat-physiology .slider-marker { background: var(--c-physiology); }
-        .cat-taste .slider-fill, .cat-taste .slider-marker { background: #E8A800; }
-        .cat-metabolism .slider-fill, .cat-metabolism .slider-marker { background: #3AAA78; }
-        .cat-fitness .slider-fill, .cat-fitness .slider-marker { background: var(--c-fitness); }
+        .cat-appearance .slider-marker  { background: #7C3AED; }
+        .cat-physiology .slider-marker  { background: #E11D48; }
+        .cat-taste .slider-marker       { background: #EA580C; }
+        .cat-metabolism .slider-marker  { background: #16A34A; }
+        .cat-fitness .slider-marker     { background: #2563EB; }
+        .cat-medical .slider-marker     { background: #DC2626; }
+        .cat-personality .slider-marker { background: #0891B2; }
+        .cat-lifestyle .slider-marker   { background: #D97706; }
 
-        .trait-value { font-size: 15px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
-        .trait-conf { font-size: 11px; font-weight: 600; color: var(--ink-60); margin-bottom: 4px; }
-        .trait-note { font-size: 11px; color: var(--ink-60); line-height: 1.4; }
+        .trait-result-label { font-size: 11px; color: var(--ink-60); margin-bottom: 2px; }
+        .trait-value { font-size: 15px; font-weight: 800; color: var(--ink); }
+        .trait-badge { font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 10px; white-space: nowrap; }
+        .trait-badge.conf-high { background: #DCFCE7; color: #15803D; }
+        .trait-badge.conf-med  { background: #FEF9C3; color: #854D0E; }
+        .trait-badge.conf-low  { background: #DBEAFE; color: #1D4ED8; }
+        .trait-note { font-size: 11px; color: var(--ink-60); line-height: 1.4; margin-top: 6px; }
+
+        /* Border-left accent per category */
+        .cat-appearance .trait-card  { border-left: 4px solid #7C3AED; }
+        .cat-physiology .trait-card  { border-left: 4px solid #E11D48; }
+        .cat-taste .trait-card       { border-left: 4px solid #EA580C; }
+        .cat-metabolism .trait-card  { border-left: 4px solid #16A34A; }
+        .cat-fitness .trait-card     { border-left: 4px solid #2563EB; }
+        .cat-medical .trait-card     { border-left: 4px solid #DC2626; }
+        .cat-personality .trait-card { border-left: 4px solid #0891B2; }
+        .cat-lifestyle .trait-card   { border-left: 4px solid #D97706; }
 
         /* Stats bar */
         .stats-bar { display: flex; gap: 16px; background: var(--card); border-radius: 12px; padding: 14px 20px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
@@ -247,11 +274,11 @@ async function loadTraits() {
     }
 }
 
-function confLabel(conf) {
+function confTier(conf) {
     const n = typeof conf === 'number' ? conf : 0;
-    if (n >= 75) return '🟢 ' + n + '% confianza';
-    if (n >= 55) return '🟡 ' + n + '% confianza';
-    return '🔵 ' + n + '% estimación';
+    if (n >= 75) return 'high';
+    if (n >= 55) return 'med';
+    return 'low';
 }
 
 function renderTraits(traits, analyzed, found) {
@@ -288,25 +315,26 @@ function renderTraits(traits, analyzed, found) {
         const sliderMax = trait.sliderMax || '';
         const noteHtml  = trait.note ? `<div class="trait-note">${trait.note}</div>` : '';
 
+        const confN = typeof trait.confidence === 'number' ? trait.confidence : 0;
         const card = document.createElement('div');
         card.className = 'trait-card';
         card.innerHTML = `
             <div class="trait-top">
                 <span class="trait-icon">${trait.icon || '🔬'}</span>
                 <span class="trait-name">${trait.name || key}</span>
+                <span class="trait-badge conf-${confTier(trait.confidence)}">${confN}%</span>
             </div>
+            <div class="trait-result-label">Tu resultado:</div>
+            <div class="trait-value">${trait.value || '—'}</div>
             <div class="slider-wrap">
+                <div class="slider-track">
+                    <div class="slider-marker" style="left:${pos}%"></div>
+                </div>
                 <div class="slider-labels">
                     <span>${sliderMin}</span>
                     <span>${sliderMax}</span>
                 </div>
-                <div class="slider-track">
-                    <div class="slider-fill" style="width:${pos}%"></div>
-                    <div class="slider-marker" style="left:${pos}%"></div>
-                </div>
             </div>
-            <div class="trait-value">${trait.value || '—'}</div>
-            <div class="trait-conf">${confLabel(trait.confidence)}</div>
             ${noteHtml}
         `;
         grid.appendChild(card);
