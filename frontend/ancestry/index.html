@@ -6,6 +6,11 @@
     <title>Nura — Ancestría Genética</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- amCharts 5 — mapa mundial interactivo -->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
     <style>
         :root {
             --primary: #8B85D6; --primary-end: #6BA5D8;
@@ -50,6 +55,11 @@
         .subpop-group-pct { font-size: 13px; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .subpop-pill-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
         .subpop-pill { font-size: 12px; padding: 4px 10px; border-radius: 20px; background: rgba(139,133,214,0.08); color: var(--ink); }
+        /* amCharts map card */
+        .map-title { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+        .map-subtitle { font-size: 13px; color: var(--ink-60); margin-bottom: 16px; }
+        #world-ancestry-map { width: 100%; height: 420px; border-radius: 12px; overflow: hidden; background: #fff; }
+        @media (max-width: 480px) { #world-ancestry-map { height: 280px; } }
         /* World regions */
         .regions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
         @media (max-width: 480px) { .regions-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -101,9 +111,16 @@
             <p class="accuracy-note" id="accuracyNote"></p>
         </div>
 
-        <!-- World regions visual -->
+        <!-- amCharts world map -->
+        <div class="card" id="mapCard" style="display:none;">
+            <p class="map-title">🗺️ Distribución geográfica de tu ADN</p>
+            <p class="map-subtitle">Los colores más intensos indican mayor afinidad genética con esas regiones</p>
+            <div id="world-ancestry-map"></div>
+        </div>
+
+        <!-- World regions visual (fallback grid) -->
         <div class="card">
-            <h2>🗺️ Distribución por Regiones del Mundo</h2>
+            <h2>📊 Distribución por Regiones del Mundo</h2>
             <div class="regions-grid" id="regionsGrid"></div>
         </div>
 
@@ -241,7 +258,10 @@ function renderResults(data) {
     document.getElementById('accuracyNote').textContent =
         `Basado en ${data.aimsAnalyzed || 0} marcadores AIM de ${data.totalAimsInDb || 0} disponibles · Precisión ${data.accuracy || ''}`;
 
-    // World regions visual
+    // amCharts world map (con fallback silencioso)
+    renderWorldMap(pops);
+
+    // World regions visual (siempre visible como fallback)
     renderWorldRegions(pops);
 
     // Sub-populations breakdown
@@ -249,6 +269,160 @@ function renderResults(data) {
 
     // Insight personalizado
     generateInsight(pops);
+}
+
+// ── amCharts World Map ────────────────────────────────────────────
+let _amRoot = null; // referencia global para destruir si se re-renderiza
+
+function renderWorldMap(pops) {
+    const mapCard = document.getElementById('mapCard');
+    const mapDiv  = document.getElementById('world-ancestry-map');
+
+    // Limpiar instancia anterior si existe
+    if (_amRoot) {
+        try { _amRoot.dispose(); } catch(e) {}
+        _amRoot = null;
+    }
+
+    // Verificar que amCharts cargó completamente
+    if (typeof am5 === 'undefined' || typeof am5map === 'undefined' ||
+        typeof am5geodata_worldLow === 'undefined' || typeof am5themes_Animated === 'undefined') {
+        // CDN no disponible — el grid de regiones sigue como fallback
+        console.warn('[AncestryMap] amCharts no disponible, usando grid de regiones.');
+        return;
+    }
+
+    try {
+        // Mapa principal población → países ISO
+        const POPULATION_TO_COUNTRIES = {
+            'EUR': [
+                'ES','PT',                          // Ibéricos
+                'IT',                               // Italiano
+                'FR','DE','BE','LU','NL','CH',       // Franco-germánico
+                'GB','IE',                          // Británico
+                'SE','NO','DK','FI','IS',            // Escandinavo
+                'PL','UA','CZ','HU','RO','RU','BG',  // Europa del Este
+                'AT','GR','HR','RS','SK','SI','LT','LV','EE','AL','MK','ME','BA','MD','BY'
+            ],
+            'AFR': [
+                'NG','GH','SN','ML','CI','GN','BF',  // África Occidental
+                'KE','ET','TZ','UG','SO','RW','BI',  // África Oriental
+                'ZA','BW','NA','ZW','MZ',            // África Austral
+                'MA','DZ','TN','LY','EG','SD',       // África del Norte
+                'CM','CD','CF','CG','TD','NE','ER','DJ','GM','GW','LR','SL','TG','BJ','AO'
+            ],
+            'EAS': [
+                'CN','TW','HK','MO',                // Chino
+                'JP',                               // Japonés
+                'KR','KP',                          // Coreano
+                'VN','TH','PH','ID','MY','MM','KH','LA','SG','MN','BN'  // Sudeste Asiático
+            ],
+            'SAS': [
+                'IN','PK','BD','LK','NP','BT','MV','AF'
+            ],
+            'AMR_NAT': [
+                'CL',                               // AMR Chile
+                'PE','BO','EC',                     // Andino
+                'BR','CO','VE','GY','SR',            // Amazónico
+                'MX','GT','HN','SV','NI','CR','PA',  // Mesoamericano
+                'US','CA',                          // Norteamericano
+                'AR','PY','UY','DO','CU','PR','JM','HT'
+            ],
+            'OCE': [
+                'NZ',                               // Polinesio
+                'AU',                               // Australiano
+                'PG','FJ','WS','TO','VU','SB','KI','FM','MH','PW'
+            ]
+        };
+
+        // WAS_MIDDLE_EAST — asignar a SAS si no existe como componente propio
+        // (mapeado como sub-región de SAS en nuestra DB)
+        const WAS_COUNTRIES = ['SA','AE','IR','LB','SY','TR','IQ','JO','YE','OM','IL','KW','QA','BH'];
+
+        // Calcular valor acumulado por país
+        const countryValues = {};
+        pops.forEach(p => {
+            const countries = POPULATION_TO_COUNTRIES[p.population] || [];
+            countries.forEach(c => {
+                countryValues[c] = (countryValues[c] || 0) + p.percentage;
+            });
+        });
+
+        // WAS: si hay componente SAS, distribuir 30% a Oriente Medio
+        const sasComp = pops.find(p => p.population === 'SAS');
+        if (sasComp && sasComp.percentage > 2) {
+            const wasValue = Math.round(sasComp.percentage * 0.3 * 10) / 10;
+            WAS_COUNTRIES.forEach(c => {
+                countryValues[c] = (countryValues[c] || 0) + wasValue;
+            });
+        }
+
+        // Construir datos para amCharts
+        const mapData = Object.entries(countryValues)
+            .filter(([, v]) => v > 0)
+            .map(([id, value]) => ({ id, value: Math.round(value * 10) / 10 }));
+
+        // ── Crear el mapa ──────────────────────────────────────────────
+        const root = am5.Root.new('world-ancestry-map');
+        root.setThemes([am5themes_Animated.new(root)]);
+        _amRoot = root;
+
+        const chart = root.container.children.push(
+            am5map.MapChart.new(root, {
+                projection: am5map.geoMercator(),
+                panX: 'rotateX',
+                panY: 'translateY',
+                background: am5.Rectangle.new(root, { fill: am5.color(0xFFFFFF), fillOpacity: 1 })
+            })
+        );
+
+        const polygonSeries = chart.series.push(
+            am5map.MapPolygonSeries.new(root, {
+                geoJSON: am5geodata_worldLow,
+                exclude: ['AQ'],
+                valueField: 'value',
+                calculateAggregates: true
+            })
+        );
+
+        polygonSeries.mapPolygons.template.setAll({
+            tooltipText: '{name}: {value}%',
+            fill: am5.color(0xE5E7EB),
+            stroke: am5.color(0xFFFFFF),
+            strokeWidth: 0.5,
+            interactive: true,
+            cursorOverStyle: 'pointer'
+        });
+
+        polygonSeries.mapPolygons.template.states.create('hover', {
+            fill: am5.color(0x8B85D6),
+            strokeWidth: 1
+        });
+
+        // Gradiente de color según porcentaje de ancestría
+        polygonSeries.set('heatRules', [{
+            target: polygonSeries.mapPolygons.template,
+            dataField: 'value',
+            min: am5.color(0xE5E7EB),
+            max: am5.color(0x6366F1),
+            key: 'fill',
+            logarithmic: false
+        }]);
+
+        polygonSeries.data.setAll(mapData);
+
+        // Zoom control en esquina inferior derecha
+        const zoomControl = am5map.ZoomControl.new(root, {});
+        zoomControl.homeButton.set('visible', true);
+        chart.set('zoomControl', zoomControl);
+
+        // Mostrar la tarjeta del mapa
+        mapCard.style.display = 'block';
+
+    } catch (e) {
+        console.warn('[AncestryMap] Error al renderizar mapa (fallback al grid):', e.message);
+        mapCard.style.display = 'none';
+    }
 }
 
 function renderWorldRegions(pops) {
