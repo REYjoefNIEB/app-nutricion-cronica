@@ -2634,6 +2634,40 @@ exports.analyzeAncestry = onCall(
             const geneticProf = await getGeneticProfile(uid, masterKey);
             if (!geneticProf?.snps) throw new HttpsError('not-found', 'No se encontraron datos genéticos. Sube tu archivo ADN primero.');
 
+            // Pre-check: count CLG AIMs available before running EM (avoids generic internal error)
+            const clgRsids = new Set(_CLG_AIMS.map(a => a.rsid));
+            const matchedAimsCount = Object.keys(geneticProf.snps).filter(r => clgRsids.has(r)).length;
+
+            if (matchedAimsCount < 50) {
+                const totalSnpsInFile = geneticProf.totalSnps ?? 0;
+                const fileFormat      = geneticProf.format    ?? 'desconocido';
+                console.warn(`[analyzeAncestry] uid=${uid} AIMs=${matchedAimsCount} totalSnps=${totalSnpsInFile} format=${fileFormat}`);
+
+                if (totalSnpsInFile < 100000) {
+                    // Likely a truncated or corrupted file
+                    throw new HttpsError('invalid-argument',
+                        `Tu archivo ADN parece incompleto (${totalSnpsInFile.toLocaleString()} SNPs registrados). ` +
+                        'Los archivos raw de 23andMe, AncestryDNA y MyHeritage suelen tener entre 600 mil y 1 millón de SNPs. ' +
+                        'Descargá el archivo completo desde tu servicio y volvé a subirlo.'
+                    );
+                }
+
+                // File is OK but chip does not cover enough AIMs
+                throw new HttpsError('failed-precondition',
+                    `Tu archivo ADN se procesó correctamente (${totalSnpsInFile.toLocaleString()} SNPs, formato ${fileFormat}), ` +
+                    `pero tu chip solo cubre ${matchedAimsCount} de los ${_CLG_AIMS.length} marcadores que Nura necesita ` +
+                    `para el análisis de ancestría (mínimo 50).\n\n` +
+                    `Chips con cobertura completa:\n` +
+                    `  • 23andMe v3, v4, v5 (2010 en adelante)\n` +
+                    `  • AncestryDNA (todos los años)\n\n` +
+                    `Chips con cobertura parcial (en expansión):\n` +
+                    `  • MyHeritage (chip GSA) — soporte completo próximamente\n` +
+                    `  • FTDNA — varía según el panel\n\n` +
+                    `El resto de Nura (escáner de alimentos, interacciones medicamentosas, etc.) funciona normalmente. ` +
+                    `Si tenés un archivo de 23andMe o AncestryDNA, podés subirlo mientras tanto.`
+                );
+            }
+
             const ancestryData = calculateAncestry(geneticProf.snps);
 
             await admin.firestore()
@@ -2646,7 +2680,7 @@ exports.analyzeAncestry = onCall(
             return {
                 success:    true,
                 ancestry:   ancestryData,
-                disclaimer: 'Estimación estadística basada en ~26 marcadores AIM del proyecto 1000 Genomes. Precisión aproximada. No reemplaza pruebas genealógicas oficiales.'
+                disclaimer: `Estimación estadística basada en ${_CLG_AIMS.length} marcadores AIM del proyecto 1000 Genomes (panel CLG). Precisión aproximada. No reemplaza pruebas genealógicas oficiales.`
             };
         } catch (error) {
             await logGeneticAccess({ userId: uid, action: 'READ', resource: 'ancestry', result: 'ERROR', details: error.message });
