@@ -109,6 +109,24 @@ const PHYSICAL_TRAITS = {
         }
     },
 
+    monobrow_pax3: {
+        name: 'Tendencia a uniceja (monobrow)',
+        icon: '🤨',
+        category: 'appearance',
+        evidence: 'moderate',
+        primarySnp: 'rs2294008',
+        sliderMin: 'Cejas separadas',
+        sliderMax: 'Tendencia a uniceja',
+        interpret(genotypes) {
+            const g = genotypes['rs2294008'];
+            if (!g) return null;
+            if (g === 'CC') return { value: 'Mayor tendencia a uniceja', confidence: 52, note: 'Locus PAX3. La depilación cosmética es el factor dominante en la expresión visible.', position: 80 };
+            if (g === 'CT' || g === 'TC') return { value: 'Tendencia intermedia', confidence: 45, note: 'Efecto heterocigoto en locus PAX3. Variabilidad alta entre individuos.', position: 50 };
+            if (g === 'TT') return { value: 'Cejas naturalmente separadas', confidence: 50, note: 'Sin variante PAX3 de densidad. Referencia: Adhikari et al. 2016 Nat Commun 7:10815.', position: 20 };
+            return null;
+        }
+    },
+
     // ── FISIOLOGÍA ────────────────────────────────────────────────────────
 
     ear_wax: {
@@ -491,6 +509,24 @@ const PHYSICAL_TRAITS = {
             if (g === 'AA') return { value: 'Excelente respuesta al cardio', confidence: 60, note: 'ADRB2 AA. El entrenamiento aeróbico te da grandes ganancias en VO2max y función cardiovascular.', position: 85 };
             if (g === 'AG' || g === 'GA') return { value: 'Respuesta promedio', confidence: 50, note: 'Respuesta estándar al entrenamiento cardio.', position: 50 };
             if (g === 'GG') return { value: 'Respuesta baja al cardio', confidence: 60, note: 'Necesitas mayor volumen e intensidad cardiovascular para progresar. Responde mejor al entrenamiento de fuerza.', position: 20 };
+            return null;
+        }
+    },
+
+    grip_strength: {
+        name: 'Fuerza de prensión manual',
+        icon: '✊',
+        category: 'fitness',
+        evidence: 'moderate',
+        primarySnp: 'rs752045',
+        sliderMin: 'Fuerza menor',
+        sliderMax: 'Fuerza mayor',
+        interpret(genotypes) {
+            const g = genotypes['rs752045'];
+            if (!g) return null;
+            if (g === 'GG') return { value: 'Potencial de fuerza mayor', confidence: 48, note: 'Locus HOXB. El entrenamiento de resistencia domina sobre la genética (>100 loci involucrados). Ref: Tikkanen et al. 2018 Sci Rep 8:9094.', position: 75 };
+            if (g === 'AG' || g === 'GA') return { value: 'Fuerza de prensión promedio', confidence: 42, note: 'Efecto poligénico moderado. El entrenamiento específico tiene mayor impacto que los genes.', position: 50 };
+            if (g === 'AA') return { value: 'Potencial de fuerza menor', confidence: 45, note: 'Alelo de referencia. La fuerza de prensión es altamente modificable con entrenamiento.', position: 30 };
             return null;
         }
     },
