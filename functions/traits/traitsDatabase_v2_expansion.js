@@ -17,12 +17,35 @@ const EXPANSION_TRAITS = {
         primarySnp: 'rs1800407',
         sliderMin: 'Tono suave / celeste',
         sliderMax: 'Tono intenso / ámbar',
-        interpret(genotypes) {
+        interpret(genotypes, ancestry = {}) {
             const g = genotypes['rs1800407'];
             if (!g) return null;
-            if (g === 'TT') return { value: 'Ojos de tonalidad intensa', confidence: 55, note: 'OCA2 rs1800407 TT. Modula el espectro dentro del eje azul-marrón hacia tonos más intensos (ámbar, avellana oscura).', position: 80 };
-            if (g === 'CT' || g === 'TC') return { value: 'Tonalidad intermedia', confidence: 45, note: 'Efecto heterocigoto OCA2. Puede contribuir a ojos verde-avellana.', position: 50 };
-            if (g === 'CC') return { value: 'Ojos de tonalidad suave', confidence: 55, note: 'OCA2 rs1800407 CC. Asociado con tonos azul claro o gris en portadores de variante HERC2.', position: 20 };
+            const amr = ancestry.AMR_NAT || 0;
+            const isMestizo = amr > 0.20;
+            if (g === 'TT') return {
+                value: isMestizo ? 'Marrón intenso / ámbar oscuro' : 'Ojos de tonalidad intensa',
+                confidence: 55,
+                note: isMestizo
+                    ? `OCA2 rs1800407 TT. En fondo mestizo (${Math.round(amr * 100)}% AMR), modula la intensidad dentro del espectro marrón — de marrón claro a ámbar oscuro.`
+                    : 'OCA2 rs1800407 TT. Modula el espectro dentro del eje azul-marrón hacia tonos más intensos (ámbar, avellana oscura).',
+                position: 80
+            };
+            if (g === 'CT' || g === 'TC') return {
+                value: isMestizo ? 'Marrón medio' : 'Tonalidad intermedia',
+                confidence: 45,
+                note: isMestizo
+                    ? `Efecto heterocigoto OCA2. En fondo mestizo (${Math.round(amr * 100)}% AMR), probablemente marrón medio.`
+                    : 'Efecto heterocigoto OCA2. Puede contribuir a ojos verde-avellana.',
+                position: 50
+            };
+            if (g === 'CC') return {
+                value: isMestizo ? 'Marrón claro / avellana' : 'Ojos de tonalidad suave',
+                confidence: 55,
+                note: isMestizo
+                    ? `OCA2 rs1800407 CC. En fondo mestizo puede aclarar levemente el marrón. No implica ojos azules.`
+                    : 'OCA2 rs1800407 CC. Asociado con tonos azul claro o gris en portadores de variante HERC2.',
+                position: isMestizo ? 30 : 20
+            };
             return null;
         }
     },
@@ -35,11 +58,24 @@ const EXPANSION_TRAITS = {
         primarySnp: 'rs12821256',
         sliderMin: 'Sin efecto rubio',
         sliderMax: 'Rubio probable',
-        interpret(genotypes) {
+        interpret(genotypes, ancestry = {}) {
             const g = genotypes['rs12821256'];
             if (!g) return null;
-            if (g === 'CC') return { value: 'Mayor probabilidad de cabello rubio', confidence: 60, note: 'KITLG rs12821256 CC. Factor de aclaramiento independiente de MC1R/HERC2. Contribuye al tono rubio en europeos (~35% de la varianza en rubio).', position: 80 };
-            if (g === 'CT' || g === 'TC') return { value: 'Leve tendencia al aclaramiento', confidence: 45, position: 50 };
+            const amr = ancestry.AMR_NAT || 0;
+            const isMestizo = amr > 0.20;
+            if (g === 'CC') return {
+                value: isMestizo ? 'Expresión de rubio muy limitada en fondo mestizo' : 'Mayor probabilidad de cabello rubio',
+                confidence: isMestizo ? 45 : 60,
+                note: isMestizo
+                    ? `KITLG rs12821256 CC. Este locus actúa sobre fondo melanocítico europeo. Con ${Math.round(amr * 100)}% AMR, la alta melanina basal suprime el efecto de aclaramiento.`
+                    : 'KITLG rs12821256 CC. Factor de aclaramiento independiente de MC1R/HERC2. Contribuye al tono rubio en europeos (~35% de la varianza en rubio).',
+                position: isMestizo ? 20 : 80
+            };
+            if (g === 'CT' || g === 'TC') return {
+                value: isMestizo ? 'Sin efecto de aclaramiento esperable' : 'Leve tendencia al aclaramiento',
+                confidence: isMestizo ? 50 : 45,
+                position: isMestizo ? 15 : 50
+            };
             if (g === 'TT') return { value: 'Sin aclaramiento por KITLG', confidence: 55, note: 'Alelo ancestral. Sin contribución al fenotipo rubio por este locus.', position: 15 };
             return null;
         }
@@ -53,13 +89,28 @@ const EXPANSION_TRAITS = {
         primarySnp: 'rs1805008',
         sliderMin: 'Sin variante pelirroja',
         sliderMax: 'Pelirrojo probable',
-        interpret(genotypes) {
+        interpret(genotypes, ancestry = {}) {
             const mc1r_r160w = genotypes['rs1805008'];
             const mc1r_r151c = genotypes['rs1805007'];
             if (!mc1r_r160w) return null;
-            const twoVariants = (mc1r_r160w === 'TT') && (mc1r_r151c === 'TT' || mc1r_r151c === 'CT' || mc1r_r151c === 'TC');
-            if (mc1r_r160w === 'TT') return { value: 'Alta probabilidad de cabello rojo', confidence: 80, note: 'MC1R R160W TT. Variante recesiva fuertemente asociada con fenotipo pelirrojo. En europeos homocigotos, ~90% tienen cabello rojo/naranja.', position: 90 };
-            if (mc1r_r160w === 'CT' || mc1r_r160w === 'TC') return { value: 'Portador MC1R — posibles reflejos rojizos', confidence: 55, note: 'Heterocigoto R160W. Puede haber reflejos cobre-rojizos, especialmente con exposición solar.', position: 55 };
+            const amr = ancestry.AMR_NAT || 0;
+            const isMestizo = amr > 0.20;
+            if (mc1r_r160w === 'TT') return {
+                value: isMestizo ? 'Variante MC1R presente — expresión pelirroja improbable en fondo mestizo' : 'Alta probabilidad de cabello rojo',
+                confidence: isMestizo ? 60 : 80,
+                note: isMestizo
+                    ? `MC1R R160W TT. Esta variante requiere fondo de baja eumelanina para expresarse. Con ${Math.round(amr * 100)}% AMR la melanina basal suprime el fenotipo pelirrojo visible.`
+                    : 'MC1R R160W TT. Variante recesiva fuertemente asociada con fenotipo pelirrojo. En europeos homocigotos, ~90% tienen cabello rojo/naranja.',
+                position: isMestizo ? 25 : 90
+            };
+            if (mc1r_r160w === 'CT' || mc1r_r160w === 'TC') return {
+                value: isMestizo ? 'Portador MC1R — sin efecto visible esperable' : 'Portador MC1R — posibles reflejos rojizos',
+                confidence: isMestizo ? 55 : 55,
+                note: isMestizo
+                    ? `Heterocigoto R160W. En fondo mestizo (${Math.round(amr * 100)}% AMR), los reflejos rojizos son poco probables dado el alto nivel de eumelanina.`
+                    : 'Heterocigoto R160W. Puede haber reflejos cobre-rojizos, especialmente con exposición solar.',
+                position: isMestizo ? 15 : 55
+            };
             if (mc1r_r160w === 'CC') return { value: 'Sin variante R160W', confidence: 70, note: 'No se detecta R160W. El fenotipo pelirrojo por este locus es improbable.', position: 10 };
             return null;
         }
@@ -181,11 +232,27 @@ const EXPANSION_TRAITS = {
         primarySnp: 'rs1805007',
         sliderMin: 'Sin pecas',
         sliderMax: 'Pecas abundantes',
-        interpret(genotypes) {
+        interpret(genotypes, ancestry = {}) {
             const g = genotypes['rs1805007'];
             if (!g) return null;
-            if (g === 'TT') return { value: 'Alta tendencia a pecas', confidence: 75, note: 'MC1R R151C TT. Homocigoto. Las variantes MC1R producen feomelanina predominante → pecas con exposición solar. Muy frecuente en pelirrojos y piel muy clara.', position: 90 };
-            if (g === 'CT' || g === 'TC') return { value: 'Pecas moderadas posibles', confidence: 60, note: 'MC1R heterocigoto. Tendencia a pecas, especialmente en nariz y mejillas.', position: 55 };
+            const amr = ancestry.AMR_NAT || 0;
+            const isMestizo = amr > 0.20;
+            if (g === 'TT') return {
+                value: isMestizo ? 'Variante MC1R presente — pecas muy improbables en piel mestiza' : 'Alta tendencia a pecas',
+                confidence: isMestizo ? 65 : 75,
+                note: isMestizo
+                    ? `MC1R R151C TT. En fondo mestizo (${Math.round(amr * 100)}% AMR), la eumelanina basal elevada suprime la expresión de feomelanina superficial. Pecas visibles muy improbables.`
+                    : 'MC1R R151C TT. Homocigoto. Las variantes MC1R producen feomelanina predominante → pecas con exposición solar. Muy frecuente en pelirrojos y piel muy clara.',
+                position: isMestizo ? 20 : 90
+            };
+            if (g === 'CT' || g === 'TC') return {
+                value: isMestizo ? 'Sin tendencia a pecas esperable' : 'Pecas moderadas posibles',
+                confidence: isMestizo ? 60 : 60,
+                note: isMestizo
+                    ? `MC1R heterocigoto. Con ${Math.round(amr * 100)}% AMR, la melanina basal suprime la formación de pecas en piel mestiza.`
+                    : 'MC1R heterocigoto. Tendencia a pecas, especialmente en nariz y mejillas.',
+                position: isMestizo ? 15 : 55
+            };
             if (g === 'CC') return { value: 'Poca tendencia a pecas', confidence: 65, note: 'MC1R ancestral CC. Sin el fenotipo de feomelanina dominante. Pecas poco probables.', position: 15 };
             return null;
         }

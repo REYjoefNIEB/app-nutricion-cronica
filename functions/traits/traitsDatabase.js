@@ -26,11 +26,30 @@ const PHYSICAL_TRAITS = {
         primarySnp: 'rs12913832',
         sliderMin: 'Oscuro (Marrón)',
         sliderMax: 'Claro (Azul/Gris)',
-        interpret(genotypes) {
+        interpret(genotypes, ancestry = {}) {
             const g = genotypes['rs12913832'];
             if (!g) return null;
-            if (g === 'GG') return { value: 'Azul / gris', confidence: 85, note: 'Variante HERC2 fuertemente asociada con ojos claros en europeos.', position: 90 };
-            if (g === 'AG' || g === 'GA') return { value: 'Verde / avellana', confidence: 60, note: 'Genotipo heterocigoto; color intermedio frecuente.', position: 55 };
+            const amr = ancestry.AMR_NAT || 0;
+            const isMestizo = amr > 0.20;
+            if (g === 'GG') return {
+                value: isMestizo ? 'Azul grisáceo / verde posible' : 'Azul / gris',
+                confidence: isMestizo ? 50 : 85,
+                note: isMestizo
+                    ? `HERC2 GG favorece ojos claros, pero con ${Math.round(amr * 100)}% amerindio, otros loci de pigmentación pueden oscurecer el resultado. Posible azul grisáceo, verde o avellana.`
+                    : 'Variante HERC2 fuertemente asociada con ojos claros en europeos.',
+                position: isMestizo ? 65 : 90
+            };
+            if (g === 'AG' || g === 'GA') return isMestizo ? {
+                value: 'Marrón / castaño',
+                confidence: 70,
+                note: `Heterocigoto HERC2, pero con ${Math.round(amr * 100)}% amerindio, los loci de pigmentación ancestral dominan. Color marrón esperable.`,
+                position: 25
+            } : {
+                value: 'Verde / avellana',
+                confidence: 60,
+                note: 'Genotipo heterocigoto; color intermedio frecuente en europeos.',
+                position: 55
+            };
             if (g === 'AA') return { value: 'Marrón / negro', confidence: 90, note: 'Alelo ancestral. Color más común en el mundo (>79% de la población).', position: 10 };
             return null;
         }
@@ -44,14 +63,42 @@ const PHYSICAL_TRAITS = {
         primarySnp: 'rs1805007',
         sliderMin: 'Oscuro',
         sliderMax: 'Claro / Pelirrojo',
-        interpret(genotypes) {
+        interpret(genotypes, ancestry = {}) {
             const mc1r = genotypes['rs1805007'];
             if (!mc1r) return null;
-            if (mc1r === 'TT') return { value: 'Pelirrojo', confidence: 70, note: 'Homocigoto MC1R. Alta probabilidad de cabello rojo/naranja.', position: 90 };
-            if (mc1r === 'CT' || mc1r === 'TC') return { value: 'Pelirrojo / rubio', confidence: 50, note: 'Portador MC1R. Puede tener reflejos rojizos o dorados.', position: 70 };
+            const amr = ancestry.AMR_NAT || 0;
+            const isMestizo = amr > 0.20;
+            if (mc1r === 'TT') return {
+                value: isMestizo ? 'Posibles tonos cobrizos (raro en mestizos)' : 'Pelirrojo',
+                confidence: isMestizo ? 40 : 70,
+                note: isMestizo
+                    ? `Homocigoto MC1R, pero con ${Math.round(amr * 100)}% amerindio el fenotipo pelirrojo pleno es muy raro. Posibles reflejos cobrizos o castaño rojizo.`
+                    : 'Homocigoto MC1R. Alta probabilidad de cabello rojo/naranja.',
+                position: isMestizo ? 60 : 90
+            };
+            if (mc1r === 'CT' || mc1r === 'TC') return {
+                value: isMestizo ? 'Castaño oscuro (portador MC1R)' : 'Pelirrojo / rubio',
+                confidence: isMestizo ? 60 : 50,
+                note: isMestizo
+                    ? `Portador MC1R, pero el fondo amerindio (${Math.round(amr * 100)}%) suprime la expresión rojiza. Cabello castaño oscuro esperable.`
+                    : 'Portador MC1R. Puede tener reflejos rojizos o dorados.',
+                position: isMestizo ? 25 : 70
+            };
             const herc2 = genotypes['rs12913832'];
-            if (herc2 === 'GG') return { value: 'Rubio / castaño claro', confidence: 60, note: 'HERC2 GG asociado con cabello claro.', position: 65 };
-            return { value: 'Castaño / negro', confidence: 75, note: 'Sin variantes de aclaramiento detectadas.', position: 15 };
+            if (herc2 === 'GG') return isMestizo ? {
+                value: 'Castaño (con posible aclaramiento leve)',
+                confidence: 55,
+                note: `HERC2 GG favorece cabello claro en europeos, pero con ${Math.round(amr * 100)}% amerindio el resultado típico es castaño medio.`,
+                position: 40
+            } : { value: 'Rubio / castaño claro', confidence: 60, note: 'HERC2 GG asociado con cabello claro.', position: 65 };
+            return {
+                value: 'Castaño / negro',
+                confidence: isMestizo ? 85 : 75,
+                note: isMestizo
+                    ? `Sin variantes de aclaramiento. Cabello oscuro esperable con ${Math.round(amr * 100)}% fondo amerindio.`
+                    : 'Sin variantes de aclaramiento detectadas.',
+                position: 15
+            };
         }
     },
 
@@ -81,11 +128,27 @@ const PHYSICAL_TRAITS = {
         primarySnp: 'rs1426654',
         sliderMin: 'Piel Oscura',
         sliderMax: 'Piel Clara',
-        interpret(genotypes) {
+        interpret(genotypes, ancestry = {}) {
             const g = genotypes['rs1426654'];
             if (!g) return null;
-            if (g === 'GG') return { value: 'Piel muy clara', confidence: 85, note: 'SLC24A5 GG. Variante predominante en europeos — pigmentación reducida. Presente en ~100% de europeos.', position: 92 };
-            if (g === 'AG' || g === 'GA') return { value: 'Piel intermedia', confidence: 65, note: 'Heterocigoto SLC24A5. Tono intermedio. Frecuente en poblaciones mixtas latinoamericanas.', position: 55 };
+            const amr = ancestry.AMR_NAT || 0;
+            const isMestizo = amr > 0.20;
+            if (g === 'GG') return {
+                value: isMestizo ? 'Piel clara (para mestizo)' : 'Piel muy clara',
+                confidence: isMestizo ? 70 : 85,
+                note: isMestizo
+                    ? `SLC24A5 GG reduce pigmentación, pero con ${Math.round(amr * 100)}% amerindio otros loci aportan melanina. Resultado: piel clara con tono cálido, no el blanco rosado europeo.`
+                    : 'SLC24A5 GG. Variante predominante en europeos — pigmentación reducida. Presente en ~100% de europeos.',
+                position: isMestizo ? 72 : 92
+            };
+            if (g === 'AG' || g === 'GA') return {
+                value: isMestizo ? 'Piel morena clara / oliva' : 'Piel intermedia',
+                confidence: isMestizo ? 75 : 65,
+                note: isMestizo
+                    ? `Heterocigoto SLC24A5. Con ${Math.round(amr * 100)}% amerindio, la pigmentación tiende a morena clara / oliva. Típico del mestizo chileno/latinoamericano.`
+                    : 'Heterocigoto SLC24A5. Tono intermedio. Frecuente en poblaciones mixtas latinoamericanas.',
+                position: isMestizo ? 35 : 55
+            };
             if (g === 'AA') return { value: 'Piel oscura / morena', confidence: 80, note: 'Alelo ancestral SLC24A5. Predominante en africanos subsaharianos y asiáticos del Este.', position: 12 };
             return null;
         }

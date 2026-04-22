@@ -2778,6 +2778,31 @@ exports.analyzePhysicalTraits = onCall(
                 genotypes[rsid] = snpData.genotype;
             }
 
+            // Load ancestry composition for ancestry-aware trait interpretation
+            let ancestry = { AMR_NAT: 0, EUR_S: 0, EUR_N: 0, AFR_W: 0, AFR_E: 0, EAS_CN: 0, EAS_JP: 0, SAS: 0 };
+            try {
+                const ancestrySnap = await admin.firestore()
+                    .collection('users').doc(uid)
+                    .collection('ancestry').doc('result')
+                    .get();
+                if (ancestrySnap.exists) {
+                    const ad = ancestrySnap.data();
+                    const pops = ad.subPopulations || ad.populations || {};
+                    ancestry = {
+                        AMR_NAT: pops.AMR_NAT || 0,
+                        EUR_S:   pops.EUR_S   || 0,
+                        EUR_N:   pops.EUR_N   || 0,
+                        AFR_W:   pops.AFR_W   || 0,
+                        AFR_E:   pops.AFR_E   || 0,
+                        EAS_CN:  pops.EAS_CN  || 0,
+                        EAS_JP:  pops.EAS_JP  || 0,
+                        SAS:     pops.SAS     || 0,
+                    };
+                }
+            } catch (e) {
+                console.log('[Traits] No ancestry data for user, using default interpretation');
+            }
+
             const traits = {};
             let analyzed = 0, found = 0;
 
@@ -2785,7 +2810,7 @@ exports.analyzePhysicalTraits = onCall(
                 analyzed++;
                 if (genotypes[trait.primarySnp]) {
                     found++;
-                    const result = trait.interpret(genotypes);
+                    const result = trait.interpret(genotypes, ancestry);
                     if (result) {
                         traits[traitKey] = {
                             name:      trait.name,
