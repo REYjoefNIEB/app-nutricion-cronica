@@ -2550,7 +2550,7 @@ exports.processGeneticData = onCall(
                 geneticReportDate:  admin.firestore.FieldValue.serverTimestamp()
             });
 
-            console.log(`[Genetics] Reporte generado uid:${uid} | formato:${parseResult.metadata.format} | SNPs:${parseResult.metadata.totalSnps} | relevantes:${foundCount}`);
+            console.log(`[Genetics] Reporte generado uid:${uid} | formato:${parseResult.metadata.format} | SNPs:${parseResult.metadata.totalSnps} | snps_brief_clinico:${foundCount}`);
 
             // 4. Eliminar archivo raw de Storage (Ley 20.120 — datos crudos no deben persistir)
             await storageFile.delete();
