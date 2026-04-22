@@ -373,7 +373,7 @@ const PHYSICAL_TRAITS = {
         category: 'metabolism',
         evidence: 'high',
         primarySnp: 'rs1800562',
-        sliderMin: 'Normal',
+        sliderMin: 'Sin riesgo elevado',
         sliderMax: 'Riesgo Hemocromatosis',
         interpret(genotypes) {
             const g = genotypes['rs1800562'];
@@ -391,8 +391,8 @@ const PHYSICAL_TRAITS = {
         category: 'metabolism',
         evidence: 'high',
         primarySnp: 'rs1801133',
-        sliderMin: 'Normal',
-        sliderMax: 'Reducido',
+        sliderMin: 'Enzima eficiente',
+        sliderMax: 'Enzima reducida',
         interpret(genotypes) {
             const g = genotypes['rs1801133'];
             if (!g) return null;
