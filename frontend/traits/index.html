@@ -22,7 +22,7 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
-        .container { max-width: 720px; margin: 0 auto; padding: 24px 16px 60px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 24px 20px 60px; }
 
         .back-link {
             display: inline-flex; align-items: center; gap: 6px;
@@ -121,8 +121,15 @@
             border-radius: 12px; font-weight: 600;
         }
 
-        /* ── Trait cards — 1 column ───────────────────────── */
-        .traits-list { display: flex; flex-direction: column; gap: 10px; }
+        /* ── Trait cards — 2-column grid ─────────────────── */
+        .traits-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        @media (max-width: 640px) {
+            .traits-list { grid-template-columns: 1fr; }
+        }
 
         .trait-card {
             background: var(--card);
@@ -130,6 +137,9 @@
             border-left: 4px solid var(--cat-mid, #B09BD8);
             border-radius: 10px;
             padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            min-height: 240px;
             transition: box-shadow 0.18s ease;
         }
         .trait-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
@@ -188,10 +198,11 @@
         .trait-label-left  { max-width: 48%; text-align: left; }
         .trait-label-right { max-width: 48%; text-align: right; }
 
-        /* Description */
+        /* Description — pushed to bottom in square cards */
         .trait-description {
             font-size: 12px; color: var(--ink-60); line-height: 1.55;
-            margin-top: 10px;
+            margin-top: auto;
+            padding-top: 10px;
         }
 
         /* Footer */
@@ -213,6 +224,10 @@
         @media (min-width: 600px) {
             .container { padding: 32px 24px 80px; }
             .trait-card { padding: 18px 20px; }
+        }
+        @media (min-width: 900px) {
+            .stats-bar { max-width: 600px; margin-left: auto; margin-right: auto; margin-bottom: 14px; }
+            .global-disclaimer { max-width: 600px; margin-left: auto; margin-right: auto; margin-bottom: 20px; }
         }
     </style>
 </head>
@@ -413,13 +428,16 @@ function renderCategorySection(cat, catTraits) {
 }
 
 function renderTraitCard(trait) {
-    const iconName  = typeof getIconForTrait === 'function' ? getIconForTrait(trait.id) : 'dna';
+    const iconName   = typeof getIconForTrait === 'function'
+        ? getIconForTrait(trait.id, trait.category)
+        : 'dna';
     const confidence = typeof trait.confidence === 'number' ? trait.confidence : 0;
-    const pos       = typeof trait.position === 'number'
+    const pos        = typeof trait.position === 'number'
         ? Math.max(5, Math.min(95, trait.position))
         : 50;
     const leftLabel  = trait.sliderMin || '';
     const rightLabel = trait.sliderMax || '';
+    const desc       = trait.note || trait.description || '';
     const gene = trait.gene || '';
     const rsid = trait.rsid || '';
     const footerHtml = (gene || rsid) ? `
@@ -429,7 +447,7 @@ function renderTraitCard(trait) {
         </div>` : '';
 
     return `
-        <article class="trait-card">
+        <article class="trait-card" data-category="${trait.category || ''}">
             <div class="trait-card-header">
                 <i data-lucide="${iconName}" class="trait-icon"></i>
                 <span class="trait-title">${trait.name || trait.id}</span>
@@ -446,7 +464,7 @@ function renderTraitCard(trait) {
                     <span class="trait-label-right">${rightLabel}</span>
                 </div>
             </div>
-            ${trait.note ? `<div class="trait-description">${trait.note}</div>` : ''}
+            ${desc ? `<div class="trait-description">${desc}</div>` : ''}
             ${footerHtml}
         </article>
     `;
