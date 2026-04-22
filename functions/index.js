@@ -2246,7 +2246,7 @@ function _buildObservations(bios, patologias, medicamentos, score, hasComparison
 // =================================================================
 
 const { onCall, HttpsError } = require('firebase-functions/v2/https');
-const { parseDNAFile, extractRelevantSNPs } = require('./genetics/parser');
+const { parseDNABuffer, parseDNAFile, extractRelevantSNPs } = require('./genetics/parser');
 const { generateGeneticReport }             = require('./genetics/analyzer');
 const { NURA_SNP_DATABASE }                 = require('./genetics/snpDatabase');
 
@@ -2442,10 +2442,9 @@ exports.processGeneticData = onCall(
             // 2. Descargar contenido desde Storage (sin límite de payload)
             console.log(`[Genetics] Descargando ${storagePath}...`);
             const [contents] = await storageFile.download();
-            const textContent = contents.toString('utf-8');
-            console.log(`[Genetics] Descargado: ${textContent.length} bytes`);
+            console.log(`[Genetics] Descargado: ${contents.length} bytes`);
 
-            const parseResult = parseDNAFile(textContent);
+            const parseResult = parseDNABuffer(contents);
             const { relevantSnps, foundCount, coveragePercent } = extractRelevantSNPs(parseResult.snps, NURA_SNP_DATABASE);
 
             const userDoc = await admin.firestore().collection('users').doc(uid).get();
