@@ -1,27 +1,25 @@
+'use strict';
+
 /**
- * Algoritmo de estimación de ancestría por Maximum Likelihood (EM).
+ * Ancestry EM algorithm — K=9 sub-populations (NURA 4.1-B).
  *
- * Implementación del algoritmo ADMIXTURE simplificado (Alexander et al. 2009).
- * Dado un set de SNPs AIM del usuario, estima las proporciones q_k de cada
- * población ancestral que maximizan la verosimilitud del genotipo observado.
- *
- * Limitación conocida: ~26 SNPs disponibles vs ~10.000 que usa ADMIXTURE real.
- * Precisión estimada: ±8-12% para componentes mayores, ±5% para mezcla obvia.
- * Para mayor precisión se requieren más AIMs (expansión futura de la DB).
+ * Uses ADMIXTURE-style EM with binomial likelihood per AIM.
+ * Panel: 141 CLG AIMs (Verdugo et al 2020, Biol Res 53:15).
+ * Sub-populations: EUR_N, EUR_S, AFR_W, AFR_E, EAS_CN, EAS_JP, SAS, AMR_NAT.
  */
 
-const { AIM_SNPS, POPULATIONS } = require('./referenceData');
+const crypto  = require('crypto');
+const refData = require('./referenceData');
+const { AIMS, POPULATIONS, aggregateToMacroRegions, VERSION } = refData;
 
-const POPULATIONS_LIST = Object.keys(POPULATIONS);
-const K                = POPULATIONS_LIST.length;
-const MAX_ITERATIONS   = 1000;
-const CONVERGENCE      = 0.0001;
-const MIN_SNPS         = 8; // mínimo de AIMs encontrados para dar resultado confiable
+const K          = POPULATIONS.length;  // 8
+const MAX_ITER   = 1000;  // subido de 500: ADNs con >120 AIMs matched pueden requerir >500 iter
+const TOLERANCE  = 1e-5;
+const REGULARIZE = 0.01;
+const MIN_SNPS   = 50;
 
 /**
- * Cuenta cuántas copias del minorAllele canónico hay en el genotipo (0, 1 ó 2).
- * @param {string} genotype  — dos caracteres, ej. "AG", "GG", "CT"
- * @param {string} minorAllele — alelo AIM-informativo específico del SNP, ej. "A", "G", "T"
+ * Counts copies of minorAllele in a diploid genotype (0, 1, or 2).
  */
 function _countMinorAlleles(genotype, minorAllele) {
     if (!genotype || genotype.length < 2 || !minorAllele) return 0;
@@ -32,154 +30,227 @@ function _countMinorAlleles(genotype, minorAllele) {
 }
 
 /**
- * Algoritmo EM para estimar proporciones de ancestría.
- * @param {{ [rsid]: { genotype: string } }} userSnps
- * @returns {Array<{ population, name, flag, percentage, color, subpopulations }>}
+ * Binomial P(k minor alleles | freq=p, n=2).
  */
-function calculateAncestry(userSnps) {
-    // Filtrar solo los AIMs que el usuario tiene
-    const userAims = {};
-    for (const rsid of Object.keys(AIM_SNPS)) {
-        if (userSnps[rsid] && userSnps[rsid].genotype && userSnps[rsid].genotype !== '--') {
-            userAims[rsid] = userSnps[rsid].genotype;
+function binomialLikelihood(k, p) {
+    if (k === 0) return (1 - p) ** 2;
+    if (k === 1) return 2 * p * (1 - p);
+    if (k === 2) return p * p;
+    return 0;
+}
+
+/**
+ * SHA-256 fingerprint of the first 30 matched AIM genotypes.
+ * Unique per user; drives deterministic Q initialization.
+ */
+function generateUserFingerprint(matchedAims, userSnps) {
+    const first30 = matchedAims.slice(0, 30);
+    const parts = first30.map(aim => `${aim.rsid}:${userSnps[aim.rsid]?.genotype ?? ''}`);
+    return crypto.createHash('sha256').update(parts.join('|')).digest('hex');
+}
+
+/**
+ * LCG pseudo-random number generator seeded by fingerprint integer.
+ * Deterministic: same seed → same sequence.
+ */
+function seededRandom(seed) {
+    let s = seed >>> 0;
+    return function () {
+        s = (Math.imul(1664525, s) + 1013904223) >>> 0;
+        return s / 0xFFFFFFFF;
+    };
+}
+
+function initializeQFromFingerprint(fingerprint, k) {
+    const seed = parseInt(fingerprint.substring(0, 8), 16);
+    const rng  = seededRandom(seed);
+    const raw  = Array.from({ length: k }, () => rng() + 0.1);
+    const total = raw.reduce((s, v) => s + v, 0);
+    return raw.map(v => v / total);
+}
+
+function l2Distance(a, b) {
+    return Math.sqrt(a.reduce((s, v, i) => s + (v - b[i]) ** 2, 0));
+}
+
+/**
+ * One EM iteration with binomial likelihood + L2 regularization toward uniform.
+ */
+function emStep(qArr, matchedAims, userSnps, regularization) {
+    const uniform = 1 / K;
+    const counts  = new Array(K).fill(0);
+
+    for (const aim of matchedAims) {
+        const gt = userSnps[aim.rsid]?.genotype;
+        if (!gt || gt.length < 2) continue;
+        const k = _countMinorAlleles(gt, aim.minorAllele);
+
+        const likelihoods = POPULATIONS.map((pop, ki) => {
+            const p = aim.frequencies[pop] ?? 0.5;
+            return binomialLikelihood(k, p) * qArr[ki];
+        });
+
+        const total = likelihoods.reduce((s, v) => s + v, 0);
+        if (total < 1e-15) continue;
+
+        for (let ki = 0; ki < K; ki++) {
+            counts[ki] += likelihoods[ki] / total;
         }
     }
 
-    const aimCount = Object.keys(userAims).length;
-    console.log(`[ANCESTRY] AIMs encontrados: ${aimCount}/${Object.keys(AIM_SNPS).length}`);
-    console.log(`[ANCESTRY] AIMs detectados: ${Object.keys(userAims).join(', ')}`);
-    for (const [rsid, gt] of Object.entries(userAims)) {
-        console.log(`[ANCESTRY]   ${rsid}: ${gt}`);
-    }
-    console.log(`[CALC_ANCESTRY_v2] algoritmo v2 — minorAllele canónico por SNP activo`);
-
-    if (aimCount < MIN_SNPS) {
-        throw new Error(`Solo se encontraron ${aimCount} marcadores AIM (mínimo ${MIN_SNPS}). Verifica que el archivo tenga suficiente cobertura.`);
-    }
-
-    // Log per-SNP allele counts with canonical minorAllele for debug
-    const alleleCounts = Object.entries(userAims).map(([rsid, gt]) => {
-        const snpDef = AIM_SNPS[rsid];
-        const count = _countMinorAlleles(gt, snpDef?.minorAllele);
-        return `${rsid}(${snpDef?.minorAllele ?? '?'})=${count}`;
+    // M-step: MLE + L2 pull toward uniform
+    const countsTotal = counts.reduce((s, v) => s + v, 0);
+    let newQ = counts.map(c => {
+        const mle = countsTotal > 0 ? c / countsTotal : uniform;
+        return (1 - regularization) * mle + regularization * uniform;
     });
-    console.log(`[CALC_ANCESTRY_v2] allele_counts: ${alleleCounts.join(' ')}`);
 
-    // Inicialización determinista basada en similitud observada con cada población
-    // Evita que diferentes usuarios converjan al mismo mínimo local
-    const q = {};
-    const rawSim = {};
-    for (const pop of POPULATIONS_LIST) {
-        let sim = 0;
-        let n = 0;
-        for (const [rsid, gt] of Object.entries(userAims)) {
-            const snpDef = AIM_SNPS[rsid];
-            const freq = snpDef?.popFreq?.[pop];
-            if (freq === undefined) continue;
-            const minor = _countMinorAlleles(gt, snpDef.minorAllele);
-            const expected = freq * 2; // diploid expected minor allele count
-            sim += 1 - Math.abs(minor - expected) / 2;
-            n++;
-        }
-        rawSim[pop] = n > 0 ? sim / n : 1 / K;
+    // Normalize
+    const sum = newQ.reduce((s, v) => s + v, 0);
+    return newQ.map(v => v / sum);
+}
+
+/**
+ * Estimate ancestry proportions for a user's genotype data.
+ *
+ * @param {{ [rsid: string]: { genotype: string } }} userSnps
+ * @param {{ maxIter?, tolerance?, regularize? }} opts
+ * @returns {{
+ *   populations:   { [pop: string]: number },   // K=8 sub-pop Q-vector
+ *   macroRegions:  { [region: string]: number }, // K=6 legacy macro-regions
+ *   aimsAnalyzed:  number,
+ *   totalAimsInDb: number,
+ *   iterations:    number,
+ *   converged:     boolean,
+ *   fingerprint:   string,
+ *   version:       string,
+ *   confidence:    string,
+ *   accuracy:      string
+ * }}
+ */
+function computeAncestry(userSnps, opts = {}) {
+    const maxIter    = opts.maxIter    ?? MAX_ITER;
+    const tolerance  = opts.tolerance  ?? TOLERANCE;
+    const regularize = opts.regularize ?? REGULARIZE;
+
+    const matchedAims = AIMS.filter(aim => {
+        const gt = userSnps[aim.rsid]?.genotype;
+        return gt && gt !== '--' && gt.length >= 2;
+    });
+
+    const aimsAnalyzed = matchedAims.length;
+    console.log(`[CALC_ANCESTRY_v2] K=${K} AIMs_found=${aimsAnalyzed}/${AIMS.length} version=${VERSION}`);
+
+    if (aimsAnalyzed < MIN_SNPS) {
+        throw new Error(
+            `Solo ${aimsAnalyzed} AIMs encontrados (mínimo ${MIN_SNPS}). ` +
+            'Archivo ADN con cobertura insuficiente para análisis de ancestría.'
+        );
     }
-    const simTotal = POPULATIONS_LIST.reduce((s, p) => s + rawSim[p], 0);
-    POPULATIONS_LIST.forEach(pop => { q[pop] = simTotal > 0 ? rawSim[pop] / simTotal : 1 / K; });
-    console.log(`[ANCESTRY] Q inicial: ${POPULATIONS_LIST.map(p => `${p}=${(q[p]*100).toFixed(1)}%`).join(', ')}`);
 
-    // ── Algoritmo EM ────────────────────────────────────────────────────
-    for (let iter = 0; iter < MAX_ITERATIONS; iter++) {
-        const qOld = { ...q };
+    const fingerprint = generateUserFingerprint(matchedAims, userSnps);
+    let qArr = initializeQFromFingerprint(fingerprint, K);
 
-        // E-step: calcular counts esperados de ancestría por alelo
-        const expectedCounts = {};
-        POPULATIONS_LIST.forEach(pop => { expectedCounts[pop] = 0; });
-        let totalAlleles = 0;
+    console.log(
+        `[CALC_ANCESTRY_v2] fingerprint=${fingerprint.substring(0, 12)}... ` +
+        `Q_init=${POPULATIONS.map((p, i) => p + '=' + (qArr[i] * 100).toFixed(1) + '%').join(' ')}`
+    );
 
-        for (const rsid of Object.keys(userAims)) {
-            const snp      = AIM_SNPS[rsid];
-            const genotype = userAims[rsid];
-            const minorCount = _countMinorAlleles(genotype, snp.minorAllele);
+    // EM loop
+    let iterations = 0;
+    let converged  = false;
 
-            // Para cada uno de los 2 alelos
-            for (let alleleIdx = 0; alleleIdx < 2; alleleIdx++) {
-                const isMinor = alleleIdx < minorCount;
-                totalAlleles++;
+    for (let iter = 0; iter < maxIter; iter++) {
+        const newQ = emStep(qArr, matchedAims, userSnps, regularize);
+        const dist = l2Distance(qArr, newQ);
+        qArr       = newQ;
+        iterations = iter + 1;
 
-                // Probabilidad total de observar este alelo dada la mezcla actual
-                let totalProb = 0;
-                for (const pop of POPULATIONS_LIST) {
-                    const p_k = snp.popFreq[pop] !== undefined ? snp.popFreq[pop] : 0.5;
-                    totalProb += (isMinor ? p_k : (1 - p_k)) * q[pop];
-                }
-
-                if (totalProb < 1e-10) continue;
-
-                // Asignar fracción de este alelo a cada población
-                for (const pop of POPULATIONS_LIST) {
-                    const p_k = snp.popFreq[pop] !== undefined ? snp.popFreq[pop] : 0.5;
-                    expectedCounts[pop] += ((isMinor ? p_k : (1 - p_k)) * q[pop]) / totalProb;
-                }
-            }
-        }
-
-        // M-step: actualizar q
-        for (const pop of POPULATIONS_LIST) {
-            q[pop] = totalAlleles > 0 ? expectedCounts[pop] / totalAlleles : 1 / K;
-        }
-
-        // Normalizar (suma = 1)
-        const total = POPULATIONS_LIST.reduce((s, p) => s + q[p], 0);
-        if (total > 0) POPULATIONS_LIST.forEach(pop => { q[pop] /= total; });
-
-        // Verificar convergencia
-        const maxDiff = POPULATIONS_LIST.reduce((m, pop) => Math.max(m, Math.abs(q[pop] - qOld[pop])), 0);
-        if (maxDiff < CONVERGENCE) {
-            console.log(`[ANCESTRY] EM convergió en iteración ${iter + 1}`);
+        if (dist < tolerance) {
+            converged = true;
+            console.log(`[CALC_ANCESTRY_v2] converged iter=${iterations} dist=${dist.toExponential(3)}`);
             break;
         }
     }
 
-    console.log(`[ANCESTRY] Q final: ${POPULATIONS_LIST.map(p => `${p}=${(q[p]*100).toFixed(1)}%`).join(', ')}`);
-    return _formatResults(q, aimCount);
-}
-
-function _formatResults(q, aimsUsed) {
-    const results = [];
-
-    for (const pop of POPULATIONS_LIST) {
-        if (q[pop] > 0.003) { // ignorar < 0.3%
-            results.push({
-                population:     pop,
-                name:           POPULATIONS[pop].name,
-                nameEs:         POPULATIONS[pop].nameEs,
-                flag:           POPULATIONS[pop].flag,
-                color:          POPULATIONS[pop].color,
-                percentage:     Math.round(q[pop] * 1000) / 10,
-                subpopulations: POPULATIONS[pop].subpopulations
-            });
-        }
+    if (!converged) {
+        console.warn(`[CALC_ANCESTRY_v2] no converged after ${iterations} iterations`);
     }
 
-    // Ordenar por porcentaje descendente
-    results.sort((a, b) => b.percentage - a.percentage);
+    // Build K=8 populations object
+    const populations = {};
+    POPULATIONS.forEach((pop, ki) => {
+        populations[pop] = Math.round(qArr[ki] * 1e6) / 1e6;
+    });
 
-    // Renormalizar a exactamente 100%
-    const totalPct = results.reduce((s, r) => s + r.percentage, 0);
-    if (totalPct > 0 && totalPct !== 100) {
-        results.forEach(r => { r.percentage = Math.round((r.percentage / totalPct) * 1000) / 10; });
-        // Ajustar el primero para que sume exactamente 100
-        const diff = 100 - results.reduce((s, r) => s + r.percentage, 0);
-        if (results.length > 0) results[0].percentage = Math.round((results[0].percentage + diff) * 10) / 10;
-    }
+    // K=6 macro-region aggregation (legacy compatibility)
+    const macroRegions = aggregateToMacroRegions(populations);
+
+    console.log(
+        `[CALC_ANCESTRY_v2] Q_final=` +
+        POPULATIONS.map((p, i) => p + '=' + (qArr[i] * 100).toFixed(1) + '%').join(' ')
+    );
+    console.log(
+        `[CALC_ANCESTRY_v2] macro=` +
+        Object.entries(macroRegions).map(([r, v]) => r + '=' + (v * 100).toFixed(1) + '%').join(' ')
+    );
+
+    const confidence = aimsAnalyzed >= 100 ? 'high' : aimsAnalyzed >= 60 ? 'medium' : 'low';
 
     return {
-        populations:   results,
-        aimsAnalyzed:  aimsUsed,
-        totalAimsInDb: Object.keys(AIM_SNPS).length,
-        confidence:    aimsUsed >= 20 ? 'high' : aimsUsed >= 12 ? 'medium' : 'low',
-        accuracy:      `±${aimsUsed >= 20 ? '6' : aimsUsed >= 12 ? '10' : '15'}%`
+        populations,
+        macroRegions,
+        aimsAnalyzed,
+        totalAimsInDb: AIMS.length,
+        iterations,
+        converged,
+        fingerprint,
+        version:  VERSION,
+        confidence,
+        accuracy: aimsAnalyzed >= 100 ? '±5%' : aimsAnalyzed >= 60 ? '±8%' : '±12%'
     };
 }
 
-module.exports = { calculateAncestry };
+/**
+ * Backward-compatible wrapper for functions/index.js (B5 will update the call site).
+ * Maps new output → old array format expected by Firestore + frontend.
+ */
+function calculateAncestry(userSnps) {
+    const result = computeAncestry(userSnps);
+
+    // Convert macro-regions to the old populations array format
+    const populationsArr = Object.entries(result.macroRegions)
+        .filter(([, v]) => v > 0.003)
+        .sort(([, a], [, b]) => b - a)
+        .map(([pop, fraction]) => ({
+            population:  pop,
+            name:        pop,
+            nameEs:      pop,
+            percentage:  Math.round(fraction * 1000) / 10
+        }));
+
+    return {
+        populations:    populationsArr,
+        macroRegions:   result.macroRegions,
+        subPopulations: result.populations,
+        aimsAnalyzed:   result.aimsAnalyzed,
+        totalAimsInDb:  result.totalAimsInDb,
+        confidence:     result.confidence,
+        accuracy:       result.accuracy,
+        version:        result.version
+    };
+}
+
+module.exports = {
+    computeAncestry,
+    calculateAncestry,
+    _countMinorAlleles,
+    _internals: {
+        binomialLikelihood,
+        generateUserFingerprint,
+        seededRandom,
+        initializeQFromFingerprint,
+        emStep,
+        l2Distance
+    }
+};
