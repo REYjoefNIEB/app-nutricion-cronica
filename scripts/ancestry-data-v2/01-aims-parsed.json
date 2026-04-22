@@ -1,0 +1,1271 @@
+[
+  {
+    "rsid": "rs12142199",
+    "chromosome": "1",
+    "chrOriginal": "1p",
+    "position": 1249187,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.43360000000000004
+  },
+  {
+    "rsid": "rs4908343",
+    "chromosome": "1",
+    "chrOriginal": "1p",
+    "position": 27931698,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.1663
+  },
+  {
+    "rsid": "rs1298637",
+    "chromosome": "1",
+    "chrOriginal": "1p",
+    "position": 53958603,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.1933
+  },
+  {
+    "rsid": "rs12135529",
+    "chromosome": "1",
+    "chrOriginal": "1p",
+    "position": 84293113,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.3844
+  },
+  {
+    "rsid": "rs10874946",
+    "chromosome": "1",
+    "chrOriginal": "1p",
+    "position": 96236784,
+    "minorAllele": "G",
+    "majorAllele": "T",
+    "MAF_chile": 0.41
+  },
+  {
+    "rsid": "rs6660743",
+    "chromosome": "1",
+    "chrOriginal": "1p",
+    "position": 116949306,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.06609000000000001
+  },
+  {
+    "rsid": "rs4845584",
+    "chromosome": "1",
+    "chrOriginal": "1q",
+    "position": 153885261,
+    "minorAllele": "A",
+    "majorAllele": "C",
+    "MAF_chile": 0.2561
+  },
+  {
+    "rsid": "rs2814778",
+    "chromosome": "1",
+    "chrOriginal": "1q",
+    "position": 159174683,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.02876
+  },
+  {
+    "rsid": "rs17505819",
+    "chromosome": "1",
+    "chrOriginal": "1q",
+    "position": 185740656,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.15710000000000002
+  },
+  {
+    "rsid": "rs3738800",
+    "chromosome": "1",
+    "chrOriginal": "1q",
+    "position": 212960866,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.4998
+  },
+  {
+    "rsid": "rs118023864",
+    "chromosome": "1",
+    "chrOriginal": "1q",
+    "position": 231987419,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.20090000000000002
+  },
+  {
+    "rsid": "rs622815",
+    "chromosome": "1",
+    "chrOriginal": "1q",
+    "position": 234358216,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.1772
+  },
+  {
+    "rsid": "rs6759202",
+    "chromosome": "2",
+    "chrOriginal": "2p",
+    "position": 2372168,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.3337
+  },
+  {
+    "rsid": "rs13021734",
+    "chromosome": "2",
+    "chrOriginal": "2p",
+    "position": 8118123,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.2036
+  },
+  {
+    "rsid": "rs7596222",
+    "chromosome": "2",
+    "chrOriginal": "2p",
+    "position": 39611382,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.09813000000000001
+  },
+  {
+    "rsid": "rs72897942",
+    "chromosome": "2",
+    "chrOriginal": "2p",
+    "position": 71194556,
+    "minorAllele": "C",
+    "majorAllele": "A",
+    "MAF_chile": 0.03309
+  },
+  {
+    "rsid": "rs78509428",
+    "chromosome": "2",
+    "chrOriginal": "2q",
+    "position": 100134353,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.22870000000000001
+  },
+  {
+    "rsid": "rs260699",
+    "chromosome": "2",
+    "chrOriginal": "2q",
+    "position": 109567445,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.4877
+  },
+  {
+    "rsid": "rs1036543",
+    "chromosome": "2",
+    "chrOriginal": "2q",
+    "position": 133676214,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.4186
+  },
+  {
+    "rsid": "rs10497281",
+    "chromosome": "2",
+    "chrOriginal": "2q",
+    "position": 167016102,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.37220000000000003
+  },
+  {
+    "rsid": "rs58321030",
+    "chromosome": "2",
+    "chrOriginal": "2q",
+    "position": 202975501,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.2816
+  },
+  {
+    "rsid": "rs849263",
+    "chromosome": "2",
+    "chrOriginal": "2q",
+    "position": 206278900,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.03866
+  },
+  {
+    "rsid": "rs28497373",
+    "chromosome": "2",
+    "chrOriginal": "2q",
+    "position": 239417840,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.07780000000000001
+  },
+  {
+    "rsid": "rs74895924",
+    "chromosome": "3",
+    "chrOriginal": "3p",
+    "position": 2134399,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.3486
+  },
+  {
+    "rsid": "rs1517378",
+    "chromosome": "3",
+    "chrOriginal": "3p",
+    "position": 6042658,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.22610000000000002
+  },
+  {
+    "rsid": "rs2290532",
+    "chromosome": "3",
+    "chrOriginal": "3p",
+    "position": 31789582,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.3739
+  },
+  {
+    "rsid": "rs35416537",
+    "chromosome": "3",
+    "chrOriginal": "3p",
+    "position": 53243913,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.4168
+  },
+  {
+    "rsid": "rs7631391",
+    "chromosome": "3",
+    "chrOriginal": "3p",
+    "position": 64514393,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.4368
+  },
+  {
+    "rsid": "rs937878",
+    "chromosome": "3",
+    "chrOriginal": "3q",
+    "position": 96472739,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.4121
+  },
+  {
+    "rsid": "rs1920623",
+    "chromosome": "3",
+    "chrOriginal": "3q",
+    "position": 123941100,
+    "minorAllele": "A",
+    "majorAllele": "C",
+    "MAF_chile": 0.3632
+  },
+  {
+    "rsid": "rs6780938",
+    "chromosome": "3",
+    "chrOriginal": "3q",
+    "position": 129401505,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.29650000000000004
+  },
+  {
+    "rsid": "rs6764190",
+    "chromosome": "3",
+    "chrOriginal": "3q",
+    "position": 153258272,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.4963
+  },
+  {
+    "rsid": "rs3774061",
+    "chromosome": "3",
+    "chrOriginal": "3q",
+    "position": 185964708,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.12510000000000002
+  },
+  {
+    "rsid": "rs3822225",
+    "chromosome": "4",
+    "chrOriginal": "4p",
+    "position": 13483049,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.481
+  },
+  {
+    "rsid": "rs1380815",
+    "chromosome": "4",
+    "chrOriginal": "4p",
+    "position": 21552230,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.3065
+  },
+  {
+    "rsid": "rs4623048",
+    "chromosome": "4",
+    "chrOriginal": "4p",
+    "position": 41833487,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.13520000000000001
+  },
+  {
+    "rsid": "rs1532948",
+    "chromosome": "4",
+    "chrOriginal": "4q",
+    "position": 63728612,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.1177
+  },
+  {
+    "rsid": "rs12502954",
+    "chromosome": "4",
+    "chrOriginal": "4q",
+    "position": 91527074,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.2802
+  },
+  {
+    "rsid": "rs6834049",
+    "chromosome": "4",
+    "chrOriginal": "4q",
+    "position": 97906295,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.20120000000000002
+  },
+  {
+    "rsid": "rs4833757",
+    "chromosome": "4",
+    "chrOriginal": "4q",
+    "position": 122633535,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.4419
+  },
+  {
+    "rsid": "rs4577554",
+    "chromosome": "4",
+    "chrOriginal": "4q",
+    "position": 151531352,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.07975
+  },
+  {
+    "rsid": "rs12504267",
+    "chromosome": "4",
+    "chrOriginal": "4q",
+    "position": 165251843,
+    "minorAllele": "G",
+    "majorAllele": "T",
+    "MAF_chile": 0.4012
+  },
+  {
+    "rsid": "rs2574904",
+    "chromosome": "4",
+    "chrOriginal": "4q",
+    "position": 177844568,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.1691
+  },
+  {
+    "rsid": "rs378257",
+    "chromosome": "5",
+    "chrOriginal": "5p",
+    "position": 2518738,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.1625
+  },
+  {
+    "rsid": "rs35397",
+    "chromosome": "5",
+    "chrOriginal": "5p",
+    "position": 33951116,
+    "minorAllele": "G",
+    "majorAllele": "T",
+    "MAF_chile": 0.4979
+  },
+  {
+    "rsid": "rs17529085",
+    "chromosome": "5",
+    "chrOriginal": "5q",
+    "position": 60368781,
+    "minorAllele": "G",
+    "majorAllele": "T",
+    "MAF_chile": 0.33690000000000003
+  },
+  {
+    "rsid": "rs2972201",
+    "chromosome": "5",
+    "chrOriginal": "5q",
+    "position": 72636566,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.2152
+  },
+  {
+    "rsid": "rs244430",
+    "chromosome": "5",
+    "chrOriginal": "5q",
+    "position": 110106634,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.22030000000000002
+  },
+  {
+    "rsid": "rs115969489",
+    "chromosome": "5",
+    "chrOriginal": "5q",
+    "position": 126009267,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.29460000000000003
+  },
+  {
+    "rsid": "rs7736578",
+    "chromosome": "5",
+    "chrOriginal": "5q",
+    "position": 142142348,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.232
+  },
+  {
+    "rsid": "rs11134558",
+    "chromosome": "5",
+    "chrOriginal": "5q",
+    "position": 168522312,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.4409
+  },
+  {
+    "rsid": "rs6875659",
+    "chromosome": "5",
+    "chrOriginal": "5q",
+    "position": 175158653,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.07474
+  },
+  {
+    "rsid": "rs10793841",
+    "chromosome": "6",
+    "chrOriginal": "6p",
+    "position": 3285286,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.20700000000000002
+  },
+  {
+    "rsid": "rs1535001",
+    "chromosome": "6",
+    "chrOriginal": "6p",
+    "position": 34927280,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.36210000000000003
+  },
+  {
+    "rsid": "rs9445980",
+    "chromosome": "6",
+    "chrOriginal": "6q",
+    "position": 68930738,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.20950000000000002
+  },
+  {
+    "rsid": "rs4120910",
+    "chromosome": "6",
+    "chrOriginal": "6q",
+    "position": 102323696,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.3005
+  },
+  {
+    "rsid": "rs9486092",
+    "chromosome": "6",
+    "chrOriginal": "6q",
+    "position": 105883147,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.2305
+  },
+  {
+    "rsid": "rs9401838",
+    "chromosome": "6",
+    "chrOriginal": "6q",
+    "position": 125961396,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.1671
+  },
+  {
+    "rsid": "rs4869782",
+    "chromosome": "6",
+    "chrOriginal": "6q",
+    "position": 150303241,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.45790000000000003
+  },
+  {
+    "rsid": "rs3777722",
+    "chromosome": "6",
+    "chrOriginal": "6q",
+    "position": 167352104,
+    "minorAllele": "A",
+    "majorAllele": "C",
+    "MAF_chile": 0.3245
+  },
+  {
+    "rsid": "rs6463531",
+    "chromosome": "7",
+    "chrOriginal": "7p",
+    "position": 6255327,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.4198
+  },
+  {
+    "rsid": "rs1858940",
+    "chromosome": "7",
+    "chrOriginal": "7p",
+    "position": 20636239,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.443
+  },
+  {
+    "rsid": "rs2267740",
+    "chromosome": "7",
+    "chrOriginal": "7p",
+    "position": 31137003,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.1009
+  },
+  {
+    "rsid": "rs10226579",
+    "chromosome": "7",
+    "chrOriginal": "7q",
+    "position": 64865118,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.4143
+  },
+  {
+    "rsid": "rs10488003",
+    "chromosome": "7",
+    "chrOriginal": "7q",
+    "position": 90747682,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.42710000000000004
+  },
+  {
+    "rsid": "rs10953286",
+    "chromosome": "7",
+    "chrOriginal": "7q",
+    "position": 98887802,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.2674
+  },
+  {
+    "rsid": "rs10271592",
+    "chromosome": "7",
+    "chrOriginal": "7q",
+    "position": 119694410,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.028180000000000004
+  },
+  {
+    "rsid": "rs344470",
+    "chromosome": "7",
+    "chrOriginal": "7q",
+    "position": 146413497,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.0974
+  },
+  {
+    "rsid": "rs11990310",
+    "chromosome": "8",
+    "chrOriginal": "8p",
+    "position": 259934,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.07703
+  },
+  {
+    "rsid": "rs75644136",
+    "chromosome": "8",
+    "chrOriginal": "8p",
+    "position": 3545212,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.08934
+  },
+  {
+    "rsid": "rs7012981",
+    "chromosome": "8",
+    "chrOriginal": "8p",
+    "position": 29383034,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.34940000000000004
+  },
+  {
+    "rsid": "rs12545426",
+    "chromosome": "8",
+    "chrOriginal": "8q",
+    "position": 59453461,
+    "minorAllele": "T",
+    "majorAllele": "G",
+    "MAF_chile": 0.41590000000000005
+  },
+  {
+    "rsid": "rs6995710",
+    "chromosome": "8",
+    "chrOriginal": "8q",
+    "position": 88852543,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.4802
+  },
+  {
+    "rsid": "rs1352159",
+    "chromosome": "8",
+    "chrOriginal": "8q",
+    "position": 91897549,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.41240000000000004
+  },
+  {
+    "rsid": "rs4871779",
+    "chromosome": "8",
+    "chrOriginal": "8q",
+    "position": 128279007,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.4314
+  },
+  {
+    "rsid": "rs10974844",
+    "chromosome": "9",
+    "chrOriginal": "9p",
+    "position": 499516,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.040240000000000005
+  },
+  {
+    "rsid": "rs1020463",
+    "chromosome": "9",
+    "chrOriginal": "9p",
+    "position": 22667225,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.2117
+  },
+  {
+    "rsid": "rs7873820",
+    "chromosome": "9",
+    "chrOriginal": "9p",
+    "position": 24883179,
+    "minorAllele": "A",
+    "majorAllele": "C",
+    "MAF_chile": 0.1106
+  },
+  {
+    "rsid": "rs7853515",
+    "chromosome": "9",
+    "chrOriginal": "9q",
+    "position": 83932430,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.3478
+  },
+  {
+    "rsid": "rs2768288",
+    "chromosome": "9",
+    "chrOriginal": "9q",
+    "position": 108316653,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.3085
+  },
+  {
+    "rsid": "rs1510283",
+    "chromosome": "9",
+    "chrOriginal": "9q",
+    "position": 109695950,
+    "minorAllele": "G",
+    "majorAllele": "T",
+    "MAF_chile": 0.1663
+  },
+  {
+    "rsid": "rs590086",
+    "chromosome": "9",
+    "chrOriginal": "9q",
+    "position": 133343659,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.07215
+  },
+  {
+    "rsid": "rs28831093",
+    "chromosome": "10",
+    "chrOriginal": "10p",
+    "position": 24347747,
+    "minorAllele": "C",
+    "majorAllele": "A",
+    "MAF_chile": 0.1039
+  },
+  {
+    "rsid": "rs17665075",
+    "chromosome": "10",
+    "chrOriginal": "10p",
+    "position": 26101206,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.11130000000000001
+  },
+  {
+    "rsid": "rs867768",
+    "chromosome": "10",
+    "chrOriginal": "10p",
+    "position": 31414304,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.47650000000000003
+  },
+  {
+    "rsid": "rs10761835",
+    "chromosome": "10",
+    "chrOriginal": "10q",
+    "position": 65892071,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.1439
+  },
+  {
+    "rsid": "rs3814614",
+    "chromosome": "10",
+    "chrOriginal": "10q",
+    "position": 88128281,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.3163
+  },
+  {
+    "rsid": "rs4918288",
+    "chromosome": "10",
+    "chrOriginal": "10q",
+    "position": 108987492,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.3587
+  },
+  {
+    "rsid": "rs7087634",
+    "chromosome": "10",
+    "chrOriginal": "10q",
+    "position": 118171016,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.37220000000000003
+  },
+  {
+    "rsid": "rs2242458",
+    "chromosome": "11",
+    "chrOriginal": "11p",
+    "position": 19188122,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.3154
+  },
+  {
+    "rsid": "rs4755530",
+    "chromosome": "11",
+    "chrOriginal": "11p",
+    "position": 39889167,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.194
+  },
+  {
+    "rsid": "rs523200",
+    "chromosome": "11",
+    "chrOriginal": "11q",
+    "position": 64532579,
+    "minorAllele": "C",
+    "majorAllele": "A",
+    "MAF_chile": 0.30970000000000003
+  },
+  {
+    "rsid": "rs2448265",
+    "chromosome": "11",
+    "chrOriginal": "11q",
+    "position": 80086923,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.42260000000000003
+  },
+  {
+    "rsid": "rs4309121",
+    "chromosome": "11",
+    "chrOriginal": "11q",
+    "position": 94591289,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.4934
+  },
+  {
+    "rsid": "rs7927064",
+    "chromosome": "11",
+    "chrOriginal": "11q",
+    "position": 123261385,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.1558
+  },
+  {
+    "rsid": "rs1793568",
+    "chromosome": "11",
+    "chrOriginal": "11q",
+    "position": 131106301,
+    "minorAllele": "T",
+    "majorAllele": "G",
+    "MAF_chile": 0.4335
+  },
+  {
+    "rsid": "rs4237954",
+    "chromosome": "12",
+    "chrOriginal": "12p",
+    "position": 15801799,
+    "minorAllele": "C",
+    "majorAllele": "A",
+    "MAF_chile": 0.03568
+  },
+  {
+    "rsid": "rs10875961",
+    "chromosome": "12",
+    "chrOriginal": "12q",
+    "position": 39068198,
+    "minorAllele": "T",
+    "majorAllele": "G",
+    "MAF_chile": 0.44370000000000004
+  },
+  {
+    "rsid": "rs7315173",
+    "chromosome": "12",
+    "chrOriginal": "12q",
+    "position": 45394863,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.4405
+  },
+  {
+    "rsid": "rs343092",
+    "chromosome": "12",
+    "chrOriginal": "12q",
+    "position": 66250940,
+    "minorAllele": "T",
+    "majorAllele": "G",
+    "MAF_chile": 0.1627
+  },
+  {
+    "rsid": "rs12229055",
+    "chromosome": "12",
+    "chrOriginal": "12q",
+    "position": 96328422,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.38830000000000003
+  },
+  {
+    "rsid": "rs16942836",
+    "chromosome": "12",
+    "chrOriginal": "12q",
+    "position": 113916920,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.3103
+  },
+  {
+    "rsid": "rs903770",
+    "chromosome": "12",
+    "chrOriginal": "12q",
+    "position": 117291957,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.1981
+  },
+  {
+    "rsid": "rs9319424",
+    "chromosome": "13",
+    "chrOriginal": "13q",
+    "position": 28847135,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.303
+  },
+  {
+    "rsid": "rs7325962",
+    "chromosome": "13",
+    "chrOriginal": "13q",
+    "position": 49067103,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.04324
+  },
+  {
+    "rsid": "rs2149698",
+    "chromosome": "13",
+    "chrOriginal": "13q",
+    "position": 77289977,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.3563
+  },
+  {
+    "rsid": "rs17066642",
+    "chromosome": "13",
+    "chrOriginal": "13q",
+    "position": 77336326,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.2431
+  },
+  {
+    "rsid": "rs1572510",
+    "chromosome": "13",
+    "chrOriginal": "13q",
+    "position": 105381134,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.0592
+  },
+  {
+    "rsid": "rs2255084",
+    "chromosome": "13",
+    "chrOriginal": "13q",
+    "position": 112889456,
+    "minorAllele": "T",
+    "majorAllele": "G",
+    "MAF_chile": 0.43220000000000003
+  },
+  {
+    "rsid": "rs8009296",
+    "chromosome": "14",
+    "chrOriginal": "14q",
+    "position": 32328112,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.0292
+  },
+  {
+    "rsid": "rs8020002",
+    "chromosome": "14",
+    "chrOriginal": "14q",
+    "position": 48252483,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.4297
+  },
+  {
+    "rsid": "rs7148230",
+    "chromosome": "14",
+    "chrOriginal": "14q",
+    "position": 75677699,
+    "minorAllele": "G",
+    "majorAllele": "T",
+    "MAF_chile": 0.11230000000000001
+  },
+  {
+    "rsid": "rs2402480",
+    "chromosome": "14",
+    "chrOriginal": "14q",
+    "position": 95062298,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.4218
+  },
+  {
+    "rsid": "rs1273225",
+    "chromosome": "14",
+    "chrOriginal": "14q",
+    "position": 99609217,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.4302
+  },
+  {
+    "rsid": "rs12906805",
+    "chromosome": "15",
+    "chrOriginal": "15q",
+    "position": 24196452,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.3753
+  },
+  {
+    "rsid": "rs77145924",
+    "chromosome": "15",
+    "chrOriginal": "15q",
+    "position": 45167563,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.17830000000000001
+  },
+  {
+    "rsid": "rs1426654",
+    "chromosome": "15",
+    "chrOriginal": "15q",
+    "position": 48426484,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.4032
+  },
+  {
+    "rsid": "rs11635165",
+    "chromosome": "15",
+    "chrOriginal": "15q",
+    "position": 71139706,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.243
+  },
+  {
+    "rsid": "rs45601437",
+    "chromosome": "16",
+    "chrOriginal": "16p",
+    "position": 10989754,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.4616
+  },
+  {
+    "rsid": "rs8050872",
+    "chromosome": "16",
+    "chrOriginal": "16p",
+    "position": 19803846,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.12840000000000001
+  },
+  {
+    "rsid": "rs2058908",
+    "chromosome": "16",
+    "chrOriginal": "16q",
+    "position": 53806145,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.48190000000000005
+  },
+  {
+    "rsid": "rs7202210",
+    "chromosome": "16",
+    "chrOriginal": "16q",
+    "position": 75820543,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.327
+  },
+  {
+    "rsid": "rs2735611",
+    "chromosome": "17",
+    "chrOriginal": "17p",
+    "position": 8048283,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.46690000000000004
+  },
+  {
+    "rsid": "rs78223898",
+    "chromosome": "17",
+    "chrOriginal": "17p",
+    "position": 13124790,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.4761
+  },
+  {
+    "rsid": "rs2270662",
+    "chromosome": "17",
+    "chrOriginal": "17q",
+    "position": 35219205,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.30970000000000003
+  },
+  {
+    "rsid": "rs3760332",
+    "chromosome": "17",
+    "chrOriginal": "17q",
+    "position": 58508618,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.05652000000000001
+  },
+  {
+    "rsid": "rs7234530",
+    "chromosome": "18",
+    "chrOriginal": "18q",
+    "position": 19683998,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.3405
+  },
+  {
+    "rsid": "rs4799476",
+    "chromosome": "18",
+    "chrOriginal": "18q",
+    "position": 35762424,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.41200000000000003
+  },
+  {
+    "rsid": "rs4891800",
+    "chromosome": "18",
+    "chrOriginal": "18q",
+    "position": 67683698,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.03404
+  },
+  {
+    "rsid": "rs10424345",
+    "chromosome": "19",
+    "chrOriginal": "19p",
+    "position": 12188317,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.1148
+  },
+  {
+    "rsid": "rs76813435",
+    "chromosome": "19",
+    "chrOriginal": "19p",
+    "position": 24376384,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.23720000000000002
+  },
+  {
+    "rsid": "rs7257095",
+    "chromosome": "19",
+    "chrOriginal": "19q",
+    "position": 45451647,
+    "minorAllele": "G",
+    "majorAllele": "C",
+    "MAF_chile": 0.01267
+  },
+  {
+    "rsid": "rs1418029",
+    "chromosome": "20",
+    "chrOriginal": "20q",
+    "position": 2060151,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.38180000000000003
+  },
+  {
+    "rsid": "rs224371",
+    "chromosome": "20",
+    "chrOriginal": "20q",
+    "position": 34074831,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.2146
+  },
+  {
+    "rsid": "rs310612",
+    "chromosome": "20",
+    "chrOriginal": "20q",
+    "position": 62181508,
+    "minorAllele": "G",
+    "majorAllele": "A",
+    "MAF_chile": 0.1472
+  },
+  {
+    "rsid": "rs2823676",
+    "chromosome": "21",
+    "chrOriginal": "21q",
+    "position": 17611773,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.050050000000000004
+  },
+  {
+    "rsid": "rs11700868",
+    "chromosome": "21",
+    "chrOriginal": "21q",
+    "position": 37873237,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.4726
+  },
+  {
+    "rsid": "rs117930146",
+    "chromosome": "21",
+    "chrOriginal": "21q",
+    "position": 39202275,
+    "minorAllele": "G",
+    "majorAllele": "T",
+    "MAF_chile": 0.2497
+  },
+  {
+    "rsid": "rs1056484",
+    "chromosome": "22",
+    "chrOriginal": "22q",
+    "position": 32908738,
+    "minorAllele": "T",
+    "majorAllele": "C",
+    "MAF_chile": 0.2677
+  },
+  {
+    "rsid": "rs11705079",
+    "chromosome": "22",
+    "chrOriginal": "22q",
+    "position": 44754963,
+    "minorAllele": "A",
+    "majorAllele": "G",
+    "MAF_chile": 0.3781
+  },
+  {
+    "rsid": "rs4044210",
+    "chromosome": "22",
+    "chrOriginal": "22q",
+    "position": 46786315,
+    "minorAllele": "C",
+    "majorAllele": "T",
+    "MAF_chile": 0.1071
+  }
+]
