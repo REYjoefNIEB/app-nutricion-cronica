@@ -2782,10 +2782,12 @@ exports.analyzePhysicalTraits = onCall(
                     const result = trait.interpret(genotypes);
                     if (result) {
                         traits[traitKey] = {
-                            name:     trait.name,
-                            icon:     trait.icon,
-                            category: trait.category,
-                            evidence: trait.evidence,
+                            name:      trait.name,
+                            icon:      trait.icon,
+                            category:  trait.category,
+                            evidence:  trait.evidence,
+                            sliderMin: trait.sliderMin || '',
+                            sliderMax: trait.sliderMax || '',
                             ...result
                         };
                     }
