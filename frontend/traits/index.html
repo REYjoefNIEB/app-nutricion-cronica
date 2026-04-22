@@ -3,124 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nura — Rasgos Físicos</title>
+    <title>Nura — Rasgos Genéticos</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #8B85D6; --primary-end: #6BA5D8;
-            --gradient: linear-gradient(135deg, #8B85D6 0%, #6BA5D8 100%);
-            --bg: #F7F7F9; --card: #FFFFFF; --ink: #1A1A2E; --ink-60: #666680;
-            --radius: 16px;
-            --c-appearance:  #AFA9EC;
-            --c-physiology:  #F4A6A6;
-            --c-taste:       #FFD77A;
-            --c-metabolism:  #A8E6CF;
-            --c-fitness:     #6BA5D8;
-            --c-medical:     #FECACA;
-            --c-personality: #BAE6FD;
-            --c-lifestyle:   #FEF3C7;
-            /* Spectrum gradient vars per category — Aurora Muted defaults */
-            --cat-color-light: #E0D5F0;
-            --cat-color-mid:   #B09BD8;
-            --cat-color-dark:  #8975BB;
+            --primary:   #8B85D6;
+            --gradient:  linear-gradient(135deg, #8B85D6 0%, #6BA5D8 100%);
+            --bg:        #FAFAFC;
+            --card:      #FFFFFF;
+            --border:    #E8E8EE;
+            --divider:   #F0F0F5;
+            --ink:       #1E293B;
+            --ink-60:    #475569;
+            --ink-40:    #64748B;
+            --ink-20:    #94A3B8;
+            --radius:    12px;
         }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
         .container { max-width: 720px; margin: 0 auto; padding: 24px 16px 60px; }
-        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--primary); font-size: 13px; font-weight: 600; text-decoration: none; margin-bottom: 16px; }
-        .page-header { text-align: center; padding: 32px 24px; background: var(--card); border-radius: var(--radius); margin-bottom: 20px; box-shadow: 0 2px 12px rgba(139,133,214,0.08); }
-        .page-header h1 { font-size: 26px; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
-        .page-header p { color: var(--ink-60); font-size: 14px; }
-        .disclaimer-box { background: #FFF9E6; border-left: 4px solid #F4C542; padding: 12px 14px; border-radius: 8px; font-size: 13px; color: #5A4A00; margin-bottom: 20px; }
-        .spinner { display: none; text-align: center; padding: 60px 20px; color: var(--ink-60); }
-        .spinner.active { display: block; }
-        .no-data { text-align: center; padding: 40px 20px; background: var(--card); border-radius: var(--radius); color: var(--ink-60); }
-        .error-box { background: #FFF0F0; border-left: 4px solid #D45D5D; padding: 12px 14px; border-radius: 8px; font-size: 14px; color: #D45D5D; margin-top: 16px; display: none; }
-        .btn-analyze { width: 100%; padding: 14px; background: var(--gradient); color: #FFF; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 16px; }
-        .btn-analyze:disabled { opacity: 0.5; cursor: not-allowed; }
-        .analyze-card { background: var(--card); border-radius: var(--radius); padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); display: none; }
 
-        /* Per-category spectrum gradient variables */
-        /* Aurora Muted — luminosidad homogénea en las 8 categorías */
-        .cat-appearance  { --cat-color-light: #E0D5F0; --cat-color-mid: #B09BD8; --cat-color-dark: #8975BB; }
-        .cat-physiology  { --cat-color-light: #FECDD3; --cat-color-mid: #FB7185; --cat-color-dark: #E11D48; }
-        .cat-taste       { --cat-color-light: #FED7AA; --cat-color-mid: #FB923C; --cat-color-dark: #EA580C; }
-        .cat-metabolism  { --cat-color-light: #D4EDE1; --cat-color-mid: #8ECDB8; --cat-color-dark: #5FA893; }
-        .cat-fitness     { --cat-color-light: #BFDBFE; --cat-color-mid: #60A5FA; --cat-color-dark: #2563EB; }
-        .cat-medical     { --cat-color-light: #EDDFD0; --cat-color-mid: #D8B496; --cat-color-dark: #BA9375; }
-        .cat-personality { --cat-color-light: #BAE6FD; --cat-color-mid: #38BDF8; --cat-color-dark: #0891B2; }
-        .cat-lifestyle   { --cat-color-light: #EEE8C5; --cat-color-mid: #D4C78C; --cat-color-dark: #AEA269; }
-
-        /* Category sections */
-        .cat-section { margin-bottom: 8px; }
-        .cat-header { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-radius: 12px 12px 0 0; margin-bottom: 2px; }
-        .cat-header .cat-icon { font-size: 22px; }
-        .cat-header h3 { font-size: 15px; font-weight: 700; color: #1A1A2E; margin: 0; }
-        .cat-header .cat-count { font-size: 12px; font-weight: 600; background: rgba(0,0,0,0.12); color: #1A1A2E; padding: 2px 8px; border-radius: 20px; margin-left: auto; }
-        .cat-appearance .cat-header  { background: var(--c-appearance); }
-        .cat-physiology .cat-header  { background: var(--c-physiology); }
-        .cat-taste .cat-header       { background: var(--c-taste); }
-        .cat-metabolism .cat-header  { background: var(--c-metabolism); }
-        .cat-fitness .cat-header     { background: var(--c-fitness); }
-        .cat-medical .cat-header     { background: var(--c-medical); }
-        .cat-personality .cat-header { background: var(--c-personality); }
-        .cat-lifestyle .cat-header   { background: var(--c-lifestyle); }
-        .cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: #EEE; border-radius: 0 0 12px 12px; overflow: hidden; }
-        @media (max-width: 480px) { .cat-grid { grid-template-columns: 1fr; } }
-
-        /* Trait card */
-        .trait-card { background: var(--card); padding: 16px 18px; transition: background 0.15s; }
-        .trait-card:hover { background: #FAFAFE; }
-        .trait-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .trait-icon { font-size: 28px; min-width: 32px; }
-        .trait-name { font-size: 12px; font-weight: 700; color: var(--ink-60); text-transform: uppercase; letter-spacing: 0.04em; flex: 1; }
-
-        /* Slider — Estilo A: gradiente suave */
-        .slider-wrap { margin: 12px 0 6px; padding: 0 4px; }
-        .slider-track {
-            height: 8px;
-            background: linear-gradient(
-                90deg,
-                var(--cat-color-light)  0%,
-                var(--cat-color-mid)   50%,
-                var(--cat-color-dark) 100%
-            );
-            border-radius: 4px;
-            position: relative;
-            margin: 10px 0;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+        .back-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: var(--primary); font-size: 13px; font-weight: 600;
+            text-decoration: none; margin-bottom: 16px;
         }
-        /* Marker prominente del usuario */
-        .slider-marker {
-            position: absolute;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
-            background: white;
-            border: 3px solid var(--cat-color-dark);
-            border-radius: 50%;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2), 0 0 0 3px rgba(255,255,255,0.6);
-            z-index: 2;
+
+        /* Page header */
+        .page-header {
+            text-align: center; padding: 28px 24px;
+            background: var(--card); border-radius: var(--radius);
+            margin-bottom: 16px; border: 1px solid var(--border);
         }
-        .slider-labels { display: flex; justify-content: space-between; font-size: 10px; font-weight: 600; color: var(--ink-60); margin-top: 4px; padding: 0 2px; }
-
-        .trait-result-label { font-size: 11px; color: var(--ink-60); margin-bottom: 2px; }
-        .trait-value { font-size: 15px; font-weight: 800; color: var(--ink); }
-        .trait-badge { font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 10px; white-space: nowrap; }
-        .trait-badge.conf-high { background: #DCFCE7; color: #15803D; }
-        .trait-badge.conf-med  { background: #FEF9C3; color: #854D0E; }
-        .trait-badge.conf-low  { background: #DBEAFE; color: #1D4ED8; }
-        .trait-note { font-size: 11px; color: var(--ink-60); line-height: 1.4; margin-top: 6px; }
-
-        /* Border-left uses the category CSS var (DRY — no hardcoded colors) */
-        .trait-card { border-left: 4px solid var(--cat-color-dark); }
+        .page-header h1 {
+            font-size: 24px; font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; margin-bottom: 6px;
+        }
+        .page-header p { color: var(--ink-40); font-size: 13px; }
 
         /* Stats bar */
-        .stats-bar { display: flex; gap: 16px; background: var(--card); border-radius: 12px; padding: 14px 20px; margin-bottom: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
-        .stats-item { text-align: center; flex: 1; }
-        .stats-num { font-size: 24px; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .stats-label { font-size: 11px; color: var(--ink-60); font-weight: 600; }
+        .stats-bar {
+            display: flex; gap: 0;
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: var(--radius); overflow: hidden; margin-bottom: 14px;
+        }
+        .stats-item {
+            flex: 1; text-align: center; padding: 18px 8px;
+            border-right: 1px solid var(--border);
+        }
+        .stats-item:last-child { border-right: none; }
+        .stats-num {
+            font-size: 28px; font-weight: 800; line-height: 1.1;
+            background: var(--gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stats-label { font-size: 11px; color: var(--ink-40); margin-top: 3px; font-weight: 500; }
+
+        /* Global disclaimer */
+        .global-disclaimer {
+            font-size: 12px; color: #78600A;
+            padding: 8px 12px; border-left: 3px solid #FCD34D;
+            background: #FFFBEB; border-radius: 4px;
+            margin-bottom: 20px; line-height: 1.5;
+        }
+
+        /* Spinner */
+        .spinner { display: none; text-align: center; padding: 60px 20px; color: var(--ink-40); }
+        .spinner.active { display: block; }
+
+        /* No data / analyze card */
+        .no-data {
+            text-align: center; padding: 40px 20px;
+            background: var(--card); border-radius: var(--radius);
+            border: 1px solid var(--border); color: var(--ink-40);
+            display: none;
+        }
+        .analyze-card {
+            background: var(--card); border-radius: var(--radius);
+            padding: 20px; border: 1px solid var(--border); display: none;
+        }
+        .btn-analyze {
+            width: 100%; padding: 13px; background: var(--gradient);
+            color: #FFF; border: none; border-radius: 10px;
+            font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 12px;
+        }
+        .btn-analyze:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .error-box {
+            background: #FFF0F0; border-left: 4px solid #D45D5D;
+            padding: 12px 14px; border-radius: 8px; font-size: 14px;
+            color: #D45D5D; margin-top: 16px; display: none;
+        }
+
+        /* ── Category section ─────────────────────────────── */
+        .category-section { margin-bottom: 28px; }
+
+        .category-header {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 0 8px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 12px;
+        }
+        .category-header-icon {
+            width: 20px; height: 20px; color: var(--ink-60);
+            stroke-width: 2; flex-shrink: 0;
+        }
+        .category-header-title {
+            font-size: 1rem; font-weight: 700; color: var(--ink); flex: 1;
+        }
+        .category-header-count {
+            font-size: 11px; color: var(--ink-40);
+            background: var(--divider); padding: 3px 10px;
+            border-radius: 12px; font-weight: 600;
+        }
+
+        /* ── Trait cards — 1 column ───────────────────────── */
+        .traits-list { display: flex; flex-direction: column; gap: 10px; }
+
+        .trait-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--cat-mid, #B09BD8);
+            border-radius: 10px;
+            padding: 16px 18px;
+            transition: box-shadow 0.18s ease;
+        }
+        .trait-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+
+        /* Card header row */
+        .trait-card-header {
+            display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+        }
+        .trait-icon {
+            width: 20px; height: 20px; color: var(--ink-60);
+            stroke-width: 2; flex-shrink: 0;
+        }
+        .trait-title {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.05em; color: var(--ink-40); flex: 1;
+            line-height: 1.3;
+        }
+        .trait-confidence-badge {
+            font-size: 10px; font-weight: 600;
+            background: var(--divider); color: var(--ink-60);
+            padding: 2px 9px; border-radius: 12px; flex-shrink: 0;
+        }
+
+        /* Result block */
+        .trait-result-label { font-size: 11px; color: var(--ink-20); margin-bottom: 2px; }
+        .trait-result-value { font-size: 16px; font-weight: 800; color: var(--ink); line-height: 1.3; }
+
+        /* Bar */
+        .trait-bar-container { margin: 14px 0 4px; }
+        .trait-bar {
+            height: 8px; border-radius: 4px; position: relative;
+            background: linear-gradient(
+                90deg,
+                var(--cat-light, #E0D5F0) 0%,
+                var(--cat-mid,   #B09BD8) 50%,
+                var(--cat-dark,  #8975BB) 100%
+            );
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);
+        }
+        .trait-bar-marker {
+            position: absolute; top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px; height: 20px;
+            background: white;
+            border: 3px solid var(--cat-dark, #8975BB);
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.14), 0 0 0 3px rgba(255,255,255,0.6);
+            z-index: 2;
+            transition: left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .trait-bar-labels {
+            display: flex; justify-content: space-between;
+            margin-top: 7px; font-size: 10px; color: var(--ink-40);
+            font-weight: 500; padding: 0 2px;
+        }
+        .trait-label-left  { max-width: 48%; text-align: left; }
+        .trait-label-right { max-width: 48%; text-align: right; }
+
+        /* Description */
+        .trait-description {
+            font-size: 12px; color: var(--ink-60); line-height: 1.55;
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        .trait-footer {
+            margin-top: 9px; padding-top: 9px; border-top: 1px solid var(--divider);
+            font-size: 10px; color: var(--ink-20);
+            display: flex; align-items: center; gap: 5px;
+        }
+        .trait-footer-icon { width: 11px; height: 11px; }
+
+        /* Recalculate button */
+        .btn-recalc {
+            width: 100%; padding: 12px; background: transparent;
+            color: var(--primary); border: 1.5px solid var(--primary);
+            border-radius: 10px; font-size: 14px; font-weight: 700;
+            cursor: pointer; margin-top: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .container { padding: 32px 24px 80px; }
+            .trait-card { padding: 18px 20px; }
+        }
     </style>
 </head>
 <body>
@@ -128,110 +221,83 @@
     <a href="../dashboard/index.html" class="back-link">← Volver al Dashboard</a>
 
     <div class="page-header">
-        <div style="font-size:48px;margin-bottom:12px;">🧬</div>
-        <h1>Rasgos Físicos Genéticos</h1>
-        <p>~100 rasgos en 8 categorías · Predicciones basadas en variantes genéticas estudiadas</p>
-    </div>
-
-    <div class="disclaimer-box">
-        <strong>Solo orientativo — no diagnóstico</strong>
-        Los rasgos físicos dependen de múltiples genes y factores ambientales. Estas predicciones son probabilísticas (±15-30%). Ley 20.584 Chile.
+        <h1>Rasgos Genéticos</h1>
+        <p>Predicciones basadas en variantes genéticas estudiadas</p>
     </div>
 
     <div id="spinnerSection" class="spinner">
-        <div style="font-size:36px;margin-bottom:12px;">🔬</div>
+        <p style="font-size:32px;margin-bottom:10px;">🔬</p>
         <p>Analizando tus rasgos genéticos…</p>
-        <p style="font-size:12px;margin-top:8px;color:var(--ink-60)">Esto puede tardar 15-30 segundos</p>
+        <p style="font-size:12px;margin-top:6px;color:var(--ink-20)">Esto puede tardar 15-30 segundos</p>
     </div>
 
-    <div id="noDataSection" class="no-data" style="display:none;">
-        <div style="font-size:48px;margin-bottom:12px;">🧬</div>
-        <p style="font-weight:600;margin-bottom:8px;">No hay datos genéticos</p>
-        <p>Sube tu archivo de ADN primero para ver tus rasgos físicos.</p>
-        <a href="../genetics/index.html" style="display:inline-block;margin-top:16px;padding:10px 20px;background:var(--gradient);color:#fff;border-radius:10px;font-weight:600;text-decoration:none;">Subir mi ADN</a>
+    <div id="noDataSection" class="no-data">
+        <p style="font-size:40px;margin-bottom:10px;">🧬</p>
+        <p style="font-weight:700;margin-bottom:6px;">No hay datos genéticos</p>
+        <p>Sube tu archivo de ADN para ver tus rasgos.</p>
+        <a href="../genetics/index.html" style="display:inline-block;margin-top:14px;padding:10px 20px;background:var(--gradient);color:#fff;border-radius:10px;font-weight:600;text-decoration:none;">Subir mi ADN</a>
     </div>
 
     <div id="analyzeCard" class="analyze-card">
-        <p style="font-size:14px;color:var(--ink-60);margin-bottom:4px;">Tienes datos genéticos. Analiza hasta ~100 rasgos genéticos ahora.</p>
+        <p style="font-size:13px;color:var(--ink-40);margin-bottom:2px;">Tienes datos genéticos cargados. Analiza hasta ~100 rasgos ahora.</p>
         <button class="btn-analyze" onclick="loadTraits()">Analizar mis rasgos genéticos</button>
     </div>
 
     <div id="resultsSection" style="display:none;">
         <div class="stats-bar">
-            <div class="stats-item"><div class="stats-num" id="statAnalyzed">—</div><div class="stats-label">Rasgos analizados</div></div>
-            <div class="stats-item"><div class="stats-num" id="statFound">—</div><div class="stats-label">Variantes encontradas</div></div>
-            <div class="stats-item"><div class="stats-num" id="statCategories">8</div><div class="stats-label">Categorías</div></div>
-        </div>
-
-        <div class="cat-section cat-appearance" id="secAppearance" style="display:none;">
-            <div class="cat-header"><span class="cat-icon">🧴</span><h3>Apariencia Física</h3><span class="cat-count" id="cntAppearance"></span></div>
-            <div class="cat-grid" id="gridAppearance"></div>
-        </div>
-
-        <div class="cat-section cat-physiology" id="secPhysiology" style="display:none;">
-            <div class="cat-header"><span class="cat-icon">🫀</span><h3>Fisiología</h3><span class="cat-count" id="cntPhysiology"></span></div>
-            <div class="cat-grid" id="gridPhysiology"></div>
-        </div>
-
-        <div class="cat-section cat-taste" id="secTaste" style="display:none;">
-            <div class="cat-header"><span class="cat-icon">👅</span><h3>Gusto y Olfato</h3><span class="cat-count" id="cntTaste"></span></div>
-            <div class="cat-grid" id="gridTaste"></div>
-        </div>
-
-        <div class="cat-section cat-metabolism" id="secMetabolism" style="display:none;">
-            <div class="cat-header"><span class="cat-icon">🧪</span><h3>Metabolismo</h3><span class="cat-count" id="cntMetabolism"></span></div>
-            <div class="cat-grid" id="gridMetabolism"></div>
-        </div>
-
-        <div class="cat-section cat-fitness" id="secFitness" style="display:none;">
-            <div class="cat-header"><span class="cat-icon">🏃</span><h3>Fitness Genético</h3><span class="cat-count" id="cntFitness"></span></div>
-            <div class="cat-grid" id="gridFitness"></div>
-        </div>
-
-        <div class="cat-section cat-medical" id="secMedical" style="display:none;">
-            <div class="cat-header"><span class="cat-icon">🏥</span><h3>Condiciones Médicas</h3><span class="cat-count" id="cntMedical"></span></div>
-            <div style="background:#FFF3CD;border:1px solid #FFC107;border-radius:10px;padding:12px 14px;font-size:12px;color:#664D03;margin-bottom:12px;">
-                ⚠️ <strong>Aviso médico:</strong> Los rasgos de esta sección son predisposiciones genéticas probabilísticas, NO diagnósticos. Consulta siempre con tu médico antes de tomar decisiones de salud basadas en estos resultados.
+            <div class="stats-item">
+                <div class="stats-num" id="statAnalyzed">—</div>
+                <div class="stats-label">Rasgos analizados</div>
             </div>
-            <div class="cat-grid" id="gridMedical"></div>
-        </div>
-
-        <div class="cat-section cat-personality" id="secPersonality" style="display:none;">
-            <div class="cat-header"><span class="cat-icon">🧠</span><h3>Personalidad (Exploratorio)</h3><span class="cat-count" id="cntPersonality"></span></div>
-            <div style="background:#F0F4FF;border:1px solid #B8C5F0;border-radius:10px;padding:12px 14px;font-size:12px;color:#2D3A8C;margin-bottom:12px;">
-                ℹ️ <strong>Baja evidencia individual:</strong> Los rasgos de personalidad son influenciados por cientos de genes y el entorno. Estos marcadores tienen efectos estadísticos pequeños y no son predictivos a nivel individual.
+            <div class="stats-item">
+                <div class="stats-num" id="statFound">—</div>
+                <div class="stats-label">Variantes encontradas</div>
             </div>
-            <div class="cat-grid" id="gridPersonality"></div>
+            <div class="stats-item">
+                <div class="stats-num" id="statCategories">—</div>
+                <div class="stats-label">Categorías</div>
+            </div>
         </div>
 
-        <div class="cat-section cat-lifestyle" id="secLifestyle" style="display:none;">
-            <div class="cat-header"><span class="cat-icon">🌿</span><h3>Estilo de Vida</h3><span class="cat-count" id="cntLifestyle"></span></div>
-            <div class="cat-grid" id="gridLifestyle"></div>
+        <div class="global-disclaimer">
+            ⚠️ Solo orientativo — no diagnóstico. Los rasgos genéticos son probabilísticos (±15-30%) y dependen de múltiples factores ambientales. Ley 20.584 Chile.
         </div>
 
-        <button class="btn-analyze" onclick="loadTraits()" style="margin-top:24px;">Recalcular rasgos</button>
+        <div id="categoriesContainer"></div>
+
+        <button class="btn-recalc" onclick="loadTraits()">Recalcular rasgos</button>
     </div>
 
     <div id="errorBox" class="error-box"></div>
 </div>
 
 <script type="module" src="../shared/firebase-config.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="trait-icons.js"></script>
 <script>
 let _user = null;
 
-// Maps backend category names to grid/section IDs
-const CAT_MAP = {
-    appearance:         { grid: 'gridAppearance',  sec: 'secAppearance',  cnt: 'cntAppearance' },
-    physiology:         { grid: 'gridPhysiology',  sec: 'secPhysiology',  cnt: 'cntPhysiology' },
-    taste:              { grid: 'gridTaste',        sec: 'secTaste',       cnt: 'cntTaste' },
-    metabolism:         { grid: 'gridMetabolism',  sec: 'secMetabolism',  cnt: 'cntMetabolism' },
-    digestion:          { grid: 'gridMetabolism',  sec: 'secMetabolism',  cnt: 'cntMetabolism' },
-    fitness:            { grid: 'gridFitness',     sec: 'secFitness',     cnt: 'cntFitness' },
-    medical_conditions: { grid: 'gridMedical',     sec: 'secMedical',     cnt: 'cntMedical' },
-    personality:        { grid: 'gridPersonality', sec: 'secPersonality', cnt: 'cntPersonality' },
-    lifestyle:          { grid: 'gridLifestyle',   sec: 'secLifestyle',   cnt: 'cntLifestyle' },
-};
+/* ── Category configuration (display order, medical & personality excluded) ── */
+const CATEGORIES = [
+    { key: 'appearance', label: 'Apariencia Física',  icon: 'palette',  light: '#E0D5F0', mid: '#B09BD8', dark: '#8975BB' },
+    { key: 'physiology', label: 'Fisiología',         icon: 'activity', light: '#F0DAEA', mid: '#D4A5C4', dark: '#B07FA0' },
+    { key: 'taste',      label: 'Gusto y Olfato',     icon: 'utensils', light: '#EDDFD0', mid: '#D8B496', dark: '#BA9375' },
+    { key: 'metabolism', label: 'Metabolismo',        icon: 'flame',    light: '#D4EDE1', mid: '#8ECDB8', dark: '#5FA893' },
+    { key: 'fitness',    label: 'Fitness Genético',   icon: 'dumbbell', light: '#BFDBFE', mid: '#8BA7D8', dark: '#5F87BA' },
+    { key: 'lifestyle',  label: 'Estilo de Vida',     icon: 'leaf',     light: '#EEE8C5', mid: '#D4C78C', dark: '#AEA269' },
+];
 
+const EXCLUDED_CATEGORIES = new Set([
+    'medical_conditions', 'medical',
+    'personality', 'personality_behavior'
+]);
+
+/* Backend category → CATEGORIES key (for aliases) */
+const CAT_ALIAS = { digestion: 'metabolism' };
+
+function resolveCat(cat) { return CAT_ALIAS[cat] || cat; }
+
+/* ── Auth init ──────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', async () => {
     let tries = 0;
     while (!window.NuraFirebase && tries < 40) {
@@ -262,7 +328,7 @@ async function tryLoadExisting() {
                 document.getElementById('noDataSection').style.display = 'block';
             }
         }
-    } catch (err) {
+    } catch {
         document.getElementById('noDataSection').style.display = 'block';
     }
 }
@@ -283,96 +349,107 @@ async function loadTraits() {
         document.getElementById('spinnerSection').classList.remove('active');
         const box = document.getElementById('errorBox');
         box.style.display = 'block';
-        box.textContent   = 'Error: ' + (err.message || 'Error desconocido');
+        box.textContent = 'Error: ' + (err.message || 'Error desconocido');
         if (err.message && err.message.includes('not-found')) {
             box.innerHTML = 'No se encontraron datos genéticos. <a href="../genetics/index.html" style="color:var(--primary)">Sube tu ADN primero →</a>';
         }
     }
 }
 
-function confTier(conf) {
-    const n = typeof conf === 'number' ? conf : 0;
-    if (n >= 75) return 'high';
-    if (n >= 55) return 'med';
-    return 'low';
-}
-
+/* ── Render ─────────────────────────────────────────────────── */
 function renderTraits(traits, analyzed, found) {
     document.getElementById('spinnerSection').classList.remove('active');
-    document.getElementById('resultsSection').style.display = 'block';
-    document.getElementById('analyzeCard').style.display   = 'none';
+    document.getElementById('analyzeCard').style.display    = 'none';
     document.getElementById('noDataSection').style.display  = 'none';
+    document.getElementById('resultsSection').style.display = 'block';
 
-    document.getElementById('statAnalyzed').textContent  = analyzed || Object.keys(traits).length;
-    document.getElementById('statFound').textContent     = found    || Object.keys(traits).length;
-
-    // Clear all grids, hide all sections
-    const sectCounts = {};
-    Object.values(CAT_MAP).forEach(m => {
-        const g = document.getElementById(m.grid);
-        if (g) g.innerHTML = '';
-    });
-    ['secAppearance','secPhysiology','secTaste','secMetabolism','secFitness',
-     'secMedical','secPersonality','secLifestyle'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = 'none';
+    // Group traits by resolved category (excluding medical/personality)
+    const groups = {};
+    Object.entries(traits).forEach(([id, trait]) => {
+        const rawCat = trait.category || 'appearance';
+        if (EXCLUDED_CATEGORIES.has(rawCat)) return;
+        const catKey = resolveCat(rawCat);
+        if (!groups[catKey]) groups[catKey] = [];
+        groups[catKey].push({ id, ...trait });
     });
 
-    Object.entries(traits).forEach(([key, trait]) => {
-        const cat = trait.category || 'appearance';
-        const map = CAT_MAP[cat] || CAT_MAP.appearance;
-        const grid = document.getElementById(map.grid);
-        if (!grid) return;
+    // Render categories in defined order
+    const container = document.getElementById('categoriesContainer');
+    container.innerHTML = '';
+    let displayedTraits = 0;
+    let displayedCats   = 0;
 
-        sectCounts[map.sec] = (sectCounts[map.sec] || 0) + 1;
+    CATEGORIES.forEach(cat => {
+        const catTraits = groups[cat.key];
+        if (!catTraits || catTraits.length === 0) return;
+        displayedCats++;
+        displayedTraits += catTraits.length;
+        container.insertAdjacentHTML('beforeend', renderCategorySection(cat, catTraits));
+    });
 
-        const pos      = typeof trait.position === 'number' ? Math.max(0, Math.min(100, trait.position)) : 50;
-        const sliderMin = trait.sliderMin || '';
-        const sliderMax = trait.sliderMax || '';
-        const noteHtml  = trait.note ? `<div class="trait-note">${trait.note}</div>` : '';
+    // Stats
+    document.getElementById('statAnalyzed').textContent   = displayedTraits;
+    document.getElementById('statFound').textContent      = found || displayedTraits;
+    document.getElementById('statCategories').textContent = displayedCats;
 
-        const confN = typeof trait.confidence === 'number' ? trait.confidence : 0;
-        const card = document.createElement('div');
-        card.className = 'trait-card';
-        card.innerHTML = `
-            <div class="trait-top">
-                <span class="trait-icon">${trait.icon || '🔬'}</span>
-                <span class="trait-name">${trait.name || key}</span>
-                <span class="trait-badge conf-${confTier(trait.confidence)}">${confN}%</span>
+    // Inject Lucide SVGs
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+function renderCategorySection(cat, catTraits) {
+    const cssVars = `--cat-light:${cat.light};--cat-mid:${cat.mid};--cat-dark:${cat.dark}`;
+    return `
+        <section class="category-section" style="${cssVars}">
+            <div class="category-header">
+                <i data-lucide="${cat.icon}" class="category-header-icon"></i>
+                <h2 class="category-header-title">${cat.label}</h2>
+                <span class="category-header-count">${catTraits.length} rasgos</span>
+            </div>
+            <div class="traits-list">
+                ${catTraits.map(renderTraitCard).join('')}
+            </div>
+        </section>
+    `;
+}
+
+function renderTraitCard(trait) {
+    const iconName  = typeof getIconForTrait === 'function' ? getIconForTrait(trait.id) : 'dna';
+    const confidence = typeof trait.confidence === 'number' ? trait.confidence : 0;
+    const pos       = typeof trait.position === 'number'
+        ? Math.max(5, Math.min(95, trait.position))
+        : 50;
+    const leftLabel  = trait.sliderMin || '';
+    const rightLabel = trait.sliderMax || '';
+    const gene = trait.gene || '';
+    const rsid = trait.rsid || '';
+    const footerHtml = (gene || rsid) ? `
+        <div class="trait-footer">
+            <i data-lucide="info" class="trait-footer-icon"></i>
+            <span>${[gene, rsid].filter(Boolean).join(' · ')}</span>
+        </div>` : '';
+
+    return `
+        <article class="trait-card">
+            <div class="trait-card-header">
+                <i data-lucide="${iconName}" class="trait-icon"></i>
+                <span class="trait-title">${trait.name || trait.id}</span>
+                <span class="trait-confidence-badge">${confidence}%</span>
             </div>
             <div class="trait-result-label">Tu resultado:</div>
-            <div class="trait-value">${trait.value || '—'}</div>
-            <div class="slider-wrap">
-                <div class="slider-track">
-                    <div class="slider-marker" style="left:${pos}%"></div>
+            <div class="trait-result-value">${trait.value || '—'}</div>
+            <div class="trait-bar-container">
+                <div class="trait-bar">
+                    <div class="trait-bar-marker" style="left:${pos}%"></div>
                 </div>
-                <div class="slider-labels">
-                    <span>${sliderMin}</span>
-                    <span>${sliderMax}</span>
+                <div class="trait-bar-labels">
+                    <span class="trait-label-left">${leftLabel}</span>
+                    <span class="trait-label-right">${rightLabel}</span>
                 </div>
             </div>
-            ${noteHtml}
-        `;
-        grid.appendChild(card);
-    });
-
-    // Show sections that have content and update counts
-    Object.entries(sectCounts).forEach(([secId, count]) => {
-        const sec = document.getElementById(secId);
-        if (sec) {
-            sec.style.display = 'block';
-            // Find the count badge (uses the cat map)
-            const catMap = Object.values(CAT_MAP).find(m => m.sec === secId);
-            if (catMap) {
-                const cntEl = document.getElementById(catMap.cnt);
-                if (cntEl) cntEl.textContent = count + ' rasgos';
-            }
-        }
-    });
-
-    const total = Object.keys(traits).length;
-    document.getElementById('statAnalyzed').textContent = analyzed || total;
-    document.getElementById('statFound').textContent    = found    || total;
+            ${trait.note ? `<div class="trait-description">${trait.note}</div>` : ''}
+            ${footerHtml}
+        </article>
+    `;
 }
 </script>
 </body>
