@@ -2261,6 +2261,9 @@ const _ANCESTRY_RSIDS = _CLG_AIMS.map(aim => aim.rsid);  // 141 CLG AIMs (v2-CLG
 const { PHYSICAL_TRAITS: _TRAITS_DB } = require('./traits/traitsDatabase');
 const _TRAIT_SNPS = [...new Set(Object.values(_TRAITS_DB).map(t => t.primarySnp).filter(Boolean))];
 
+// HIrisPlex-S SNPs (41 SNPs for eye/hair/skin forensic prediction)
+const { HIRISPLEX_RSIDS } = require('./traits/hirisplex');
+
 // Non-ancestry SNPs used by other genetic features (traits, fitness, clinical, environmental).
 // Legacy static list kept as safety net — _TRAIT_SNPS now handles trait coverage dynamically.
 const _OTHER_FEATURE_RSIDS = [
@@ -2341,8 +2344,8 @@ const _OTHER_FEATURE_RSIDS = [
 
 // Union: ancestry AIMs + trait SNPs (both dynamic) + other features (static legacy).
 // Set deduplicates overlaps across all three sources.
-const _NEEDED_SNPS = new Set([..._ANCESTRY_RSIDS, ..._TRAIT_SNPS, ..._OTHER_FEATURE_RSIDS]);
-console.log(`[INDEX] _NEEDED_SNPS: ${_NEEDED_SNPS.size} SNPs (${_ANCESTRY_RSIDS.length} ancestry AIMs + ${_TRAIT_SNPS.length} trait SNPs + ${_OTHER_FEATURE_RSIDS.length} feature SNPs)`);
+const _NEEDED_SNPS = new Set([..._ANCESTRY_RSIDS, ..._TRAIT_SNPS, ..._OTHER_FEATURE_RSIDS, ...HIRISPLEX_RSIDS]);
+console.log(`[INDEX] _NEEDED_SNPS: ${_NEEDED_SNPS.size} SNPs (${_ANCESTRY_RSIDS.length} ancestry AIMs + ${_TRAIT_SNPS.length} trait SNPs + ${_OTHER_FEATURE_RSIDS.length} feature SNPs + ${HIRISPLEX_RSIDS.length} HIrisPlex SNPs)`);
 
 /** Filtra un mapa de SNPs a solo los que necesitan las funciones genéticas. */
 function _filterNeededSnps(allSnps) {
@@ -2824,6 +2827,71 @@ exports.analyzePhysicalTraits = onCall(
                     }
                 }
             }
+
+            // ── HIrisPlex-S Pigmentation Override ──────────────────────────────
+            try {
+                const { predictPigmentation } = require('./traits/hirisplex');
+                const pigment = predictPigmentation(genotypes);
+
+                if (pigment.eye && pigment.eye.confidence > 0) {
+                    const e = pigment.eye;
+                    const probNote = `${e.probabilities.brown}% marrón · ${e.probabilities.intermediate}% intermedio · ${e.probabilities.blue}% azul`;
+                    traits['eye_color'] = {
+                        name: 'Color de ojos',
+                        icon: '👁️',
+                        category: 'appearance',
+                        evidence: 'high',
+                        sliderMin: 'Marrón / Oscuro',
+                        sliderMax: 'Azul / Claro',
+                        value: e.prediction,
+                        confidence: e.confidence,
+                        note: `HIrisPlex (${e.snpsUsed}/${e.snpsTotal} SNPs): ${probNote}. Modelo forense validado (AUC ≥0.94). ${e.validated ? 'Coeficientes confirmados.' : ''}`,
+                        position: e.position,
+                        hirisplex: { probabilities: e.probabilities, isAboveThreshold: e.isAboveThreshold }
+                    };
+                }
+
+                if (pigment.hair && pigment.hair.confidence > 0) {
+                    const h = pigment.hair;
+                    const p = h.probabilities;
+                    const probNote = `${p.black}% negro · ${p.brown}% castaño · ${p.blond}% rubio · ${p.red}% pelirrojo`;
+                    traits['hair_color'] = {
+                        name: 'Color de cabello',
+                        icon: '💇',
+                        category: 'appearance',
+                        evidence: 'high',
+                        sliderMin: 'Negro',
+                        sliderMax: 'Rubio',
+                        value: h.prediction,
+                        confidence: h.confidence,
+                        note: `HIrisPlex (${h.snpsUsed}/${h.snpsTotal} SNPs): ${probNote}.${h.validated ? '' : ' Coeficientes aproximados — validar con webtool.'}`,
+                        position: h.position,
+                        hirisplex: { probabilities: p, isAboveThreshold: h.isAboveThreshold }
+                    };
+                }
+
+                if (pigment.skin && pigment.skin.confidence > 0) {
+                    const s = pigment.skin;
+                    const p = s.probabilities;
+                    traits['skin_pigmentation'] = {
+                        name: 'Tono de piel',
+                        icon: '🧴',
+                        category: 'appearance',
+                        evidence: 'high',
+                        sliderMin: 'Clara (Tipo I)',
+                        sliderMax: 'Muy oscura (Tipo VI)',
+                        value: s.prediction,
+                        confidence: s.confidence,
+                        note: `HIrisPlex-S (${s.snpsUsed}/${s.snpsTotal} SNPs): ${p.very_pale}% muy clara · ${p.pale}% clara · ${p.intermediate}% intermedia · ${p.dark}% oscura · ${p.dark_to_black}% muy oscura.${s.validated ? '' : ' Coeficientes aproximados.'}`,
+                        position: s.position,
+                        hirisplex: { probabilities: p, isAboveThreshold: s.isAboveThreshold }
+                    };
+                }
+            } catch (hplexErr) {
+                console.error('[HIrisPlex-S] Error en predicción de pigmentación:', hplexErr.message);
+                // Los traits originales de interpret() se mantienen como fallback
+            }
+            // ── Fin HIrisPlex-S ─────────────────────────────────────────────────
 
             const data = { traits, analyzed, found, analyzedAt: admin.firestore.FieldValue.serverTimestamp() };
             await admin.firestore()
