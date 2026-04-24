@@ -13,12 +13,12 @@
  *   Hair — Walsh et al. 2014. Best-available from training data; VALIDATE against webtool.
  *   Skin — Chaitanya et al. 2018. Best-available from training data; VALIDATE against webtool.
  *
- * STRAND NOTE (chip vs. webtool):
- *   MyHeritage reports forward strand (GRCh37). Three SNPs require strand flip:
- *     rs12913832: webtool T → count A in chip
- *     rs12821256: webtool G → count C in chip
- *     rs1393350:  webtool T → count A in chip
- *   All other SNPs: webtool allele matches chip forward strand directly.
+ * ALLELE NOTE:
+ *   chipAllele = the blue/pale/effect-favoring allele to count at each locus.
+ *   rs12913832 (HERC2): effect allele G (blue-favoring, derived). No strand flip.
+ *   rs12821256 (KITLG): chip reports C (MyHeritage forward); webtool uses G strand.
+ *   rs1393350  (TYR):   chip reports A (MyHeritage forward); webtool uses T strand.
+ *   All chipAllele values validated against Walsh 2017 / HIrisPlex webtool (Erasmus MC).
  *
  * Input:  genotypes = { rsid: 'XY' }   (2-char genotype string, uppercase)
  * Output: { eye, hair, skin }          each with { prediction, confidence, probabilities }
@@ -44,7 +44,7 @@ const HIRISPLEX_PANEL = [
   { rsid: 'rs1110400',   chipAllele: 'C', models: ['hair'] },          // MC1R R163Q
   // Shared hair + skin
   { rsid: 'rs28777',     chipAllele: 'C', models: ['hair', 'skin'] },  // SLC45A2
-  { rsid: 'rs16891982',  chipAllele: 'C', models: ['eye', 'hair', 'skin'] }, // SLC45A2 L374F
+  { rsid: 'rs16891982',  chipAllele: 'G', models: ['eye', 'hair', 'skin'] }, // SLC45A2 L374F — G=European pale (blue-favoring)
   // Hair + skin pigmentation genes
   { rsid: 'rs12821256',  chipAllele: 'C', models: ['hair'] },          // KITLG (strand flip: G→C)
   { rsid: 'rs4959270',   chipAllele: 'A', models: ['hair'] },          // EXOC2
@@ -52,7 +52,7 @@ const HIRISPLEX_PANEL = [
   { rsid: 'rs1042602',   chipAllele: 'T', models: ['hair', 'skin'] },  // TYR
   { rsid: 'rs1800407',   chipAllele: 'A', models: ['eye', 'hair'] },   // OCA2
   { rsid: 'rs2402130',   chipAllele: 'G', models: ['hair', 'skin'] },  // SLC24A4
-  { rsid: 'rs12913832',  chipAllele: 'A', models: ['eye', 'hair'] },   // HERC2 (strand flip: T→A)
+  { rsid: 'rs12913832',  chipAllele: 'G', models: ['eye', 'hair'] },   // HERC2 — G=blue-favoring (derived); no strand flip needed
   { rsid: 'rs2378249',   chipAllele: 'C', models: ['hair', 'skin'] },  // PIGU
   // Eye SNPs
   { rsid: 'rs12896399',  chipAllele: 'T', models: ['eye'] },           // SLC24A4
