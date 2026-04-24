@@ -113,9 +113,9 @@ const PHYSICAL_TRAITS = {
         interpret(genotypes) {
             const g = genotypes['rs3827760'];
             if (!g) return null;
-            if (g === 'AA') return { value: 'Muy grueso y lacio', confidence: 80, note: 'Variante EDAR. Muy común en asiáticos del Este y amerindios. Cabello típicamente oscuro y grueso.', position: 90 };
+            if (g === 'AA') return { value: 'Fino / rizados posibles', confidence: 70, note: 'Sin variante EDAR (alelo ancestral). Textura más variable, influenciada por otros genes.', position: 20 };
             if (g === 'AG' || g === 'GA') return { value: 'Grueso / ondulado', confidence: 65, note: 'Efecto intermedio de EDAR.', position: 60 };
-            if (g === 'GG') return { value: 'Fino / rizados posibles', confidence: 70, note: 'Sin variante EDAR. Textura más variable, influenciada por otros genes.', position: 20 };
+            if (g === 'GG') return { value: 'Muy grueso y lacio', confidence: 80, note: 'Variante EDAR V370A homozigota. Muy común en asiáticos del Este y amerindios. Cabello típicamente grueso, liso y cilíndrico.', position: 90 };
             return null;
         }
     },

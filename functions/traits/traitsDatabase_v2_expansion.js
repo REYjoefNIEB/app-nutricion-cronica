@@ -163,9 +163,9 @@ const EXPANSION_TRAITS = {
         interpret(genotypes) {
             const g = genotypes['rs3827760'];
             if (!g) return null;
-            if (g === 'AA') return { value: 'Barba típicamente densa y oscura', confidence: 65, note: 'EDAR V370A AA. Variante que aumenta la densidad de folículos pilosos. Predominante en asiáticos del Este y amerindios; produce barba densa cuando hay expresión androgénica suficiente.', position: 85 };
+            if (g === 'AA') return { value: 'Densidad de barba típica europea', confidence: 55, note: 'Sin variante EDAR V370A (alelo ancestral). La densidad de barba depende más de andrógenos y AR.', position: 35 };
             if (g === 'AG' || g === 'GA') return { value: 'Densidad de barba intermedia', confidence: 50, position: 50 };
-            if (g === 'GG') return { value: 'Densidad de barba típica europea', confidence: 55, note: 'Sin variante EDAR V370A. La densidad de barba depende más de andrógenos y AR.', position: 35 };
+            if (g === 'GG') return { value: 'Barba típicamente densa y oscura', confidence: 65, note: 'Variante EDAR V370A GG. Aumenta la densidad de folículos pilosos. Predominante en asiáticos del Este y amerindios.', position: 85 };
             return null;
         }
     },
