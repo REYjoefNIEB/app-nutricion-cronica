@@ -38,13 +38,13 @@ const HIRISPLEX_PANEL = [
   { rsid: 'rs1805005',   chipAllele: 'T', models: ['hair'] },          // MC1R V92M
   { rsid: 'rs1805006',   chipAllele: 'A', models: ['hair'] },          // MC1R D294H
   { rsid: 'rs1805007',   chipAllele: 'T', models: ['hair'] },          // MC1R R151C
-  { rsid: 'rs1805009',   chipAllele: 'C', models: ['hair'] },          // TUBB3
+  { rsid: 'rs1805009',   chipAllele: 'C', models: ['hair'], palindromic: true },  // TUBB3 — C/G palindromic
   { rsid: 'rs201326893', chipAllele: 'A', models: ['hair'] },          // MC1R rare
   { rsid: 'rs2228479',   chipAllele: 'A', models: ['hair'] },          // MC1R V60L
   { rsid: 'rs1110400',   chipAllele: 'C', models: ['hair'] },          // MC1R R163Q
   // Shared hair + skin
   { rsid: 'rs28777',     chipAllele: 'C', models: ['hair', 'skin'] },  // SLC45A2
-  { rsid: 'rs16891982',  chipAllele: 'G', models: ['eye', 'hair', 'skin'] }, // SLC45A2 L374F — G=European pale (blue-favoring)
+  { rsid: 'rs16891982',  chipAllele: 'G', models: ['eye', 'hair', 'skin'], palindromic: true }, // SLC45A2 L374F — G=European pale, C/G palindromic
   // Hair + skin pigmentation genes
   { rsid: 'rs12821256',  chipAllele: 'C', models: ['hair'] },          // KITLG (strand flip: G→C)
   { rsid: 'rs4959270',   chipAllele: 'A', models: ['hair'] },          // EXOC2
@@ -72,7 +72,7 @@ const HIRISPLEX_PANEL = [
   { rsid: 'rs1470608',   chipAllele: 'A', models: ['skin'] },          // OCA2
   { rsid: 'rs1426654',   chipAllele: 'G', models: ['skin'] },          // SLC24A5 (pale skin)
   { rsid: 'rs6119471',   chipAllele: 'C', models: ['skin'] },          // ASIP
-  { rsid: 'rs1545397',   chipAllele: 'T', models: ['skin'] },          // OCA2
+  { rsid: 'rs1545397',   chipAllele: 'T', models: ['skin'], palindromic: true },  // OCA2 — A/T palindromic
   { rsid: 'rs6059655',   chipAllele: 'T', models: ['skin'] },          // RALY
   { rsid: 'rs12441727',  chipAllele: 'A', models: ['skin'] },          // OCA2
   { rsid: 'rs3212355',   chipAllele: 'A', models: ['skin'] },          // MC1R
@@ -435,7 +435,10 @@ const SKIN_COEFFICIENTS = {
  * The complement fallback handles chips that may report some SNPs in reverse
  * strand relative to the webtool's convention.
  */
-function countMinorAlleles(genotype, chipAllele) {
+function countMinorAlleles(genotype, snpEntry) {
+    const chipAllele    = typeof snpEntry === 'string' ? snpEntry : snpEntry.chipAllele;
+    const isPalindromic = typeof snpEntry === 'object' && snpEntry.palindromic === true;
+
     if (!genotype || genotype === '--' || genotype === 'NA' || genotype === '00' || genotype.length !== 2) {
         return null;  // truly missing data
     }
@@ -452,6 +455,7 @@ function countMinorAlleles(genotype, chipAllele) {
     }
 
     if (direct > 0) return direct;
+    if (isPalindromic) return 0;  // palindromic: complement fallback is ambiguous — treat as 0
     if (complement > 0) return complement;
     return 0;  // valid genotype, homozygous for the non-panel allele
 }
@@ -460,12 +464,12 @@ function buildSnpValues(genotypes, snpList) {
     const values = {};
     const panelMap = {};
     for (const entry of HIRISPLEX_PANEL) {
-        panelMap[entry.rsid] = entry.chipAllele;
+        panelMap[entry.rsid] = entry;  // full entry — passes palindromic flag to countMinorAlleles
     }
     for (const rsid of snpList) {
-        const allele = panelMap[rsid];
-        if (!allele) { values[rsid] = null; continue; }
-        values[rsid] = countMinorAlleles(genotypes[rsid], allele);
+        const entry = panelMap[rsid];
+        if (!entry) { values[rsid] = null; continue; }
+        values[rsid] = countMinorAlleles(genotypes[rsid], entry);
     }
     return values;
 }
