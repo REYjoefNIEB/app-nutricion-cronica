@@ -15,7 +15,8 @@
  *
  * ALLELE NOTE:
  *   chipAllele = the blue/pale/effect-favoring allele to count at each locus.
- *   rs12913832 (HERC2): effect allele G (blue-favoring, derived). No strand flip.
+ *   rs12913832 (HERC2): chipAllele=A (brown allele, webtool conv: rs12913832_T=A on plus strand).
+ *     Betas negated vs Walsh 2011 (which uses G). Predictions identical — pure representational change.
  *   rs12821256 (KITLG): chip reports C (MyHeritage forward); webtool uses G strand.
  *   rs1393350  (TYR):   chip reports A (MyHeritage forward); webtool uses T strand.
  *   All chipAllele values validated against Walsh 2017 / HIrisPlex webtool (Erasmus MC).
@@ -52,7 +53,7 @@ const HIRISPLEX_PANEL = [
   { rsid: 'rs1042602',   chipAllele: 'T', models: ['hair', 'skin'] },  // TYR
   { rsid: 'rs1800407',   chipAllele: 'A', models: ['eye', 'hair'] },   // OCA2
   { rsid: 'rs2402130',   chipAllele: 'G', models: ['hair', 'skin'] },  // SLC24A4
-  { rsid: 'rs12913832',  chipAllele: 'G', models: ['eye', 'hair'] },   // HERC2 — G=blue-favoring (derived); no strand flip needed
+  { rsid: 'rs12913832',  chipAllele: 'A', models: ['eye', 'hair'] },   // HERC2 — A=brown allele (webtool conv: counts A); β signs flipped accordingly
   { rsid: 'rs2378249',   chipAllele: 'C', models: ['hair', 'skin'] },  // PIGU
   // Eye SNPs
   { rsid: 'rs12896399',  chipAllele: 'T', models: ['eye'] },           // SLC24A4
@@ -107,9 +108,9 @@ const HIRISPLEX_RSIDS = HIRISPLEX_PANEL.map(s => s.rsid);
 // Reference category: Brown  (logit = 0, implicit)
 const EYE_COEFFICIENTS = {
     blue: {
-        intercept: -10.7800,  // calibrated (Walsh 2011 raw: -3.9430)
+        intercept: -0.6666,   // recalibrated: α_old(-10.7800) + 2×β_old(5.0567); webtool conv chipAllele=A
         betas: {
-            rs12913832: 5.0567,   // HERC2 — strongest predictor
+            rs12913832: -5.0567,  // HERC2 — count A (brown allele); flipped from +5.0567
             rs1800407:  0.9736,   // OCA2
             rs12896399: 0.4438,   // SLC24A4
             rs16891982: 1.7452,   // SLC45A2
@@ -118,9 +119,9 @@ const EYE_COEFFICIENTS = {
         }
     },
     intermediate: {
-        intercept: -6.4860,   // calibrated (Walsh 2011 raw: -1.1513)
+        intercept: -1.0924,   // recalibrated: α_old(-6.4860) + 2×β_old(2.6968)
         betas: {
-            rs12913832: 2.6968,
+            rs12913832: -2.6968,  // flipped from +2.6968
             rs1800407:  0.7218,
             rs12896399: 0.3212,
             rs16891982: 0.5522,
@@ -142,7 +143,7 @@ const EYE_COEFFICIENTS = {
 
 const HAIR_COEFFICIENTS = {
     blond: {
-        intercept: -3.8285,
+        intercept: -2.1503,   // recalibrated: α_old(-3.8285) + 2×β_old(0.8391)
         betas: {
             rs312262906:  0.1250,
             rs11547464:   0.1250,
@@ -163,7 +164,7 @@ const HAIR_COEFFICIENTS = {
             rs1042602:    0.3948,
             rs1800407:    0.4891,
             rs2402130:    0.3012,
-            rs12913832:   0.8391,   // HERC2
+            rs12913832:  -0.8391,   // HERC2 — flipped: +0.8391→-0.8391 (chipAllele=A conv)
             rs2378249:    0.3891,
             rs12896399:   0.3011,
             rs1393350:    0.1892,
@@ -172,7 +173,7 @@ const HAIR_COEFFICIENTS = {
         }
     },
     brown: {
-        intercept: -0.5412,
+        intercept: 0.2968,    // recalibrated: α_old(-0.5412) + 2×β_old(0.4190)
         betas: {
             rs312262906:  0.0980,
             rs11547464:   0.0890,
@@ -193,7 +194,7 @@ const HAIR_COEFFICIENTS = {
             rs1042602:    0.1956,
             rs1800407:    0.2423,
             rs2402130:    0.1493,
-            rs12913832:   0.4190,
+            rs12913832:  -0.4190,   // HERC2 — flipped: +0.4190→-0.4190 (chipAllele=A conv)
             rs2378249:    0.1934,
             rs12896399:   0.1490,
             rs1393350:    0.0937,
@@ -202,7 +203,7 @@ const HAIR_COEFFICIENTS = {
         }
     },
     red: {
-        intercept: -9.8712,
+        intercept: -9.6244,   // recalibrated: α_old(-9.8712) + 2×β_old(0.1234)
         betas: {
             rs312262906:  0.9234,
             rs11547464:   0.9234,
@@ -223,7 +224,7 @@ const HAIR_COEFFICIENTS = {
             rs1042602:    0.0490,
             rs1800407:    0.0980,
             rs2402130:    0.0490,
-            rs12913832:   0.1234,
+            rs12913832:  -0.1234,   // HERC2 — flipped: +0.1234→-0.1234 (chipAllele=A conv)
             rs2378249:    0.0490,
             rs12896399:   0.0490,
             rs1393350:    0.0490,
@@ -256,7 +257,7 @@ const SKIN_SNPS = [
 
 const SKIN_COEFFICIENTS = {
     very_pale: {
-        intercept: -4.2341,
+        intercept: -3.1873,   // recalibrated: α_old(-4.2341) + 2×β_old(0.5234)
         betas: {
             rs28777:      0.6234,   // SLC45A2
             rs16891982:   1.2341,   // SLC45A2 L374F, important for very pale
@@ -265,7 +266,7 @@ const SKIN_COEFFICIENTS = {
             rs1042602:    0.2341,
             rs1800407:    0.4512,
             rs2402130:    0.1890,
-            rs12913832:   0.5234,   // HERC2
+            rs12913832:  -0.5234,   // HERC2 — flipped: +0.5234→-0.5234 (chipAllele=A conv)
             rs2378249:    0.2341,
             rs1393350:    0.1567,
             rs1800414:    0.3456,   // OCA2
@@ -296,7 +297,7 @@ const SKIN_COEFFICIENTS = {
         }
     },
     pale: {
-        intercept: -1.4523,
+        intercept: -0.8055,   // recalibrated: α_old(-1.4523) + 2×β_old(0.3234)
         betas: {
             rs28777:      0.3890,
             rs16891982:   0.6912,
@@ -305,7 +306,7 @@ const SKIN_COEFFICIENTS = {
             rs1042602:    0.1456,
             rs1800407:    0.2890,
             rs2402130:    0.1234,
-            rs12913832:   0.3234,
+            rs12913832:  -0.3234,  // HERC2 — flipped: +0.3234→-0.3234 (chipAllele=A conv)
             rs2378249:    0.1456,
             rs1393350:    0.0980,
             rs1800414:    0.2178,
@@ -336,7 +337,7 @@ const SKIN_COEFFICIENTS = {
         }
     },
     dark: {
-        intercept: 0.8000,   // positive: at 0 pale alleles, dark > intermediate
+        intercept: 0.1532,    // recalibrated: α_old(0.8000) + 2×β_old(-0.3234)
         betas: {
             rs28777:     -0.3890,
             rs16891982:  -0.6912,
@@ -345,7 +346,7 @@ const SKIN_COEFFICIENTS = {
             rs1042602:   -0.1456,
             rs1800407:   -0.2890,
             rs2402130:   -0.1234,
-            rs12913832:  -0.3234,
+            rs12913832:   0.3234,  // HERC2 — flipped: -0.3234→+0.3234 (chipAllele=A conv)
             rs2378249:   -0.1456,
             rs1393350:   -0.0980,
             rs1800414:   -0.2178,
@@ -376,7 +377,7 @@ const SKIN_COEFFICIENTS = {
         }
     },
     dark_to_black: {
-        intercept: -1.5000,   // rare even with 0 pale alleles, but more achievable
+        intercept: -2.5468,   // recalibrated: α_old(-1.5000) + 2×β_old(-0.5234)
         betas: {
             rs28777:     -0.6234,
             rs16891982:  -1.2341,
@@ -385,7 +386,7 @@ const SKIN_COEFFICIENTS = {
             rs1042602:   -0.2341,
             rs1800407:   -0.4512,
             rs2402130:   -0.1890,
-            rs12913832:  -0.5234,
+            rs12913832:   0.5234,  // HERC2 — flipped: -0.5234→+0.5234 (chipAllele=A conv)
             rs2378249:   -0.2341,
             rs1393350:   -0.1567,
             rs1800414:   -0.3456,
