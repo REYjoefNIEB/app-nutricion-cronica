@@ -160,7 +160,7 @@ const HAIR_COEFFICIENTS = {
             rs16891982:   0.7249,   // SLC45A2, important
             rs12821256:   1.4823,   // KITLG — strongest blond predictor
             rs4959270:    0.5781,   // EXOC2
-            rs12203592:   0.5274,   // IRF4
+            rs12203592:  -1.2900,   // IRF4 — sign-corrected per Branicki 2011 (PMC3057002, Table 2)
             rs1042602:    0.3948,
             rs1800407:    0.4891,
             rs2402130:    0.3012,

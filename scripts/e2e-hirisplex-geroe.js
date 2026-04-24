@@ -22,7 +22,7 @@ const genotypes  = geno_data.GEroe.genotypes;
 // ── Valores de referencia (producción antes del fix) ────────────────────────
 const REF = {
     eye:  { brown: 77.8, intermediate: 13.2, blue: 9.0 },
-    hair: { brown: 66.0, black: 16.8, blond: 17.2, red: 0.0 },  // post-palindromic-fix baseline (rs1805009 GG→count=0 correcto)
+    hair: { brown: 77.1, black: 19.7, blond: 3.3, red: 0.0 },  // post-rs12203592-sign-fix (Branicki 2011): blond 17.2→3.3, brown 66→77.1
     skin: null,  // no baseline disponible para skin — se reporta sin delta
 };
 
