@@ -69,32 +69,45 @@ console.log(`\nResultado: ${passed}/9 pasaron${failed > 0 ? `, ${failed} FALLARO
 // ── Regression: eye color for GEroe and Bastian ────────────────────────────
 console.log('─── Regresión predictEyeColor ─────────────────────────────────\n');
 
-// GEroe — known genotypes for eye SNPs (brown eyes expected ~77.8%)
+// GEroe — validated vector [1,0,2,1,0,1] against HIrisPlex webtool → P(brown)≈77.8%
 const GEROE_EYE = {
-    rs12913832: 'AA',   // HERC2 — AA → brown-favoring
-    rs1800407:  'GG',
-    rs12203592: 'CC',
-    rs1042602:  'CC',
-    rs16891982: 'CG',   // heterozygous — no bug here (direct=1 G → returns 1, correct)
-    rs1393350:  'GG',
+    rs12913832: 'AG',   // count=1 G (chipAllele=G)
+    rs1800407:  'CC',   // count=0 A
+    rs12896399: 'TT',   // count=2 T
+    rs16891982: 'CG',   // count=1 G
+    rs1393350:  'GG',   // count=0 A
+    rs12203592: 'CT',   // count=1 T
 };
 
 // Bastian Greshake — blue eyes expected ~91.1%
 const BASTIAN_EYE = {
-    rs12913832: 'GG',   // HERC2 — GG → blue-favoring
-    rs1800407:  'GG',
-    rs12203592: 'CC',
-    rs1042602:  'CC',
-    rs16891982: 'GG',   // GG → 2 (European pale, blue-favoring)
-    rs1393350:  'AA',
+    rs12913832: 'GG',   // count=2 G
+    rs1800407:  'CC',   // count=0 A
+    rs12896399: 'GT',   // count=1 T
+    rs16891982: 'GG',   // count=2 G
+    rs1393350:  'GG',   // count=0 A
+    rs12203592: 'CC',   // count=0 T
 };
 
-for (const [name, genos] of [['GEroe', GEROE_EYE], ['Bastian', BASTIAN_EYE]]) {
+const REGRESSION = [
+    { name: 'GEroe',   genos: GEROE_EYE,   expected: { cat: 'brown', pct: 77.8, key: 'brown' } },
+    { name: 'Bastian', genos: BASTIAN_EYE,  expected: { cat: 'blue',  pct: 91.1, key: 'blue'  } },
+];
+
+let regFailed = 0;
+for (const { name, genos, expected } of REGRESSION) {
     const r = predictEyeColor(genos);
-    if (!r) { console.log(`${name}: NULL (insuficientes SNPs)`); continue; }
-    console.log(`${name}: ${r.prediction} — blue=${r.probabilities.blue}%, intermediate=${r.probabilities.intermediate}%, brown=${r.probabilities.brown}%`);
-    console.log(`  SNPs usados: ${r.snpsUsed}/${r.snpsTotal}`);
+    if (!r) { console.log(`${name}: NULL (insuficientes SNPs)`); regFailed++; continue; }
+    const actual = parseFloat(r.probabilities[expected.key]);
+    const diff   = Math.abs(actual - expected.pct);
+    const ok     = diff <= 5.0;
+    if (!ok) regFailed++;
+    const mark = ok ? '✅' : '🔴';
+    console.log(`${mark} ${name}: ${r.prediction} — blue=${r.probabilities.blue}%, intermediate=${r.probabilities.intermediate}%, brown=${r.probabilities.brown}%`);
+    console.log(`   esperado P(${expected.cat})≈${expected.pct}% | actual=${actual}% | Δ=${diff.toFixed(1)}% ${ok ? '(dentro de ±5%)' : '⚠ SUPERA ±5% TOLERANCIA'}`);
+    console.log(`   SNPs usados: ${r.snpsUsed}/${r.snpsTotal}`);
 }
+if (regFailed > 0) failed += regFailed;
 
 console.log('');
 if (failed > 0) {
