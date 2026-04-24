@@ -639,8 +639,6 @@ function _initWeightHeightEdit(user) {
         btnSave.disabled = true;
         if (statusEl) { statusEl.textContent = 'Guardando…'; statusEl.style.color = 'var(--text-muted)'; }
 
-        await MedicalStorage.updateProfile({ weight: w, height: h });
-
         try {
             const { doc, setDoc } = await import(
                 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js'
@@ -656,6 +654,8 @@ function _initWeightHeightEdit(user) {
             btnSave.disabled = false;
             return;
         }
+
+        await MedicalStorage.updateProfile({ weight: w, height: h });
 
         // Re-render the metabolic card
         document.getElementById('val-weight').textContent = w + ' kg';
