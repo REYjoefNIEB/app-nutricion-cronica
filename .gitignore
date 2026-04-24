@@ -62,3 +62,9 @@ scripts/.env
 scripts/test-data/*.txt
 scripts/test-data/*.csv
 scripts/test-results/
+
+# ── Oracle audit artifacts (local only — copyright EP2195448) ─────
+scripts/validation-data/hirisplex_oracle_queries.csv
+scripts/validation-data/hirisplex_oracle_results.json
+scripts/validation-data/hair_coefficients_extracted.json
+scripts/validation-data/hair_coefficients_audit_report.md
