@@ -309,20 +309,29 @@ const METABOLIC_RISKS = {
 
 const CANCER_PREDISPOSITION = {
   rs80357906: {
-    name: 'BRCA1 185delAG',
+    // ETIQUETA CORREGIDA: este rsid es BRCA1 5382insC (INSERCIÓN), NO 185delAG.
+    // Fuente: dbSNP rs80357906, ClinVar VCV000017677, SNPedia BRCA1.
+    // Aliases: c.5266dupC, 5382insC, 5385insC.
+    //
+    // Convención D/I 23andMe para INSERCIONES (opuesto a deleciones):
+    //   DD = wildtype (sin inserción, ambos alelos normales) — Kenneth Reitz, James Bradach: DD ✓
+    //   DI = portador heterocigoto  ← RIESGO
+    //   II = afectado homocigoto    ← RIESGO
+    //
+    // NOTA: 185delAG (deleción c.68_69delAG, rs80357914) NO está actualmente en Nura.
+    // Pendiente de agregar en sprint futuro tras verificar convención 23andMe para ese rsid.
+    name: 'BRCA1 5382insC',
     category: 'cancer_risk',
     condition: 'predisposicion_cancer_mama_ovario',
     gene: 'BRCA1',
-    riskGenotype: ['present'],
-    // 'CC' = notación SNP genérica; 'II' = notación indel 23andMe (I=alelo intacto, D=deleción).
-    // Sin esta corrección, 23andMe reporta 'II' para wildtype y el motor lo marcaba como riesgo
-    // porque 'II' ≠ 'CC'. 185delAG es una deleción: wildtype=II, carrier=DI, affected=DD.
-    referenceGenotype: ['CC', 'II'],
+    riskGenotype: ['present_indel'],
+    riskAlleles: ['DI', 'ID', 'II'],
+    referenceGenotype: ['DD'],
     severity: 'very_high',
     evidence: 'very_high',
     who_recognized: true,
     acmg_classification: 'Pathogenic',
-    description: 'Variante fundadora BRCA1',
+    description: 'Inserción patogénica founder Ashkenazí. También conocida como c.5266dupC.',
     action_if_risk: 'HALLAZGO IMPORTANTE: Requiere test clínico completo BRCA1/BRCA2. OMS/NCCN recomiendan oncogenetista. NO es diagnóstico.',
     action_if_safe: 'No portas esta variante.',
     nura_action: 'mandatory_medical_referral',
@@ -331,37 +340,24 @@ const CANCER_PREDISPOSITION = {
     referral_specialty: 'oncogenetista',
     disclaimer_required: true
   },
-  rs80357713: {
-    name: 'BRCA1 5382insC',
-    category: 'cancer_risk',
-    condition: 'predisposicion_cancer_mama_ovario',
-    gene: 'BRCA1',
-    riskGenotype: ['present'],
-    // 'TT' = notación SNP genérica; 'DD' = notación indel 23andMe.
-    // 5382insC es una inserción: wildtype=DD (sin inserción), carrier=DI, affected=II.
-    referenceGenotype: ['TT', 'DD'],
-    severity: 'very_high',
-    evidence: 'very_high',
-    who_recognized: true,
-    acmg_classification: 'Pathogenic',
-    description: 'Variante fundadora BRCA1 (Europa del Este)',
-    action_if_risk: 'HALLAZGO IMPORTANTE: Requiere oncogenetista para confirmación y vigilancia.',
-    action_if_safe: 'No portas esta variante.',
-    nura_action: 'mandatory_medical_referral',
-    requires_medical_consult: true,
-    high_alert: true,
-    referral_specialty: 'oncogenetista',
-    disclaimer_required: true
-  },
+  // REMOVED: rs80357713
+  // Este rsid fue fusionado en rs80357783 en dbSNP build 136 (2010) y tiene 12
+  // anotaciones inconsistentes entre bases de datos (Munz et al. 2015, Genome Medicine).
+  // NO es seguro para uso clínico en producción. 5382insC se detecta correctamente
+  // vía rs80357906 (entrada anterior). 185delAG pendiente de rs80357914 (Parte B, SPRINT_07).
   rs80359550: {
+    // BRCA2 6174delT — DELECIÓN (convención opuesta a la inserción de rs80357906).
+    // Convención D/I 23andMe para DELECIONES:
+    //   II = wildtype (alelo intacto en ambos cromosomas, sin deleción) ← NO riesgo
+    //   DI = portador heterocigoto  ← RIESGO
+    //   DD = afectado homocigoto    ← RIESGO
     name: 'BRCA2 6174delT',
     category: 'cancer_risk',
     condition: 'predisposicion_cancer_mama_ovario',
     gene: 'BRCA2',
-    riskGenotype: ['present'],
-    // 'AA' = notación SNP genérica; 'II' = notación indel 23andMe.
-    // 6174delT es una deleción: wildtype=II (sin deleción), carrier=DI, affected=DD.
-    referenceGenotype: ['AA', 'II'],
+    riskGenotype: ['present_indel'],
+    riskAlleles: ['DI', 'ID', 'DD'],
+    referenceGenotype: ['II'],
     severity: 'very_high',
     evidence: 'very_high',
     who_recognized: true,

@@ -1,12 +1,24 @@
 const { NURA_SNP_DATABASE } = require('./snpDatabase');
 
-function matchesGenotype(userGenotype, targetGenotypes, referenceGenotypes = null) {
+function matchesGenotype(userGenotype, targetGenotypes, referenceGenotypes = null, riskAlleles = null) {
   if (!userGenotype || userGenotype === '--') return false;
   const normalizedUser = userGenotype.split('').sort().join('');
 
   for (const target of targetGenotypes) {
+    if (target === 'present_indel') {
+      // Whitelist explícita para indels (D/I notation de 23andMe y otros proveedores).
+      // Más seguro que 'present': no hace default-to-risk ante genotipos inesperados.
+      // La entrada del database DEBE proveer riskAlleles (ej. ['DI', 'ID', 'II']).
+      // Fail-safe si falta configuración: no flaggear.
+      if (!Array.isArray(riskAlleles) || riskAlleles.length === 0) {
+        console.error('[matchesGenotype] present_indel requires riskAlleles — failing safe (no risk)');
+        return false;
+      }
+      return riskAlleles.some(a => normalizedUser === a.split('').sort().join('').toUpperCase());
+    }
+
     if (target === 'present') {
-      // Variantes raras (BRCA1/2, MUTYH...): comparar contra genotipo de referencia ancestral.
+      // Variantes raras: comparar contra genotipo de referencia ancestral.
       // Solo es riesgo si el genotipo del usuario NO es el alelo de referencia normal.
       if (referenceGenotypes && Array.isArray(referenceGenotypes) && referenceGenotypes.length > 0) {
         const isReference = referenceGenotypes.some(ref => {
@@ -28,7 +40,7 @@ function matchesGenotype(userGenotype, targetGenotypes, referenceGenotypes = nul
 
 function analyzeSingleSNP(userSnp, snpConfig) {
   const userGenotype = userSnp.genotype;
-  const isRisk = matchesGenotype(userGenotype, snpConfig.riskGenotype || [], snpConfig.referenceGenotype || null);
+  const isRisk = matchesGenotype(userGenotype, snpConfig.riskGenotype || [], snpConfig.referenceGenotype || null, snpConfig.riskAlleles || null);
   const isProtective = snpConfig.protectiveGenotype ? matchesGenotype(userGenotype, snpConfig.protectiveGenotype) : false;
   let status = 'neutral';
   if (isRisk) status = 'risk';
