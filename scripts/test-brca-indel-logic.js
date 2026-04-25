@@ -120,6 +120,36 @@ if (!cfg_6174) {
     assert('-- → status !== risk (no-call)',                 r_nc.status !== 'risk', true);
 }
 
+// ── i4000377 (BRCA1 185delAG, DELECIÓN, ID interno 23andMe) ──────────────────
+
+console.log('\n=== i4000377 (BRCA1 185delAG) — DELECIÓN, wildtype=II ===\n');
+
+const cfg_185delAG = NURA_SNP_DATABASE['i4000377'];
+
+if (!cfg_185delAG) {
+    console.log('  ❌ FATAL: i4000377 no encontrado en NURA_SNP_DATABASE');
+    failed++;
+} else {
+    // Wildtype empírico: 5/5 archivos 23andMe (Kenneth, James, Bastian, A-corpas, B-sporny)
+    const r_II = analyzeSingleSNP({ genotype: 'II' }, { ...cfg_185delAG, rsid: 'i4000377' });
+    assert('II → status !== risk (wildtype empírico — 5/5 archivos)', r_II.status !== 'risk', true);
+
+    const r_DI = analyzeSingleSNP({ genotype: 'DI' }, { ...cfg_185delAG, rsid: 'i4000377' });
+    assert('DI → status === risk (portador heterocigoto)',             r_DI.status === 'risk', true);
+
+    const r_ID = analyzeSingleSNP({ genotype: 'ID' }, { ...cfg_185delAG, rsid: 'i4000377' });
+    assert('ID → status === risk (portador, sorted)',                  r_ID.status === 'risk', true);
+
+    const r_DD = analyzeSingleSNP({ genotype: 'DD' }, { ...cfg_185delAG, rsid: 'i4000377' });
+    assert('DD → status === risk (afectado homocigoto)',               r_DD.status === 'risk', true);
+
+    const r_AA = analyzeSingleSNP({ genotype: 'AA' }, { ...cfg_185delAG, rsid: 'i4000377' });
+    assert('AA → status !== risk (genotipo nucleotídico)',             r_AA.status !== 'risk', true);
+
+    const r_nc = analyzeSingleSNP({ genotype: '--' }, { ...cfg_185delAG, rsid: 'i4000377' });
+    assert('-- → status !== risk (no-call)',                           r_nc.status !== 'risk', true);
+}
+
 // ── Verificar que rs80357713 fue eliminado ─────────────────────────────────────
 
 console.log('\n=== Verificación de entradas eliminadas ===\n');
@@ -132,6 +162,7 @@ if (failed === 0) {
     console.log(`✅ TODOS LOS TESTS PASARON (${passed}/${passed + failed})`);
     console.log('   Kenneth y James (DD en rs80357906) ya no son falsos positivos.');
     console.log('   5382insC detectada correctamente vía present_indel whitelist.');
+    console.log('   185delAG detectada vía i4000377 (ID interno 23andMe).');
 } else {
     console.log(`❌ ${failed} TEST(S) FALLARON (${passed}/${passed + failed} OK)`);
     console.log('   PARAR — no deployar hasta resolver fallos.');

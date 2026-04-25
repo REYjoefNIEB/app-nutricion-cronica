@@ -308,6 +308,45 @@ const METABOLIC_RISKS = {
 };
 
 const CANCER_PREDISPOSITION = {
+  i4000377: {
+    // BRCA1 185delAG — DELECIÓN c.68_69delAG.
+    // Founder mutation Ashkenazí (~1% en esa población, ~26% de las variantes
+    // patogénicas BRCA detectadas en Ashkenazí). dbSNP rs80357914, ClinVar VCV000056295.
+    //
+    // IMPORTANTE: 23andMe usa el ID interno 'i4000377' (NO el rsid moderno rs80357914
+    // de dbSNP). Verificado empíricamente en 5 archivos 23andMe de distintas versiones:
+    //   Kenneth Reitz v3 (build 37), James Bradach v3+v5 (build 37),
+    //   Bastian Greshake v2 (build 36), A-corpas-padre v2, B-sporny v2.
+    // El parser de Nura acepta IDs con prefijo 'i' (parser.js:87).
+    //
+    // Posiciones reportadas:
+    //   Build 37: chr17:41276045 (chips post-2013, v3/v4/v5)
+    //   Build 36: chr17:38529571 (chips pre-2013, v2)
+    //
+    // Convención D/I 23andMe para DELECIONES (igual que rs80359550 BRCA2 6174delT):
+    //   II = wildtype (alelos intactos, sin deleción) ← NO riesgo
+    //   DI = portador heterocigoto                    ← RIESGO
+    //   DD = afectado homocigoto                      ← RIESGO
+    name: 'BRCA1 185delAG',
+    category: 'cancer_risk',
+    condition: 'predisposicion_cancer_mama_ovario',
+    gene: 'BRCA1',
+    riskGenotype: ['present_indel'],
+    riskAlleles: ['DI', 'ID', 'DD'],
+    referenceGenotype: ['II'],
+    severity: 'very_high',
+    evidence: 'very_high',
+    who_recognized: true,
+    acmg_classification: 'Pathogenic',
+    description: 'Deleción patogénica founder Ashkenazí. Una de las tres founder mutations BRCA más estudiadas (~26% de variantes patogénicas BRCA en población Ashkenazí, GeneReviews PMID: 20301425).',
+    action_if_risk: 'HALLAZGO IMPORTANTE: Requiere test clínico completo BRCA1/BRCA2. OMS/NCCN recomiendan oncogenetista. NO es diagnóstico.',
+    action_if_safe: 'No portas esta variante.',
+    nura_action: 'mandatory_medical_referral',
+    requires_medical_consult: true,
+    high_alert: true,
+    referral_specialty: 'oncogenetista',
+    disclaimer_required: true
+  },
   rs80357906: {
     // ETIQUETA CORREGIDA: este rsid es BRCA1 5382insC (INSERCIÓN), NO 185delAG.
     // Fuente: dbSNP rs80357906, ClinVar VCV000017677, SNPedia BRCA1.
@@ -317,9 +356,6 @@ const CANCER_PREDISPOSITION = {
     //   DD = wildtype (sin inserción, ambos alelos normales) — Kenneth Reitz, James Bradach: DD ✓
     //   DI = portador heterocigoto  ← RIESGO
     //   II = afectado homocigoto    ← RIESGO
-    //
-    // NOTA: 185delAG (deleción c.68_69delAG, rs80357914) NO está actualmente en Nura.
-    // Pendiente de agregar en sprint futuro tras verificar convención 23andMe para ese rsid.
     name: 'BRCA1 5382insC',
     category: 'cancer_risk',
     condition: 'predisposicion_cancer_mama_ovario',
