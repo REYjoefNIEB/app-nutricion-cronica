@@ -314,7 +314,10 @@ const CANCER_PREDISPOSITION = {
     condition: 'predisposicion_cancer_mama_ovario',
     gene: 'BRCA1',
     riskGenotype: ['present'],
-    referenceGenotype: ['CC'],   // Alelo ancestral normal — homocigoto de referencia
+    // 'CC' = notación SNP genérica; 'II' = notación indel 23andMe (I=alelo intacto, D=deleción).
+    // Sin esta corrección, 23andMe reporta 'II' para wildtype y el motor lo marcaba como riesgo
+    // porque 'II' ≠ 'CC'. 185delAG es una deleción: wildtype=II, carrier=DI, affected=DD.
+    referenceGenotype: ['CC', 'II'],
     severity: 'very_high',
     evidence: 'very_high',
     who_recognized: true,
@@ -334,7 +337,9 @@ const CANCER_PREDISPOSITION = {
     condition: 'predisposicion_cancer_mama_ovario',
     gene: 'BRCA1',
     riskGenotype: ['present'],
-    referenceGenotype: ['TT'],   // Alelo ancestral normal
+    // 'TT' = notación SNP genérica; 'DD' = notación indel 23andMe.
+    // 5382insC es una inserción: wildtype=DD (sin inserción), carrier=DI, affected=II.
+    referenceGenotype: ['TT', 'DD'],
     severity: 'very_high',
     evidence: 'very_high',
     who_recognized: true,
@@ -354,7 +359,9 @@ const CANCER_PREDISPOSITION = {
     condition: 'predisposicion_cancer_mama_ovario',
     gene: 'BRCA2',
     riskGenotype: ['present'],
-    referenceGenotype: ['AA'],   // Alelo ancestral normal
+    // 'AA' = notación SNP genérica; 'II' = notación indel 23andMe.
+    // 6174delT es una deleción: wildtype=II (sin deleción), carrier=DI, affected=DD.
+    referenceGenotype: ['AA', 'II'],
     severity: 'very_high',
     evidence: 'very_high',
     who_recognized: true,
