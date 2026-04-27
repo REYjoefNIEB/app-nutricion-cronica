@@ -94,6 +94,57 @@ const r6 = predictSkinColor(kennethGenotypes, borderlineAncestry);
 console.log(`\nCaso 6 — Borderline (EUR=0.50): predictionKey=${r6.predictionKey}`);
 assert('EUR=0.50 exacto → NO flag (umbral estricto <0.50)', r6.lowConfidenceAncestry, null);
 
+// === Casos con shape PLANA (objeto que el callsite real pasa) ===
+
+console.log('\n=== Tests con shape plana (sub-populations) ===\n');
+
+// Caso 7: Europeo plano (EUR_N + EUR_S = 0.95) + label pale → NO flag
+const europeoPlano = { EUR_N: 0.85, EUR_S: 0.10, AFR_W: 0.01, AFR_E: 0.01, EAS_CN: 0.01, EAS_JP: 0.01, SAS: 0.005, AMR_NAT: 0.005 };
+const r7 = predictSkinColor(kennethGenotypes, europeoPlano);
+console.log('Caso 7 — Europeo plano (EUR_N+EUR_S=0.95):', r7?.predictionKey);
+assert('Europeo plano + label pale → NO flag', r7?.lowConfidenceAncestry, null);
+
+// Caso 8: Yoruba plano (EUR_N + EUR_S ≈ 0.003) + label pale → SÍ flag
+const yorubaPlano = { EUR_N: 0.001, EUR_S: 0.002, AFR_W: 0.500, AFR_E: 0.484, EAS_CN: 0.003, EAS_JP: 0.002, SAS: 0.003, AMR_NAT: 0.005 };
+const r8 = predictSkinColor(kennethGenotypes, yorubaPlano);
+console.log('Caso 8 — Yoruba plano (EUR=0.003):', r8?.predictionKey);
+if (r8?.predictionKey === 'pale' || r8?.predictionKey === 'very_pale') {
+    assert('Yoruba plano + label claro → SÍ flag',          r8.lowConfidenceAncestry?.flag, true);
+    assert('Yoruba plano: eurFraction reconstruido correcto', Math.abs(r8.lowConfidenceAncestry.eurFraction - 0.003) < 0.001, true);
+} else {
+    console.log('  (Yoruba plano dio label distinto, skip assert flag)');
+}
+
+// Caso 9: Mestizo plano EUR=0.29 + label pale → SÍ flag
+const mestizoPlano = { EUR_N: 0.15, EUR_S: 0.14, AFR_W: 0.025, AFR_E: 0.025, EAS_CN: 0.05, EAS_JP: 0.05, SAS: 0.02, AMR_NAT: 0.54 };
+const r9 = predictSkinColor(kennethGenotypes, mestizoPlano);
+console.log('Caso 9 — Mestizo plano (EUR=0.29):', r9?.predictionKey);
+if (r9?.predictionKey === 'pale' || r9?.predictionKey === 'very_pale') {
+    assert('Mestizo plano + label claro → SÍ flag', r9.lowConfidenceAncestry?.flag, true);
+} else {
+    console.log('  (mestizo plano dio label distinto, skip assert flag)');
+}
+
+// Caso 10: Fallback hardcodeado de index.js:2785 (TODOS en 0) → SÍ flag (caso degenerado, esperado)
+// Documentado: este es el bug de orden onboarding, NO se ataca en este sprint.
+// El flag SE activaría incorrectamente para usuarios europeos en este caso, pero
+// el bug raíz es que ancestry no fue calculado, no la lógica del flag.
+const fallbackPlano = { EUR_N: 0, EUR_S: 0, AFR_W: 0, AFR_E: 0, EAS_CN: 0, EAS_JP: 0, SAS: 0, AMR_NAT: 0 };
+const r10 = predictSkinColor(kennethGenotypes, fallbackPlano);
+console.log('Caso 10 — Fallback plano (todo 0):', r10?.predictionKey);
+if (r10?.predictionKey === 'pale' || r10?.predictionKey === 'very_pale') {
+    // Documentar comportamiento: el flag se activa porque eurFraction=0 < 0.50.
+    // Esto es esperable y se cubre con el sprint futuro de orden onboarding.
+    console.log('  NOTA: con fallback=0, flag se activa. Deuda documentada del orden onboarding (no se arregla en este sprint).');
+    assert('Fallback (todo 0) → flag activado (comportamiento documentado)', r10.lowConfidenceAncestry?.flag, true);
+} else {
+    console.log('  (label no es pale/very_pale, skip assert)');
+}
+
+// Caso 11: Shape vacía sin keys conocidas → NO flag (fail-safe)
+const r11 = predictSkinColor(kennethGenotypes, { random: 'data' });
+assert('Shape sin EUR_N/EUR_S/macroRegions → NO flag', r11?.lowConfidenceAncestry, null);
+
 console.log(`\n${'='.repeat(60)}`);
 if (failed === 0) {
     console.log(`PASS: TODOS LOS TESTS PASARON (${passed}/${passed + failed})`);

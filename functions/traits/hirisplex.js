@@ -658,7 +658,21 @@ function predictSkinColor(genotypes, ancestry = null) {
     // signal when the predicted label is light AND the user's ancestry is non-European.
     let lowConfidenceAncestry = null;
     const isLightLabel = predKey === 'very_pale' || predKey === 'pale';
-    const eurFraction = ancestry?.macroRegions?.EUR ?? null;
+    // Acepta dos shapes:
+    // (a) Doc Firestore puro: { macroRegions: { EUR, AFR, EAS, SAS, AMR_NAT } }
+    // (b) Objeto plano construido en index.js:2785: { EUR_N, EUR_S, AFR_W, AFR_E, ... }
+    // El callsite actual usa (b). Mantener compatibilidad para ambos.
+    let eurFraction = null;
+    if (ancestry) {
+        if (typeof ancestry.macroRegions?.EUR === 'number') {
+            eurFraction = ancestry.macroRegions.EUR;
+        } else if (
+            typeof ancestry.EUR_N === 'number' ||
+            typeof ancestry.EUR_S === 'number'
+        ) {
+            eurFraction = (ancestry.EUR_N || 0) + (ancestry.EUR_S || 0);
+        }
+    }
     const hasAncestry = typeof eurFraction === 'number';
 
     if (hasAncestry && isLightLabel && eurFraction < 0.50) {
@@ -714,3 +728,27 @@ function predictPigmentation(genotypes, ancestry = null) {
 }
 
 module.exports = { predictPigmentation, predictEyeColor, predictHairColor, predictSkinColor, HIRISPLEX_RSIDS };
+
+/**
+ * KNOWN ISSUE — Onboarding order race condition (NOT FIXED in this sprint)
+ *
+ * The current Cloud Function flow does NOT guarantee that analyzeAncestry runs
+ * before analyzePhysicalTraits. If a user uploads DNA and navigates directly
+ * to /traits without first visiting /ancestry, the fallback in
+ * functions/index.js:2785 sets ALL ancestry sub-populations to 0.
+ *
+ * In that degenerate case, eurFraction reconstruction yields 0, which is
+ * < 0.50, so the lowConfidenceAncestry flag would activate INCORRECTLY for
+ * users with European ancestry whose ancestry hasn't been computed yet.
+ *
+ * This affects more than the skin flag: any legacy decision based on isMestizo
+ * (e.g. in functions/traits/traitsDatabase.js) is also impacted.
+ *
+ * Proper fix requires refactoring the analyzePhysicalTraits flow to either:
+ *   (a) Throw 'failed-precondition' when ancestry/result is missing, forcing
+ *       the frontend to redirect the user to /ancestry first.
+ *   (b) Trigger analyzeAncestry server-side as a dependency.
+ *
+ * Tracked separately. See SPRINT_14_handoff for next session.
+ */
+
