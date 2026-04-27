@@ -625,7 +625,7 @@ const SKIN_SNPS_LIST = [
     'rs683', 'rs4959270', 'rs1805005', 'rs1805006', 'rs3114908'
 ];
 
-function predictSkinColor(genotypes) {
+function predictSkinColor(genotypes, ancestry = null) {
     const snpValues = buildSnpValues(genotypes, SKIN_SNPS_LIST);
     const availableCount = SKIN_SNPS_LIST.filter(r => snpValues[r] !== null).length;
     if (availableCount < 3) return null;
@@ -654,6 +654,22 @@ function predictSkinColor(genotypes) {
         (probs.dark_to_black|| 0) * 95
     );
 
+    // HIrisPlex-S was calibrated predominantly on European samples. Flag a low-confidence
+    // signal when the predicted label is light AND the user's ancestry is non-European.
+    let lowConfidenceAncestry = null;
+    const isLightLabel = predKey === 'very_pale' || predKey === 'pale';
+    const eurFraction = ancestry?.macroRegions?.EUR ?? null;
+    const hasAncestry = typeof eurFraction === 'number';
+
+    if (hasAncestry && isLightLabel && eurFraction < 0.50) {
+        lowConfidenceAncestry = {
+            flag: true,
+            reason: 'non_european_ancestry_with_light_skin_prediction',
+            eurFraction: Math.round(eurFraction * 1000) / 1000,
+            message: 'Modelo no calibrado para tu ancestría: HIrisPlex-S fue desarrollado con muestras europeas. Si tu fenotipo de piel es más oscuro de lo predicho, es una limitación del modelo, no un error en tus datos.'
+        };
+    }
+
     return {
         probabilities: {
             very_pale:     round('very_pale'),
@@ -670,7 +686,8 @@ function predictSkinColor(genotypes) {
         snpsTotal: SKIN_SNPS_LIST.length,
         source: 'HIrisPlex-S — Chaitanya et al. 2018 (approx.)',
         validated: false,
-        position
+        position,
+        lowConfidenceAncestry
     };
 }
 
@@ -678,11 +695,11 @@ function predictSkinColor(genotypes) {
 // Main entry point
 // ════════════════════════════════════════════════════════════════
 
-function predictPigmentation(genotypes) {
+function predictPigmentation(genotypes, ancestry = null) {
     return {
         eye:  predictEyeColor(genotypes),
         hair: predictHairColor(genotypes),
-        skin: predictSkinColor(genotypes),
+        skin: predictSkinColor(genotypes, ancestry),
         model: 'HIrisPlex-S',
         version: '1.0.0',
         references: [

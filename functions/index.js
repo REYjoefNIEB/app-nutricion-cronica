@@ -2831,7 +2831,7 @@ exports.analyzePhysicalTraits = onCall(
             // ── HIrisPlex-S Pigmentation Override ──────────────────────────────
             try {
                 const { predictPigmentation } = require('./traits/hirisplex');
-                const pigment = predictPigmentation(genotypes);
+                const pigment = predictPigmentation(genotypes, ancestry);
 
                 if (pigment.eye && pigment.eye.confidence > 0) {
                     const e = pigment.eye;
@@ -2884,7 +2884,11 @@ exports.analyzePhysicalTraits = onCall(
                         confidence: s.confidence,
                         note: `HIrisPlex-S (${s.snpsUsed}/${s.snpsTotal} SNPs): ${p.very_pale}% muy clara · ${p.pale}% clara · ${p.intermediate}% intermedia · ${p.dark}% oscura · ${p.dark_to_black}% muy oscura.${s.validated ? '' : ' Coeficientes aproximados.'}`,
                         position: s.position,
-                        hirisplex: { probabilities: p, isAboveThreshold: s.isAboveThreshold }
+                        hirisplex: {
+                            probabilities: p,
+                            isAboveThreshold: s.isAboveThreshold,
+                            lowConfidenceAncestry: s.lowConfidenceAncestry || null
+                        }
                     };
                 }
             } catch (hplexErr) {

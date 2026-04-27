@@ -226,6 +226,35 @@
         }
         .trait-footer-icon { width: 11px; height: 11px; }
 
+        /* Low-confidence ancestry warning (per-card) */
+        .trait-low-confidence-warning {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin-top: 12px;
+            padding: 12px 14px;
+            background: #FFF9E6;
+            border: 1px solid #F0C674;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        .trait-low-confidence-warning .warning-icon {
+            font-size: 18px;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .trait-low-confidence-warning .warning-content strong {
+            display: block;
+            color: #8A6D3B;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .trait-low-confidence-warning .warning-content p {
+            color: #5C4A21;
+            margin: 0;
+        }
+
         /* Recalculate button */
         .btn-recalc {
             width: 100%; padding: 12px; background: transparent;
@@ -459,6 +488,16 @@ function renderTraitCard(trait) {
             <span>${[gene, rsid].filter(Boolean).join(' · ')}</span>
         </div>` : '';
 
+    const lowConf = trait?.hirisplex?.lowConfidenceAncestry;
+    const lowConfHtml = (lowConf && lowConf.flag) ? `
+        <div class="trait-low-confidence-warning">
+            <span class="warning-icon">⚠️</span>
+            <div class="warning-content">
+                <strong>Modelo no calibrado para tu ancestría</strong>
+                <p>${lowConf.message}</p>
+            </div>
+        </div>` : '';
+
     return `
         <article class="trait-card" data-category="${trait.category || ''}">
             <div class="trait-card-header">
@@ -478,6 +517,7 @@ function renderTraitCard(trait) {
                 </div>
             </div>
             ${desc ? `<div class="trait-description">${desc}</div>` : ''}
+            ${lowConfHtml}
             ${footerHtml}
         </article>
     `;
