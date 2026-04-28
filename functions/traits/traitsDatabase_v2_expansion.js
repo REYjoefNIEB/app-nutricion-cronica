@@ -214,12 +214,67 @@ const EXPANSION_TRAITS = {
         primarySnp: 'rs4911414',
         sliderMin: 'Se quema, no se broncea',
         sliderMax: 'Bronceado fácil y duradero',
-        interpret(genotypes) {
+        interpret(genotypes, ancestry = {}) {
             const g = genotypes['rs4911414'];
             if (!g) return null;
-            if (g === 'TT') return { value: 'Bronceado fácil', confidence: 60, note: 'ASIP rs4911414 TT. ASIP (Agouti Signaling Protein) regula eumelanina vs feomelanina. TT favorece producción de eumelanina inducida por UV → bronceado eficiente.', position: 85 };
-            if (g === 'GT' || g === 'TG') return { value: 'Bronceado moderado', confidence: 50, position: 50 };
-            if (g === 'GG') return { value: 'Se quema fácil, bronceado pobre', confidence: 60, note: 'ASIP rs4911414 GG. Mayor feomelanina. La piel reacciona al UV con quemadura más que con bronceado. Protector solar FPS 50+ siempre.', position: 15 };
+
+            if (g === 'TT') {
+                return {
+                    value: 'Bronceado fácil',
+                    confidence: 60,
+                    note: 'ASIP rs4911414 TT. ASIP (Agouti Signaling Protein) regula eumelanina vs feomelanina. TT favorece producción de eumelanina inducida por UV → bronceado eficiente.',
+                    position: 85
+                };
+            }
+            if (g === 'GT' || g === 'TG') {
+                return {
+                    value: 'Bronceado moderado',
+                    confidence: 50,
+                    position: 50
+                };
+            }
+
+            if (g === 'GG') {
+                // ASIP regula la PROPORCIÓN eumelanina/feomelanina, no la cantidad
+                // total de melanina. Para personas con pigmentación basal alta
+                // (africanos, asiáticos del este, amerindios), la masa total de
+                // melanina domina la respuesta UV y el "se quema fácil" no aplica.
+                // Detectamos pigmentación basal alta con 3 señales independientes.
+                const slc24a5 = genotypes['rs1426654'];
+                const afr = (ancestry.AFR_W || 0) + (ancestry.AFR_E || 0);
+                const eas = (ancestry.EAS_CN || 0) + (ancestry.EAS_JP || 0);
+                const amr = ancestry.AMR_NAT || 0;
+
+                const hasDarkBasalPigmentation = (
+                    slc24a5 === 'GG'
+                    || afr > 0.40
+                    || eas > 0.40
+                    || amr > 0.40
+                );
+
+                if (hasDarkBasalPigmentation) {
+                    const reasons = [];
+                    if (slc24a5 === 'GG') reasons.push('SLC24A5 rs1426654 GG (alelo ancestral)');
+                    if (afr > 0.40)       reasons.push(`${Math.round(afr * 100)}% ancestría africana`);
+                    if (eas > 0.40)       reasons.push(`${Math.round(eas * 100)}% ancestría asiática del este`);
+                    if (amr > 0.40)       reasons.push(`${Math.round(amr * 100)}% ancestría amerindia`);
+
+                    return {
+                        value: 'ASIP modulado por pigmentación basal alta',
+                        confidence: 55,
+                        note: `Tu pigmentación basal está dominada por ${reasons.join(' + ')}, lo que indica una cantidad total de melanina alta. ASIP rs4911414 GG modula la proporción eumelanina/feomelanina, pero la cantidad total de melanina es el predictor dominante de respuesta UV en tu fototipo. La recomendación de SPF 50+ basada en ASIP no aplica a tu pigmentación. Tu fototipo de piel determina mejor tu respuesta al sol que esta variante.`,
+                        position: 55
+                    };
+                }
+
+                return {
+                    value: 'Se quema fácil, bronceado pobre',
+                    confidence: 60,
+                    note: 'ASIP rs4911414 GG. Mayor feomelanina. La piel reacciona al UV con quemadura más que con bronceado. Protector solar FPS 50+ siempre.',
+                    position: 15
+                };
+            }
+
             return null;
         }
     },
