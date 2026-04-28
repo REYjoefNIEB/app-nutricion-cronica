@@ -39,10 +39,10 @@ const HIRISPLEX_PANEL = [
   { rsid: 'rs1805005',   chipAllele: 'T', models: ['hair'] },          // MC1R V92M
   { rsid: 'rs1805006',   chipAllele: 'A', models: ['hair'] },          // MC1R D294H
   { rsid: 'rs1805007',   chipAllele: 'T', models: ['hair'] },          // MC1R R151C
-  { rsid: 'rs1805009',   chipAllele: 'C', models: ['hair'], palindromic: true },  // TUBB3 — C/G palindromic
+  { rsid: 'rs1805009',   chipAllele: 'C', models: ['hair'], palindromic: true },  // MC1R D294H — C/G palindromic strand consideration
   { rsid: 'rs201326893', chipAllele: 'A', models: ['hair'] },          // MC1R rare
   { rsid: 'rs2228479',   chipAllele: 'A', models: ['hair'] },          // MC1R V60L
-  { rsid: 'rs1110400',   chipAllele: 'C', models: ['hair'] },          // MC1R R163Q
+  { rsid: 'rs1110400',   chipAllele: 'C', models: ['hair'] },          // MC1R I155T
   // Shared hair + skin
   { rsid: 'rs28777',     chipAllele: 'C', models: ['hair', 'skin'] },  // SLC45A2
   { rsid: 'rs16891982',  chipAllele: 'G', models: ['eye', 'hair', 'skin'], palindromic: true }, // SLC45A2 L374F — G=European pale, C/G palindromic
