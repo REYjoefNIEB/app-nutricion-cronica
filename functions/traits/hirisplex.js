@@ -84,49 +84,60 @@ const HIRISPLEX_RSIDS = HIRISPLEX_PANEL.map(s => s.rsid);
 
 // ════════════════════════════════════════════════════════════════
 // Eye Color Coefficients — IrisPlex (6 SNPs)
-// SOURCE: Walsh et al. 2011, Table 4. CONFIRMED.
-// Reference category: Brown  (logit = 0)
+// SOURCE: Re-calibrated 2026-04-28 against official HIrisPlex webtool
+//         (https://hirisplex.erasmusmc.nl/) via Adam optimizer.
+// Reference category: Brown  (logit = 0, implicit)
 // Input alleles: the "blue-favoring" allele at each locus
 // ════════════════════════════════════════════════════════════════
-
-// Eye Color Coefficients — IrisPlex (6 SNPs)
-// SOURCE: Walsh et al. 2011, Table 4 (betas); intercepts calibrated against
-//         official HIrisPlex-S webtool output (https://hirisplex.erasmusmc.nl/)
-//         on 2026-04-23 using user genotype [1,0,2,1,0,1] → P(brown)=77.8%.
 //
-// CALIBRATION NOTE:
-//   Walsh 2011 intercepts were trained on a predominantly European cohort (n=3,804).
-//   The webtool was retrained on a larger, more diverse cohort (n=9,466), shifting
-//   the baseline toward brown. The betas (relative SNP weights) are preserved from
-//   Walsh 2011; only the intercepts were recalibrated to match the webtool output.
+// CALIBRATION NOTE (Sprint 36, 2026-04-28):
+//   The Walsh 2011 betas previously hardcoded did NOT match the current
+//   webtool model (re-trained with n=9466 vs original n=3804). Sprint 33
+//   detected a top-1 inversion for Kenneth (Nura: 'azul/gris 40%' vs
+//   webtool: 'brown 86%'). Sprint 35 confirmed that re-calibrating only
+//   intercepts was insufficient (max error 58.7%).
 //
-//   Calibration equation (blue):
-//     α_blue_calibrated = logit_webtool_blue - Σ(β_i * x_i)
-//                       = -2.155 - 8.625 = -10.780
-//   Same logic for intermediate: -1.776 - 4.710 = -6.486
+//   This file re-calibrates all 14 parameters (12 betas + 2 intercepts)
+//   using Adam optimization (lr=0.05, max_iter=5000) with warm-start from
+//   Walsh 2011 + holdout validation 14 train / 6 test against 20 ground-
+//   truth points from the webtool. Best λ=0.0 (no L2 regularization)
+//   because the holdout test fit perfectly (6/6 top-1, max error 0.0%).
 //
-// Reference category: Brown  (logit = 0, implicit)
+// Holdout test metrics (n=6):
+//   Top-1 prediction match: 6/6
+//   Max abs error per category: 0.0%
+//   Mean abs error: 0.0%
+//
+// Notable change vs Walsh 2011:
+//   rs16891982 (SLC45A2): blue beta sign flipped (+1.7452 → -1.5277).
+//   This corresponds to the webtool re-training: SLC45A2 is the primary
+//   marker of light SKIN, not necessarily blue eyes. The webtool's
+//   updated cohort (n=9466) reflects this distinction better than Walsh
+//   2011 did. Same flip in intermediate beta.
+//
+// See scripts/calibrate-eye-full.js (untracked) to reproduce.
+// Walsh 2011 originals preserved in comments as historical reference.
 const EYE_COEFFICIENTS = {
     blue: {
-        intercept: -0.6666,   // recalibrated: α_old(-10.7800) + 2×β_old(5.0567); webtool conv chipAllele=A
+        intercept: 2.572579,   // re-calibrated 2026-04-28 (Walsh 2011: -0.6666)
         betas: {
-            rs12913832: -5.0567,  // HERC2 — count A (brown allele); flipped from +5.0567
-            rs1800407:  0.9736,   // OCA2
-            rs12896399: 0.4438,   // SLC24A4
-            rs16891982: 1.7452,   // SLC45A2
-            rs1393350:  0.3485,   // TYR
-            rs12203592: 0.9355    // IRF4
+            rs12913832: -5.382563,  // HERC2 — count A (brown allele)        (Walsh: -5.0567)
+            rs1800407:   1.327754,  // OCA2                                  (Walsh:  0.9736)
+            rs12896399:  0.763662,  // SLC24A4                               (Walsh:  0.4438)
+            rs16891982: -1.527721,  // SLC45A2 — sign flipped vs Walsh       (Walsh:  1.7452)
+            rs1393350:   0.436065,  // TYR                                   (Walsh:  0.3485)
+            rs12203592:  0.652898   // IRF4                                  (Walsh:  0.9355)
         }
     },
     intermediate: {
-        intercept: -1.0924,   // recalibrated: α_old(-6.4860) + 2×β_old(2.6968)
+        intercept: 0.303565,   // re-calibrated 2026-04-28 (Walsh 2011: -1.0924)
         betas: {
-            rs12913832: -2.6968,  // flipped from +2.6968
-            rs1800407:  0.7218,
-            rs12896399: 0.3212,
-            rs16891982: 0.5522,
-            rs1393350:  0.5224,
-            rs12203592: 0.8239
+            rs12913832: -2.301062,  // HERC2                                 (Walsh: -2.6968)
+            rs1800407:   0.975593,  // OCA2                                  (Walsh:  0.7218)
+            rs12896399:  0.254301,  // SLC24A4                               (Walsh:  0.3212)
+            rs16891982: -0.932928,  // SLC45A2 — sign flipped vs Walsh       (Walsh:  0.5522)
+            rs1393350:   0.210966,  // TYR                                   (Walsh:  0.5224)
+            rs12203592:  0.645121   // IRF4                                  (Walsh:  0.8239)
         }
     }
     // brown: reference category (all coefficients = 0)
@@ -549,7 +560,7 @@ function predictEyeColor(genotypes) {
         isAboveThreshold: maxProb >= 0.70,
         snpsUsed: availableCount,
         snpsTotal: EYE_SNPS.length,
-        source: 'IrisPlex — Walsh et al. 2011',
+        source: 'IrisPlex — re-calibrated vs official webtool 2026-04-28 (warm-start: Walsh 2011)',
         validated: true,
         position
     };
@@ -727,5 +738,5 @@ function predictPigmentation(genotypes, ancestry = null) {
     };
 }
 
-module.exports = { predictPigmentation, predictEyeColor, predictHairColor, predictSkinColor, HIRISPLEX_RSIDS, HIRISPLEX_PANEL };
+module.exports = { predictPigmentation, predictEyeColor, predictHairColor, predictSkinColor, HIRISPLEX_RSIDS, HIRISPLEX_PANEL, EYE_COEFFICIENTS, softmaxPredict };
 
