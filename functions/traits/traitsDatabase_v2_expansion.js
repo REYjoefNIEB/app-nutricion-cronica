@@ -18,34 +18,94 @@ const EXPANSION_TRAITS = {
         sliderMin: 'Tono suave / celeste',
         sliderMax: 'Tono intenso / ámbar',
         interpret(genotypes, ancestry = {}) {
+            // Hallazgo 2 — override HERC2 para usuarios no-europeos.
+            // rs1800407 (OCA2 R419Q) está calibrado para europeos y produce predicciones
+            // factualmente erradas en no-europeos. rs12913832 (HERC2) es el principal
+            // marcador cross-étnico (Sturm 2008, Eiberg 2008, ~74% varianza azul/marrón).
+            const eurFraction = (ancestry.EUR_N || 0) + (ancestry.EUR_S || 0);
+            const hasAncestryData = Object.values(ancestry).some(v => typeof v === 'number' && v > 0);
+            const isNonEuropean = hasAncestryData && eurFraction < 0.50;
+
+            // Override path: HERC2 tiene mayor evidencia que rs1800407 en no-europeos.
+            if (isNonEuropean) {
+                const herc2 = genotypes['rs12913832'];
+                if (herc2) {
+                    const sortedHerc2 = herc2.split('').sort().join('');
+                    if (sortedHerc2 === 'AA') {
+                        return {
+                            value: 'Ojos oscuros',
+                            confidence: 75,
+                            note: 'Predicción basada en rs12913832 (HERC2), el principal marcador de color de ojos. El alelo A homocigoto se asocia con producción alta de melanina ocular (ojos marrones oscuros), consistente con tu ancestría predominantemente no-europea. HERC2 tiene mucho mayor poder predictivo cross-étnico que rs1800407 (Sturm 2008, Eiberg 2008).',
+                            position: 90,
+                            ancestryAware: true,
+                            primarySnpUsed: 'rs12913832'
+                        };
+                    }
+                    if (sortedHerc2 === 'AG') {
+                        return {
+                            value: 'Ojos de tonalidad intermedia',
+                            confidence: 70,
+                            note: 'Predicción basada en rs12913832 (HERC2). El heterocigoto AG sugiere producción intermedia de melanina ocular. En tu ancestría no-europea, este genotipo puede asociarse con marrón claro a oscuro. HERC2 es el principal marcador de color de ojos cross-étnico.',
+                            position: 50,
+                            ancestryAware: true,
+                            primarySnpUsed: 'rs12913832'
+                        };
+                    }
+                    if (sortedHerc2 === 'GG') {
+                        return {
+                            value: 'Ojos claros (alelo derivado HERC2)',
+                            confidence: 75,
+                            note: 'Predicción basada en rs12913832 (HERC2). El homocigoto GG es altamente predictivo de ojos azules/claros (>95% en europeos). Tu genotipo es notable porque el alelo G es muy raro fuera de Europa — sugiere admixture europea reciente en tu linaje.',
+                            position: 10,
+                            ancestryAware: true,
+                            primarySnpUsed: 'rs12913832'
+                        };
+                    }
+                }
+                // Fallback: HERC2 ausente en chip + isNonEuropean — caer a rs1800407 con caveat
+            }
+
+            // Path original rs1800407 (preservado para europeos; con caveat para no-EU sin HERC2).
             const g = genotypes['rs1800407'];
             if (!g) return null;
             const amr = ancestry.AMR_NAT || 0;
             const isMestizo = amr > 0.20;
-            if (g === 'TT') return {
+
+            const buildResult = (base) => {
+                if (!isNonEuropean) return base;
+                // Caveat estilo KITLG: HERC2 no disponible y ancestría no-EU, predicción rs1800407
+                // pierde calibración. Marcar como menos informativa.
+                return {
+                    ...base,
+                    note: `${base.note} ⚠️ Predicción basada en rs1800407 (OCA2), calibrado para europeos. El SNP de mayor evidencia cross-étnica (rs12913832 HERC2) no está disponible en tu chip — la confianza de esta predicción es reducida para tu ancestría.`,
+                    nonInformativeForAncestry: true
+                };
+            };
+
+            if (g === 'TT') return buildResult({
                 value: isMestizo ? 'Marrón intenso / ámbar oscuro' : 'Ojos de tonalidad intensa',
                 confidence: 55,
                 note: isMestizo
                     ? `OCA2 rs1800407 TT. En fondo mestizo (${Math.round(amr * 100)}% AMR), modula la intensidad dentro del espectro marrón — de marrón claro a ámbar oscuro.`
                     : 'OCA2 rs1800407 TT. Modula el espectro dentro del eje azul-marrón hacia tonos más intensos (ámbar, avellana oscura).',
                 position: 80
-            };
-            if (g === 'CT' || g === 'TC') return {
+            });
+            if (g === 'CT' || g === 'TC') return buildResult({
                 value: isMestizo ? 'Marrón medio' : 'Tonalidad intermedia',
                 confidence: 45,
                 note: isMestizo
                     ? `Efecto heterocigoto OCA2. En fondo mestizo (${Math.round(amr * 100)}% AMR), probablemente marrón medio.`
                     : 'Efecto heterocigoto OCA2. Puede contribuir a ojos verde-avellana.',
                 position: 50
-            };
-            if (g === 'CC') return {
+            });
+            if (g === 'CC') return buildResult({
                 value: isMestizo ? 'Marrón claro / avellana' : 'Ojos de tonalidad suave',
                 confidence: 55,
                 note: isMestizo
                     ? `OCA2 rs1800407 CC. En fondo mestizo puede aclarar levemente el marrón. No implica ojos azules.`
                     : 'OCA2 rs1800407 CC. Asociado con tonos azul claro o gris en portadores de variante HERC2.',
                 position: isMestizo ? 30 : 20
-            };
+            });
             return null;
         }
     },
