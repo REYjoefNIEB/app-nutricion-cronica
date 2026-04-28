@@ -410,6 +410,13 @@ async function loadTraits() {
         if (err.message && err.message.includes('not-found')) {
             box.innerHTML = 'No se encontraron datos genéticos. <a href="../genetics/index.html" style="color:var(--primary)">Sube tu ADN primero →</a>';
         }
+        else if (err.code === 'failed-precondition' || (err.message && err.message.includes('failed-precondition'))) {
+            box.innerHTML = `
+                <strong>Ancestría no disponible</strong><br>
+                Los rasgos físicos requieren tu ancestría calculada primero, pero tu chip no tiene suficientes marcadores AIM para hacerlo automáticamente.<br><br>
+                Por favor, ve al tab <strong>Ancestría</strong> para ver el detalle del problema y opciones disponibles.
+            `;
+        }
     }
 }
 

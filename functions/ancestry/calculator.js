@@ -241,9 +241,66 @@ function calculateAncestry(userSnps) {
     };
 }
 
+/**
+ * Validates that the user's SNP file has enough AIMs for reliable ancestry computation.
+ * Replicates the pre-check that previously lived inline in functions/index.js
+ * (analyzeAncestry, lines 2706-2737) so it can be shared with analyzePhysicalTraits.
+ *
+ * @param {Object} snps - geneticProf.snps shape: { [rsid]: { genotype, ... } }
+ * @param {Object} [opts]
+ * @param {number} [opts.totalSnpsInFile=0] - geneticProf.totalSnps (used to differentiate
+ *        truncated/corrupted files from chips with limited AIM coverage)
+ * @param {string} [opts.fileFormat='desconocido'] - geneticProf.format (for the error message)
+ * @returns {{ valid: boolean, matchedAimsCount: number, errorCode?: string, errorMessage?: string }}
+ */
+function validateAncestryPrerequisites(snps, opts = {}) {
+    const totalSnpsInFile = opts.totalSnpsInFile ?? 0;
+    const fileFormat      = opts.fileFormat      ?? 'desconocido';
+
+    const aimRsids = new Set(AIMS.map(a => a.rsid));
+    const matchedAimsCount = snps
+        ? Object.keys(snps).filter(r => aimRsids.has(r)).length
+        : 0;
+
+    if (matchedAimsCount < MIN_SNPS) {
+        if (totalSnpsInFile < 100000) {
+            return {
+                valid: false,
+                matchedAimsCount,
+                errorCode: 'invalid-argument',
+                errorMessage:
+                    `Tu archivo ADN parece incompleto (${totalSnpsInFile.toLocaleString()} SNPs registrados). ` +
+                    'Los archivos raw de 23andMe, AncestryDNA y MyHeritage suelen tener entre 600 mil y 1 millón de SNPs. ' +
+                    'Descargá el archivo completo desde tu servicio y volvé a subirlo.'
+            };
+        }
+
+        return {
+            valid: false,
+            matchedAimsCount,
+            errorCode: 'failed-precondition',
+            errorMessage:
+                `Tu archivo ADN se procesó correctamente (${totalSnpsInFile.toLocaleString()} SNPs, formato ${fileFormat}), ` +
+                `pero tu chip solo cubre ${matchedAimsCount} de los ${AIMS.length} marcadores que Nura necesita ` +
+                `para el análisis de ancestría (mínimo ${MIN_SNPS}).\n\n` +
+                `Chips con cobertura completa:\n` +
+                `  • 23andMe v3, v4, v5 (2010 en adelante)\n` +
+                `  • AncestryDNA (todos los años)\n\n` +
+                `Chips con cobertura parcial (en expansión):\n` +
+                `  • MyHeritage (chip GSA) — soporte completo próximamente\n` +
+                `  • FTDNA — varía según el panel\n\n` +
+                `El resto de Nura (escáner de alimentos, interacciones medicamentosas, etc.) funciona normalmente. ` +
+                `Si tenés un archivo de 23andMe o AncestryDNA, podés subirlo mientras tanto.`
+        };
+    }
+
+    return { valid: true, matchedAimsCount };
+}
+
 module.exports = {
     computeAncestry,
     calculateAncestry,
+    validateAncestryPrerequisites,
     _countMinorAlleles,
     _internals: {
         binomialLikelihood,

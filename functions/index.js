@@ -2687,7 +2687,7 @@ exports.deleteGeneticData = onCall(
 // =================================================================
 // 🌍 FASE 1 — ANCESTRÍA
 // =================================================================
-const { calculateAncestry }    = require('./ancestry/calculator');
+const { calculateAncestry, validateAncestryPrerequisites } = require('./ancestry/calculator');
 
 exports.analyzeAncestry = onCall(
     { region: 'us-central1', memory: '512MiB', timeoutSeconds: 120, secrets: ['GENETIC_MASTER_KEY'] },
@@ -2703,37 +2703,14 @@ exports.analyzeAncestry = onCall(
             if (!geneticProf?.snps) throw new HttpsError('not-found', 'No se encontraron datos genéticos. Sube tu archivo ADN primero.');
 
             // Pre-check: count CLG AIMs available before running EM (avoids generic internal error)
-            const clgRsids = new Set(_CLG_AIMS.map(a => a.rsid));
-            const matchedAimsCount = Object.keys(geneticProf.snps).filter(r => clgRsids.has(r)).length;
+            const validation = validateAncestryPrerequisites(geneticProf.snps, {
+                totalSnpsInFile: geneticProf.totalSnps,
+                fileFormat:      geneticProf.format
+            });
 
-            if (matchedAimsCount < 50) {
-                const totalSnpsInFile = geneticProf.totalSnps ?? 0;
-                const fileFormat      = geneticProf.format    ?? 'desconocido';
-                console.warn(`[analyzeAncestry] uid=${uid} AIMs=${matchedAimsCount} totalSnps=${totalSnpsInFile} format=${fileFormat}`);
-
-                if (totalSnpsInFile < 100000) {
-                    // Likely a truncated or corrupted file
-                    throw new HttpsError('invalid-argument',
-                        `Tu archivo ADN parece incompleto (${totalSnpsInFile.toLocaleString()} SNPs registrados). ` +
-                        'Los archivos raw de 23andMe, AncestryDNA y MyHeritage suelen tener entre 600 mil y 1 millón de SNPs. ' +
-                        'Descargá el archivo completo desde tu servicio y volvé a subirlo.'
-                    );
-                }
-
-                // File is OK but chip does not cover enough AIMs
-                throw new HttpsError('failed-precondition',
-                    `Tu archivo ADN se procesó correctamente (${totalSnpsInFile.toLocaleString()} SNPs, formato ${fileFormat}), ` +
-                    `pero tu chip solo cubre ${matchedAimsCount} de los ${_CLG_AIMS.length} marcadores que Nura necesita ` +
-                    `para el análisis de ancestría (mínimo 50).\n\n` +
-                    `Chips con cobertura completa:\n` +
-                    `  • 23andMe v3, v4, v5 (2010 en adelante)\n` +
-                    `  • AncestryDNA (todos los años)\n\n` +
-                    `Chips con cobertura parcial (en expansión):\n` +
-                    `  • MyHeritage (chip GSA) — soporte completo próximamente\n` +
-                    `  • FTDNA — varía según el panel\n\n` +
-                    `El resto de Nura (escáner de alimentos, interacciones medicamentosas, etc.) funciona normalmente. ` +
-                    `Si tenés un archivo de 23andMe o AncestryDNA, podés subirlo mientras tanto.`
-                );
+            if (!validation.valid) {
+                console.warn(`[analyzeAncestry] uid=${uid} AIMs=${validation.matchedAimsCount} totalSnps=${geneticProf.totalSnps ?? 0} format=${geneticProf.format ?? 'desconocido'}`);
+                throw new HttpsError(validation.errorCode, validation.errorMessage);
             }
 
             const ancestryData = calculateAncestry(geneticProf.snps);
@@ -2781,13 +2758,18 @@ exports.analyzePhysicalTraits = onCall(
                 genotypes[rsid] = snpData.genotype;
             }
 
-            // Load ancestry composition for ancestry-aware trait interpretation
+            // Load ancestry composition for ancestry-aware trait interpretation.
+            // Estrategia C híbrida (Sprint 2 race-condition fix):
+            //   - Si ancestry/result existe: usarla.
+            //   - Si NO existe y AIMs >= 50: calcular server-side, persistir, proceder.
+            //   - Si NO existe y AIMs < 50: throw failed-precondition (frontend redirige a /ancestry).
             let ancestry = { AMR_NAT: 0, EUR_S: 0, EUR_N: 0, AFR_W: 0, AFR_E: 0, EAS_CN: 0, EAS_JP: 0, SAS: 0 };
             try {
-                const ancestrySnap = await admin.firestore()
+                const ancestryRef  = admin.firestore()
                     .collection('users').doc(uid)
-                    .collection('ancestry').doc('result')
-                    .get();
+                    .collection('ancestry').doc('result');
+                const ancestrySnap = await ancestryRef.get();
+
                 if (ancestrySnap.exists) {
                     const ad = ancestrySnap.data();
                     const pops = ad.subPopulations || ad.populations || {};
@@ -2803,12 +2785,48 @@ exports.analyzePhysicalTraits = onCall(
                     };
                 } else {
                     // RACE CONDITION: usuario llegó a /traits sin pasar por /ancestry.
-                    // Aplicamos fallback all-zeros pero loggeamos para medir el impacto.
-                    // Ver Sprint 2 (race-condition fix) para corrección arquitectónica.
-                    console.warn(`[Traits] RACE_CONDITION ancestry/result missing for uid=${uid} — applying zero fallback. This breaks Hallazgo 1 skin flag and Hallazgo 3 ASIP caveat.`);
+                    console.warn(`[Traits] RACE_CONDITION ancestry/result missing for uid=${uid} — attempting on-the-fly computation`);
+
+                    const validation = validateAncestryPrerequisites(geneticProf.snps, {
+                        totalSnpsInFile: geneticProf.totalSnps,
+                        fileFormat:      geneticProf.format
+                    });
+
+                    if (!validation.valid) {
+                        console.warn(`[Traits] AIMs insufficient for uid=${uid}: ${validation.matchedAimsCount} matched. Throwing ${validation.errorCode}.`);
+                        throw new HttpsError(validation.errorCode, validation.errorMessage);
+                    }
+
+                    const ancestryData = calculateAncestry(geneticProf.snps);
+                    const pops = ancestryData.subPopulations || ancestryData.populations || {};
+                    ancestry = {
+                        AMR_NAT: pops.AMR_NAT || 0,
+                        EUR_S:   pops.EUR_S   || 0,
+                        EUR_N:   pops.EUR_N   || 0,
+                        AFR_W:   pops.AFR_W   || 0,
+                        AFR_E:   pops.AFR_E   || 0,
+                        EAS_CN:  pops.EAS_CN  || 0,
+                        EAS_JP:  pops.EAS_JP  || 0,
+                        SAS:     pops.SAS     || 0,
+                    };
+
+                    // Persistir para que /ancestry la encuentre y para no recomputar.
+                    // Mantenemos el campo `analyzedAt` que usa analyzeAncestry, agregamos
+                    // `computedBy` para distinguir el cómputo automático del oficial.
+                    await ancestryRef.set({
+                        ...ancestryData,
+                        analyzedAt:        admin.firestore.FieldValue.serverTimestamp(),
+                        computedBy:        'analyzePhysicalTraits',
+                        matchedAimsCount:  validation.matchedAimsCount
+                    });
+
+                    console.log(`[Traits] ancestry computed and persisted on-the-fly for uid=${uid}`);
                 }
             } catch (e) {
-                console.log('[Traits] Firestore error reading ancestry, using default interpretation:', e?.message);
+                if (e instanceof HttpsError && e.code === 'failed-precondition') throw e;
+                if (e instanceof HttpsError && e.code === 'invalid-argument')   throw e;
+                console.error(`[Traits] Unexpected error during ancestry handling for uid=${uid}:`, e?.message);
+                // ancestry queda en all-zeros; análisis procede con datos degradados.
             }
 
             const traits = {};
