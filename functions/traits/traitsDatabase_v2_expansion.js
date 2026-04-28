@@ -82,7 +82,7 @@ const EXPANSION_TRAITS = {
     },
 
     hair_color_red_mc1r: {
-        name: 'Cabello pelirrojo (MC1R R160W)',
+        name: 'Cabello pelirrojo (MC1R)',
         icon: '🦰',
         category: 'appearance',
         evidence: 'high',
@@ -90,29 +90,70 @@ const EXPANSION_TRAITS = {
         sliderMin: 'Sin variante pelirroja',
         sliderMax: 'Pelirrojo probable',
         interpret(genotypes, ancestry = {}) {
-            const mc1r_r160w = genotypes['rs1805008'];
-            const mc1r_r151c = genotypes['rs1805007'];
-            if (!mc1r_r160w) return null;
-            const amr = ancestry.AMR_NAT || 0;
-            const isMestizo = amr > 0.20;
-            if (mc1r_r160w === 'TT') return {
-                value: isMestizo ? 'Variante MC1R presente — expresión pelirroja improbable en fondo mestizo' : 'Alta probabilidad de cabello rojo',
-                confidence: isMestizo ? 60 : 80,
-                note: isMestizo
-                    ? `MC1R R160W TT. Esta variante requiere fondo de baja eumelanina para expresarse. Con ${Math.round(amr * 100)}% AMR la melanina basal suprime el fenotipo pelirrojo visible.`
-                    : 'MC1R R160W TT. Variante recesiva fuertemente asociada con fenotipo pelirrojo. En europeos homocigotos, ~90% tienen cabello rojo/naranja.',
-                position: isMestizo ? 25 : 90
+            // Panel de 6 R alleles (alta penetrancia) según literatura:
+            // Beaumont 2007, Lichtenwalter 2019, M-SKIP 2015.
+            // Excluye r alleles (V60L, V92M, R163Q) por efecto bidireccional reportado.
+            //
+            // Convención: alelo ancestral (sin variante) primero, alelo derivado (variante R) segundo.
+            const R_ALLELES = [
+                { rsid: 'rs1805007',  aa: 'R151C', ancestral: 'C', variant: 'T' },
+                { rsid: 'rs1805008',  aa: 'R160W', ancestral: 'C', variant: 'T' },
+                { rsid: 'rs1805009',  aa: 'D294H', ancestral: 'G', variant: 'C' },
+                { rsid: 'rs1805006',  aa: 'D84E',  ancestral: 'C', variant: 'A' },
+                { rsid: 'rs11547464', aa: 'R142H', ancestral: 'G', variant: 'A' },
+                { rsid: 'rs1110400',  aa: 'I155T', ancestral: 'T', variant: 'C' }
+            ];
+
+            let totalVariants = 0;
+            const variantsFound = [];
+            const snpsAnalyzed = [];
+            const snpsAbsent = [];
+
+            for (const allele of R_ALLELES) {
+                const g = genotypes[allele.rsid];
+                if (!g || g === '--') {
+                    snpsAbsent.push(allele.aa);
+                    continue;
+                }
+                snpsAnalyzed.push(allele.aa);
+
+                const sortedG = g.split('').sort().join('');
+                const expectedHetero      = [allele.ancestral, allele.variant].sort().join('');
+                const expectedVariantHomo = [allele.variant, allele.variant].sort().join('');
+
+                if (sortedG === expectedVariantHomo) {
+                    totalVariants += 2;
+                    variantsFound.push(`${allele.aa} homocigoto`);
+                } else if (sortedG === expectedHetero) {
+                    totalVariants += 1;
+                    variantsFound.push(`${allele.aa} heterocigoto`);
+                }
+            }
+
+            if (snpsAnalyzed.length === 0) return null;
+
+            if (totalVariants >= 2) {
+                return {
+                    value: 'Alta probabilidad de cabello rojo',
+                    confidence: 80,
+                    note: `Variantes RHC detectadas: ${variantsFound.join(', ')}. Homocigotos o heterocigotos compuestos en R alleles producen cabello rojo en hasta 96% de los casos según literatura. Panel analizado: ${snpsAnalyzed.length}/${R_ALLELES.length} SNPs (${snpsAnalyzed.join(', ')}).`,
+                    position: 90
+                };
+            }
+            if (totalVariants === 1) {
+                return {
+                    value: 'Portador MC1R — posibles reflejos rojizos',
+                    confidence: 65,
+                    note: `Variante RHC detectada: ${variantsFound[0]}. Heterocigoto simple en un R allele puede expresarse como tonos rojizos sutiles, especialmente en barba o vello. Panel analizado: ${snpsAnalyzed.length}/${R_ALLELES.length} SNPs.`,
+                    position: 50
+                };
+            }
+            return {
+                value: 'Sin variantes RHC detectadas',
+                confidence: 70,
+                note: `No se detectan variantes R alleles en el panel analizado. Panel: ${snpsAnalyzed.length}/${R_ALLELES.length} SNPs (${snpsAnalyzed.join(', ')})${snpsAbsent.length > 0 ? `. SNPs no cubiertos por tu chip: ${snpsAbsent.join(', ')}.` : ''} Fenotipo pelirrojo improbable por este panel.`,
+                position: 10
             };
-            if (mc1r_r160w === 'CT' || mc1r_r160w === 'TC') return {
-                value: isMestizo ? 'Portador MC1R — sin efecto visible esperable' : 'Portador MC1R — posibles reflejos rojizos',
-                confidence: isMestizo ? 55 : 55,
-                note: isMestizo
-                    ? `Heterocigoto R160W. En fondo mestizo (${Math.round(amr * 100)}% AMR), los reflejos rojizos son poco probables dado el alto nivel de eumelanina.`
-                    : 'Heterocigoto R160W. Puede haber reflejos cobre-rojizos, especialmente con exposición solar.',
-                position: isMestizo ? 15 : 55
-            };
-            if (mc1r_r160w === 'CC') return { value: 'Sin variante R160W', confidence: 70, note: 'No se detecta R160W. El fenotipo pelirrojo por este locus es improbable.', position: 10 };
-            return null;
         }
     },
 
