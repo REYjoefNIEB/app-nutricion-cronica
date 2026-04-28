@@ -76,7 +76,29 @@ const EXPANSION_TRAITS = {
                 confidence: isMestizo ? 50 : 45,
                 position: isMestizo ? 15 : 50
             };
-            if (g === 'TT') return { value: 'Sin aclaramiento por KITLG', confidence: 55, note: 'Alelo ancestral. Sin contribución al fenotipo rubio por este locus.', position: 15 };
+            if (g === 'TT') {
+                // Hallazgo 2 — caveat para usuarios no-europeos en branch TT.
+                // El alelo derivado C de KITLG es muy raro fuera de Europa, así que TT
+                // (alelo ancestral) es trivialmente común en no-europeos y la "predicción"
+                // no aporta información. Solo agregamos caveat en TT — CT/CC siguen siendo
+                // informativos en cualquier ancestría.
+                // Threshold consistente con Hallazgo 1 (skin low-confidence flag).
+                const eurFraction = (ancestry.EUR_N || 0) + (ancestry.EUR_S || 0);
+                const hasAncestryData = Object.values(ancestry).some(v => typeof v === 'number' && v > 0);
+                const isNonEuropean = hasAncestryData && eurFraction < 0.50;
+
+                const baseNote = 'Alelo ancestral. Sin contribución al fenotipo rubio por este locus.';
+                if (isNonEuropean) {
+                    return {
+                        value: 'Sin aclaramiento por KITLG',
+                        confidence: 55,
+                        note: `${baseNote} ⚠️ Predicción no informativa para tu ancestría: el alelo derivado de KITLG (rs12821256) es muy raro fuera de poblaciones europeas, por lo que el genotipo TT es trivialmente común en tu perfil. La ausencia de variante por este locus no aporta información predictiva sobre tu fenotipo.`,
+                        position: 15,
+                        nonInformativeForAncestry: true
+                    };
+                }
+                return { value: 'Sin aclaramiento por KITLG', confidence: 55, note: baseNote, position: 15 };
+            }
             return null;
         }
     },
