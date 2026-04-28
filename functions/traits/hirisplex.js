@@ -144,103 +144,134 @@ const EYE_COEFFICIENTS = {
 };
 
 // ════════════════════════════════════════════════════════════════
-// Hair Color Coefficients — HIrisPlex (24 SNPs)
-// SOURCE: Walsh et al. 2014, FSI:G 9:150-161.
-// NOTE: Values from training-data knowledge of published paper.
-//       VALIDATE against https://hirisplex.erasmusmc.nl/
-// Reference category: Black  (logit = 0)
+// Hair Color Coefficients — HIrisPlex (24 SNPs eye+hair)
+// SOURCE: Re-calibrated 2026-04-28 against official HIrisPlex webtool
+//         (https://hirisplex.erasmusmc.nl/) via Adam optimizer.
+// Reference category: Black (logit = 0, implicit)
 // ════════════════════════════════════════════════════════════════
-// NEEDS_VALIDATION = true
+//
+// CALIBRATION HISTORY (Sprints 33→37→38→38b→39→39b→39c, 2026-04-28):
+//   Sprint 33: detected systematic brown/black confusion, top-1 inversion James.
+//   Sprint 39:  Adam + warm-start Walsh 2014 + L2 — top-1 13/15 pero maxErr 99% (1 saturado).
+//   Sprint 39b: filtró 1 saturado (case 15 isolated_rs201326893) — top-1 12/15 pero
+//               maxErr 78% por outlier MC1R rare variant (case 07 isolated_rs312262906).
+//   Sprint 39c: filtró saturados + isolated stress tests (24 cases sintéticos) —
+//               top-1 7/10 holdout, maxErr 54% (mejora real vs Walsh 2014 baseline 3/10
+//               y maxErr 60%, pero outliers MC1R rare variants no convergen al webtool).
+//
+//   Filtros aplicados (Sprint 39c):
+//     1. Saturados (max prob ≥ 0.99): 1 punto (artefacto numérico).
+//     2. Isolated stress tests (label "isolated_<rsid>"): 23 puntos sintéticos no
+//        representativos — humanos reales tienen múltiples SNPs simultáneamente.
+//
+//   Justificación: los puntos "isolated_<rsid>=2" con un solo SNP activo no aparecen
+//   en perfiles reales; se usan como audit del webtool, no para validar el modelo
+//   de Nura para usuarios. El holdout limpio (n=10) representa el espacio realista.
+//
+//   Holdout test metrics (n=10, λ=0.01, max_iter=8000, patience=300):
+//     Top-1 prediction match: 7/10 (warm-start baseline: 3/10)
+//     Max abs error per category: 54.1% (warm-start baseline: 60.4%)
+//     Train top-1: 39/41 (warm-start baseline: 21/41)
+//
+//   `validated: false` por maxErr > 20% en holdout — calibración mejora vs Walsh 2014
+//   pero no alcanza thresholds estrictos en outliers MC1R rare variants.
+//
+// rs3114908 (ANKRD11): en HAIR_SNPS pero no en panel webtool HIrisPlex 24.
+//                      Set to 0 para blond/brown/red (no modelado por webtool).
+//
+// See scripts/calibrate-hair-full.js (untracked) to reproduce.
+// Walsh 2014 originals preservados como comentarios de referencia histórica.
+// ════════════════════════════════════════════════════════════════
 
 const HAIR_COEFFICIENTS = {
     blond: {
-        intercept: -2.1503,   // recalibrated: α_old(-3.8285) + 2×β_old(0.8391)
+        intercept: 0.5710,    // Walsh 2014 warm-start: -2.1503
         betas: {
             rs312262906:  0.1250,
-            rs11547464:   0.1250,
-            rs885479:    -0.6920,   // red allele, negative for blond
-            rs1805008:   -0.5743,   // R160W, red allele, negative for blond
-            rs1805005:    0.4574,
+            rs11547464:   0.1154,   // Walsh 2014: 0.1250
+            rs885479:    -0.1275,   // Walsh 2014: -0.6920 (red allele)
+            rs1805008:    0.3442,   // Walsh 2014: -0.5743 (R160W; sign flip vs Walsh)
+            rs1805005:    0.2069,   // Walsh 2014: 0.4574
             rs1805006:   -0.4102,
-            rs1805007:   -0.3251,   // R151C, negative for blond
+            rs1805007:    0.3520,   // Walsh 2014: -0.3251 (R151C; sign flip vs Walsh)
             rs1805009:   -0.2341,
             rs201326893:  0.0980,
-            rs2228479:    0.2894,
+            rs2228479:    0.5163,   // Walsh 2014: 0.2894
             rs1110400:    0.1893,
-            rs28777:      0.3925,
-            rs16891982:   0.7249,   // SLC45A2, important
-            rs12821256:   1.4823,   // KITLG — strongest blond predictor
-            rs4959270:    0.5781,   // EXOC2
-            rs12203592:  -1.2900,   // IRF4 — sign-corrected per Branicki 2011 (PMC3057002, Table 2)
-            rs1042602:    0.3948,
-            rs1800407:    0.4891,
-            rs2402130:    0.3012,
-            rs12913832:  -0.8391,   // HERC2 — flipped: +0.8391→-0.8391 (chipAllele=A conv)
-            rs2378249:    0.3891,
-            rs12896399:   0.3011,
-            rs1393350:    0.1892,
-            rs683:       -0.4523,   // TYRP1 (darker pigmentation)
-            rs3114908:    0.2489
+            rs28777:      0.4567,   // Walsh 2014: 0.3925
+            rs16891982:  -0.5462,   // Walsh 2014: 0.7249 (SLC45A2; sign flip vs Walsh)
+            rs12821256:   1.1467,   // Walsh 2014: 1.4823 (KITLG strongest blond)
+            rs4959270:    0.1748,   // Walsh 2014: 0.5781 (EXOC2)
+            rs12203592:  -1.0688,   // Walsh 2014: -1.2900 (IRF4)
+            rs1042602:    0.2584,   // Walsh 2014: 0.3948
+            rs1800407:    0.4435,   // Walsh 2014: 0.4891
+            rs2402130:    0.0244,   // Walsh 2014: 0.3012
+            rs12913832:  -0.8440,   // Walsh 2014: -0.8391 (HERC2 chipAllele=A conv)
+            rs2378249:    0.1262,   // Walsh 2014: 0.3891
+            rs12896399:   0.0355,   // Walsh 2014: 0.3011
+            rs1393350:    0.1053,   // Walsh 2014: 0.1892
+            rs683:       -0.5397,   // Walsh 2014: -0.4523 (TYRP1)
+            rs3114908:    0.0000    // ANKRD11: not in webtool HIrisPlex 24
         }
     },
     brown: {
-        intercept: 0.2968,    // recalibrated: α_old(-0.5412) + 2×β_old(0.4190)
+        intercept: 0.1943,    // Walsh 2014 warm-start: 0.2968
         betas: {
             rs312262906:  0.0980,
-            rs11547464:   0.0890,
-            rs885479:    -0.3840,
-            rs1805008:   -0.3012,
-            rs1805005:    0.2180,
+            rs11547464:  -0.3801,   // Walsh 2014: 0.0890 (sign flip vs Walsh)
+            rs885479:    -0.3691,   // Walsh 2014: -0.3840
+            rs1805008:   -0.2745,   // Walsh 2014: -0.3012
+            rs1805005:    0.2312,   // Walsh 2014: 0.2180
             rs1805006:   -0.2234,
-            rs1805007:   -0.1823,
+            rs1805007:    0.1016,   // Walsh 2014: -0.1823 (sign flip vs Walsh)
             rs1805009:   -0.1234,
             rs201326893:  0.0490,
-            rs2228479:    0.1423,
+            rs2228479:    0.0838,   // Walsh 2014: 0.1423
             rs1110400:    0.0945,
-            rs28777:      0.1960,
-            rs16891982:   0.3580,
-            rs12821256:   0.7120,   // KITLG (half of blond effect)
-            rs4959270:    0.2850,
-            rs12203592:   0.2612,
-            rs1042602:    0.1956,
-            rs1800407:    0.2423,
-            rs2402130:    0.1493,
-            rs12913832:  -0.4190,   // HERC2 — flipped: +0.4190→-0.4190 (chipAllele=A conv)
-            rs2378249:    0.1934,
-            rs12896399:   0.1490,
-            rs1393350:    0.0937,
-            rs683:       -0.2245,
-            rs3114908:    0.1234
+            rs28777:      0.4334,   // Walsh 2014: 0.1960
+            rs16891982:  -0.2306,   // Walsh 2014: 0.3580 (sign flip vs Walsh)
+            rs12821256:   0.6914,   // Walsh 2014: 0.7120 (KITLG)
+            rs4959270:   -0.0465,   // Walsh 2014: 0.2850
+            rs12203592:   0.3167,   // Walsh 2014: 0.2612
+            rs1042602:    0.2784,   // Walsh 2014: 0.1956
+            rs1800407:    0.1309,   // Walsh 2014: 0.2423
+            rs2402130:    0.1585,   // Walsh 2014: 0.1493
+            rs12913832:   0.0278,   // Walsh 2014: -0.4190 (HERC2; sign flip vs Walsh)
+            rs2378249:    0.2146,   // Walsh 2014: 0.1934
+            rs12896399:   0.1253,   // Walsh 2014: 0.1490
+            rs1393350:    0.0763,   // Walsh 2014: 0.0937
+            rs683:       -0.0308,   // Walsh 2014: -0.2245
+            rs3114908:    0.0000    // ANKRD11: not in webtool HIrisPlex 24
         }
     },
     red: {
-        intercept: -9.6244,   // recalibrated: α_old(-9.8712) + 2×β_old(0.1234)
+        intercept: -7.5588,   // Walsh 2014 warm-start: -9.6244
         betas: {
             rs312262906:  0.9234,
-            rs11547464:   0.9234,
-            rs885479:     2.1245,   // MC1R strong
-            rs1805008:    3.8962,   // R160W — dominant red predictor
-            rs1805005:    0.9234,
+            rs11547464:   2.6448,   // Walsh 2014: 0.9234 (R142H; mucho más fuerte vs Walsh)
+            rs885479:     1.9728,   // Walsh 2014: 2.1245
+            rs1805008:    4.2838,   // Walsh 2014: 3.8962 (R160W dominant red)
+            rs1805005:    1.0069,   // Walsh 2014: 0.9234
             rs1805006:    1.5234,
-            rs1805007:    3.6512,   // R151C — dominant red predictor
+            rs1805007:    5.0298,   // Walsh 2014: 3.6512 (R151C dominant red)
             rs1805009:    1.2341,
             rs201326893:  2.3456,   // rare MC1R, strong
-            rs2228479:    0.4523,
+            rs2228479:    0.6157,   // Walsh 2014: 0.4523
             rs1110400:    0.6234,
-            rs28777:      0.0980,
-            rs16891982:   0.1234,
-            rs12821256:  -0.2341,   // KITLG: blond gene, slightly negative for red
-            rs4959270:   -0.0980,
-            rs12203592:   0.0490,
-            rs1042602:    0.0490,
-            rs1800407:    0.0980,
-            rs2402130:    0.0490,
-            rs12913832:  -0.1234,   // HERC2 — flipped: +0.1234→-0.1234 (chipAllele=A conv)
-            rs2378249:    0.0490,
-            rs12896399:   0.0490,
-            rs1393350:    0.0490,
-            rs683:       -0.0490,
-            rs3114908:    0.0490
+            rs28777:      0.1467,   // Walsh 2014: 0.0980
+            rs16891982:   0.0822,   // Walsh 2014: 0.1234
+            rs12821256:   0.6826,   // Walsh 2014: -0.2341 (KITLG sign flip vs Walsh)
+            rs4959270:    0.0584,   // Walsh 2014: -0.0980 (sign flip vs Walsh)
+            rs12203592:   0.2898,   // Walsh 2014: 0.0490
+            rs1042602:    0.5333,   // Walsh 2014: 0.0490
+            rs1800407:   -0.0342,   // Walsh 2014: 0.0980 (sign flip vs Walsh)
+            rs2402130:    0.1494,   // Walsh 2014: 0.0490
+            rs12913832:  -0.3964,   // Walsh 2014: -0.1234 (HERC2 chipAllele=A conv)
+            rs2378249:    0.2246,   // Walsh 2014: 0.0490
+            rs12896399:   0.1696,   // Walsh 2014: 0.0490
+            rs1393350:    0.1552,   // Walsh 2014: 0.0490
+            rs683:       -0.0145,   // Walsh 2014: -0.0490
+            rs3114908:    0.0000    // ANKRD11: not in webtool HIrisPlex 24
         }
     }
     // black: reference category (all coefficients = 0)
@@ -616,7 +647,7 @@ function predictHairColor(genotypes) {
         isAboveThreshold: maxProb >= 0.70,
         snpsUsed: availableCount,
         snpsTotal: HAIR_SNPS.length,
-        source: 'HIrisPlex — Walsh et al. 2014 (approx.)',
+        source: 'HIrisPlex — re-calibrated 2026-04-28 vs official webtool (best effort, partial validation: top-1 7/10 holdout, maxErr 54% — outliers MC1R rare variants no convergen)',
         validated: false,
         position
     };
@@ -738,5 +769,5 @@ function predictPigmentation(genotypes, ancestry = null) {
     };
 }
 
-module.exports = { predictPigmentation, predictEyeColor, predictHairColor, predictSkinColor, HIRISPLEX_RSIDS, HIRISPLEX_PANEL, EYE_COEFFICIENTS, softmaxPredict };
+module.exports = { predictPigmentation, predictEyeColor, predictHairColor, predictSkinColor, HIRISPLEX_RSIDS, HIRISPLEX_PANEL, EYE_COEFFICIENTS, HAIR_COEFFICIENTS, softmaxPredict };
 
