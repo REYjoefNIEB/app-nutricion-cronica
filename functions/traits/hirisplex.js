@@ -727,5 +727,5 @@ function predictPigmentation(genotypes, ancestry = null) {
     };
 }
 
-module.exports = { predictPigmentation, predictEyeColor, predictHairColor, predictSkinColor, HIRISPLEX_RSIDS };
+module.exports = { predictPigmentation, predictEyeColor, predictHairColor, predictSkinColor, HIRISPLEX_RSIDS, HIRISPLEX_PANEL };
 
