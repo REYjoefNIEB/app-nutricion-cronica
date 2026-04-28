@@ -2,7 +2,9 @@
 
 /**
  * Universal DNA file parser.
- * Supported formats: 23andMe (TSV), AncestryDNA (TSV), MyHeritage (CSV), FTDNA/LivingDNA (CSV).
+ * Supported formats: 23andMe (TSV), AncestryDNA (TSV), MyHeritage (CSV), FTDNA (CSV).
+ * Note: FTDNA uses the MyHeritage parser internally (parseFTDNA wraps parseMyHeritage).
+ *       LivingDNA is not currently supported — earlier docstrings listed it incorrectly.
  * ZIP auto-extraction: parseDNABuffer() detects ZIP magic bytes and extracts the inner file.
  */
 

@@ -380,7 +380,7 @@ const CANCER_PREDISPOSITION = {
   // Este rsid fue fusionado en rs80357783 en dbSNP build 136 (2010) y tiene 12
   // anotaciones inconsistentes entre bases de datos (Munz et al. 2015, Genome Medicine).
   // NO es seguro para uso clínico en producción. 5382insC se detecta correctamente
-  // vía rs80357906 (entrada anterior). 185delAG pendiente de rs80357914 (Parte B, SPRINT_07).
+  // vía rs80357906 (entrada anterior). 185delAG se detecta vía i4000377 (entrada arriba).
   rs80359550: {
     // BRCA2 6174delT — DELECIÓN (convención opuesta a la inserción de rs80357906).
     // Convención D/I 23andMe para DELECIONES:

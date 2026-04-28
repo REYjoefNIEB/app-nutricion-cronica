@@ -1,10 +1,11 @@
 'use strict';
 
 /**
- * Ancestry EM algorithm — K=9 sub-populations (NURA 4.1-B).
+ * Ancestry EM algorithm — K=8 sub-populations (POPULATIONS array length).
  *
  * Uses ADMIXTURE-style EM with binomial likelihood per AIM.
- * Panel: 141 CLG AIMs (Verdugo et al 2020, Biol Res 53:15).
+ * Panel: 247 AIMs (CLG141 Verdugo 2020 + Kidd 55 + Seldin 128, deduplicated).
+ * Version constant: see referenceData.VERSION (currently v3-247AIMs-CLG141+KS106-2026-04-22).
  * Sub-populations: EUR_N, EUR_S, AFR_W, AFR_E, EAS_CN, EAS_JP, SAS, AMR_NAT.
  */
 
@@ -117,7 +118,7 @@ function emStep(qArr, matchedAims, userSnps, regularization) {
  * @param {{ maxIter?, tolerance?, regularize? }} opts
  * @returns {{
  *   populations:   { [pop: string]: number },   // K=8 sub-pop Q-vector
- *   macroRegions:  { [region: string]: number }, // K=6 legacy macro-regions
+ *   macroRegions:  { [region: string]: number }, // 5 active macro-regions (EUR, AFR, EAS, SAS, AMR_NAT) + OCE always 0
  *   aimsAnalyzed:  number,
  *   totalAimsInDb: number,
  *   iterations:    number,

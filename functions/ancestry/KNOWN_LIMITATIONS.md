@@ -1,8 +1,8 @@
-# Nura Ancestry Panel — Known Limitations (v2-CLG141-K9)
+# Nura Ancestry Panel — Known Limitations (v3-247AIMs-CLG141+KS106)
 
 ## Chip compatibility
 
-The panel uses 141 ancestry-informative markers (AIMs) from Verdugo et al. 2020 (ChileGenomico, Biol Res 53:15) with allele frequencies from 1000 Genomes Phase 3.
+The panel uses 247 ancestry-informative markers (AIMs): 141 from Verdugo et al. 2020 (ChileGenomico, Biol Res 53:15) plus 106 from Kidd et al. 2014 and Kosoy/Seldin et al. 2009, with allele frequencies from 1000 Genomes Phase 3.
 
 ### Validated chips
 
@@ -32,7 +32,7 @@ Users uploading 23andMe data downloaded before 2012 may see inflated SAS (South 
 
 With fewer than ~80 matched AIMs (sparse chip coverage), the EM algorithm may not converge within the default 500 iterations. The result at iteration 500 is still biologically valid (difference from converged solution is <0.5% per population), but the `converged: false` flag will appear in the Firestore result.
 
-This is expected for 23andMe v3/v4 chips where only ~40-60% of the 141 CLG AIMs are present on the chip.
+This is expected for 23andMe v3/v4 chips where only ~50-65% of the 247 AIMs are present on the chip (typically 120-150 matched).
 
 ---
 
@@ -83,5 +83,5 @@ Based on validation:
 
 ---
 
-Generated: 2026-04-22
-Version: v2-CLG141-K9-2026-04-22
+Generated: 2026-04-22 (panel) — last reviewed 2026-04-27 (post-K=8 + 247-AIM panel refresh)
+Version: v3-247AIMs-CLG141+KS106-2026-04-22

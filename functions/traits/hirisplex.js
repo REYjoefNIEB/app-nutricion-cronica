@@ -612,7 +612,7 @@ function predictHairColor(genotypes) {
 }
 
 // ════════════════════════════════════════════════════════════════
-// Skin color prediction (HIrisPlex-S, 36 SNPs) — APPROXIMATE coefficients
+// Skin color prediction (HIrisPlex-S, 35 SNPs) — APPROXIMATE coefficients
 // ════════════════════════════════════════════════════════════════
 
 const SKIN_SNPS_LIST = [
@@ -728,27 +728,4 @@ function predictPigmentation(genotypes, ancestry = null) {
 }
 
 module.exports = { predictPigmentation, predictEyeColor, predictHairColor, predictSkinColor, HIRISPLEX_RSIDS };
-
-/**
- * KNOWN ISSUE — Onboarding order race condition (NOT FIXED in this sprint)
- *
- * The current Cloud Function flow does NOT guarantee that analyzeAncestry runs
- * before analyzePhysicalTraits. If a user uploads DNA and navigates directly
- * to /traits without first visiting /ancestry, the fallback in
- * functions/index.js:2785 sets ALL ancestry sub-populations to 0.
- *
- * In that degenerate case, eurFraction reconstruction yields 0, which is
- * < 0.50, so the lowConfidenceAncestry flag would activate INCORRECTLY for
- * users with European ancestry whose ancestry hasn't been computed yet.
- *
- * This affects more than the skin flag: any legacy decision based on isMestizo
- * (e.g. in functions/traits/traitsDatabase.js) is also impacted.
- *
- * Proper fix requires refactoring the analyzePhysicalTraits flow to either:
- *   (a) Throw 'failed-precondition' when ancestry/result is missing, forcing
- *       the frontend to redirect the user to /ancestry first.
- *   (b) Trigger analyzeAncestry server-side as a dependency.
- *
- * Tracked separately. See SPRINT_14_handoff for next session.
- */
 
