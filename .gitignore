@@ -68,3 +68,7 @@ scripts/validation-data/hirisplex_oracle_queries.csv
 scripts/validation-data/hirisplex_oracle_results.json
 scripts/validation-data/hair_coefficients_extracted.json
 scripts/validation-data/hair_coefficients_audit_report.md
+
+# ── Synthetic DNA test data (local only — never commit) ───────────
+dna-test-data/synthetic_*.txt
+dna-test-data/
