@@ -2801,9 +2801,14 @@ exports.analyzePhysicalTraits = onCall(
                         EAS_JP:  pops.EAS_JP  || 0,
                         SAS:     pops.SAS     || 0,
                     };
+                } else {
+                    // RACE CONDITION: usuario llegó a /traits sin pasar por /ancestry.
+                    // Aplicamos fallback all-zeros pero loggeamos para medir el impacto.
+                    // Ver Sprint 2 (race-condition fix) para corrección arquitectónica.
+                    console.warn(`[Traits] RACE_CONDITION ancestry/result missing for uid=${uid} — applying zero fallback. This breaks Hallazgo 1 skin flag and Hallazgo 3 ASIP caveat.`);
                 }
             } catch (e) {
-                console.log('[Traits] No ancestry data for user, using default interpretation');
+                console.log('[Traits] Firestore error reading ancestry, using default interpretation:', e?.message);
             }
 
             const traits = {};
