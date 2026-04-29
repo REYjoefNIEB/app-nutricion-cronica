@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nura Doctor — Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../onboarding/styles.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="doctor-dashboard">
+    <!-- Disclaimer permanente Nura Doctor (Salvaguarda permanente UI según spec v5.1) -->
+    <div class="doctor-disclaimer-banner">
+        ⚠️ Apoyo clínico — no reemplaza juicio profesional. Datos sensibles tratados según Ley 19.628 y 21.719.
+    </div>
+
+    <div class="doctor-container">
+        <!-- Header del dashboard -->
+        <header class="doctor-header">
+            <div class="doctor-brand">
+                <span class="brand-icon">⚕️</span>
+                <span class="brand-name">Nura Doctor</span>
+            </div>
+            <div class="doctor-account">
+                <span id="trial-badge" class="trial-badge">Trial</span>
+                <span id="trial-days-remaining" class="trial-days"></span>
+                <button id="btn-switch-to-person" class="btn-link">Modo paciente</button>
+            </div>
+        </header>
+
+        <!-- Bienvenida -->
+        <section class="welcome-section">
+            <h1>Bienvenido a Nura Doctor</h1>
+            <p id="welcome-message">Tu asistente clínico está listo. Estas son las herramientas que tendrás disponibles.</p>
+        </section>
+
+        <!-- Grid de features (placeholders para Sprint M1) -->
+        <section class="features-grid">
+            <div class="feature-card placeholder">
+                <div class="feature-icon">🎙️</div>
+                <h3>Scribe AI</h3>
+                <p>Graba consultas y obtén notas SOAP estructuradas automáticamente.</p>
+                <span class="coming-soon">Próximamente</span>
+            </div>
+
+            <div class="feature-card placeholder">
+                <div class="feature-icon">🧮</div>
+                <h3>Calculadoras clínicas</h3>
+                <p>25 calculadoras: nefrología, cardiología, medicina general, pediatría, endocrinología.</p>
+                <span class="coming-soon">Próximamente</span>
+            </div>
+
+            <div class="feature-card placeholder">
+                <div class="feature-icon">💊</div>
+                <h3>Vademécum</h3>
+                <p>Búsqueda rápida de medicamentos + chequeo automático de interacciones.</p>
+                <span class="coming-soon">Próximamente</span>
+            </div>
+
+            <div class="feature-card placeholder">
+                <div class="feature-icon">📋</div>
+                <h3>Generador de órdenes</h3>
+                <p>Órdenes de exámenes, certificados, licencias e interconsultas — automáticos desde el SOAP.</p>
+                <span class="coming-soon">Próximamente</span>
+            </div>
+
+            <div class="feature-card placeholder">
+                <div class="feature-icon">🏷️</div>
+                <h3>Buscador CIE-10</h3>
+                <p>Códigos diagnósticos en español con búsqueda inteligente.</p>
+                <span class="coming-soon">Próximamente</span>
+            </div>
+
+            <div class="feature-card placeholder">
+                <div class="feature-icon">📊</div>
+                <h3>Tablas clínicas</h3>
+                <p>KDIGO, NYHA, Child-Pugh y más — referencia rápida.</p>
+                <span class="coming-soon">Próximamente</span>
+            </div>
+        </section>
+
+        <!-- Mensaje informativo sobre desarrollo -->
+        <section class="info-section">
+            <h2>📅 ¿Cuándo estará disponible?</h2>
+            <p>Nura Doctor está en desarrollo activo. Las herramientas se irán habilitando progresivamente durante las próximas semanas. Como usuario Founder, recibirás acceso anticipado a cada nueva feature.</p>
+            <p>Tu suscripción Founder ($19.000 CLP/mes) se mantendrá perpetuamente mientras esté activa, aún cuando lance el plan Standard a $29.000 CLP.</p>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="../../shared/firebase-config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

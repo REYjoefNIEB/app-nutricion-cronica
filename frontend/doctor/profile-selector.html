@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Cómo vas a usar Nura?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../onboarding/styles.css">
+    <link rel="stylesheet" href="profile-selector.css">
+</head>
+<body>
+    <!-- Banner de emergencia consistente con onboarding -->
+    <div class="emergency-banner" id="emergency-banner">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+        <span>Nura no atiende emergencias. Llama al 131 si estás en crisis.</span>
+    </div>
+
+    <div class="container">
+        <div class="profile-selector-card">
+            <div class="header">
+                <h1>¿Cómo vas a usar Nura?</h1>
+                <p>Elige el perfil que mejor se ajuste a ti. Podrás cambiar de perfil más adelante.</p>
+            </div>
+
+            <div class="profile-options">
+                <!-- Opción 1: Persona -->
+                <button type="button" class="profile-option" id="option-person" data-profile="person">
+                    <div class="profile-icon">👤</div>
+                    <div class="profile-content">
+                        <h2>Para mi salud personal</h2>
+                        <p>Tracking de medicación, exámenes, análisis genético, recordatorios y recomendaciones nutricionales personalizadas.</p>
+                        <div class="profile-price">GRATIS</div>
+                    </div>
+                    <div class="profile-arrow">→</div>
+                </button>
+
+                <!-- Opción 2: Médico -->
+                <button type="button" class="profile-option" id="option-doctor" data-profile="doctor">
+                    <div class="profile-icon">⚕️</div>
+                    <div class="profile-content">
+                        <h2>Soy profesional de la salud</h2>
+                        <p>Asistente clínico con scribe AI, calculadoras profesionales, vademécum, generador de órdenes y más.</p>
+                        <div class="profile-price">
+                            <span class="price-main">$19.000 CLP/mes</span>
+                            <span class="price-tag">Plan Founder · 14 días gratis · sin tarjeta</span>
+                        </div>
+                    </div>
+                    <div class="profile-arrow">→</div>
+                </button>
+            </div>
+
+            <!-- Mensaje de error inline -->
+            <p id="error-msg" class="error-msg" style="display: none;"></p>
+
+            <!-- Estado de carga -->
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <span>Configurando tu perfil...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts (sin modules para consistencia con onboarding) -->
+    <script type="module" src="../shared/firebase-config.js"></script>
+    <script src="profile-selector.js"></script>
+</body>
+</html>

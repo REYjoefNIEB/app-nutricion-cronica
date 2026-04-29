@@ -1,0 +1,208 @@
+/* =================================================================
+   [SPRINT M1] Dashboard médico stub — estilos
+   Diferenciados visualmente del dashboard de paciente para que
+   el médico sienta que está en una herramienta profesional.
+   ================================================================= */
+
+body.doctor-dashboard {
+    background: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+}
+
+/* Disclaimer permanente (Salvaguarda v5.1) */
+.doctor-disclaimer-banner {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    font-size: 0.825rem;
+    font-weight: 500;
+    border-bottom: 1px solid #fde68a;
+}
+
+.doctor-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem;
+}
+
+/* Header */
+.doctor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.doctor-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.doctor-brand .brand-icon {
+    font-size: 1.5rem;
+}
+
+.doctor-account {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.trial-badge {
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.trial-badge.expired {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.trial-days {
+    font-size: 0.825rem;
+    color: #6b6b6b;
+}
+
+.btn-link {
+    background: transparent;
+    border: 1px solid #e5e7eb;
+    color: #4b5563;
+    font-size: 0.825rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.btn-link:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+/* Welcome */
+.welcome-section {
+    margin-bottom: 2rem;
+}
+
+.welcome-section h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    color: #1a1a1a;
+}
+
+.welcome-section p {
+    color: #6b6b6b;
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Features grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+}
+
+.feature-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.feature-card:hover {
+    border-color: #4f46e5;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.1);
+}
+
+.feature-card.placeholder {
+    opacity: 0.85;
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.feature-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    color: #1a1a1a;
+}
+
+.feature-card p {
+    font-size: 0.875rem;
+    color: #6b6b6b;
+    line-height: 1.45;
+    margin: 0 0 1rem;
+}
+
+.coming-soon {
+    display: inline-block;
+    background: #f3f4f6;
+    color: #6b7280;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Info section */
+.info-section {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.info-section h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+    color: #1a1a1a;
+}
+
+.info-section p {
+    font-size: 0.9rem;
+    color: #4b5563;
+    line-height: 1.55;
+    margin: 0 0 0.75rem;
+}
+
+.info-section p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .doctor-container {
+        padding: 1rem 0.75rem;
+    }
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}

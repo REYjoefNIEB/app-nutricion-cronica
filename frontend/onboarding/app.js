@@ -532,8 +532,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 enfermedades: profile.enfermedades
             });
 
-            // 7. Éxito — redirigir al dashboard
-            window.location.href = '../dashboard/index.html';
+            // 7. Éxito — redirigir al selector de perfil persona/médico
+            //    El selector decide a qué dashboard ir según la elección del usuario.
+            //    Si elige persona → ../dashboard/index.html (flujo original)
+            //    Si elige médico → ../doctor/dashboard/index.html (módulo médico)
+            window.location.href = '../doctor/profile-selector.html';
 
         } catch (err) {
             console.error('[Onboarding] Firestore error:', err.code, err.message);
