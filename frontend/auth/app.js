@@ -136,10 +136,78 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // ── [FIN checkLegalConsent] ───────────────────────────────────
 
+    // ── [AGENTE 02 — Auth Routing] (Sprint M2) ────────────────────
+    /**
+     * Determina la URL de destino post-login según profileType del usuario.
+     * Hace UNA sola lectura de Firestore (users/{uid}) y aplica decision tree:
+     *   1. Doc inexistente → onboarding
+     *   2. legal_consent.legal_version desactualizado → onboarding
+     *      (este proyecto usa legal_consent como flag canónico de consent vigente;
+     *       equivale al "terms_accepted" mencionado en specs externos)
+     *   3. Sin profileType (usuario legacy pre-Sprint M1) → selector
+     *   4. profileType === 'doctor' → dashboard médico
+     *   5. profileType === 'person' → dashboard paciente
+     *   6. profileType desconocido → selector (defensivo)
+     *   7. Error de Firestore → onboarding (fallback seguro: re-aceptar consent)
+     *
+     * @param {string} uid - UID del usuario recién autenticado
+     * @returns {Promise<string>} URL relativa al destino correcto
+     */
+    async function _routeAfterLogin(uid) {
+        console.log('[AuthRouting] Resolving destination for uid:', uid);
+        try {
+            const { doc, getDoc } =
+                await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
+            const snap = await getDoc(doc(window.NuraFirebase.db, 'users', uid));
+
+            if (!snap.exists()) {
+                console.warn('[AuthRouting] User doc does not exist, redirecting to onboarding');
+                return '../onboarding/index.html';
+            }
+
+            const data = snap.data();
+
+            if (data.legal_consent?.legal_version !== LEGAL_VERSION) {
+                console.log('[AuthRouting] Onboarding/consent incomplete, redirecting to onboarding');
+                return '../onboarding/index.html';
+            }
+
+            if (!data.profileType) {
+                console.log('[AuthRouting] Legacy user (no profileType), redirecting to selector');
+                return '../doctor/profile-selector.html';
+            }
+
+            if (data.profileType === 'doctor') {
+                console.log('[AuthRouting] Doctor profile, redirecting to doctor dashboard');
+                return '../doctor/dashboard/index.html';
+            }
+
+            if (data.profileType === 'person') {
+                console.log('[AuthRouting] Person profile, redirecting to patient dashboard');
+                return '../dashboard/index.html';
+            }
+
+            console.warn('[AuthRouting] Unknown profileType value:', data.profileType, '— forcing selector');
+            return '../doctor/profile-selector.html';
+
+        } catch (err) {
+            console.error('[AuthRouting] Error resolving destination:', err);
+            // Fallback defensivo (mismo criterio que checkLegalConsent ante error).
+            return '../onboarding/index.html';
+        }
+    }
+    // ── [FIN _routeAfterLogin] ────────────────────────────────────
+
     // ── [LÓGICO BACKEND] Submit handler con Firebase Auth ─────────
     authForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         clearError();
+
+        // [AGENTE 02 — Auth Routing] Mostrar overlay loader al submit.
+        // Solo se oculta en error; en éxito la página redirige y el overlay
+        // queda visible hasta que la página de destino monte (sin flash).
+        const loadingOverlay = document.getElementById('auth-loading');
+        if (loadingOverlay) loadingOverlay.style.display = 'flex';
 
         const email    = document.getElementById('input-email').value.trim();
         const password = document.getElementById('input-password').value;
@@ -162,12 +230,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isLogin) {
                 // ── Flujo Login ──────────────────────────────────
                 const credential = await signInWithEmailAndPassword(auth, email, password);
-                // [LÓGICO BACKEND] Verificar que el usuario aceptó la versión
-                // vigente de los términos antes de entrar al dashboard.
-                const hasConsent = await checkLegalConsent(credential.user.uid);
-                window.location.href = hasConsent
-                    ? '../dashboard/index.html'
-                    : '../onboarding/index.html';
+                // [AGENTE 02 — Auth Routing] (Sprint M2)
+                // _routeAfterLogin cubre internamente legal_consent + profileType
+                // en una sola lectura de Firestore. Reemplaza checkLegalConsent
+                // para email/password login (Google OAuth también usa _routeAfterLogin).
+                const destination = await _routeAfterLogin(credential.user.uid);
+                window.location.href = destination;
 
             } else {
                 // ── Flujo Registro ───────────────────────────────
@@ -190,6 +258,9 @@ document.addEventListener('DOMContentLoaded', () => {
             btnSubmit.textContent   = originalText;
             btnSubmit.disabled      = false;
             btnSubmit.style.opacity = '1';
+
+            // [AGENTE 02 — Auth Routing] Ocultar overlay loader en error.
+            if (loadingOverlay) loadingOverlay.style.display = 'none';
         }
     });
     // ── [FIN LÓGICO BACKEND] ──────────────────────────────────────
@@ -202,48 +273,37 @@ document.addEventListener('DOMContentLoaded', () => {
     btnGoogle.addEventListener('click', async () => {
         clearError();
 
+        // [AGENTE 02 — Auth Routing] Mostrar overlay loader al iniciar OAuth.
+        // Mismo criterio que email/password: hide solo si el flow no redirige
+        // (popup cancelado o error). En éxito el overlay se mantiene hasta que
+        // monte la página de destino.
+        const loadingOverlay = document.getElementById('auth-loading');
+        if (loadingOverlay) loadingOverlay.style.display = 'flex';
+
         // Estado de carga — mismo patrón que btnSubmit
         const originalText        = btnGoogleText.textContent;
         btnGoogleText.textContent = 'Conectando...';
         btnGoogle.disabled        = true;
 
         try {
-            // Importar Auth y Firestore en paralelo (ambos en caché desde firebase-config.js)
-            const [
-                { GoogleAuthProvider, signInWithPopup },
-                { doc, getDoc }
-            ] = await Promise.all([
-                import('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js'),
-                import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js')
-            ]);
+            // Auth import (firebase-auth.js ya cacheado por firebase-config.js).
+            // Firestore se carga internamente en _routeAfterLogin — evita duplicación.
+            const { GoogleAuthProvider, signInWithPopup } =
+                await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js');
 
             const auth     = window.NuraFirebase.auth;
-            const db       = window.NuraFirebase.db;
             const provider = new GoogleAuthProvider();
 
             // 1. Autenticar con Google (abre popup nativo del navegador)
             const result = await signInWithPopup(auth, provider);
 
-            // 2. Enrutamiento inteligente — mismo documento que usa onboarding
-            //    Reutilizamos el snap para el chequeo legal sin doble lectura.
-            const snap = await getDoc(doc(db, 'users', result.user.uid));
-
-            if (!snap.exists()) {
-                // Primera vez con Google → onboarding completo
-                console.log('[Auth] Google OK — usuario nuevo. → onboarding');
-                window.location.href = '../onboarding/index.html';
-            } else {
-                // Usuario existente: verificar versión de términos aceptada.
-                // Pasamos los datos ya cargados para evitar una segunda lectura.
-                const hasConsent = await checkLegalConsent(result.user.uid, snap.data());
-                if (hasConsent) {
-                    console.log('[Auth] Google OK — consentimiento vigente. → dashboard');
-                    window.location.href = '../dashboard/index.html';
-                } else {
-                    console.log('[Auth] Google OK — términos desactualizados. → onboarding');
-                    window.location.href = '../onboarding/index.html';
-                }
-            }
+            // 2. [AGENTE 02 — Auth Routing] (Sprint M2) Routing inteligente.
+            //    _routeAfterLogin cubre los 3 casos previos (doc inexistente,
+            //    consent desactualizado, consent vigente) Y agrega los nuevos
+            //    (legacy sin profileType, profileType doctor/person).
+            const destination = await _routeAfterLogin(result.user.uid);
+            console.log('[Auth] Google OK — destino:', destination);
+            window.location.href = destination;
 
         } catch (err) {
             // Popup cerrado o cancelado por el usuario — acción intencional, sin mensaje
@@ -259,6 +319,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Restaurar botón en cualquier caso de no-redirección
             btnGoogleText.textContent = originalText;
             btnGoogle.disabled        = false;
+
+            // [AGENTE 02 — Auth Routing] Ocultar overlay loader en cualquier
+            // path que no redirija (popup cancelado, error de auth, error de red).
+            if (loadingOverlay) loadingOverlay.style.display = 'none';
         }
     });
     // ── [FIN GOOGLE OAUTH] ────────────────────────────────────────
