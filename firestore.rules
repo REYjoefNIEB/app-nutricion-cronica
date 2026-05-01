@@ -127,6 +127,20 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // ── [AGENTE 03 — Geo Detection] (Sprint M3) Waitlist Doctor ──
+    // Captura de emails de profesionales en países donde Nura Doctor aún
+    // no está disponible. El cliente solo puede crear su propia entrada
+    // (uid debe coincidir con auth). Lectura cliente bloqueada — solo se
+    // accede vía Firebase Console o Cloud Functions con Admin SDK.
+    match /doctor_waitlist/{entryId} {
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid
+                    && request.resource.data.email is string
+                    && request.resource.data.country is string;
+      allow read:           if false;
+      allow update, delete: if false;
+    }
+
     // ── Denegar acceso a cualquier otra colección ────────────────
     match /{document=**} {
       allow read, write: if false;

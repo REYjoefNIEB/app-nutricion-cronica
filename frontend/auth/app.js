@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function _routeAfterLogin(uid) {
         console.log('[AuthRouting] Resolving destination for uid:', uid);
         try {
-            const { doc, getDoc } =
+            const { doc, getDoc, setDoc } =
                 await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
             const snap = await getDoc(doc(window.NuraFirebase.db, 'users', uid));
 
@@ -170,6 +170,24 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.legal_consent?.legal_version !== LEGAL_VERSION) {
                 console.log('[AuthRouting] Onboarding/consent incomplete, redirecting to onboarding');
                 return '../onboarding/index.html';
+            }
+
+            // [AGENTE 03 — Geo Detection] (Sprint M3) Auto-detect country en usuarios legacy.
+            // Estrategia C: usuarios pre-Sprint M3 sin campo country → auto-detect por IP
+            // y persistir (fire-and-forget). Si auto-detect falla, no bloquear el routing.
+            if (!data.country && window.NuraGeoDetection) {
+                console.log('[AuthRouting] User has no country, auto-detecting...');
+                const geoResult = await window.NuraGeoDetection.detectCountryByIP();
+                if (geoResult.success) {
+                    setDoc(
+                        doc(window.NuraFirebase.db, 'users', uid),
+                        { country: geoResult.country, countryAutoDetectedAt: new Date().toISOString() },
+                        { merge: true }
+                    ).catch(err => console.warn('[AuthRouting] Failed to save auto-detected country:', err));
+                    console.log('[AuthRouting] Country auto-detected and saved:', geoResult.country);
+                } else {
+                    console.warn('[AuthRouting] Auto-detect failed; country quedará vacío hasta el próximo flow que lo capture');
+                }
             }
 
             if (!data.profileType) {

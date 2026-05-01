@@ -166,3 +166,184 @@
         font-size: 2rem;
     }
 }
+
+/* ── [AGENTE 03 — Geo Detection] (Sprint M3) Gate país != CL ── */
+.profile-option-wrapper {
+    position: relative;
+}
+
+.profile-option.doctor-gated {
+    opacity: 0.55;
+    cursor: not-allowed;
+    filter: grayscale(0.4);
+}
+
+.profile-option.doctor-gated:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--border, #e5e7eb);
+    background: var(--surface-subtle, #f8f9fa);
+}
+
+.doctor-gate-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    backdrop-filter: blur(2px);
+}
+
+.doctor-gate-overlay.hidden {
+    display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .doctor-gate-overlay {
+        background: rgba(31, 41, 55, 0.94);
+    }
+}
+
+.doctor-gate-content {
+    text-align: center;
+    max-width: 320px;
+}
+
+.doctor-gate-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.doctor-gate-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-main, #1a1a1a);
+    margin: 0 0 0.4rem;
+}
+
+.doctor-gate-message {
+    font-size: 0.82rem;
+    color: var(--text-muted, #6b6b6b);
+    margin: 0 0 0.85rem;
+    line-height: 1.45;
+}
+
+.btn-waitlist {
+    background: var(--orange-strong, #e06c75);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 0.65rem 1.1rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+}
+
+.btn-waitlist:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(224, 108, 117, 0.35);
+}
+
+.btn-waitlist:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ── Modal waitlist ── */
+.waitlist-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1rem;
+}
+
+.waitlist-modal-overlay.hidden {
+    display: none;
+}
+
+.waitlist-modal {
+    background: var(--card-bg, #ffffff);
+    border-radius: 16px;
+    padding: 2rem 1.75rem 1.75rem;
+    max-width: 420px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.waitlist-modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.85rem;
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--text-muted, #6b6b6b);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    line-height: 1;
+}
+
+.waitlist-modal-close:hover {
+    color: var(--text-main, #1a1a1a);
+}
+
+.waitlist-modal h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    color: var(--text-main, #1a1a1a);
+}
+
+.waitlist-modal p {
+    font-size: 0.875rem;
+    color: var(--text-muted, #6b6b6b);
+    margin: 0 0 1rem;
+    line-height: 1.45;
+}
+
+.waitlist-modal label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--secondary, #56b6c2);
+    margin-bottom: 0.4rem;
+    display: block;
+}
+
+.waitlist-modal input[type="email"] {
+    width: 100%;
+    background: var(--input-bg, #ffffff);
+    border: 2px solid var(--input-border, #abb2bf);
+    border-radius: 10px;
+    padding: 0.65rem 0.85rem;
+    color: var(--text-main, #1a1a1a);
+    font-size: 0.95rem;
+    outline: none;
+    font-family: inherit;
+    margin-bottom: 0.75rem;
+}
+
+.waitlist-modal input[type="email"]:focus {
+    border-color: var(--yellow-strong, #e5c07b);
+    box-shadow: 0 0 0 3px rgba(229, 192, 123, 0.2);
+}
+
+.waitlist-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+}
+
+.waitlist-success {
+    color: #16a34a !important;
+    font-weight: 600;
+}

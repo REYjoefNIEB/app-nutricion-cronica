@@ -572,3 +572,47 @@ select option {
   opacity: 0;
   pointer-events: none;
 }
+
+/* ── [AGENTE 03 — Geo Detection] (Sprint M3) Selector de país ── */
+.country-detect-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.country-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--input-border);
+  border-radius: 12px;
+  background: var(--input-bg);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.spinner-mini {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--input-border);
+  border-top-color: var(--orange-strong);
+  border-radius: 50%;
+  animation: country-spin 0.8s linear infinite;
+}
+
+@keyframes country-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner-mini { animation-duration: 2s; }
+}
+
+.country-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 0.25rem 0 0;
+  line-height: 1.4;
+}

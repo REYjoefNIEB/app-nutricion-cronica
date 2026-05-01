@@ -41,7 +41,7 @@
                             <input type="number" id="input-weight" min="20" max="300" step="0.1" required>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label id="label-height" for="input-height"></label>
                         <div class="input-wrapper">
@@ -49,7 +49,25 @@
                         </div>
                     </div>
                 </div>
-                
+
+                <!-- [AGENTE 03 — Geo Detection] (Sprint M3) Selector de país -->
+                <div class="form-group">
+                    <label for="country-select">País</label>
+                    <div class="country-detect-wrapper input-wrapper">
+                        <div id="country-loading" class="country-loading">
+                            <span class="spinner-mini" aria-hidden="true"></span>
+                            <span>Detectando tu ubicación...</span>
+                        </div>
+                        <div class="select-wrapper" style="display: none;" id="country-select-wrapper">
+                            <select id="country-select" name="country" required>
+                                <option value="" disabled selected>Selecciona tu país</option>
+                                <!-- Opciones inyectadas desde JS -->
+                            </select>
+                        </div>
+                        <p class="country-hint">Auto-detectado por tu ubicación. Podés cambiarlo si es incorrecto.</p>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label id="label-pathology" for="pathology-search"></label>
                     <div class="pathology-chips-field input-wrapper autocomplete-wrapper">
@@ -155,6 +173,9 @@
     <!-- [LÓGICO BACKEND] Caché local AES-GCM — debe cargar antes de app.js -->
     <script src="../shared/storage.js"></script>
     <script src="../shared/clinical-phases.js"></script>
+    <!-- [AGENTE 03 — Geo Detection] (Sprint M3) Países + detección IP -->
+    <script src="../shared/countries-config.js"></script>
+    <script src="../shared/geo-detection.js"></script>
     <!-- [LÓGICO BACKEND] Inicializa window.NuraFirebase antes de DOMContentLoaded -->
     <script type="module" src="../shared/firebase-config.js"></script>
     <script src="app.js"></script>

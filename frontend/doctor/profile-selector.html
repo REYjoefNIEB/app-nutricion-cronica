@@ -39,18 +39,30 @@
                 </button>
 
                 <!-- Opción 2: Médico -->
-                <button type="button" class="profile-option" id="option-doctor" data-profile="doctor">
-                    <div class="profile-icon">⚕️</div>
-                    <div class="profile-content">
-                        <h2>Soy profesional de la salud</h2>
-                        <p>Asistente clínico con scribe AI, calculadoras profesionales, vademécum, generador de órdenes y más.</p>
-                        <div class="profile-price">
-                            <span class="price-main">$19.000 CLP/mes</span>
-                            <span class="price-tag">Plan Founder · 14 días gratis · sin tarjeta</span>
+                <div class="profile-option-wrapper" id="doctor-option-wrapper">
+                    <button type="button" class="profile-option" id="option-doctor" data-profile="doctor">
+                        <div class="profile-icon">⚕️</div>
+                        <div class="profile-content">
+                            <h2>Soy profesional de la salud</h2>
+                            <p>Asistente clínico con scribe AI, calculadoras profesionales, vademécum, generador de órdenes y más.</p>
+                            <div class="profile-price">
+                                <span class="price-main">$19.000 CLP/mes</span>
+                                <span class="price-tag">Plan Founder · 14 días gratis · sin tarjeta</span>
+                            </div>
+                        </div>
+                        <div class="profile-arrow">→</div>
+                    </button>
+
+                    <!-- [AGENTE 03 — Geo Detection] (Sprint M3) Overlay gate país != CL -->
+                    <div class="doctor-gate-overlay hidden" id="doctor-gate-overlay">
+                        <div class="doctor-gate-content">
+                            <div class="doctor-gate-icon">🌎</div>
+                            <p class="doctor-gate-title">Disponible solo en Chile en V1</p>
+                            <p class="doctor-gate-message" id="doctor-gate-message">Nura Doctor aún no llegó a tu país. Sumate a la waitlist y te avisamos cuando esté disponible.</p>
+                            <button type="button" class="btn-waitlist" id="btn-open-waitlist">Sumarme a la waitlist</button>
                         </div>
                     </div>
-                    <div class="profile-arrow">→</div>
-                </button>
+                </div>
             </div>
 
             <!-- Mensaje de error inline -->
@@ -64,7 +76,25 @@
         </div>
     </div>
 
+    <!-- [AGENTE 03 — Geo Detection] (Sprint M3) Modal de captura waitlist -->
+    <div class="waitlist-modal-overlay hidden" id="waitlist-modal-overlay">
+        <div class="waitlist-modal" role="dialog" aria-modal="true" aria-labelledby="waitlist-modal-title">
+            <button type="button" class="waitlist-modal-close" id="waitlist-modal-close" aria-label="Cerrar">✕</button>
+            <h2 id="waitlist-modal-title">Nura Doctor llegará pronto a <span id="waitlist-country-name">tu país</span></h2>
+            <p>Te enviaremos un email cuando esté disponible.</p>
+            <label for="waitlist-email">Email</label>
+            <input type="email" id="waitlist-email" required>
+            <p id="waitlist-error" class="error-msg" style="display: none;"></p>
+            <p id="waitlist-success" class="waitlist-success" style="display: none;">¡Listo! Te avisaremos cuando Nura Doctor llegue a tu país.</p>
+            <div class="waitlist-modal-actions">
+                <button type="button" class="btn-waitlist" id="btn-waitlist-confirm">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts (sin modules para consistencia con onboarding) -->
+    <script src="../shared/countries-config.js"></script>
+    <script src="../shared/geo-detection.js"></script>
     <script type="module" src="../shared/firebase-config.js"></script>
     <script src="profile-selector.js"></script>
 </body>

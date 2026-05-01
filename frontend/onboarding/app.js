@@ -321,6 +321,61 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn-export').textContent  = t.exportBtn;
     document.getElementById('footer-text').textContent = t.footerText;
 
+    // ── [AGENTE 03 — Geo Detection] (Sprint M3) Selector de país ──
+    /**
+     * Llena el dropdown de país con los 22 países de PERSONAL_ALLOWED_COUNTRIES,
+     * intenta auto-detectar por IP y pre-selecciona si el país detectado está
+     * soportado. Si está fuera de la lista, deshabilita submit con mensaje.
+     * Si la detección falla, queda manual sin pre-selección.
+     */
+    async function initCountrySelector() {
+        const loadingEl = document.getElementById('country-loading');
+        const wrapperEl = document.getElementById('country-select-wrapper');
+        const selectEl  = document.getElementById('country-select');
+        const submitBtn = document.getElementById('btn-submit');
+
+        if (!selectEl || !window.NuraCountriesConfig) {
+            console.warn('[Onboarding] Country selector or config missing');
+            return;
+        }
+
+        // Inyectar opciones desde PERSONAL_ALLOWED_COUNTRIES
+        const countries = window.NuraCountriesConfig.PERSONAL_ALLOWED_COUNTRIES;
+        countries.forEach(c => {
+            const option = document.createElement('option');
+            option.value = c.code;
+            option.textContent = `${c.flag} ${c.name}`;
+            selectEl.appendChild(option);
+        });
+
+        // Auto-detectar por IP (best-effort; si falla, manual)
+        let result = { success: false, country: null, error: 'no detector' };
+        if (window.NuraGeoDetection) {
+            result = await window.NuraGeoDetection.detectCountryByIP();
+        }
+
+        if (result.success && window.NuraCountriesConfig.isPersonalAllowed(result.country)) {
+            selectEl.value = result.country;
+            console.log('[Onboarding] Country pre-selected:', result.country);
+        } else if (result.success && !window.NuraCountriesConfig.isPersonalAllowed(result.country)) {
+            // País detectado pero no soportado → bloquear onboarding
+            const detectedName = window.NuraCountriesConfig.getCountryName(result.country) || result.country;
+            showError(`Nura aún no está disponible en ${detectedName}. ¡Pronto llegaremos a tu país!`);
+            submitBtn.disabled = true;
+            submitBtn.dataset.countryBlocked = 'true';
+            console.log('[Onboarding] Country detected but not supported:', result.country);
+        } else {
+            console.log('[Onboarding] Auto-detect failed, manual selection required');
+        }
+
+        if (loadingEl) loadingEl.style.display = 'none';
+        if (wrapperEl) wrapperEl.style.display = 'block';
+    }
+
+    // Disparar (sin await — no bloquear el resto del DOMContentLoaded)
+    initCountrySelector();
+    // ── [FIN initCountrySelector] ─────────────────────────────────
+
     // ── [AGENTE 04] Exportación de Datos (JSON) ────────────────
     const btnExport = document.getElementById('btn-export');
     btnExport.addEventListener('click', async () => {
@@ -437,6 +492,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // [AGENTE 03 — Geo Detection] (Sprint M3) Validar país seleccionado.
+        const countryValue = document.getElementById('country-select')?.value || '';
+        if (!countryValue || !window.NuraCountriesConfig?.isPersonalAllowed(countryValue)) {
+            showError('Selecciona un país válido para continuar.');
+            document.getElementById('country-select')?.focus();
+            return;
+        }
+
         // Capturamos todas las opciones seleccionadas del select múltiple (excl. placeholder)
         const selectPathology = document.getElementById('select-pathology');
         const selectedValues = Array.from(selectPathology.selectedOptions)
@@ -509,6 +572,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 height:      profile.height,
                 pathology:   profile.pathology,
                 enfermedades: profile.enfermedades,
+                // [AGENTE 03 — Geo Detection] (Sprint M3) ISO alpha-2.
+                country:     countryValue,
                 legal_consent: {
                     terms_accepted:     true,
                     ai_training_opt_in: document.getElementById('check-ai-training').checked,
