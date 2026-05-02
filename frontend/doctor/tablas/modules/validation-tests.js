@@ -122,21 +122,29 @@
 
         cha2ds2vasc: [
             { id: 'cha-001', name: 'Caso 1: hombre 50a sin factores (score 0, no anticoag)',
-              inputs: {}, expected: { value: 0, category: 'Score 0' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+              inputs: { chf:'no',  htn:'no',  diabetes:'no',  stroke:'no',  vascular:'no',  ageGroup:'under65', sex:'M' },
+              expected: { value: 0, category: 'Score 0' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
             { id: 'cha-002', name: 'Caso 2: mujer 50a sola sin factores (score 1, solo sexo)',
-              inputs: { female: true }, expected: { value: 1, category: 'Score 1' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+              inputs: { chf:'no',  htn:'no',  diabetes:'no',  stroke:'no',  vascular:'no',  ageGroup:'under65', sex:'F' },
+              expected: { value: 1, category: 'Score 1' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
             { id: 'cha-003', name: 'Caso 3: hombre 50a con HTA (score 1)',
-              inputs: { htn: true }, expected: { value: 1, category: 'Score 1' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+              inputs: { chf:'no',  htn:'yes', diabetes:'no',  stroke:'no',  vascular:'no',  ageGroup:'under65', sex:'M' },
+              expected: { value: 1, category: 'Score 1' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
             { id: 'cha-004', name: 'Caso 4: hombre HTA + DM (score 2, anticoag clase I)',
-              inputs: { htn: true, diabetes: true }, expected: { value: 2, category: 'Score 2' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+              inputs: { chf:'no',  htn:'yes', diabetes:'yes', stroke:'no',  vascular:'no',  ageGroup:'under65', sex:'M' },
+              expected: { value: 2, category: 'Score 2' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
             { id: 'cha-005', name: 'Caso 5: mujer 70a HTA DM (score 4)',
-              inputs: { htn: true, diabetes: true, age65_74: true, female: true }, expected: { value: 4, category: 'Score 4' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+              inputs: { chf:'no',  htn:'yes', diabetes:'yes', stroke:'no',  vascular:'no',  ageGroup:'65_74',   sex:'F' },
+              expected: { value: 4, category: 'Score 4' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
             { id: 'cha-006', name: 'Caso 6: hombre 80a con stroke previo (score 4)',
-              inputs: { age75: true, stroke: true }, expected: { value: 4, category: 'Score 4' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+              inputs: { chf:'no',  htn:'no',  diabetes:'no',  stroke:'yes', vascular:'no',  ageGroup:'75plus',  sex:'M' },
+              expected: { value: 4, category: 'Score 4' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
             { id: 'cha-007', name: 'Caso 7: mujer 80a con múltiples comorbilidades (score 7)',
-              inputs: { chf: true, htn: true, age75: true, diabetes: true, vascular: true, female: true }, expected: { value: 7, category: 'Score 7' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
-            { id: 'cha-008', name: 'Caso 8: máximo realista — todos los items excluyente edad (score 9)',
-              inputs: { chf: true, htn: true, age75: true, diabetes: true, stroke: true, vascular: true, female: true }, expected: { value: 9, category: 'Score 9' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } }
+              inputs: { chf:'yes', htn:'yes', diabetes:'yes', stroke:'no',  vascular:'yes', ageGroup:'75plus',  sex:'F' },
+              expected: { value: 7, category: 'Score 7' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'cha-008', name: 'Caso 8: máximo realista — todos los items con edad ≥75 (score 9)',
+              inputs: { chf:'yes', htn:'yes', diabetes:'yes', stroke:'yes', vascular:'yes', ageGroup:'75plus',  sex:'F' },
+              expected: { value: 9, category: 'Score 9' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } }
         ],
 
         child_pugh: [

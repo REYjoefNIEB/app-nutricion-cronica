@@ -185,14 +185,85 @@
         "society": "ESC (European Society of Cardiology)"
       },
       "inputs": [
-        { "id": "chf",         "label": "Insuficiencia cardíaca congestiva o disfunción VI", "type": "checkbox", "points": 1, "default": false },
-        { "id": "htn",         "label": "Hipertensión arterial",                              "type": "checkbox", "points": 1, "default": false },
-        { "id": "age75",       "label": "Edad ≥75 años",                                      "type": "checkbox", "points": 2, "default": false, "exclusiveWith": "age65_74" },
-        { "id": "diabetes",    "label": "Diabetes Mellitus",                                  "type": "checkbox", "points": 1, "default": false },
-        { "id": "stroke",      "label": "Stroke / TIA / tromboembolismo previo",              "type": "checkbox", "points": 2, "default": false },
-        { "id": "vascular",    "label": "Enfermedad vascular (IAM, EAP, placa aórtica)",      "type": "checkbox", "points": 1, "default": false },
-        { "id": "age65_74",    "label": "Edad 65-74 años",                                    "type": "checkbox", "points": 1, "default": false, "exclusiveWith": "age75" },
-        { "id": "female",      "label": "Sexo femenino",                                      "type": "checkbox", "points": 1, "default": false }
+        {
+          "id": "chf",
+          "label": "Insuficiencia cardíaca congestiva o disfunción VI",
+          "type": "select",
+          "options": [
+            { "value": "no",  "label": "No" },
+            { "value": "yes", "label": "Sí (+1)" }
+          ],
+          "default": "no",
+          "required": true
+        },
+        {
+          "id": "htn",
+          "label": "Hipertensión arterial",
+          "type": "select",
+          "options": [
+            { "value": "no",  "label": "No" },
+            { "value": "yes", "label": "Sí (+1)" }
+          ],
+          "default": "no",
+          "required": true
+        },
+        {
+          "id": "ageGroup",
+          "label": "Edad",
+          "type": "select",
+          "options": [
+            { "value": "under65", "label": "<65 años (0)" },
+            { "value": "65_74",   "label": "65-74 años (+1)" },
+            { "value": "75plus",  "label": "≥75 años (+2)" }
+          ],
+          "default": "under65",
+          "required": true,
+          "helpText": "Una sola opción aplica — no son acumulables."
+        },
+        {
+          "id": "diabetes",
+          "label": "Diabetes Mellitus",
+          "type": "select",
+          "options": [
+            { "value": "no",  "label": "No" },
+            { "value": "yes", "label": "Sí (+1)" }
+          ],
+          "default": "no",
+          "required": true
+        },
+        {
+          "id": "stroke",
+          "label": "Stroke / TIA / tromboembolismo previo",
+          "type": "select",
+          "options": [
+            { "value": "no",  "label": "No" },
+            { "value": "yes", "label": "Sí (+2)" }
+          ],
+          "default": "no",
+          "required": true
+        },
+        {
+          "id": "vascular",
+          "label": "Enfermedad vascular (IAM, EAP, placa aórtica)",
+          "type": "select",
+          "options": [
+            { "value": "no",  "label": "No" },
+            { "value": "yes", "label": "Sí (+1)" }
+          ],
+          "default": "no",
+          "required": true
+        },
+        {
+          "id": "sex",
+          "label": "Sexo",
+          "type": "select",
+          "options": [
+            { "value": "M", "label": "Masculino (0)" },
+            { "value": "F", "label": "Femenino (+1)" }
+          ],
+          "default": "M",
+          "required": true
+        }
       ],
       "referenceTable": [
         { "label": "0",   "range": "Riesgo bajo",        "interpretation": "Riesgo anual ~0.2%. No anticoagulación.", "color": "success" },

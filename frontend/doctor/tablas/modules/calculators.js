@@ -126,27 +126,34 @@
     // 4) CHA₂DS₂-VASc
     // Fuente: Lip GY et al. CHEST 2010 (PMID: 19762550)
     //
-    // 8 ítems con puntuación:
-    //   chf=1, htn=1, age75=2, diabetes=1, stroke=2, vascular=1, age65_74=1, female=1
-    // Total 0-9. age75 y age65_74 son mutuamente excluyentes en clínica
-    // (un paciente no puede ser ambos); la UI los marca como exclusivos
-    // pero la fórmula simplemente suma — si por error vienen ambos true,
-    // la suma sería conservadora (sobrestima riesgo, no subestima).
+    // Inputs (Sprint M4-A.1 — UX selects Sí/No, no checkboxes):
+    //   chf, htn, diabetes, stroke, vascular: 'yes' | 'no'
+    //     yes suma: chf=1, htn=1, diabetes=1, stroke=2, vascular=1
+    //   ageGroup: 'under65' | '65_74' | '75plus'
+    //     under65=0, 65_74=1, 75plus=2 (mutuamente excluyentes by design)
+    //   sex: 'M' | 'F'
+    //     F suma 1
+    // Total 0-9.
     //
     // Interpretación clínica (ESC 2020):
     //   Score 0 (hombre) o 1 (mujer, solo por sexo): no anticoagulación
     //   Score ≥2 (hombre) o ≥3 (mujer): anticoagulación recomendada
     // ─────────────────────────────────────────────────────────────
     function calc_cha2ds2vasc(inputs) {
+        const yes = (id, pts) => (inputs[id] === 'yes' ? pts : 0);
+
+        let agePts = 0;
+        if (inputs.ageGroup === '75plus')      agePts = 2;
+        else if (inputs.ageGroup === '65_74')  agePts = 1;
+
         const score =
-            (inputs.chf      ? 1 : 0) +
-            (inputs.htn      ? 1 : 0) +
-            (inputs.age75    ? 2 : 0) +
-            (inputs.diabetes ? 1 : 0) +
-            (inputs.stroke   ? 2 : 0) +
-            (inputs.vascular ? 1 : 0) +
-            (inputs.age65_74 ? 1 : 0) +
-            (inputs.female   ? 1 : 0);
+            yes('chf', 1) +
+            yes('htn', 1) +
+            agePts +
+            yes('diabetes', 1) +
+            yes('stroke', 2) +
+            yes('vascular', 1) +
+            (inputs.sex === 'F' ? 1 : 0);
 
         let color, interp;
         if (score === 0) {
