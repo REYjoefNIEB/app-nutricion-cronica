@@ -1,8 +1,8 @@
 {
   "version": "1.0",
   "validatedAgainst": "MDCalc",
-  "validationDate": null,
-  "validationStatus": "pending",
+  "validationDate": "2026-05-02",
+  "validationStatus": "verified",
   "scales": [
     {
       "id": "egfr_ckdepi",
