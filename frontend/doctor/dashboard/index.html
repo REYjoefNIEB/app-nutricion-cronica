@@ -73,11 +73,12 @@
                 <span class="coming-soon">Próximamente</span>
             </div>
 
-            <div class="feature-card placeholder">
+            <!-- [Sprint M4-B-1] Card activa: abre modal con vista de tablas -->
+            <div class="feature-card feature-card-active" id="card-tablas-clinicas" role="button" tabindex="0" aria-label="Abrir tablas clínicas">
                 <div class="feature-icon">📊</div>
                 <h3>Tablas clínicas</h3>
-                <p>KDIGO, NYHA, Child-Pugh y más — referencia rápida.</p>
-                <span class="coming-soon">Próximamente</span>
+                <p>eGFR, KDIGO, NYHA, CHA₂DS₂-VASc, HAS-BLED, MELD-Na, Child-Pugh, GOLD, CURB-65, Glasgow.</p>
+                <span class="kbd-hint"><kbd>Ctrl</kbd>+<kbd>K</kbd> para buscar rápido</span>
             </div>
         </section>
 
@@ -90,6 +91,9 @@
     </div>
 
     <!-- Scripts -->
+    <!-- [Sprint M4-B-1] Modal Tablas Clínicas + Command Palette Ctrl+K -->
+    <script src="../../shared/tablas-modal.js"></script>
+    <script src="../tablas/modules/command-palette.js"></script>
     <script type="module" src="../../shared/firebase-config.js"></script>
     <script src="app.js"></script>
 </body>

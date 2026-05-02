@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "validatedAgainst": "MDCalc",
   "validationDate": "2026-05-02",
   "validationStatus": "verified",
@@ -382,6 +382,250 @@
       "calculatorFn": "calc_child_pugh",
       "footerNote": "Validado contra MDCalc · v1.0 · Pugh 1973",
       "clinicalDisclaimer": "MELD-Na es preferido para priorización trasplante. Child-Pugh sigue siendo útil para pronóstico clínico general."
+    },
+
+    {
+      "id": "hasbled",
+      "name": "HAS-BLED",
+      "fullName": "Riesgo de sangrado mayor en anticoagulación por FA",
+      "specialty": "cardiologia",
+      "specialtyDisplay": "Cardiología",
+      "type": "calculator",
+      "synonyms": ["sangrado", "anticoagulacion", "fibrilacion auricular", "fa", "hemorragia"],
+      "description": "Estima el riesgo de sangrado mayor en pacientes con FA en anticoagulación. 9 ítems clínicos. Score alto NO contraindica anticoagulación — significa precaución y vigilancia.",
+      "reference": {
+        "paper": "Pisters R et al. A novel user-friendly score (HAS-BLED) to assess 1-year risk of major bleeding in patients with atrial fibrillation. CHEST 2010",
+        "url": "https://www.mdcalc.com/calc/807/has-bled-score-major-bleeding-risk",
+        "year": 2010,
+        "society": "ESC (European Society of Cardiology)"
+      },
+      "inputs": [
+        { "id": "hypertension", "label": "Hipertensión arterial no controlada (>160 sistólica)", "type": "select", "options": [{"value":"no","label":"No"},{"value":"yes","label":"Sí (+1)"}], "default": "no", "required": true },
+        { "id": "renalDisease", "label": "Enfermedad renal (creat ≥2.26 mg/dL, diálisis o trasplante)", "type": "select", "options": [{"value":"no","label":"No"},{"value":"yes","label":"Sí (+1)"}], "default": "no", "required": true },
+        { "id": "liverDisease", "label": "Enfermedad hepática (cirrosis o bilirr ≥2x normal con AST/ALT/AP ≥3x normal)", "type": "select", "options": [{"value":"no","label":"No"},{"value":"yes","label":"Sí (+1)"}], "default": "no", "required": true },
+        { "id": "stroke", "label": "Stroke previo", "type": "select", "options": [{"value":"no","label":"No"},{"value":"yes","label":"Sí (+1)"}], "default": "no", "required": true },
+        { "id": "bleeding", "label": "Antecedente de sangrado mayor o predisposición", "type": "select", "options": [{"value":"no","label":"No"},{"value":"yes","label":"Sí (+1)"}], "default": "no", "required": true },
+        { "id": "labileINR", "label": "INR lábil (tiempo en rango terapéutico <60%)", "type": "select", "options": [{"value":"no","label":"No"},{"value":"yes","label":"Sí (+1)"}], "default": "no", "required": true },
+        { "id": "elderly", "label": "Edad >65 años", "type": "select", "options": [{"value":"no","label":"No"},{"value":"yes","label":"Sí (+1)"}], "default": "no", "required": true },
+        { "id": "drugs", "label": "Drogas concomitantes (antiagregantes, AINEs)", "type": "select", "options": [{"value":"no","label":"No"},{"value":"yes","label":"Sí (+1)"}], "default": "no", "required": true },
+        { "id": "alcohol", "label": "Alcohol ≥8 unidades/semana", "type": "select", "options": [{"value":"no","label":"No"},{"value":"yes","label":"Sí (+1)"}], "default": "no", "required": true }
+      ],
+      "referenceTable": [
+        { "label": "0-1", "range": "Bajo",     "interpretation": "Riesgo de sangrado mayor ~1.13% por año. Anticoagulación con vigilancia estándar.", "color": "success" },
+        { "label": "2",   "range": "Moderado", "interpretation": "Riesgo de sangrado mayor ~1.88% por año. Anticoagulación con vigilancia.",         "color": "warning" },
+        { "label": "≥3",  "range": "Alto",     "interpretation": "Considerar precaución y reevaluación periódica. NO contraindica anticoagulación.",  "color": "danger" }
+      ],
+      "calculatorFn": "calc_hasbled",
+      "footerNote": "Validado contra MDCalc · v1.0 · Pisters 2010",
+      "clinicalDisclaimer": "HAS-BLED no contraindica anticoagulación. Score alto ≠ no anticoagular; significa precaución y vigilancia. Decisión final junto con CHA₂DS₂-VASc."
+    },
+
+    {
+      "id": "meld_na",
+      "name": "MELD-Na",
+      "fullName": "Model for End-Stage Liver Disease (con sodio)",
+      "specialty": "hepatologia",
+      "specialtyDisplay": "Hepatología",
+      "type": "calculator",
+      "synonyms": ["meld", "trasplante hepatico", "cirrosis avanzada", "sodio", "lista trasplante"],
+      "description": "Predice mortalidad a 90 días en cirrosis hepática. Usado para priorización en lista de trasplante hepático. Score 6-40.",
+      "reference": {
+        "paper": "Kim WR et al. Hyponatremia and mortality among patients on the liver-transplant waiting list. NEJM 2008",
+        "url": "https://www.mdcalc.com/calc/78/meld-score-original-pre-2016-model-end-stage-liver-disease",
+        "year": 2008,
+        "society": "UNOS / OPTN"
+      },
+      "inputs": [
+        {
+          "id": "creatinine",
+          "label": "Creatinina sérica",
+          "type": "number",
+          "unitDefault": "mg/dL",
+          "unitOptions": [
+            { "value": "mg/dL",  "label": "mg/dL",  "factor": 1 },
+            { "value": "umol/L", "label": "µmol/L", "factor": 88.4 }
+          ],
+          "min": 0.1, "max": 20, "step": 0.01, "default": 1.0, "required": true,
+          "helpText": "Si paciente está en diálisis ≥2x/semana en últimos 7 días, usar 4.0 mg/dL.",
+          "examples": "Normal: 0.7-1.2 mg/dL · ERC: >1.5 mg/dL",
+          "warningRange": { "below": 0.3, "above": 15, "message": "Valor fuera de rango clínico habitual. ¿Verificaste las unidades?" }
+        },
+        {
+          "id": "bilirubin",
+          "label": "Bilirrubina total",
+          "type": "number",
+          "unitDefault": "mg/dL",
+          "unitOptions": [
+            { "value": "mg/dL",  "label": "mg/dL",  "factor": 1 },
+            { "value": "umol/L", "label": "µmol/L", "factor": 17.1 }
+          ],
+          "min": 0.1, "max": 60, "step": 0.01, "default": 1.0, "required": true,
+          "warningRange": { "below": 0.1, "above": 50, "message": "Valor fuera de rango clínico habitual. ¿Verificaste las unidades?" }
+        },
+        {
+          "id": "inr",
+          "label": "INR (tiempo de protrombina)",
+          "type": "number",
+          "unit": "INR",
+          "min": 0.5, "max": 20, "step": 0.1, "default": 1.0, "required": true
+        },
+        {
+          "id": "sodium",
+          "label": "Sodio sérico",
+          "type": "number",
+          "unit": "mEq/L",
+          "min": 100, "max": 160, "step": 1, "default": 135, "required": true,
+          "helpText": "Rango usado en fórmula: 125-137. Valores fuera se truncan al límite.",
+          "warningRange": { "below": 115, "above": 155, "message": "Sodio extremo. Verificá lab." }
+        }
+      ],
+      "referenceTable": [
+        { "label": "<10",   "range": "Bajo",      "interpretation": "Mortalidad 90d <2%. Manejo ambulatorio.",                              "color": "success" },
+        { "label": "10-19", "range": "Moderado",  "interpretation": "Mortalidad 90d ~6-20%. Considerar hospitalización en descompensaciones.", "color": "warning" },
+        { "label": "20-29", "range": "Alto",      "interpretation": "Mortalidad 90d ~20-50%. Evaluación trasplante.",                       "color": "warning" },
+        { "label": "30-39", "range": "Muy alto",  "interpretation": "Mortalidad 90d ~50-70%. Lista de trasplante.",                          "color": "danger"  },
+        { "label": "≥40",   "range": "Crítico",   "interpretation": "Mortalidad 90d >70%. Score se trunca a 40.",                            "color": "danger"  }
+      ],
+      "calculatorFn": "calc_meld_na",
+      "footerNote": "Validado contra MDCalc · v1.0 · MELD-Na (con sodio, post-2016)",
+      "clinicalDisclaimer": "MELD-Na es preferido sobre MELD original para priorización trasplante. Decisión final por equipo de hepatología."
+    },
+
+    {
+      "id": "gold",
+      "name": "GOLD",
+      "fullName": "GOLD Spirometric Classification (severidad EPOC)",
+      "specialty": "neumologia",
+      "specialtyDisplay": "Neumología",
+      "type": "calculator",
+      "synonyms": ["epoc", "espirometria", "fev1", "obstruccion bronquial"],
+      "description": "Clasifica severidad de EPOC según FEV1 post-broncodilatador (% del predicho). 4 estadios: GOLD 1-4.",
+      "reference": {
+        "paper": "Global Initiative for Chronic Obstructive Lung Disease (GOLD) 2024 Report",
+        "url": "https://goldcopd.org/",
+        "year": 2024,
+        "society": "GOLD"
+      },
+      "inputs": [
+        {
+          "id": "fev1Percent",
+          "label": "FEV1 (% del predicho, post-broncodilatador)",
+          "type": "number",
+          "unit": "%",
+          "min": 5, "max": 150, "step": 1, "default": 80, "required": true,
+          "helpText": "Aplicar SOLO en pacientes con confirmación de obstrucción (FEV1/FVC <0.70 post-BD).",
+          "warningRange": { "below": 10, "above": 150, "message": "Valor fuera de rango habitual." }
+        }
+      ],
+      "referenceTable": [
+        { "label": "GOLD 1", "range": "≥80%",   "interpretation": "Leve",        "color": "success" },
+        { "label": "GOLD 2", "range": "50-79%", "interpretation": "Moderada",    "color": "warning" },
+        { "label": "GOLD 3", "range": "30-49%", "interpretation": "Grave",       "color": "danger"  },
+        { "label": "GOLD 4", "range": "<30%",   "interpretation": "Muy grave",   "color": "danger"  }
+      ],
+      "calculatorFn": "calc_gold",
+      "footerNote": "Validado contra MDCalc · v1.0 · GOLD 2024",
+      "clinicalDisclaimer": "Esta clasificación SOLO aplica si el diagnóstico de EPOC está confirmado (FEV1/FVC <0.70 post-broncodilatador). Score completo GOLD ABCD requiere también disnea (mMRC) y exacerbaciones — futuras versiones."
+    },
+
+    {
+      "id": "curb65",
+      "name": "CURB-65",
+      "fullName": "Severidad Neumonía Adquirida en la Comunidad",
+      "specialty": "neumologia",
+      "specialtyDisplay": "Neumología",
+      "type": "calculator",
+      "synonyms": ["neumonia", "nac", "severidad neumonia", "hospitalizacion neumonia"],
+      "description": "Predice mortalidad a 30 días en neumonía adquirida en la comunidad. Decide manejo ambulatorio vs hospitalario vs UCI. 5 ítems Sí/No.",
+      "reference": {
+        "paper": "Lim WS et al. Defining community-acquired pneumonia severity on presentation to hospital: an international derivation and validation study. Thorax 2003",
+        "url": "https://www.mdcalc.com/calc/324/curb-65-score-pneumonia-severity",
+        "year": 2003,
+        "society": "British Thoracic Society"
+      },
+      "inputs": [
+        { "id": "confusion",       "label": "Confusión (alteración de conciencia, AMTS ≤8)", "type": "select", "options": [{"value":"no","label":"No"},{"value":"yes","label":"Sí (+1)"}], "default": "no", "required": true },
+        { "id": "urea",            "label": "Urea sérica >40 mg/dL (BUN >19 mg/dL)",         "type": "select", "options": [{"value":"no","label":"No"},{"value":"yes","label":"Sí (+1)"}], "default": "no", "required": true, "helpText": "BUN >19 mg/dL = urea >40 mg/dL aproximadamente." },
+        { "id": "respiratoryRate", "label": "Frecuencia respiratoria ≥30/min",                "type": "select", "options": [{"value":"no","label":"No"},{"value":"yes","label":"Sí (+1)"}], "default": "no", "required": true },
+        { "id": "bloodPressure",   "label": "PA sistólica <90 mmHg o diastólica ≤60 mmHg",   "type": "select", "options": [{"value":"no","label":"No"},{"value":"yes","label":"Sí (+1)"}], "default": "no", "required": true },
+        { "id": "age65",           "label": "Edad ≥65 años",                                  "type": "select", "options": [{"value":"no","label":"No"},{"value":"yes","label":"Sí (+1)"}], "default": "no", "required": true }
+      ],
+      "referenceTable": [
+        { "label": "0",   "range": "Riesgo bajo",  "interpretation": "Mortalidad 0.6%. Manejo ambulatorio.",                            "color": "success" },
+        { "label": "1",   "range": "Riesgo bajo",  "interpretation": "Mortalidad 2.7%. Manejo ambulatorio probable.",                   "color": "success" },
+        { "label": "2",   "range": "Moderado",     "interpretation": "Mortalidad 6.8%. Hospitalización corta.",                         "color": "warning" },
+        { "label": "3",   "range": "Alto",         "interpretation": "Mortalidad 14%. Hospitalización; considerar UCI si comorbilidades.", "color": "danger"  },
+        { "label": "4-5", "range": "Muy alto",     "interpretation": "Mortalidad ~27%. UCI.",                                            "color": "danger"  }
+      ],
+      "calculatorFn": "calc_curb65",
+      "footerNote": "Validado contra MDCalc · v1.0 · Lim 2003",
+      "clinicalDisclaimer": "Score complementa juicio clínico, no lo reemplaza. Considerar también comorbilidades, saturación O2, hipoxemia."
+    },
+
+    {
+      "id": "gcs",
+      "name": "Glasgow Coma Scale",
+      "fullName": "Glasgow Coma Scale (GCS) — adultos",
+      "specialty": "urgencias",
+      "specialtyDisplay": "Urgencias / Neurología",
+      "type": "calculator",
+      "synonyms": ["coma", "glasgow", "tec", "trauma craneal", "conciencia"],
+      "description": "Evalúa nivel de conciencia mediante 3 respuestas: ocular, verbal y motora. Score 3-15.",
+      "reference": {
+        "paper": "Teasdale G, Jennett B. Assessment of coma and impaired consciousness. Lancet 1974",
+        "url": "https://www.mdcalc.com/calc/64/glasgow-coma-scale-score",
+        "year": 1974,
+        "society": "Universal — usado por toda la medicina occidental"
+      },
+      "inputs": [
+        {
+          "id": "eyeResponse",
+          "label": "Apertura ocular",
+          "type": "select",
+          "options": [
+            { "value": "4", "label": "Espontánea (+4)" },
+            { "value": "3", "label": "Al estímulo verbal (+3)" },
+            { "value": "2", "label": "Al estímulo doloroso (+2)" },
+            { "value": "1", "label": "Sin respuesta (+1)" }
+          ],
+          "default": "4", "required": true
+        },
+        {
+          "id": "verbalResponse",
+          "label": "Respuesta verbal",
+          "type": "select",
+          "options": [
+            { "value": "5", "label": "Orientada (+5)" },
+            { "value": "4", "label": "Confusa (+4)" },
+            { "value": "3", "label": "Palabras inapropiadas (+3)" },
+            { "value": "2", "label": "Sonidos incomprensibles (+2)" },
+            { "value": "1", "label": "Sin respuesta (+1)" }
+          ],
+          "default": "5", "required": true
+        },
+        {
+          "id": "motorResponse",
+          "label": "Respuesta motora",
+          "type": "select",
+          "options": [
+            { "value": "6", "label": "Obedece órdenes (+6)" },
+            { "value": "5", "label": "Localiza dolor (+5)" },
+            { "value": "4", "label": "Retira al dolor (+4)" },
+            { "value": "3", "label": "Flexión anormal (decorticación) (+3)" },
+            { "value": "2", "label": "Extensión anormal (descerebración) (+2)" },
+            { "value": "1", "label": "Sin respuesta (+1)" }
+          ],
+          "default": "6", "required": true
+        }
+      ],
+      "referenceTable": [
+        { "label": "13-15", "range": "Leve",     "interpretation": "TEC leve. Vigilancia neurológica.",                                "color": "success" },
+        { "label": "9-12",  "range": "Moderado", "interpretation": "TEC moderado. Hospitalización + TC cerebral.",                     "color": "warning" },
+        { "label": "3-8",   "range": "Grave",    "interpretation": "TEC grave / coma. Manejo agresivo + UCI.",                          "color": "danger"  }
+      ],
+      "calculatorFn": "calc_gcs",
+      "footerNote": "Validado contra MDCalc · v1.0 · GCS Adultos (Teasdale 1974)",
+      "clinicalDisclaimer": "GCS no debe usarse de forma aislada para decisiones de intubación. Considerar también patrón respiratorio, hemodinamia, y contexto clínico."
     }
   ]
 }

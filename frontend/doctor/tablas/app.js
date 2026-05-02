@@ -76,4 +76,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('[TablasClinicas] NuraTablas.UIList no está disponible.');
         container.innerHTML = '<p class="error-text">Error de carga de módulos.</p>';
     }
+
+    // ── [Sprint M4-B-1] Inicializar Command Palette (Ctrl+K) ──────
+    if (window.NuraCommandPalette) {
+        window.NuraCommandPalette.init(scalesData.scales || []);
+    }
+
+    // ── [Sprint M4-B-1] Auto-expandir escala desde anchor #scaleId ──
+    // Caso de uso: usuario llega desde dashboard via Command Palette.
+    // setTimeout(100) por simplicidad MVP — la lista ya se renderizó
+    // sincrónicamente arriba, pero el scrollIntoView funciona mejor
+    // post-paint del browser. Si scaleId es inválido, expandScale loggea
+    // warning y no rompe.
+    if (window.location.hash) {
+        const scaleId = window.location.hash.slice(1);
+        setTimeout(() => {
+            if (window.NuraTablas?.UIList?.expandScale) {
+                const ok = window.NuraTablas.UIList.expandScale(scaleId);
+                if (!ok) console.warn('[TablasClinicas] No se pudo abrir desde hash:', scaleId);
+            }
+        }, 100);
+    }
 });

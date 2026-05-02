@@ -206,3 +206,228 @@ body.doctor-dashboard {
         grid-template-columns: 1fr;
     }
 }
+
+/* ═════════════════════════════════════════════════════════════
+   [Sprint M4-B-1] Card activa (clickeable) y modal Tablas
+   ═════════════════════════════════════════════════════════════ */
+
+.feature-card-active {
+    opacity: 1 !important;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.feature-card-active:hover,
+.feature-card-active:focus-visible {
+    border-color: #4f46e5;
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.18);
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.feature-card-active:active {
+    transform: translateY(0);
+}
+
+.kbd-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.6rem;
+    font-size: 0.7rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.kbd-hint kbd {
+    display: inline-block;
+    padding: 1px 6px;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: #374151;
+}
+
+/* ── Modal flotante (mismo estilo que tablas/styles.css) ── */
+.tablas-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    backdrop-filter: blur(2px);
+}
+
+.tablas-modal-overlay.active {
+    display: flex;
+}
+
+.tablas-modal-content {
+    position: relative;
+    width: 90vw;
+    max-width: 1200px;
+    height: 90vh;
+    background: #f0f2f5;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+    border: 1px solid #e5e7eb;
+}
+
+.tablas-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a1a1a;
+    transition: background 0.2s ease, transform 0.1s ease;
+    font-family: inherit;
+}
+
+.tablas-modal-close:hover {
+    background: #f9fafb;
+    transform: scale(1.05);
+}
+
+.tablas-modal-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #f0f2f5;
+}
+
+@media (max-width: 768px) {
+    .tablas-modal-overlay { padding: 0; }
+    .tablas-modal-content {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
+}
+
+/* ── Command Palette (mismo estilo, replicado para dashboard) ── */
+.command-palette {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 15vh;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.command-palette.active { display: flex; }
+
+.command-palette-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+}
+
+.command-palette-box {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+}
+
+.command-palette-input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: none;
+    border-bottom: 1px solid #e5e7eb;
+    background: #ffffff;
+    font-size: 1rem;
+    color: #1a1a1a;
+    outline: none;
+    font-family: inherit;
+}
+
+.command-palette-input::placeholder { color: #6b7280; }
+
+.command-palette-results {
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.command-palette-item {
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    border-bottom: 1px solid #e5e7eb;
+    transition: background 0.15s ease;
+}
+
+.command-palette-item:last-child { border-bottom: none; }
+
+.command-palette-item:hover,
+.command-palette-item.selected {
+    background: rgba(79, 70, 229, 0.08);
+}
+
+.command-palette-item.selected {
+    border-left: 3px solid #4f46e5;
+}
+
+.command-palette-item-name {
+    font-weight: 600;
+    color: #1a1a1a;
+    font-size: 0.95rem;
+}
+
+.command-palette-item-meta {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.2rem;
+}
+
+.command-palette-empty {
+    padding: 1.5rem;
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.command-palette-hint {
+    padding: 0.55rem 1rem;
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    font-size: 0.7rem;
+    color: #6b7280;
+    text-align: center;
+}
+
+.command-palette-hint kbd {
+    display: inline-block;
+    padding: 1px 6px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    margin: 0 2px;
+    color: #1a1a1a;
+}

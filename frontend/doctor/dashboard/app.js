@@ -74,4 +74,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     btnSwitchToPerson.addEventListener('click', () => {
         window.location.href = '../../dashboard/index.html';
     });
+
+    // ── [Sprint M4-B-1] Card "Tablas clínicas" → abre modal ───────
+    const cardTablas = document.getElementById('card-tablas-clinicas');
+    if (cardTablas) {
+        const openTablasModal = () => {
+            if (window.NuraTablasModal) {
+                window.NuraTablasModal.open();
+            } else {
+                console.warn('[DoctorDashboard] NuraTablasModal no cargado, redirigiendo a /doctor/tablas/');
+                window.location.href = '../tablas/index.html';
+            }
+        };
+        cardTablas.addEventListener('click', openTablasModal);
+        // Soporte teclado (rol button)
+        cardTablas.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openTablasModal();
+            }
+        });
+    }
+
+    // ── [Sprint M4-B-1] Command Palette Ctrl+K (carga lazy) ───────
+    // Fetch del JSON de escalas para inicializar el palette en background.
+    // No bloquea la UI; si falla, el palette no se activa pero el dashboard sigue.
+    fetch('../tablas/data/scales.json', { cache: 'no-store' })
+        .then(r => r.ok ? r.json() : Promise.reject(`HTTP ${r.status}`))
+        .then(data => {
+            if (window.NuraCommandPalette) {
+                window.NuraCommandPalette.init(data.scales || []);
+            }
+        })
+        .catch(err => console.warn('[DoctorDashboard] Command palette no disponible:', err));
 });

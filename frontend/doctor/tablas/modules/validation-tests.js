@@ -172,6 +172,111 @@
             { id: 'cp-008', name: 'Caso 8: máximo Clase C (15 pts) — falla hepática terminal',
               inputs: { bilirubin: 5.0, albumin: 2.0, inr: 3.0, ascites: 'moderate', encephalopathy: '3_4' },
               expected: { value: 15, category: 'Clase C' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } }
+        ],
+
+        // ─── Sprint M4-B-1 ───────────────────────────────────────
+
+        hasbled: [
+            { id: 'hb-001', name: 'Caso 1: paciente sin factores (score 0)',
+              inputs: {},
+              expected: { value: 0, category: 'Score 0' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'hb-002', name: 'Caso 2: solo edad >65 (score 1)',
+              inputs: { elderly: 'yes' },
+              expected: { value: 1, category: 'Score 1' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'hb-003', name: 'Caso 3: HTA + edad >65 (score 2 — umbral moderado)',
+              inputs: { hypertension: 'yes', elderly: 'yes' },
+              expected: { value: 2, category: 'Score 2' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'hb-004', name: 'Caso 4: HTA + edad + INR lábil (score 3 — umbral alto)',
+              inputs: { hypertension: 'yes', elderly: 'yes', labileINR: 'yes' },
+              expected: { value: 3, category: 'Score 3' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'hb-005', name: 'Caso 5: múltiples factores (score 5)',
+              inputs: { hypertension: 'yes', renalDisease: 'yes', stroke: 'yes', bleeding: 'yes', elderly: 'yes' },
+              expected: { value: 5, category: 'Score 5' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'hb-006', name: 'Caso 6: alto riesgo (score 7)',
+              inputs: { hypertension: 'yes', renalDisease: 'yes', liverDisease: 'yes', stroke: 'yes', bleeding: 'yes', labileINR: 'yes', elderly: 'yes' },
+              expected: { value: 7, category: 'Score 7' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'hb-007', name: 'Caso 7: máximo (score 9 — todo positivo)',
+              inputs: { hypertension: 'yes', renalDisease: 'yes', liverDisease: 'yes', stroke: 'yes', bleeding: 'yes', labileINR: 'yes', elderly: 'yes', drugs: 'yes', alcohol: 'yes' },
+              expected: { value: 9, category: 'Score 9' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'hb-008', name: 'Caso 8: solo HTA (score 1)',
+              inputs: { hypertension: 'yes' },
+              expected: { value: 1, category: 'Score 1' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } }
+        ],
+
+        meld_na: [
+            { id: 'meld-001', name: 'Caso 1: mínimo (todos truncados a 1, Na 137)',
+              inputs: { bilirubin: 1.0, inr: 1.0, creatinine: 1.0, sodium: 137 },
+              expected: { value: 6, category: 'MELD-Na 6' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'meld-002', name: 'Caso 2: moderado (bili 2, INR 1.5, creat 1.5, Na 135)',
+              inputs: { bilirubin: 2.0, inr: 1.5, creatinine: 1.5, sodium: 135 },
+              expected: { value: 19, category: 'MELD-Na 19' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'meld-003', name: 'Caso 3: alto con Na bajo (bili 4, INR 2, creat 2, Na 130)',
+              inputs: { bilirubin: 4.0, inr: 2.0, creatinine: 2.0, sodium: 130 },
+              expected: { value: 29, category: 'MELD-Na 29' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'meld-004', name: 'Caso 4: Na alto >137 (sin corrección sodio)',
+              inputs: { bilirubin: 2.0, inr: 1.5, creatinine: 1.5, sodium: 140 },
+              expected: { value: 17, category: 'MELD-Na 17' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'meld-005', name: 'Caso 5: diálisis (creat 8 → trunca a 4)',
+              inputs: { bilirubin: 3.0, inr: 2.5, creatinine: 8.0, sodium: 135 },
+              expected: { value: 35, category: 'MELD-Na 35' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'meld-006', name: 'Caso 6: valores normales-bajos (INR/creat truncan a 1)',
+              inputs: { bilirubin: 1.2, inr: 0.9, creatinine: 0.9, sodium: 140 },
+              expected: { value: 7, category: 'MELD-Na 7' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'meld-007', name: 'Caso 7: máximo (score truncado a 40)',
+              inputs: { bilirubin: 20, inr: 10, creatinine: 10, sodium: 120 },
+              expected: { value: 40, category: 'MELD-Na 40' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'meld-008', name: 'Caso 8: edge — sodio en límite inferior (=125)',
+              inputs: { bilirubin: 1.5, inr: 1.3, creatinine: 1.3, sodium: 125 },
+              expected: { value: 24, category: 'MELD-Na 24' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } }
+        ],
+
+        gold: [
+            { id: 'gold-001', name: 'Caso 1: GOLD 1 normal (FEV1 85%)',           inputs: { fev1Percent: 85 }, expected: { value: 'GOLD 1', category: 'GOLD 1' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'gold-002', name: 'Caso 2: GOLD 1 límite inferior (FEV1 80%)',  inputs: { fev1Percent: 80 }, expected: { value: 'GOLD 1', category: 'GOLD 1' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'gold-003', name: 'Caso 3: GOLD 2 medio (FEV1 65%)',            inputs: { fev1Percent: 65 }, expected: { value: 'GOLD 2', category: 'GOLD 2' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'gold-004', name: 'Caso 4: GOLD 2 límite inferior (FEV1 50%)',  inputs: { fev1Percent: 50 }, expected: { value: 'GOLD 2', category: 'GOLD 2' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'gold-005', name: 'Caso 5: GOLD 3 medio (FEV1 40%)',            inputs: { fev1Percent: 40 }, expected: { value: 'GOLD 3', category: 'GOLD 3' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'gold-006', name: 'Caso 6: GOLD 3 límite inferior (FEV1 30%)',  inputs: { fev1Percent: 30 }, expected: { value: 'GOLD 3', category: 'GOLD 3' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'gold-007', name: 'Caso 7: GOLD 4 severo (FEV1 20%)',           inputs: { fev1Percent: 20 }, expected: { value: 'GOLD 4', category: 'GOLD 4' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'gold-008', name: 'Caso 8: GOLD 4 muy bajo (FEV1 15%)',         inputs: { fev1Percent: 15 }, expected: { value: 'GOLD 4', category: 'GOLD 4' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } }
+        ],
+
+        curb65: [
+            { id: 'curb-001', name: 'Caso 1: sin factores (score 0)',             inputs: {},                                                                                                  expected: { value: 0, category: 'Score 0' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'curb-002', name: 'Caso 2: solo confusión (score 1)',           inputs: { confusion: 'yes' },                                                                                expected: { value: 1, category: 'Score 1' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'curb-003', name: 'Caso 3: confusión + urea (score 2 — umbral hospitalización corta)', inputs: { confusion: 'yes', urea: 'yes' },                                            expected: { value: 2, category: 'Score 2' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'curb-004', name: 'Caso 4: + frecuencia respiratoria alta (score 3 — umbral UCI)', inputs: { confusion: 'yes', urea: 'yes', respiratoryRate: 'yes' },                        expected: { value: 3, category: 'Score 3' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'curb-005', name: 'Caso 5: + PA baja (score 4)',                inputs: { confusion: 'yes', urea: 'yes', respiratoryRate: 'yes', bloodPressure: 'yes' },                     expected: { value: 4, category: 'Score 4' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'curb-006', name: 'Caso 6: máximo (score 5 — todo positivo)',   inputs: { confusion: 'yes', urea: 'yes', respiratoryRate: 'yes', bloodPressure: 'yes', age65: 'yes' },        expected: { value: 5, category: 'Score 5' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'curb-007', name: 'Caso 7: solo edad ≥65 (score 1)',            inputs: { age65: 'yes' },                                                                                    expected: { value: 1, category: 'Score 1' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'curb-008', name: 'Caso 8: edad + PA baja (score 2)',           inputs: { age65: 'yes', bloodPressure: 'yes' },                                                              expected: { value: 2, category: 'Score 2' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } }
+        ],
+
+        gcs: [
+            { id: 'gcs-001', name: 'Caso 1: máximo 15 (E4 V5 M6) — paciente alerta',
+              inputs: { eyeResponse: '4', verbalResponse: '5', motorResponse: '6' },
+              expected: { value: 15, category: 'GCS 15 (E4 V5 M6)' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'gcs-002', name: 'Caso 2: mínimo 3 (E1 V1 M1) — coma profundo',
+              inputs: { eyeResponse: '1', verbalResponse: '1', motorResponse: '1' },
+              expected: { value: 3, category: 'GCS 3 (E1 V1 M1)' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'gcs-003', name: 'Caso 3: leve límite inferior (13) — TEC leve',
+              inputs: { eyeResponse: '4', verbalResponse: '4', motorResponse: '5' },
+              expected: { value: 13, category: 'GCS 13 (E4 V4 M5)' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'gcs-004', name: 'Caso 4: moderado típico (11)',
+              inputs: { eyeResponse: '3', verbalResponse: '3', motorResponse: '5' },
+              expected: { value: 11, category: 'GCS 11 (E3 V3 M5)' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'gcs-005', name: 'Caso 5: moderado-grave límite (9)',
+              inputs: { eyeResponse: '2', verbalResponse: '2', motorResponse: '5' },
+              expected: { value: 9, category: 'GCS 9 (E2 V2 M5)' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'gcs-006', name: 'Caso 6: grave (8) — TEC grave',
+              inputs: { eyeResponse: '1', verbalResponse: '2', motorResponse: '5' },
+              expected: { value: 8, category: 'GCS 8 (E1 V2 M5)' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'gcs-007', name: 'Caso 7: coma profundo (6)',
+              inputs: { eyeResponse: '1', verbalResponse: '1', motorResponse: '4' },
+              expected: { value: 6, category: 'GCS 6 (E1 V1 M4)' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'gcs-008', name: 'Caso 8: decorticación (7) — postura anormal',
+              inputs: { eyeResponse: '2', verbalResponse: '2', motorResponse: '3' },
+              expected: { value: 7, category: 'GCS 7 (E2 V2 M3)' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } }
         ]
     };
 
@@ -179,11 +284,18 @@
     // Runner: ejecuta cada caso, compara con expected, reporta.
     // ─────────────────────────────────────────────────────────────
     const fnMap = {
+        // Sprint M4-A
         egfr_ckdepi: C.calc_egfr_ckdepi,
         kdigo:       C.calc_kdigo,
         nyha:        C.calc_nyha,
         cha2ds2vasc: C.calc_cha2ds2vasc,
-        child_pugh:  C.calc_child_pugh
+        child_pugh:  C.calc_child_pugh,
+        // Sprint M4-B-1
+        hasbled:     C.calc_hasbled,
+        meld_na:     C.calc_meld_na,
+        gold:        C.calc_gold,
+        curb65:      C.calc_curb65,
+        gcs:         C.calc_gcs
     };
 
     function runAll() {

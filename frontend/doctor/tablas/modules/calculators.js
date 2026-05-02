@@ -274,16 +274,261 @@
         };
     }
 
+    // ═════════════════════════════════════════════════════════════
+    // [Sprint M4-B-1] Escalas adicionales: HAS-BLED, MELD-Na, GOLD,
+    // CURB-65, Glasgow Coma Scale.
+    // ═════════════════════════════════════════════════════════════
+
+    // ─────────────────────────────────────────────────────────────
+    // 6) HAS-BLED — Riesgo sangrado mayor en anticoagulación FA
+    // Fuente: Pisters R et al. CHEST 2010 (PMID: 20299623)
+    //
+    // 9 ítems Sí/No, 1 punto cada uno. Total 0-9.
+    // Score ≥3 = riesgo elevado (NO contraindica anticoagulación;
+    // implica precaución y vigilancia más estrecha).
+    // ─────────────────────────────────────────────────────────────
+    function calc_hasbled(inputs) {
+        const yes = (id) => (inputs[id] === 'yes' ? 1 : 0);
+
+        const score =
+            yes('hypertension') + yes('renalDisease') + yes('liverDisease') +
+            yes('stroke')       + yes('bleeding')     + yes('labileINR')    +
+            yes('elderly')      + yes('drugs')        + yes('alcohol');
+
+        let color, interp;
+        if (score <= 1) {
+            color = 'success';
+            interp = 'Riesgo bajo de sangrado mayor (~1.13% anual). Anticoagulación segura con vigilancia estándar.';
+        } else if (score === 2) {
+            color = 'warning';
+            interp = 'Riesgo moderado (~1.88% anual). Anticoagulación con vigilancia.';
+        } else {
+            color = 'danger';
+            interp = 'Riesgo alto (≥3 puntos). Considerar precaución y reevaluación periódica. NO contraindica anticoagulación.';
+        }
+
+        return {
+            value: score,
+            unit: 'puntos',
+            category: 'Score ' + score,
+            categoryColor: color,
+            interpretation: interp
+        };
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // 7) MELD-Na — Mortalidad 90d en cirrosis / priorización trasplante
+    // Fuente: Kim WR et al. NEJM 2008 (PMID: 18768945)
+    //
+    // Fórmula:
+    //   MELD = 3.78 × ln(bilirubin) + 11.2 × ln(INR) + 9.57 × ln(creat) + 6.43
+    //   MELD-Na = MELD + 1.32 × (137 − Na) − [0.033 × MELD × (137 − Na)]   (solo si Na < 137)
+    //
+    // Reglas (UNOS 2016):
+    //   - Mínimos: bili 1.0, INR 1.0, creat 1.0
+    //   - Máximo creat 4.0 (también si en diálisis ≥2x/sem)
+    //   - Sodio: clamp 125-137
+    //   - Score final: clamp 6-40
+    // ─────────────────────────────────────────────────────────────
+    function calc_meld_na(inputs) {
+        let bili   = Number(inputs.bilirubin);
+        let inr    = Number(inputs.inr);
+        let creat  = Number(inputs.creatinine);
+        let sodium = Number(inputs.sodium);
+
+        if (!isFinite(bili)  || bili  <= 0 ||
+            !isFinite(inr)   || inr   <= 0 ||
+            !isFinite(creat) || creat <= 0 ||
+            !isFinite(sodium)) {
+            return { error: 'Bilirrubina, INR, creatinina y sodio deben ser >0.' };
+        }
+
+        // Mínimos UNOS
+        bili  = Math.max(bili, 1.0);
+        inr   = Math.max(inr,  1.0);
+        creat = Math.max(creat, 1.0);
+        // Tope creatinina (también aplica si está en diálisis)
+        creat = Math.min(creat, 4.0);
+
+        // Clamp sodio 125-137
+        const naClamped = Math.max(125, Math.min(137, sodium));
+
+        // MELD original
+        const meld = 3.78 * Math.log(bili) + 11.2 * Math.log(inr) + 9.57 * Math.log(creat) + 6.43;
+
+        // MELD-Na (corrección sodio solo si Na < 137; UNOS 2016)
+        let meldNa;
+        if (naClamped >= 137) {
+            meldNa = meld;
+        } else {
+            meldNa = meld + 1.32 * (137 - naClamped) - (0.033 * meld * (137 - naClamped));
+        }
+
+        // Clamp final 6-40
+        meldNa = Math.max(6, Math.min(40, meldNa));
+        const finalScore = Math.round(meldNa);
+
+        let color, interp;
+        if (finalScore < 10) {
+            color = 'success';
+            interp = 'Mortalidad 90d <2%. Manejo ambulatorio.';
+        } else if (finalScore < 20) {
+            color = 'warning';
+            interp = 'Mortalidad 90d ~6-20%. Considerar hospitalización en descompensaciones.';
+        } else if (finalScore < 30) {
+            color = 'warning';
+            interp = 'Mortalidad 90d ~20-50%. Evaluación trasplante.';
+        } else if (finalScore < 40) {
+            color = 'danger';
+            interp = 'Mortalidad 90d ~50-70%. Lista de trasplante.';
+        } else {
+            color = 'danger';
+            interp = 'Mortalidad 90d >70%. Score truncado a 40 (máximo).';
+        }
+
+        return {
+            value: finalScore,
+            unit: '',
+            category: 'MELD-Na ' + finalScore,
+            categoryColor: color,
+            interpretation: interp
+        };
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // 8) GOLD — Severidad espirométrica EPOC
+    // Fuente: Global Initiative for Chronic Obstructive Lung Disease (GOLD) 2024
+    //
+    // 1 input: FEV1 % del predicho post-broncodilatador.
+    // SOLO aplica si FEV1/FVC <0.70 post-BD (diagnóstico EPOC confirmado).
+    // ─────────────────────────────────────────────────────────────
+    function calc_gold(inputs) {
+        const fev1 = Number(inputs.fev1Percent);
+        if (!isFinite(fev1) || fev1 < 5) {
+            return { error: 'FEV1 debe ser ≥5% del predicho.' };
+        }
+
+        let stage, color, interp;
+        if (fev1 >= 80) {
+            stage = 'GOLD 1'; color = 'success'; interp = 'EPOC leve';
+        } else if (fev1 >= 50) {
+            stage = 'GOLD 2'; color = 'warning'; interp = 'EPOC moderada';
+        } else if (fev1 >= 30) {
+            stage = 'GOLD 3'; color = 'danger';  interp = 'EPOC grave';
+        } else {
+            stage = 'GOLD 4'; color = 'danger';  interp = 'EPOC muy grave';
+        }
+
+        return {
+            value: stage,
+            unit: '',
+            category: stage,
+            categoryColor: color,
+            interpretation: interp
+        };
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // 9) CURB-65 — Severidad neumonía adquirida en la comunidad
+    // Fuente: Lim WS et al. Thorax 2003 (PMID: 12728155)
+    //
+    // 5 ítems Sí/No, 1 punto cada uno. Score 0-5.
+    // Decisión: 0-1 ambulatorio · 2 hospitalización corta · ≥3 UCI.
+    // ─────────────────────────────────────────────────────────────
+    function calc_curb65(inputs) {
+        const yes = (id) => (inputs[id] === 'yes' ? 1 : 0);
+
+        const score =
+            yes('confusion') + yes('urea') + yes('respiratoryRate') +
+            yes('bloodPressure') + yes('age65');
+
+        let color, interp;
+        if (score === 0) {
+            color = 'success';
+            interp = 'Mortalidad 0.6%. Manejo ambulatorio.';
+        } else if (score === 1) {
+            color = 'success';
+            interp = 'Mortalidad 2.7%. Manejo ambulatorio probable.';
+        } else if (score === 2) {
+            color = 'warning';
+            interp = 'Mortalidad 6.8%. Hospitalización corta.';
+        } else if (score === 3) {
+            color = 'danger';
+            interp = 'Mortalidad 14%. Hospitalización; considerar UCI si comorbilidades.';
+        } else {
+            color = 'danger';
+            interp = 'Mortalidad ~27%. UCI.';
+        }
+
+        return {
+            value: score,
+            unit: 'puntos',
+            category: 'Score ' + score,
+            categoryColor: color,
+            interpretation: interp
+        };
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // 10) Glasgow Coma Scale (GCS) — Adultos
+    // Fuente: Teasdale G, Jennett B. Lancet 1974 (PMID: 4136544)
+    //
+    // 3 respuestas (ocular 1-4, verbal 1-5, motora 1-6). Total 3-15.
+    //   13-15: leve · 9-12: moderado · 3-8: grave / coma
+    // ─────────────────────────────────────────────────────────────
+    function calc_gcs(inputs) {
+        const eye    = parseInt(inputs.eyeResponse, 10);
+        const verbal = parseInt(inputs.verbalResponse, 10);
+        const motor  = parseInt(inputs.motorResponse, 10);
+
+        if (!eye || !verbal || !motor) {
+            return { error: 'Las 3 respuestas (ocular, verbal, motora) son obligatorias.' };
+        }
+        if (eye < 1 || eye > 4 || verbal < 1 || verbal > 5 || motor < 1 || motor > 6) {
+            return { error: 'Valores fuera de rango (E:1-4, V:1-5, M:1-6).' };
+        }
+
+        const score = eye + verbal + motor;
+
+        let color, interp;
+        if (score >= 13) {
+            color = 'success';
+            interp = 'TEC leve. Vigilancia neurológica.';
+        } else if (score >= 9) {
+            color = 'warning';
+            interp = 'TEC moderado. Hospitalización + TC cerebral.';
+        } else {
+            color = 'danger';
+            interp = 'TEC grave / coma. Manejo agresivo + UCI.';
+        }
+
+        return {
+            value: score,
+            unit: 'puntos',
+            category: 'GCS ' + score + ' (E' + eye + ' V' + verbal + ' M' + motor + ')',
+            categoryColor: color,
+            interpretation: interp,
+            breakdown: { eye, verbal, motor }
+        };
+    }
+
     // ─────────────────────────────────────────────────────────────
     // Exposición
     // ─────────────────────────────────────────────────────────────
     const api = {
+        // Sprint M4-A
         calc_egfr_ckdepi,
         calc_kdigo,
         calc_nyha,
         calc_cha2ds2vasc,
         calc_child_pugh,
-        interpret_egfr_kdigo
+        interpret_egfr_kdigo,
+        // Sprint M4-B-1
+        calc_hasbled,
+        calc_meld_na,
+        calc_gold,
+        calc_curb65,
+        calc_gcs
     };
 
     if (typeof window !== 'undefined') {

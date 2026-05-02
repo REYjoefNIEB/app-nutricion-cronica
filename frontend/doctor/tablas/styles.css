@@ -555,3 +555,199 @@ body.tablas-page {
         min-width: 70px;
     }
 }
+
+/* ═════════════════════════════════════════════════════════════
+   [Sprint M4-B-1] Command Palette (Ctrl+K)
+   ═════════════════════════════════════════════════════════════ */
+
+.command-palette {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 15vh;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.command-palette.active {
+    display: flex;
+}
+
+.command-palette-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+}
+
+.command-palette-box {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+}
+
+.command-palette-input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: none;
+    border-bottom: 1px solid var(--card-border);
+    background: var(--input-bg);
+    font-size: 1rem;
+    color: var(--text-main);
+    outline: none;
+    font-family: inherit;
+}
+
+.command-palette-input::placeholder {
+    color: var(--text-muted);
+}
+
+.command-palette-results {
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.command-palette-item {
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    border-bottom: 1px solid var(--card-border);
+    transition: background 0.15s ease;
+}
+
+.command-palette-item:last-child {
+    border-bottom: none;
+}
+
+.command-palette-item:hover,
+.command-palette-item.selected {
+    background: rgba(86, 182, 194, 0.12);
+}
+
+.command-palette-item.selected {
+    border-left: 3px solid var(--secondary);
+}
+
+.command-palette-item-name {
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+.command-palette-item-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+.command-palette-empty {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.command-palette-hint {
+    padding: 0.55rem 1rem;
+    background: var(--input-bg);
+    border-top: 1px solid var(--card-border);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.command-palette-hint kbd {
+    display: inline-block;
+    padding: 1px 6px;
+    background: var(--card-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    margin: 0 2px;
+    color: var(--text-main);
+}
+
+/* ═════════════════════════════════════════════════════════════
+   [Sprint M4-B-1] Modal flotante Tablas Clínicas (iframe)
+   ═════════════════════════════════════════════════════════════ */
+
+.tablas-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    backdrop-filter: blur(2px);
+}
+
+.tablas-modal-overlay.active {
+    display: flex;
+}
+
+.tablas-modal-content {
+    position: relative;
+    width: 90vw;
+    max-width: 1200px;
+    height: 90vh;
+    background: var(--bg-color);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--card-border);
+}
+
+.tablas-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: var(--card-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    transition: background 0.2s ease, transform 0.1s ease;
+    font-family: inherit;
+}
+
+.tablas-modal-close:hover {
+    background: var(--input-bg);
+    transform: scale(1.05);
+}
+
+.tablas-modal-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: var(--bg-color);
+}
+
+@media (max-width: 768px) {
+    .tablas-modal-overlay { padding: 0; }
+    .tablas-modal-content {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
+    .command-palette {
+        padding-top: 8vh;
+    }
+}

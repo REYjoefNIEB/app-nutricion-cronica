@@ -1,4 +1,57 @@
-# Reporte de Validación — Sprint M4-A
+# Reporte de Validación — Sprint M4-A + M4-B-1
+
+**Estado actual:** `verified` ✅
+**Última validación:** 2026-05-02 (M4-B-1 completado)
+**Casos automatizados (M4-A + M4-B-1):** 80/80 PASS
+**Escalas con validación clínica documentada:** 10/10 (5 M4-A + 5 M4-B-1)
+
+## Sprint M4-B-1 — Validación bilateral completada (2026-05-02)
+
+5 escalas nuevas validadas. Activa el footer "✓ Validado contra MDCalc · v1.0" en
+las 10 escalas de la página `/doctor/tablas/`.
+
+### HAS-BLED ✅
+- 1 caso validado contra MDCalc.com
+- URL: https://www.mdcalc.com/calc/807/has-bled-score-major-bleeding-risk
+- Coincidencia: exacta
+
+### MELD-Na ✅
+- 1 caso validado contra MDCalc.com
+- URL: https://www.mdcalc.com/calc/78/meld-score-original-pre-2016-model-end-stage-liver-disease
+- Resultado validado: **24 pts** en caso de prueba
+- Coincidencia: exacta
+
+### GOLD ✅ (validación contra guideline oficial)
+- 4 valores test contra rangos GOLD 2024 oficial: 90 → GOLD 1, 65 → GOLD 2, 40 → GOLD 3, 25 → GOLD 4
+- URL guideline: https://goldcopd.org/
+- Rangos confirmados: Stage 1 ≥80%, Stage 2 50-79%, Stage 3 30-49%, Stage 4 <30%
+
+**Nota especial sobre GOLD:** La calculadora actual de MDCalc.com presenta GOLD ABCD,
+que requiere también disnea (mMRC) y exacerbaciones — Nura V1 implementa GOLD
+spirometric clásico (solo FEV1%), por lo que la validación se hizo contra la
+guideline GOLD 2024 oficial en vez de la calculadora MDCalc directa. Coincidencia
+de rangos por los 4 estadios confirmada.
+
+### CURB-65 ✅
+- 1 caso validado contra MDCalc.com
+- URL: https://www.mdcalc.com/calc/324/curb-65-score-pneumonia-severity
+- Coincidencia: exacta
+
+### Glasgow Coma Scale ✅
+- 1 caso validado contra MDCalc.com
+- URL: https://www.mdcalc.com/calc/64/glasgow-coma-scale-score
+- Coincidencia: exacta
+
+### Decisión de versión
+- `version: 1.1`
+- `validationStatus: verified`
+- `validationDate: 2026-05-02`
+- Footer "✓ Validado contra MDCalc · v1.0" reactivado en las 10 escalas
+  (5 M4-A + 5 M4-B-1)
+
+---
+
+# Reporte de Validación — Sprint M4-A (histórico)
 
 **Estado:** `verified` ✅
 **Fecha:** 2026-05-02

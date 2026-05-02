@@ -421,10 +421,53 @@
     }
 
     // ─────────────────────────────────────────────────────────────
+    // [Sprint M4-B-1] API pública: expandScale(scaleId)
+    //
+    // Expande la escala identificada por `scaleId` y hace scroll suave
+    // a su posición. Reusable desde Command Palette (Ctrl+K) y futuro
+    // workflow de patología (M4-B-2).
+    //
+    // Contrato:
+    //   - Si scaleId existe en state.scales: cambia state.expandedId,
+    //     re-renderiza, hace scrollIntoView smooth, y devuelve true.
+    //   - Si scaleId NO existe: loggea warning y devuelve false (no rompe).
+    //   - Si renderList aún no fue llamado (state.scales vacío): devuelve false.
+    //
+    // @param {string} scaleId - id de la escala a expandir
+    // @returns {boolean} true si se expandió, false si scaleId inválido
+    // ─────────────────────────────────────────────────────────────
+    function expandScale(scaleId) {
+        if (!scaleId) return false;
+        if (!state.scales || state.scales.length === 0) {
+            console.warn('[UIList] expandScale: lista vacía, todavía no inicializada');
+            return false;
+        }
+        const exists = state.scales.some(s => s.id === scaleId);
+        if (!exists) {
+            console.warn('[UIList] expandScale: scaleId no existe:', scaleId);
+            return false;
+        }
+        state.expandedId = scaleId;
+        const container = document.getElementById('scales-list');
+        const searchInput = document.getElementById('search-input');
+        // Limpiar búsqueda para asegurar que la escala sea visible (no filtrada).
+        if (searchInput) searchInput.value = '';
+        renderScales(container, '');
+
+        // Scroll suave al elemento expandido (post-render)
+        setTimeout(() => {
+            const target = document.querySelector(`[data-scale-id="${scaleId}"]`);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 50);
+
+        return true;
+    }
+
+    // ─────────────────────────────────────────────────────────────
     // Exposición
     // ─────────────────────────────────────────────────────────────
     if (typeof window !== 'undefined') {
         window.NuraTablas = window.NuraTablas || {};
-        window.NuraTablas.UIList = { renderList };
+        window.NuraTablas.UIList = { renderList, expandScale };
     }
 })();
