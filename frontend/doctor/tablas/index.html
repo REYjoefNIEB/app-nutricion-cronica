@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas Clínicas — Nura Doctor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../onboarding/styles.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="tablas-page">
+    <!-- Disclaimer permanente (consistente con dashboard médico) -->
+    <div class="doctor-disclaimer-banner">
+        ⚠️ Apoyo clínico — no reemplaza juicio profesional. Resultados deben ser interpretados por médico tratante.
+    </div>
+
+    <header class="tablas-header">
+        <a href="../dashboard/index.html" class="back-link" aria-label="Volver al dashboard">← Dashboard</a>
+        <h1>Tablas Clínicas</h1>
+        <span class="tablas-version" id="tablas-version">v1.0</span>
+    </header>
+
+    <main class="tablas-main">
+        <div class="tablas-search-wrapper">
+            <input type="text"
+                   id="search-input"
+                   class="tablas-search-input"
+                   placeholder="Buscar escala (eGFR, KDIGO, NYHA, CHA₂DS₂-VASc, Child-Pugh)..."
+                   autocomplete="off"
+                   spellcheck="false">
+        </div>
+
+        <div id="scales-list" class="scales-list">
+            <p class="loading-text">Cargando escalas...</p>
+        </div>
+    </main>
+
+    <!-- Scripts: cargados en orden para que window.NuraTablas.* exista cuando app.js arranca -->
+    <script src="modules/calculators.js"></script>
+    <script src="modules/unit-converter.js"></script>
+    <script src="modules/ui-list.js"></script>
+    <script type="module" src="../../shared/firebase-config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

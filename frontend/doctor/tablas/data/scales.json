@@ -1,0 +1,316 @@
+{
+  "version": "1.0",
+  "validatedAgainst": "MDCalc",
+  "validationDate": null,
+  "validationStatus": "pending",
+  "scales": [
+    {
+      "id": "egfr_ckdepi",
+      "name": "eGFR (CKD-EPI 2021)",
+      "fullName": "Estimated Glomerular Filtration Rate",
+      "specialty": "nefrologia",
+      "specialtyDisplay": "Nefrología",
+      "type": "calculator",
+      "synonyms": ["filtrado glomerular", "tasa filtración", "vfg", "tfg", "ckd-epi"],
+      "description": "Estima la tasa de filtración glomerular según creatinina sérica, edad y sexo. Versión 2021 sin coeficiente racial.",
+      "reference": {
+        "paper": "Inker LA et al. New Creatinine- and Cystatin C-Based Equations to Estimate GFR without Race. NEJM 2021",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2102953",
+        "year": 2021,
+        "society": "ASN/NKF (sociedades de nefrología EEUU)"
+      },
+      "inputs": [
+        {
+          "id": "creatinine",
+          "label": "Creatinina sérica",
+          "type": "number",
+          "unitDefault": "mg/dL",
+          "unitOptions": [
+            { "value": "mg/dL", "label": "mg/dL", "factor": 1 },
+            { "value": "umol/L", "label": "µmol/L", "factor": 88.4 }
+          ],
+          "min": 0.1,
+          "max": 20,
+          "step": 0.01,
+          "default": 1.0,
+          "required": true,
+          "helpText": "Estándar Chile: mg/dL. Si tu lab usa µmol/L, usá el toggle de unidades.",
+          "examples": "Normal: 0.7-1.2 mg/dL · ERC: >1.5 mg/dL",
+          "warningRange": {
+            "below": 0.3,
+            "above": 15,
+            "message": "Valor fuera de rango clínico habitual. ¿Verificaste las unidades?"
+          }
+        },
+        {
+          "id": "age",
+          "label": "Edad",
+          "type": "number",
+          "unit": "años",
+          "min": 18,
+          "max": 120,
+          "step": 1,
+          "default": 50,
+          "required": true,
+          "warningRange": {
+            "above": 110,
+            "message": "Edad muy alta — verificá."
+          }
+        },
+        {
+          "id": "sex",
+          "label": "Sexo",
+          "type": "select",
+          "options": [
+            { "value": "M", "label": "Masculino" },
+            { "value": "F", "label": "Femenino" }
+          ],
+          "default": "M",
+          "required": true
+        }
+      ],
+      "referenceTable": [
+        { "label": "G1", "range": "≥90", "interpretation": "Función normal o aumentada", "color": "success" },
+        { "label": "G2", "range": "60-89", "interpretation": "Levemente disminuida", "color": "success" },
+        { "label": "G3a", "range": "45-59", "interpretation": "Leve a moderadamente disminuida", "color": "warning" },
+        { "label": "G3b", "range": "30-44", "interpretation": "Moderadamente a severamente disminuida", "color": "warning" },
+        { "label": "G4", "range": "15-29", "interpretation": "Severamente disminuida — derivar nefrología", "color": "danger" },
+        { "label": "G5", "range": "<15", "interpretation": "Falla renal — evaluar diálisis", "color": "danger" }
+      ],
+      "calculatorFn": "calc_egfr_ckdepi",
+      "interpretationFn": "interpret_egfr_kdigo",
+      "footerNote": "Validado contra MDCalc · v1.0 · CKD-EPI 2021 sin coeficiente racial",
+      "clinicalDisclaimer": "Resultado debe ser interpretado por médico tratante. No reemplaza juicio clínico."
+    },
+
+    {
+      "id": "kdigo",
+      "name": "KDIGO — Estadio ERC",
+      "fullName": "Kidney Disease: Improving Global Outcomes — Estadificación Enfermedad Renal Crónica",
+      "specialty": "nefrologia",
+      "specialtyDisplay": "Nefrología",
+      "type": "reference_table",
+      "synonyms": ["erc", "enfermedad renal cronica", "estadios renales", "g1 g2 g3"],
+      "description": "Clasificación KDIGO 2012 por categorías G de filtrado glomerular. La categoría se determina con eGFR — usá la calculadora eGFR para obtener el valor primero.",
+      "reference": {
+        "paper": "KDIGO 2012 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+        "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "year": 2012,
+        "society": "KDIGO (Kidney Disease: Improving Global Outcomes)"
+      },
+      "inputs": [
+        {
+          "id": "egfr",
+          "label": "eGFR estimado",
+          "type": "number",
+          "unit": "mL/min/1.73m²",
+          "min": 1,
+          "max": 200,
+          "step": 1,
+          "default": 60,
+          "required": true,
+          "helpText": "Si no lo tenés calculado, usá la calculadora eGFR (CKD-EPI 2021) primero."
+        }
+      ],
+      "referenceTable": [
+        { "label": "G1", "range": "≥90", "interpretation": "Función normal o aumentada (con daño estructural si hay ERC)", "color": "success" },
+        { "label": "G2", "range": "60-89", "interpretation": "Levemente disminuida", "color": "success" },
+        { "label": "G3a", "range": "45-59", "interpretation": "Leve a moderadamente disminuida", "color": "warning" },
+        { "label": "G3b", "range": "30-44", "interpretation": "Moderadamente a severamente disminuida", "color": "warning" },
+        { "label": "G4", "range": "15-29", "interpretation": "Severamente disminuida — derivar nefrología", "color": "danger" },
+        { "label": "G5", "range": "<15", "interpretation": "Falla renal — evaluar diálisis o trasplante", "color": "danger" }
+      ],
+      "calculatorFn": "calc_kdigo",
+      "interpretationFn": "interpret_egfr_kdigo",
+      "linkedScale": "egfr_ckdepi",
+      "footerNote": "Validado contra MDCalc · v1.0 · KDIGO 2012",
+      "clinicalDisclaimer": "El estadio KDIGO completo (G+A) requiere también albuminuria. Esta tabla cubre solo categoría G."
+    },
+
+    {
+      "id": "nyha",
+      "name": "NYHA — Clase funcional",
+      "fullName": "New York Heart Association — Clasificación funcional Insuficiencia Cardíaca",
+      "specialty": "cardiologia",
+      "specialtyDisplay": "Cardiología",
+      "type": "calculator",
+      "synonyms": ["insuficiencia cardiaca", "ic", "clase funcional", "disnea"],
+      "description": "Clasificación funcional de la New York Heart Association para insuficiencia cardíaca. Basada en síntomas durante actividad física.",
+      "reference": {
+        "paper": "The Criteria Committee of the New York Heart Association. Nomenclature and Criteria for Diagnosis of Diseases of the Heart and Great Vessels (9th ed). 1994",
+        "url": "https://www.heart.org/en/health-topics/heart-failure/what-is-heart-failure/classes-of-heart-failure",
+        "year": 1994,
+        "society": "NYHA / American Heart Association"
+      },
+      "inputs": [
+        {
+          "id": "symptoms",
+          "label": "Síntomas del paciente",
+          "type": "select",
+          "options": [
+            { "value": "I",   "label": "Sin síntomas durante actividad física ordinaria" },
+            { "value": "II",  "label": "Síntomas leves durante actividad ordinaria (subir escaleras, caminar rápido)" },
+            { "value": "III", "label": "Síntomas marcados durante actividad menor a la ordinaria (caminar plano, vestirse)" },
+            { "value": "IV",  "label": "Síntomas en reposo o con cualquier actividad mínima" }
+          ],
+          "default": "II",
+          "required": true,
+          "helpText": "Considerá disnea, fatiga, palpitaciones o angina como síntomas relevantes."
+        }
+      ],
+      "referenceTable": [
+        { "label": "Clase I",   "range": "Sin limitación",        "interpretation": "Actividad física ordinaria sin síntomas", "color": "success" },
+        { "label": "Clase II",  "range": "Limitación leve",       "interpretation": "Cómodo en reposo; síntomas con actividad ordinaria", "color": "success" },
+        { "label": "Clase III", "range": "Limitación marcada",    "interpretation": "Cómodo en reposo; síntomas con actividad menor a la ordinaria", "color": "warning" },
+        { "label": "Clase IV",  "range": "Síntomas en reposo",    "interpretation": "Incapaz de realizar actividad sin síntomas; disnea/angina en reposo", "color": "danger" }
+      ],
+      "calculatorFn": "calc_nyha",
+      "footerNote": "Validado contra MDCalc · v1.0 · NYHA 1994",
+      "clinicalDisclaimer": "Clasificación subjetiva basada en juicio clínico. Reevaluar tras cambios terapéuticos."
+    },
+
+    {
+      "id": "cha2ds2vasc",
+      "name": "CHA₂DS₂-VASc",
+      "fullName": "Riesgo de embolia en Fibrilación Auricular no valvular",
+      "specialty": "cardiologia",
+      "specialtyDisplay": "Cardiología",
+      "type": "calculator",
+      "synonyms": ["fibrilacion auricular", "fa", "embolia", "anticoagulacion", "stroke"],
+      "description": "Estima el riesgo anual de stroke/embolia sistémica en pacientes con fibrilación auricular no valvular. Score 0-9.",
+      "reference": {
+        "paper": "Lip GY et al. Refining clinical risk stratification for predicting stroke and thromboembolism in atrial fibrillation using a novel risk factor-based approach. CHEST 2010",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19762550/",
+        "year": 2010,
+        "society": "ESC (European Society of Cardiology)"
+      },
+      "inputs": [
+        { "id": "chf",         "label": "Insuficiencia cardíaca congestiva o disfunción VI", "type": "checkbox", "points": 1, "default": false },
+        { "id": "htn",         "label": "Hipertensión arterial",                              "type": "checkbox", "points": 1, "default": false },
+        { "id": "age75",       "label": "Edad ≥75 años",                                      "type": "checkbox", "points": 2, "default": false, "exclusiveWith": "age65_74" },
+        { "id": "diabetes",    "label": "Diabetes Mellitus",                                  "type": "checkbox", "points": 1, "default": false },
+        { "id": "stroke",      "label": "Stroke / TIA / tromboembolismo previo",              "type": "checkbox", "points": 2, "default": false },
+        { "id": "vascular",    "label": "Enfermedad vascular (IAM, EAP, placa aórtica)",      "type": "checkbox", "points": 1, "default": false },
+        { "id": "age65_74",    "label": "Edad 65-74 años",                                    "type": "checkbox", "points": 1, "default": false, "exclusiveWith": "age75" },
+        { "id": "female",      "label": "Sexo femenino",                                      "type": "checkbox", "points": 1, "default": false }
+      ],
+      "referenceTable": [
+        { "label": "0",   "range": "Riesgo bajo",        "interpretation": "Riesgo anual ~0.2%. No anticoagulación.", "color": "success" },
+        { "label": "1",   "range": "Riesgo intermedio",  "interpretation": "Riesgo anual ~0.6%. Considerar anticoagulación (especialmente si no es solo por sexo femenino).", "color": "warning" },
+        { "label": "2",   "range": "Riesgo alto",        "interpretation": "Riesgo anual ~2.2%. Anticoagulación recomendada (clase I).", "color": "danger" },
+        { "label": "3",   "range": "Riesgo alto",        "interpretation": "Riesgo anual ~3.2%. Anticoagulación recomendada.", "color": "danger" },
+        { "label": "4",   "range": "Riesgo alto",        "interpretation": "Riesgo anual ~4.8%. Anticoagulación recomendada.", "color": "danger" },
+        { "label": "5",   "range": "Riesgo muy alto",    "interpretation": "Riesgo anual ~7.2%. Anticoagulación recomendada.", "color": "danger" },
+        { "label": "6+",  "range": "Riesgo muy alto",    "interpretation": "Riesgo anual ≥9.7%. Anticoagulación recomendada.", "color": "danger" }
+      ],
+      "calculatorFn": "calc_cha2ds2vasc",
+      "footerNote": "Validado contra MDCalc · v1.0 · CHA₂DS₂-VASc 2010",
+      "clinicalDisclaimer": "Aplica solo a FA no valvular. Decisión final de anticoagulación debe considerar también HAS-BLED (sangrado)."
+    },
+
+    {
+      "id": "child_pugh",
+      "name": "Child-Pugh",
+      "fullName": "Severidad de cirrosis hepática (Child-Turcotte-Pugh)",
+      "specialty": "hepatologia",
+      "specialtyDisplay": "Hepatología",
+      "type": "calculator",
+      "synonyms": ["cirrosis", "hepatica", "child turcotte", "ctp"],
+      "description": "Evalúa la severidad de la cirrosis hepática y pronóstico. Score 5-15. Clase A/B/C.",
+      "reference": {
+        "paper": "Pugh RN et al. Transection of the oesophagus for bleeding oesophageal varices. Br J Surg 1973",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/4541913/",
+        "year": 1973,
+        "society": "Modificación de Child-Turcotte original"
+      },
+      "inputs": [
+        {
+          "id": "bilirubin",
+          "label": "Bilirrubina total",
+          "type": "number",
+          "unitDefault": "mg/dL",
+          "unitOptions": [
+            { "value": "mg/dL", "label": "mg/dL", "factor": 1 },
+            { "value": "umol/L", "label": "µmol/L", "factor": 17.1 }
+          ],
+          "min": 0.1,
+          "max": 50,
+          "step": 0.1,
+          "default": 1.5,
+          "required": true,
+          "helpText": "Estándar Chile: mg/dL.",
+          "warningRange": {
+            "below": 0.1,
+            "above": 30,
+            "message": "Valor fuera de rango clínico habitual. ¿Verificaste las unidades?"
+          }
+        },
+        {
+          "id": "albumin",
+          "label": "Albúmina sérica",
+          "type": "number",
+          "unitDefault": "g/dL",
+          "unitOptions": [
+            { "value": "g/dL", "label": "g/dL", "factor": 1 },
+            { "value": "g/L",  "label": "g/L",  "factor": 10 }
+          ],
+          "min": 1,
+          "max": 6,
+          "step": 0.1,
+          "default": 3.5,
+          "required": true,
+          "helpText": "Estándar Chile: g/dL. Algunos labs reportan en g/L.",
+          "warningRange": {
+            "below": 1.5,
+            "above": 5.5,
+            "message": "Valor fuera de rango clínico habitual. ¿Verificaste las unidades?"
+          }
+        },
+        {
+          "id": "inr",
+          "label": "INR (tiempo de protrombina)",
+          "type": "number",
+          "unit": "INR",
+          "min": 0.8,
+          "max": 10,
+          "step": 0.1,
+          "default": 1.2,
+          "required": true,
+          "helpText": "Si no tenés INR, podés usar prolongación PT en segundos (no soportado en V1)."
+        },
+        {
+          "id": "ascites",
+          "label": "Ascitis",
+          "type": "select",
+          "options": [
+            { "value": "absent",   "label": "Ausente",  "points": 1 },
+            { "value": "slight",   "label": "Leve",     "points": 2 },
+            { "value": "moderate", "label": "Moderada", "points": 3 }
+          ],
+          "default": "absent",
+          "required": true
+        },
+        {
+          "id": "encephalopathy",
+          "label": "Encefalopatía hepática",
+          "type": "select",
+          "options": [
+            { "value": "absent", "label": "Ausente",                  "points": 1 },
+            { "value": "1_2",    "label": "Grado I-II (leve-moderada)", "points": 2 },
+            { "value": "3_4",    "label": "Grado III-IV (estupor-coma)", "points": 3 }
+          ],
+          "default": "absent",
+          "required": true
+        }
+      ],
+      "referenceTable": [
+        { "label": "Clase A", "range": "5-6 puntos",   "interpretation": "Cirrosis bien compensada. Sobrevida a 1 año ~100%, a 2 años ~85%.", "color": "success" },
+        { "label": "Clase B", "range": "7-9 puntos",   "interpretation": "Compromiso funcional significativo. Sobrevida a 1 año ~80%, a 2 años ~60%.", "color": "warning" },
+        { "label": "Clase C", "range": "10-15 puntos", "interpretation": "Enfermedad descompensada. Sobrevida a 1 año ~45%, a 2 años ~35%. Considerar trasplante.", "color": "danger" }
+      ],
+      "calculatorFn": "calc_child_pugh",
+      "footerNote": "Validado contra MDCalc · v1.0 · Pugh 1973",
+      "clinicalDisclaimer": "MELD-Na es preferido para priorización trasplante. Child-Pugh sigue siendo útil para pronóstico clínico general."
+    }
+  ]
+}

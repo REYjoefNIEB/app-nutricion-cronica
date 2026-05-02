@@ -43,7 +43,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         // Mostrar nombre en welcome
-        const displayName = userData.displayName || user.displayName || user.email.split('@')[0];
+        // [AGENTE 04 — Tablas Clínicas] (Sprint M4-A) Fallback 'colega' en lugar de email username:
+        // antes: si displayName y user.displayName eran null, mostraba la parte previa al @ del email
+        // (ej. "Hola Dr./Dra. chile" para chile@*.cl). Ahora cae a "colega" más natural.
+        const displayName = userData.displayName || user.displayName || 'colega';
         welcomeMessage.textContent = `Hola Dr./Dra. ${displayName}, tu asistente clínico está listo. Estas son las herramientas que tendrás disponibles.`;
 
         // Calcular días restantes de trial
