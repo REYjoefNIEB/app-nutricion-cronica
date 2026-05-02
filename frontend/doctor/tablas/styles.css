@@ -309,8 +309,12 @@ body.tablas-page {
     align-items: stretch;
 }
 
+/* [Sprint M4-A.2] Input numérico domina el ancho (3:1 vs toggle).
+   min-width:0 + flex-basis:120px asegura ≥4 dígitos visibles en mobile
+   sin que el toggle de unidad se devore el espacio del valor. */
 .input-with-units input[type="number"] {
-    flex: 1;
+    flex: 3 1 120px;
+    min-width: 0;
     background: var(--input-bg);
     border: 2px solid var(--input-border);
     border-radius: 8px;
@@ -326,8 +330,10 @@ body.tablas-page {
     border-color: var(--yellow-strong);
 }
 
-.input-with-units select,
-.unit-toggle {
+/* Selects standalone dentro de .input-with-units (Sexo, NYHA, ascitis,
+   CHA₂DS₂-VASc): toman todo el ancho (no van junto a un input). */
+.input-with-units select {
+    flex: 1;
     background: var(--input-bg);
     border: 2px solid var(--input-border);
     border-radius: 8px;
@@ -336,7 +342,16 @@ body.tablas-page {
     font-size: 0.875rem;
     cursor: pointer;
     font-family: inherit;
-    min-width: 95px;
+    min-width: 0;
+}
+
+/* [Sprint M4-A.2] Toggle de unidad: ancho constrained, no domina el flex.
+   flex:0 1 auto + tope max-width evita que se coma el espacio del input. */
+.input-with-units select.unit-toggle,
+.unit-toggle {
+    flex: 0 1 auto;
+    min-width: 90px;
+    max-width: 130px;
 }
 
 .checkbox-inline {
