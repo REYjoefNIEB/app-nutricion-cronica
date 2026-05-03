@@ -5289,13 +5289,13 @@
         "feature_sello": "salt",
         "limite": "high",
         "severidad": "critico",
-        "motivo": "Sodio <1.5g/día en IC clase III. Retención de líquidos."
+        "motivo": "Sodio elevado en IC clase III. Objetivo <2 g/día (SODIUM-HF Lancet 2022 mostró que <1.5 g/día NO mejora mortalidad ni hospitalizaciones). Producto excede el objetivo recomendado."
       },
       {
         "feature_sello": "salt",
         "limite": "moderate",
         "severidad": "moderado",
-        "motivo": "Vigilar sodio moderado también."
+        "motivo": "Vigilar consumo total de sodio acumulado en el día."
       },
       {
         "feature_ingrediente": [
@@ -5304,8 +5304,8 @@
           "guarana",
           "taurina"
         ],
-        "severidad": "critico",
-        "motivo": "Estimulantes pueden desencadenar arritmias graves."
+        "severidad": "moderado",
+        "motivo": "Cafeína moderada (<300 mg/día, ~3 cafés) generalmente segura en IC compensada (AHA 2021), salvo arritmias documentadas. Consultar cardiólogo si dudas."
       }
     ]
   },
@@ -5319,13 +5319,13 @@
         "feature_sello": "salt",
         "limite": "high",
         "severidad": "critico",
-        "motivo": "Sodio <1.5g/día estricto. Riesgo vital."
+        "motivo": "Sodio elevado en IC clase IV (descompensada con síntomas en reposo). Objetivo <1.5 g/día estricto durante descompensación; <2 g/día tras compensación. Riesgo de retención líquida."
       },
       {
         "feature_sello": "salt",
         "limite": "moderate",
         "severidad": "critico",
-        "motivo": "Incluso sodio moderado es peligroso en NYHA IV."
+        "motivo": "Sodio moderado peligroso en NYHA IV descompensado. Cualquier exceso compromete equilibrio hídrico."
       },
       {
         "feature_ingrediente": [
@@ -5335,7 +5335,7 @@
           "taurina"
         ],
         "severidad": "critico",
-        "motivo": "Estimulantes contraindicados. Riesgo de arritmia fatal."
+        "motivo": "Estimulantes contraindicados en NYHA IV (paciente en reposo, no estable). Riesgo de arritmia. Reevaluar tras compensación."
       },
       {
         "feature_ingrediente": [
@@ -5345,7 +5345,7 @@
           "sopa"
         ],
         "severidad": "moderado",
-        "motivo": "Restricción de líquidos <1.5L/día. Consultar cardiólogo."
+        "motivo": "Restricción de líquidos <1.5 L/día durante descompensación. Manejo individualizado por cardiólogo."
       }
     ]
   },
@@ -5439,7 +5439,7 @@
           "suplemento de hierro"
         ],
         "severidad": "moderado",
-        "motivo": "El hierro es hepatotóxico en cirrosis avanzada."
+        "motivo": "Hierro suplementario requiere evaluación caso a caso (ferritina, saturación de transferrina). Contraindicado solo en sobrecarga férrica documentada (hemocromatosis, ferritina elevada con saturación >45%). Apropiado si hay anemia ferropénica documentada por sangrado variceal o gastropatía. Consultar hepatólogo."
       }
     ]
   },
@@ -5492,15 +5492,15 @@
           "caseina"
         ],
         "severidad": "moderado",
-        "motivo": "Restricción proteica si hay encefalopatía hepática. Preferir proteínas vegetales."
+        "motivo": "Proteína 1.2-1.5 g/kg/día INCLUSO con encefalopatía hepática (ISHEN 2013, AASLD 2014). La restricción proteica histórica está obsoleta y empeora la sarcopenia (que a su vez empeora la EH). Preferir proteína vegetal o láctea sobre animal en EH refractaria. Consultar hepatólogo para individualizar."
       },
       {
         "feature_ingrediente": [
           "hierro",
           "suplemento de hierro"
         ],
-        "severidad": "critico",
-        "motivo": "El hierro es extremadamente hepatotóxico en Child C."
+        "severidad": "moderado",
+        "motivo": "Hierro suplementario requiere evaluación caso a caso (ferritina, saturación). Contraindicado solo en sobrecarga férrica documentada. Apropiado en anemia ferropénica documentada. Consultar hepatólogo antes de iniciar."
       }
     ]
   },
