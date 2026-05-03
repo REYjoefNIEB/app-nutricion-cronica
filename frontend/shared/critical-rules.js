@@ -84,7 +84,7 @@ const CriticalShield = (() => {
                              'grave. No consuma este producto.',
             ingredientMatch: /queso\s+(?:curado|maduro|añejo|azul|parmesano|roquefort|gorgonzola)|embutido|salami|pepperoni|miso|tempeh|salsa\s+de\s+soja|extracto\s+de\s+levadura/i,
             check(profile, ingredients) {
-                const hasMAOI = (profile.medications || []).some(m =>
+                const hasMAOI = (profile.medications || profile.medicamentos || []).some(m =>
                     /fenelzina|tranilcipromina|isocarboxazida|selegilina|rasagilina|IMAO/i.test(m)
                 );
                 const hasTyramine = ingredients.some(i => this.ingredientMatch.test(i));
@@ -117,7 +117,7 @@ const CriticalShield = (() => {
                              'Consulte a su médico antes de consumir.',
             ingredientMatch: /espinaca|kale|col\s+rizada|brócoli|brocoli|acelga|perejil|albahaca|col\s+de\s+bruselas|vitamina\s+k(?:\s+\d+\s*(?:mcg|µg|mg))?/i,
             check(profile, ingredients) {
-                const hasAnticoag = (profile.medications || []).some(m =>
+                const hasAnticoag = (profile.medications || profile.medicamentos || []).some(m =>
                     /warfarina|acenocumarol|sintrom/i.test(m)
                 );
                 const hasHighVitK = ingredients.some(i => this.ingredientMatch.test(i));
