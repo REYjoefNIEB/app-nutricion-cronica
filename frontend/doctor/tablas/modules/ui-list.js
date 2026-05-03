@@ -145,6 +145,10 @@
             body.appendChild(renderCalculator(scale));
         }
 
+        // [Sprint M4-B-1.1] Contenido clínico (Cuándo usar / Acciones / Pearls)
+        // Backward compatible: escalas sin clinicalContent simplemente no renderizan esta sección.
+        renderClinicalContent(scale, body);
+
         // Footer (paper + validación)
         body.appendChild(renderScaleFooter(scale));
 
@@ -418,6 +422,148 @@
             ]));
         }
         return footer;
+    }
+
+    // ═════════════════════════════════════════════════════════════
+    // [Sprint M4-B-1.1] Contenido clínico — 3 secciones por escala
+    //   1. Cuándo usar (summary visible + Ver más expand)
+    //   2. Acciones según resultado (summary visible + Ver más expand)
+    //   3. Pearls clínicos (toggle "Ver pearls clínicos" colapsado)
+    //   + Footer con referencias completas (links clickeables)
+    //
+    // Backward compat: si scale.clinicalContent no existe, no renderiza nada.
+    // Idioma V1 hardcoded a 'es'; futuro detectar window.NuraTablas.lang.
+    // ═════════════════════════════════════════════════════════════
+    function renderClinicalContent(scale, container) {
+        if (!scale.clinicalContent) return;
+
+        const cc = scale.clinicalContent;
+        const sections = cc.sections || {};
+        const refs = cc.references || [];
+        const lang = cc.primaryLanguage || 'es';
+
+        const wrap = el('div', { class: 'clinical-content-wrap' });
+
+        // 1) Cuándo usar — siempre visible
+        if (sections.whenToUse) {
+            wrap.appendChild(renderClinicalSection({
+                title: 'Cuándo usar',
+                section: sections.whenToUse,
+                lang: lang,
+                expandable: true,
+                expandedByDefault: false
+            }));
+        }
+
+        // 2) Acciones según resultado — siempre visible
+        if (sections.actionsByResult) {
+            wrap.appendChild(renderClinicalSection({
+                title: 'Acciones según resultado',
+                section: sections.actionsByResult,
+                lang: lang,
+                expandable: true,
+                expandedByDefault: false
+            }));
+        }
+
+        // 3) Pearls — colapsada con toggle dedicado
+        if (sections.pearls) {
+            const pearlsToggle = el('button', {
+                class: 'pearls-toggle',
+                type: 'button',
+                'aria-expanded': 'false'
+            }, [document.createTextNode('🔍 Ver pearls clínicos')]);
+
+            const pearlsContent = renderClinicalSection({
+                title: 'Pearls clínicos',
+                section: sections.pearls,
+                lang: lang,
+                expandable: true,
+                expandedByDefault: false
+            });
+            pearlsContent.style.display = 'none';
+
+            pearlsToggle.addEventListener('click', () => {
+                const open = pearlsContent.style.display !== 'none';
+                pearlsContent.style.display = open ? 'none' : 'block';
+                pearlsToggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+                pearlsToggle.firstChild.textContent = open ? '🔍 Ver pearls clínicos' : '🔼 Ocultar pearls';
+            });
+
+            wrap.appendChild(pearlsToggle);
+            wrap.appendChild(pearlsContent);
+        }
+
+        // Footer referencias
+        if (refs.length > 0) {
+            wrap.appendChild(renderClinicalReferences(refs));
+        }
+
+        container.appendChild(wrap);
+    }
+
+    function renderClinicalSection({ title, section, lang, expandable, expandedByDefault }) {
+        const wrap = el('div', { class: 'clinical-section' });
+        wrap.appendChild(el('h4', { class: 'clinical-section-title', text: title }));
+
+        const summaryText = (section.summary && section.summary[lang]) || '';
+        const detailsText = (section.details && section.details[lang]) || '';
+        const cite = section.citationInline || '';
+
+        // Summary line: text + cita inline
+        const summaryEl = el('p', { class: 'clinical-section-summary' });
+        summaryEl.appendChild(document.createTextNode(summaryText + ' '));
+        if (cite) {
+            summaryEl.appendChild(el('span', { class: 'clinical-citation', text: cite }));
+        }
+        wrap.appendChild(summaryEl);
+
+        // Details (expandible)
+        if (expandable && detailsText) {
+            const expandBtn = el('button', {
+                class: 'clinical-section-expand',
+                type: 'button',
+                'aria-expanded': expandedByDefault ? 'true' : 'false'
+            }, [document.createTextNode(expandedByDefault ? 'Ver menos' : 'Ver más')]);
+
+            const detailsEl = el('div', { class: 'clinical-section-details', text: detailsText });
+            detailsEl.style.display = expandedByDefault ? 'block' : 'none';
+
+            expandBtn.addEventListener('click', () => {
+                const open = detailsEl.style.display !== 'none';
+                detailsEl.style.display = open ? 'none' : 'block';
+                expandBtn.setAttribute('aria-expanded', open ? 'false' : 'true');
+                expandBtn.firstChild.textContent = open ? 'Ver más' : 'Ver menos';
+            });
+
+            wrap.appendChild(expandBtn);
+            wrap.appendChild(detailsEl);
+        }
+
+        return wrap;
+    }
+
+    function renderClinicalReferences(refs) {
+        const wrap = el('div', { class: 'clinical-references' });
+        wrap.appendChild(el('h5', { text: 'Referencias' }));
+        const ul = el('ul');
+        refs.forEach(r => {
+            const li = el('li');
+            li.appendChild(document.createTextNode(r.citation));
+            if (r.url) {
+                li.appendChild(document.createTextNode(' '));
+                li.appendChild(el('a', {
+                    href: r.url,
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                    text: '↗',
+                    'aria-label': 'Abrir referencia'
+                }));
+            }
+            ul.appendChild(li);
+        });
+        wrap.appendChild(ul);
+        return wrap;
     }
 
     // ─────────────────────────────────────────────────────────────

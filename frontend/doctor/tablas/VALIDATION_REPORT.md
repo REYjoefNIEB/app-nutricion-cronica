@@ -1,5 +1,13 @@
 # Reporte de Validación — Sprint M4-A + M4-B-1
 
+> **Nota:** "Validación contra MDCalc" en este documento significa que comparamos
+> outputs manualmente como QA interno usando MDCalc.com (marca registrada de
+> MDCalc LLC) como una de varias herramientas de referencia. La UI rendereada al
+> usuario cita las guías oficiales primarias (KDIGO, ESC, AHA/ACC, AASLD,
+> IDSA/ATS, BTF, GOLD, MINSAL) — NO menciona MDCalc en pantalla. Este uso
+> descriptivo en documentación interna es legalmente seguro; el uso comercial o
+> sello implícito en UI fue retirado por decisión del 2026-05-02.
+
 **Estado actual:** `verified` ✅
 **Última validación:** 2026-05-02 (M4-B-1 completado)
 **Casos automatizados (M4-A + M4-B-1):** 80/80 PASS

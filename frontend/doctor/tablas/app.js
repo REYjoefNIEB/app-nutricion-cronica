@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (versionEl && scalesData.version) {
         const status = scalesData.validationStatus || 'pending';
         const validated = status === 'verified';
-        versionEl.textContent = `v${scalesData.version}` + (validated ? ' · ✓ Validado contra MDCalc' : ' · validación pendiente');
+        versionEl.textContent = `v${scalesData.version}` + (validated ? ' · ✓ Validado contra guías oficiales' : ' · validación pendiente');
         if (validated) versionEl.classList.add('verified');
     }
 
