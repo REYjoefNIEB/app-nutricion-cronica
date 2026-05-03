@@ -88,10 +88,10 @@
         "sections": {
           "whenToUse": {
             "summary": { "es": "Apropiado en pacientes ≥18 años con marcadores de daño renal o función disminuida >3 meses (ERC). NO usar en injuria renal aguda (AKI) — función inestable invalida la estimación.", "en": null, "pt": null },
-            "details": { "es": "CKD-EPI 2021 sin coeficiente racial es la versión actual recomendada por ASN/NKF y KDIGO. Diagnóstico de ERC requiere dos mediciones separadas por ≥90 días con eGFR <60 o albuminuria persistente. En sarcopenia, amputados, desnutrición severa o hepatopatía con bajo recambio muscular, la creatinina sobreestima la función — considerar cistatina C como complemento (eGFR-Cr-Cys-C). AINEs, contraste yodado, deshidratación, e iniciación de iECA/ARAII pueden bajar eGFR transitoriamente; confirmar con segunda medición antes de decisiones terapéuticas.", "en": null, "pt": null },
+            "details": { "es": "CKD-EPI 2021 sin coeficiente racial es la versión actual recomendada por ASN/NKF y KDIGO. Diagnóstico de ERC requiere dos mediciones separadas por ≥90 días con eGFR <60 o albuminuria persistente. En sarcopenia, amputados, desnutrición severa o hepatopatía con bajo recambio muscular, la creatinina sobreestima la función — considerar cistatina C como complemento (eGFR-Cr-Cys-C). AINEs, contraste yodado, deshidratación, e iniciación de iECA/ARAII pueden bajar eGFR transitoriamente; confirmar con segunda medición antes de decisiones terapéuticas. Limitaciones adicionales: NO validado en embarazo (hiperfiltración fisiológica — usar ClCr 24h o cistatina C). Suplementos de creatina (gimnasio) o ingesta masiva de carne cocida pre-examen elevan falsamente la creatinina simulando ERC; consultar dieta antes de evaluar resultados anómalos.", "en": null, "pt": null },
             "citationInline": "[KDIGO 2024 §2.1; Inker NEJM 2021]",
             "validatedAgainst": ["kdigo_2024", "inker_nejm_2021", "asn_nkf_2021"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           },
           "actionsByResult": {
             "summary": { "es": "G1-G2: vigilancia + factores. G3a: SGLT2i (KDIGO 1A) + iECA/ARAII + ajuste fármacos. G3b: derivar nefrólogo. G4: preparar TRR (vacunas, fístula AV). G5: diálisis o trasplante (GES 18 cubre G4-G5).", "en": null, "pt": null },
@@ -102,10 +102,10 @@
           },
           "pearls": {
             "summary": { "es": "CKD-EPI 2021 race-free reemplaza la versión 2009. Considerar cistatina C cuando creatinina puede engañar (sarcopenia, hepatopatía, amputados).", "en": null, "pt": null },
-            "details": { "es": "1) Algunos laboratorios chilenos aún reportan CKD-EPI 2009 con coeficiente racial — confirmar versión en informe antes de tomar decisiones. 2) Sarcopenia, amputados o desnutrición severa: la creatinina baja simulada sobreestima eGFR — usar eGFR-cistatina C o promedio Cr+CysC. 3) Obesidad extrema: ajustar por superficie corporal real. 4) eGFR aislado no diagnostica ERC; requiere persistencia >3 meses + marcadores de daño (albuminuria, hematuria, imágenes). 5) ⚠ Nura V2 — regla CR-02: paciente con ERC TFG<30 + suplementos de potasio o alimentos muy ricos en K+ tiene riesgo de paro cardíaco; el escáner de etiquetas bloquea automáticamente.", "en": null, "pt": null },
+            "details": { "es": "1) Algunos laboratorios chilenos aún reportan CKD-EPI 2009 con coeficiente racial — confirmar versión en informe antes de tomar decisiones. 2) Sarcopenia, amputados o desnutrición severa: la creatinina baja simulada sobreestima eGFR — usar eGFR-cistatina C o promedio Cr+CysC. 3) En obesidad mórbida o sub-peso extremo: el eGFR estándar viene normalizado a BSA 1.73 m². Para dosificar fármacos hidrofílicos (carboplatino, antibióticos), DESNORMALIZAR usando BSA real: eGFR_real = eGFR_reportado × (BSA_real / 1.73). 4) eGFR aislado no diagnostica ERC; requiere persistencia >3 meses + marcadores de daño (albuminuria, hematuria, imágenes). 5) ⚠ Nura V2 — regla CR-02: paciente con ERC TFG<30 + suplementos de potasio o alimentos muy ricos en K+ tiene riesgo de paro cardíaco; el escáner de etiquetas bloquea automáticamente.", "en": null, "pt": null },
             "citationInline": "[Inker NEJM 2021; KDIGO 2024; Nura V2 CR-02]",
             "validatedAgainst": ["motor_nura_v2:CR-02", "kdigo_2024", "inker_nejm_2021"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           }
         },
         "references": [
@@ -166,10 +166,10 @@
         "sections": {
           "whenToUse": {
             "summary": { "es": "Estadiaje completo de ERC requiere eGFR + albuminuria. Esta tabla cubre la categoría G (filtración) — para estadio completo G+A se requiere ACR (cociente albúmina/creatinina urinaria).", "en": null, "pt": null },
-            "details": { "es": "Diagnóstico de ERC requiere persistencia >3 meses de eGFR <60 (G3a-G5) o eGFR ≥60 (G1-G2) con marcadores de daño renal: albuminuria (ACR ≥30 mg/g), hematuria glomerular, alteraciones imagenológicas o histológicas. La categorización completa KDIGO usa el heat map G+A: ej. paciente con eGFR 70 + ACR 200 mg/g es G2A2 (riesgo moderado), no G2 normal. El riesgo cardiovascular y de progresión escalan según G+A combinados, no aislados. Esta tabla cubre solo la dimensión G; complementar con ACR siempre que sea posible.", "en": null, "pt": null },
+            "details": { "es": "Diagnóstico de ERC requiere persistencia >3 meses de eGFR <60 (G3a-G5) o eGFR ≥60 (G1-G2) con marcadores de daño renal: albuminuria (ACR ≥30 mg/g), hematuria glomerular, alteraciones imagenológicas o histológicas. La categorización completa KDIGO usa el heat map G+A: ej. paciente con eGFR 70 + ACR 200 mg/g es G2A2 (riesgo moderado), no G2 normal. El riesgo cardiovascular y de progresión escalan según G+A combinados, no aislados. Esta tabla cubre solo la dimensión G; complementar con ACR siempre que sea posible. La clasificación KDIGO completa es CGA (Cause + GFR + Albuminuria). La identificación de la causa de ERC (DM, HTA, glomerulopatía, riñón poliquístico, obstructiva) es un eje independiente que cambia el pronóstico y la terapia específica, no solo G+A.", "en": null, "pt": null },
             "citationInline": "[KDIGO 2024 §1.1, §1.4]",
             "validatedAgainst": ["kdigo_2024"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           },
           "actionsByResult": {
             "summary": { "es": "Acciones por categoría G coinciden con eGFR. Albuminuria A2-A3 indica iECA/ARAII en G1-G4 (KDIGO §3.6) y SGLT2i si eGFR ≥20 + ACR ≥200 mg/g (§3.7), independiente de la categoría G. G2A3 = riesgo cardio-renal alto pese a eGFR conservado (zona roja heatmap KDIGO). GES 18 cubre G4-G5.", "en": null, "pt": null },
@@ -180,10 +180,10 @@
           },
           "pearls": {
             "summary": { "es": "Heat map G+A es el sistema completo. eGFR aislado sin ACR subestima riesgo real. Albuminuria es el marcador más temprano de daño glomerular.", "en": null, "pt": null },
-            "details": { "es": "1) ACR (cociente albúmina/creatinina) en orina matinal aislada es el método estándar — más sensible y práctico que albuminuria de 24h. 2) En diabetes y HTA, screening anual de ACR es obligatorio aún con eGFR normal (riesgo de ERC oculta). 3) Falsos positivos de albuminuria: infección urinaria, ejercicio intenso reciente, fiebre, descompensación cardíaca — repetir tras corregir factor. 4) Albuminuria persistente ≥A2 (≥30 mg/g) es indicación de iECA/ARAII y SGLT2i (KDIGO 2024 1A). 5) ⚠ Nura V2 — regla CR-02: en pacientes con ERC TFG<30 (G4-G5), suplementos de potasio o alimentos ricos en K+ tienen riesgo de paro cardíaco; el escáner de etiquetas bloquea automáticamente.", "en": null, "pt": null },
-            "citationInline": "[KDIGO 2024 §1.4-2.3; Nura V2 CR-02]",
+            "details": { "es": "1) ACR (cociente albúmina/creatinina) en orina matinal aislada es el método estándar — más sensible y práctico que albuminuria de 24h. 2) En diabetes y HTA, screening anual de ACR es obligatorio aún con eGFR normal (riesgo de ERC oculta). 3) Falsos positivos de albuminuria: infección urinaria, ejercicio intenso reciente, fiebre, descompensación cardíaca — repetir tras corregir factor. 4) Albuminuria persistente A2-A3 (≥30 mg/g) es indicación de iECA/ARAII (KDIGO 2024 §3.6, 1B). SGLT2i indicado con eGFR ≥20 + ACR ≥200 mg/g (KDIGO 2024 §3.7, 1A) — independiente de la categoría G. 5) ⚠ Nura V2 — regla CR-02: en pacientes con ERC TFG<30 (G4-G5), suplementos de potasio o alimentos ricos en K+ tienen riesgo de paro cardíaco; el escáner de etiquetas bloquea automáticamente.", "en": null, "pt": null },
+            "citationInline": "[KDIGO 2024 §3.6, §3.7; Nura V2 CR-02]",
             "validatedAgainst": ["motor_nura_v2:CR-02", "kdigo_2024"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           }
         },
         "references": [
@@ -240,10 +240,10 @@
         "sections": {
           "whenToUse": {
             "summary": { "es": "Clasificación funcional de IC basada en SÍNTOMAS (no valores numéricos). Aplica a IC con FEVI reducida o preservada. Subjetiva y reevaluable post-tratamiento.", "en": null, "pt": null },
-            "details": { "es": "NYHA es complementario a la fracción de eyección VI (FEVI) en clasificación de IC. Junto con etapas ACC/AHA (A-D), permite estratificación pronóstica. Reevaluar tras inicio o ajuste de tratamiento (cada 3-6 meses) — pacientes pueden mejorar varias clases con terapia óptima (cuádruple GDMT). Variabilidad inter-observador alta; cuando posible, complementar con caminata 6 minutos y NT-proBNP para objetivar la severidad.", "en": null, "pt": null },
+            "details": { "es": "NYHA es complementario a la fracción de eyección VI (FEVI) en clasificación de IC. Junto con etapas ACC/AHA (A-D), permite estratificación pronóstica. Reevaluar tras inicio o ajuste de tratamiento (cada 3-6 meses) — pacientes pueden mejorar varias clases con terapia óptima (cuádruple GDMT). Variabilidad inter-observador alta; cuando posible, complementar con caminata 6 minutos y NT-proBNP para objetivar la severidad. NO usar NYHA durante episodios de IC aguda descompensada — la evaluación debe hacerse en estado basal/estable. Reevaluación post-estabilización (≥7 días tras alta o resolución del evento agudo).", "en": null, "pt": null },
             "citationInline": "[AHA/ACC/HFSA 2022 §6.1]",
             "validatedAgainst": ["aha_acc_hfsa_2022"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           },
           "actionsByResult": {
             "summary": { "es": "Cuádruple terapia GDMT (HFrEF FEVI ≤40%): ARNi (preferido) o iECA/ARB + BB (carvedilol/bisoprolol/metoprolol succinato) + MRA + SGLT2i (Clase 1 AHA/ACC/HFSA 2022). Restricción sodio moderada (<2.3 g/día). NYHA III-IV: considerar dispositivos (CRT, ICD) según criterios. NYHA IV refractaria: trasplante o LVAD. La IC NO tiene cobertura GES en Chile.", "en": null, "pt": null },
@@ -254,10 +254,10 @@
           },
           "pearls": {
             "summary": { "es": "NYHA es subjetivo — alta variabilidad inter-observador. Reevaluable post-tratamiento. Complementar con FEVI y biomarcadores.", "en": null, "pt": null },
-            "details": { "es": "1) NYHA es subjetivo: dos médicos pueden clasificar al mismo paciente diferente. Documentar criterios específicos (escaleras, vestirse, distancia caminada). 2) Pacientes pueden mejorar 1-2 clases con GDMT óptima en 3-6 meses — reevaluar siempre. 3) Combinar con FEVI y NT-proBNP para decisiones terapéuticas. 4) En IC aguda descompensada, NYHA debe reevaluarse tras estabilización (no es estable). 5) ⚠ Nura V2 — reglas ic_nyha_3 / ic_nyha_4: pacientes en clases III-IV tienen restricción crítica de sodio (<1.5 g/día), líquidos (<1.5 L/día) y contraindicación de cafeína (riesgo de arritmia); el escáner de etiquetas alerta automáticamente.", "en": null, "pt": null },
-            "citationInline": "[AHA/ACC 2022 §6.1; Nura V2 ic_nyha_3-4]",
+            "details": { "es": "1) NYHA es subjetivo: dos médicos pueden clasificar al mismo paciente diferente. Documentar criterios específicos (escaleras, vestirse, distancia caminada). 2) Pacientes pueden mejorar 1-2 clases con GDMT óptima en 3-6 meses — reevaluar siempre. 3) Combinar con FEVI y NT-proBNP para decisiones terapéuticas. 4) En IC aguda descompensada, NYHA debe reevaluarse tras estabilización (no es estable). 5) ⚠ Nura V2 — reglas ic_nyha_3 / ic_nyha_4: pacientes en clases III-IV requieren restricción moderada de sodio (objetivo <2.3 g/día; restricción agresiva <1.5 g/día NO demostró beneficio en mortalidad u hospitalizaciones — SODIUM-HF Lancet 2022) y manejo individualizado de líquidos. Cafeína moderada (<300 mg/día) generalmente segura salvo arritmias documentadas (AHA 2021). El escáner alerta sobre productos con sodio elevado.", "en": null, "pt": null },
+            "citationInline": "[AHA/ACC 2022 §6.1; SODIUM-HF Lancet 2022; AHA Whelton 2021; Nura V2 ic_nyha_3-4]",
             "validatedAgainst": ["motor_nura_v2:ic_nyha_3-4", "aha_acc_hfsa_2022"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           }
         },
         "references": [
@@ -383,10 +383,10 @@
         "sections": {
           "whenToUse": {
             "summary": { "es": "Estratificación de riesgo embólico en FA NO valvular para decisión de anticoagulación. NO usar en FA valvular (estenosis mitral severa, prótesis mecánica).", "en": null, "pt": null },
-            "details": { "es": "Aplicable a FA no valvular paroxística, persistente o permanente. NO se aplica a FA con estenosis mitral severa o prótesis valvular mecánica — estos casos requieren anticoagulación con warfarina (no DOAC) sin importar el score. Reevaluar el score periódicamente: edad y comorbilidades suman puntos con el tiempo. ESC 2020 recomienda DOAC sobre warfarina en FA no valvular cuando hay indicación de anticoagulación, salvo contraindicación específica.", "en": null, "pt": null },
-            "citationInline": "[ESC 2020 §11.2]",
+            "details": { "es": "Aplicable a FA no valvular paroxística, persistente o permanente. NO se aplica a FA con estenosis mitral severa o prótesis valvular mecánica — estos casos requieren anticoagulación con warfarina (no DOAC) sin importar el score. Reevaluar el score periódicamente: edad y comorbilidades suman puntos con el tiempo. ESC 2020 recomienda DOAC sobre warfarina en FA no valvular cuando hay indicación de anticoagulación, salvo contraindicación específica. ESC 2024 introdujo CHA₂DS₂-VA (sin sexo) como alternativa simplificada — ambos scores son aceptables clínicamente; AHA/ACC/HRS 2023 mantiene CHA₂DS₂-VASc.", "en": null, "pt": null },
+            "citationInline": "[ESC 2020 §11.2; ESC 2024]",
             "validatedAgainst": ["esc_2020_af"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           },
           "actionsByResult": {
             "summary": { "es": "Hombre 0 / mujer 1 (solo sexo): NO anticoagulación. Hombre ≥1 / mujer ≥2: considerar. Hombre ≥2 / mujer ≥3: anticoagulación clase I (DOAC preferible).", "en": null, "pt": null },
@@ -397,10 +397,10 @@
           },
           "pearls": {
             "summary": { "es": "CHA₂DS₂-VASc separado de HAS-BLED. Score alto NO contraindica; alto HAS-BLED implica vigilancia, no abstención. DOAC > warfarina en FA no valvular.", "en": null, "pt": null },
-            "details": { "es": "1) Combinar CHA₂DS₂-VASc + HAS-BLED es la práctica estándar — el primero indica si anticoagular, el segundo guía vigilancia y corrección de factores modificables (HTA, INR lábil, alcohol). 2) Score alto NUNCA es contraindicación de anticoagulación: pacientes de mayor riesgo embólico son los que más se benefician. 3) Sexo femenino NO es indicación aislada — mujer con score 1 solo por sexo no requiere anticoagulación; necesita ≥1 factor adicional. 4) Valvulopatía mitral severa o prótesis mecánica = warfarina (no DOAC), CHA₂DS₂-VASc no aplica. 5) Reevaluar score con cambios clínicos: HTA nueva, edad ≥65, IAM/stroke nuevo cambian el score y la indicación. 6) ⚠ Nura V2 — regla CR-05: pacientes en warfarina/acenocumarol con consumo alto de vitamina K (espinaca, kale, brócoli en cantidades grandes) tienen riesgo de tromboembolismo por antagonismo; el escáner de etiquetas alerta automáticamente.", "en": null, "pt": null },
-            "citationInline": "[ESC 2020 §11.4; Nura V2 CR-05]",
+            "details": { "es": "1) Combinar CHA₂DS₂-VASc + HAS-BLED es la práctica estándar — el primero indica si anticoagular, el segundo guía vigilancia y corrección de factores modificables (HTA, INR lábil, alcohol). 2) Score alto NUNCA es contraindicación de anticoagulación: pacientes de mayor riesgo embólico son los que más se benefician. 3) Sexo femenino aislado (CHA₂DS₂-VASc=1 solo por sexo) NO indica anticoagulación según AHA/ACC/HRS 2023. ESC 2024 simplificó esta consideración eliminando el sexo del score (CHA₂DS₂-VA): una mujer sin otros factores tiene score 0, no 1. 4) Valvulopatía mitral severa o prótesis mecánica = warfarina (no DOAC), CHA₂DS₂-VASc no aplica. 5) Reevaluar score con cambios clínicos: HTA nueva, edad ≥65, IAM/stroke nuevo cambian el score y la indicación. 6) ⚠ Nura V2 — regla CR-05: en pacientes con warfarina/acenocumarol, mantener consumo CONSISTENTE de vitamina K (espinaca, kale, brócoli). Cambios bruscos de ingesta descontrolan INR; consumo regular y estable mejora el control. NO se recomienda evitar verduras verdes — la consistencia importa más que el monto. **DOACs (apixabán, rivaroxabán, dabigatrán, edoxabán) son inmunes a vitamina K dietaria** y NO requieren restricción. La regla CR-05 distingue entre warfarina/acenocumarol (alerta de consistencia) y DOACs (sin restricción).", "en": null, "pt": null },
+            "citationInline": "[ESC 2020 §11.4; ESC 2024; Couris JAMA Intern Med 2006; Sconce Br J Haematol 2007; Nura V2 CR-05]",
             "validatedAgainst": ["motor_nura_v2:CR-05", "esc_2020_af"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           }
         },
         "references": [
@@ -520,10 +520,10 @@
         "sections": {
           "whenToUse": {
             "summary": { "es": "Estimación de severidad y pronóstico en cirrosis hepática confirmada. NO usar en hepatopatía aguda; preferir MELD-Na para decisiones de trasplante.", "en": null, "pt": null },
-            "details": { "es": "Child-Pugh-Turcotte usa 5 parámetros (bilirrubina, albúmina, INR, ascitis, encefalopatía) para clasificar cirrosis en A/B/C. Apropiado para evaluación basal y seguimiento de cirrosis compensada vs descompensada. NO sustituye MELD-Na para decisiones de trasplante (MELD-Na es más objetivo y mejor predictor de mortalidad 90 días). Reevaluar tras tratamiento — pacientes pueden mejorar clase con manejo de descompensación (paracentesis, lactulosa, tratamiento de causa).", "en": null, "pt": null },
-            "citationInline": "[AASLD 2018 §3.1; EASL 2018]",
+            "details": { "es": "Child-Pugh-Turcotte usa 5 parámetros (bilirrubina, albúmina, INR, ascitis, encefalopatía) para clasificar cirrosis en A/B/C. Apropiado para evaluación basal y seguimiento de cirrosis compensada vs descompensada. NO sustituye MELD-Na para decisiones de trasplante (MELD-Na es más objetivo y mejor predictor de mortalidad 90 días). Reevaluar tras tratamiento — pacientes pueden mejorar clase con manejo de descompensación (paracentesis, lactulosa, tratamiento de causa). Caso de uso adicional: Child-Pugh es estándar para estimar riesgo perioperatorio en cirugía abdominal no-trasplante (Mansour 1997, Teh 2007). Child A: riesgo aceptable; Child B: riesgo moderado-alto; Child C: alto riesgo, contraindicación relativa salvo emergencia vital.", "en": null, "pt": null },
+            "citationInline": "[AASLD 2018 §3.1; EASL 2018; Mansour Surgery 1997; Teh Hepatology 2007]",
             "validatedAgainst": ["aasld_2018_cirrhosis", "easl_2018"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           },
           "actionsByResult": {
             "summary": { "es": "Clase A: ambulatorio + screening varices/HCC. B: + diuréticos para ascitis, profilaxis varicosa. C: hospitalización descompensación, evaluar trasplante (MELD-Na para priorización).", "en": null, "pt": null },
@@ -534,10 +534,10 @@
           },
           "pearls": {
             "summary": { "es": "Child-Pugh es semicuantitativo (subjetividad en ascitis y encefalopatía). MELD-Na es preferible para decisiones objetivas de trasplante.", "en": null, "pt": null },
-            "details": { "es": "1) Child-Pugh tiene componentes subjetivos: ascitis y encefalopatía dependen del juicio clínico — alta variabilidad inter-observador. 2) MELD-Na es más objetivo (todos parámetros laboratorio) y mejor predictor de mortalidad a 90 días — preferir para listing de trasplante. 3) Child-Pugh sigue siendo útil para pronóstico clínico general y decisiones quirúrgicas (riesgo perioperatorio). 4) Reevaluar tras tratamiento de descompensación — pacientes pueden mejorar de B a A con manejo adecuado. 5) Tratamiento etiológico crítico: antivirales para hepatitis B/C cura cirrosis viral, abstinencia alcohólica revierte cirrosis alcohólica leve-moderada. 6) ⚠ Nura V2 — reglas cirrosis_child_a/b/c: alcohol absolutamente contraindicado en todas las clases; hierro suplementario contraindicado en B-C; proteínas restringidas en C si hay encefalopatía; el escáner de etiquetas alerta automáticamente.", "en": null, "pt": null },
-            "citationInline": "[AASLD 2018 §3.1; Nura V2 cirrosis_child_a/b/c]",
+            "details": { "es": "1) Child-Pugh tiene componentes subjetivos: ascitis y encefalopatía dependen del juicio clínico — alta variabilidad inter-observador. 2) MELD-Na es más objetivo (todos parámetros laboratorio) y mejor predictor de mortalidad a 90 días — preferir para listing de trasplante. 3) Child-Pugh sigue siendo útil para pronóstico clínico general y decisiones quirúrgicas (riesgo perioperatorio). 4) Reevaluar tras tratamiento de descompensación — pacientes pueden mejorar de B a A con manejo adecuado. 5) Tratamiento etiológico crítico: antivirales para hepatitis B/C pueden revertir fibrosis estructural en algunos casos. Abstinencia alcohólica mejora dramáticamente la sobrevida y la función hepática (puede mejorar 1-2 clases Child-Pugh) — la fibrosis estructural establecida es generalmente irreversible aunque puede haber regresión parcial. Lo que mejora con abstinencia es el componente reversible (esteatosis, inflamación, edema hepatocelular). 6) ⚠ Nura V2 — reglas cirrosis_child_a/b/c: alcohol contraindicado en todas las clases. Hierro suplementario evaluar caso a caso según ferritina y saturación (contraindicado solo en sobrecarga férrica documentada como hemocromatosis o ferritina elevada con saturación >45%; apropiado en anemia ferropénica documentada por sangrado variceal o gastropatía). Proteína: mantener 1.2-1.5 g/kg/día INCLUSO en encefalopatía (ISHEN 2013, AASLD 2014); preferir proteína vegetal/láctea sobre animal en EH refractaria. La restricción proteica histórica está obsoleta y empeora la sarcopenia (que a su vez empeora la EH por mayor producción de amonio en músculo). 7) Tamizaje de hepatocarcinoma (HCC) en cirrosis Child-Pugh C **se suspende salvo lista activa de trasplante** (AASLD 2018). El bajo pronóstico de supervivencia hace que el tamizaje no aporte beneficio clínico fuera del contexto de TX inminente.", "en": null, "pt": null },
+            "citationInline": "[AASLD 2018 §3.1; ISHEN 2013; AASLD 2014 HE Guideline; Nura V2 cirrosis_child_a/b/c]",
             "validatedAgainst": ["motor_nura_v2:cirrosis_child_a-c", "aasld_2018_cirrhosis"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           }
         },
         "references": [
@@ -602,10 +602,10 @@
           },
           "pearls": {
             "summary": { "es": "HAS-BLED identifica vigilancia, NO contraindica. Factores modificables (HTA, INR lábil, alcohol, drogas) son el blanco terapéutico.", "en": null, "pt": null },
-            "details": { "es": "1) ERROR FRECUENTE: NO usar HAS-BLED para 'decidir si anticoagular o no'; uso correcto es identificar pacientes que requieren vigilancia más estrecha y corrección de factores modificables. 2) Si TTR <60% en warfarina por INR lábil: cambiar a DOAC reduce sangrado y mejora protección. 3) Alcohol ≥8 unidades/semana es factor modificable mayor — consejería esencial. 4) AINEs concomitantes duplican riesgo de sangrado — evitar siempre que se pueda; si necesario, IBP + corto plazo. 5) Caídas frecuentes NO son contraindicación per se: análisis costo-beneficio suele favorecer anticoagulación incluso con caídas. 6) ⚠ Nura V2 — regla CR-05: vitamina K alta antagoniza warfarina; el escáner alerta automáticamente. Crítico para pacientes en warfarina/acenocumarol.", "en": null, "pt": null },
+            "details": { "es": "1) ERROR FRECUENTE: NO usar HAS-BLED para 'decidir si anticoagular o no'; uso correcto es identificar pacientes que requieren vigilancia más estrecha y corrección de factores modificables. 2) Si TTR sostenido <70% en warfarina por INR lábil (ESC 2020): cambiar a DOAC reduce sangrado y mejora protección. 3) Alcohol ≥8 unidades/semana es factor modificable mayor — consejería esencial. 4) AINEs concomitantes duplican riesgo de sangrado — evitar siempre que se pueda; si necesario, IBP + corto plazo. 5) Caídas frecuentes NO son contraindicación per se: análisis costo-beneficio suele favorecer anticoagulación incluso con caídas. 6) ⚠ Nura V2 — regla CR-05: vitamina K alta antagoniza warfarina; el escáner alerta automáticamente. Crítico para pacientes en warfarina/acenocumarol.", "en": null, "pt": null },
             "citationInline": "[ESC 2020 §11.5; Nura V2 CR-05; Man-Son-Hing JAMA 1999]",
             "validatedAgainst": ["motor_nura_v2:CR-05", "esc_2020_af", "man_son_hing_1999"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           }
         },
         "references": [
@@ -692,10 +692,10 @@
         "sections": {
           "whenToUse": {
             "summary": { "es": "Priorización en lista de trasplante hepático y predicción de mortalidad 90 días. Apropiado en cirrosis avanzada con descompensación.", "en": null, "pt": null },
-            "details": { "es": "MELD-Na (UNOS Policy 9, 2016) reemplazó al MELD original incorporando sodio sérico — predictor independiente en hiponatremia. Usado por UNOS y la mayoría de redes de trasplante para asignación de hígados de cadáver. Score ≥15 indica beneficio potencial de trasplante; ≥20 prioridad alta. NO sustituye juicio clínico — pacientes con HCC, hepatopulmonar o complicaciones específicas pueden recibir excepciones (MELD exception points). En pacientes en diálisis ≥2x/semana, usar creatinina = 4.0 mg/dL automáticamente.", "en": null, "pt": null },
-            "citationInline": "[AASLD 2018 §7; UNOS Policy 9; Kim NEJM 2008]",
+            "details": { "es": "MELD-Na (UNOS Policy 9, 2016) reemplazó al MELD original incorporando sodio sérico — predictor independiente en hiponatremia. Usado por UNOS y la mayoría de redes de trasplante para asignación de hígados de cadáver. Score ≥15 indica beneficio potencial de trasplante; ≥20 prioridad alta. NO sustituye juicio clínico — pacientes con HCC, hepatopulmonar o complicaciones específicas pueden recibir excepciones (MELD exception points). En pacientes en diálisis ≥2x/semana, usar creatinina = 4.0 mg/dL automáticamente. Versión: Nura V1 implementa MELD-Na (UNOS Policy 9, 2016). UNOS migró oficialmente a MELD 3.0 el 13 de julio de 2023, que incorpora sexo femenino y albúmina con techo de creatinina 3.0 mg/dL (vs 4.0 en MELD-Na). La actualización a MELD 3.0 está planeada para versión futura de Nura.", "en": null, "pt": null },
+            "citationInline": "[AASLD 2018 §7; UNOS Policy 9; Kim NEJM 2008; OPTN/UNOS 2023; Kim Gastroenterology 2021]",
             "validatedAgainst": ["aasld_2018_cirrhosis", "unos_policy_9", "kim_nejm_2008"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           },
           "actionsByResult": {
             "summary": { "es": "Es priorización (no indicación absoluta — HCC y hepatopulmonar tienen excepciones MELD). <10 ambulatorio. 10-19 hospitalización selectiva. 20-29 evaluar TX. 30-39 lista activa. ≥40 score truncado: prioridad alta dentro del sistema MELD-Na, NO confundir con UNOS Status 1A.", "en": null, "pt": null },
@@ -706,10 +706,10 @@
           },
           "pearls": {
             "summary": { "es": "MELD-Na truncado a 6-40. Sodio mín 125 / máx 137 en fórmula. Diálisis = creatinina 4.0. Hiponatremia <125 amplifica score.", "en": null, "pt": null },
-            "details": { "es": "1) MELD-Na clamps obligatorios: bilirrubina/INR/creatinina mínimos = 1.0 (impide ln(0)); creatinina máxima = 4.0 (también si en diálisis ≥2x/semana). 2) Sodio se trunca a rango 125-137: hiponatremia <125 se trata como 125, sodios normales ≥137 no aplican corrección. 3) Score final truncado a 6-40 (rango UNOS). 4) MELD exception points: HCC dentro de criterios Milán recibe puntos adicionales independientes del MELD calculado. 5) MELD 3.0 (post-2023) incluye sexo y albúmina — mayor precisión en mujeres pero no aún implementado en todas las redes; UNOS migró en 2023. 6) Nura V1 implementa MELD-Na (UNOS 2016); MELD 3.0 queda para versión futura.", "en": null, "pt": null },
-            "citationInline": "[AASLD 2018 §7; UNOS Policy 9; Kim NEJM 2008; Kim Gastroenterology 2021]",
+            "details": { "es": "1) MELD-Na clamps obligatorios: bilirrubina/INR/creatinina mínimos = 1.0 (impide ln(0)); creatinina máxima = 4.0 (también si en diálisis ≥2x/semana). 2) Sodio se trunca a rango 125-137: hiponatremia <125 se trata como 125, sodios normales ≥137 no aplican corrección. 3) Score final truncado a 6-40 (rango UNOS). 4) MELD exception points: HCC dentro de criterios Milán recibe puntos adicionales independientes del MELD calculado. 5) MELD 3.0 (post-2023) incluye sexo y albúmina — mayor precisión en mujeres pero no aún implementado en todas las redes; UNOS migró en 2023. 6) Nura V1 implementa MELD-Na (UNOS 2016, techo creatinina 4.0). MELD 3.0 (UNOS desde 13 de julio 2023) tiene techo creatinina 3.0 mg/dL e incluye sexo femenino y albúmina — clínicamente diferente. Nura V1 sigue siendo válido para evaluación clínica, pero las decisiones de listing en centros de trasplante deben usar MELD 3.0.", "en": null, "pt": null },
+            "citationInline": "[AASLD 2018 §7; UNOS Policy 9; Kim NEJM 2008; OPTN/UNOS 2023; Kim Gastroenterology 2021]",
             "validatedAgainst": ["aasld_2018_cirrhosis", "kim_nejm_2008", "kim_gastro_2021_meld3"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           }
         },
         "references": [
@@ -755,7 +755,7 @@
       ],
       "calculatorFn": "calc_gold",
       "footerNote": "Coincide con GOLD 2024",
-      "clinicalDisclaimer": "Esta clasificación SOLO aplica si el diagnóstico de EPOC está confirmado (FEV1/FVC <0.70 post-broncodilatador). Score completo GOLD ABCD requiere también disnea (mMRC) y exacerbaciones — futuras versiones.",
+      "clinicalDisclaimer": "Esta clasificación SOLO aplica si el diagnóstico de EPOC está confirmado (FEV1/FVC <0.70 post-broncodilatador). Score completo GOLD ABE requiere también disnea (mMRC) y exacerbaciones — futuras versiones.",
       "clinicalContent": {
         "version": "1.0",
         "languages": ["es", "en", "pt"],
@@ -763,10 +763,10 @@
         "sections": {
           "whenToUse": {
             "summary": { "es": "Severidad espirométrica de EPOC en pacientes con obstrucción confirmada (FEV1/FVC <0.70 post-broncodilatador). NO usar en asma.", "en": null, "pt": null },
-            "details": { "es": "GOLD 2024 spirometric clasifica EPOC en 4 estadios según FEV1 % del predicho post-broncodilatador, en pacientes con obstrucción confirmada (FEV1/FVC <0.70 post-BD). Esta clasificación NO indica severidad clínica completa — GOLD ABCD considera además síntomas (mMRC, CAT) y exacerbaciones. Para decisiones terapéuticas, usar siempre evaluación combinada GOLD ABCD. Nura V1 implementa solo el componente espirométrico; ABCD queda para versión futura.", "en": null, "pt": null },
+            "details": { "es": "GOLD 2024 spirometric clasifica EPOC en 4 estadios según FEV1 % del predicho post-broncodilatador, en pacientes con obstrucción confirmada (FEV1/FVC <0.70 post-BD). Esta clasificación NO indica severidad clínica completa — GOLD ABE considera además síntomas (mMRC, CAT) y exacerbaciones. Para decisiones terapéuticas, usar siempre evaluación combinada GOLD ABE. Nura V1 implementa solo el componente espirométrico; ABE queda para versión futura.", "en": null, "pt": null },
             "citationInline": "[GOLD 2024 Report §2.3]",
             "validatedAgainst": ["gold_2024"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           },
           "actionsByResult": {
             "summary": { "es": "Tratamiento por grupos GOLD ABE (no por estadio espirométrico 1-4): A broncodilatador único; B LAMA+LABA; E ≥2 exacerbaciones moderadas o ≥1 hospitalización: LAMA+LABA, considerar triple +ICS si eosinófilos ≥300/µL. NO usar ICS si eosinófilos <100/µL. SatO2 ≤88% reposo: oxigenoterapia domiciliaria. GES 25 cubre EPOC ambulatorio (broncodilatadores básicos).", "en": null, "pt": null },
@@ -776,11 +776,11 @@
             "validationStatus": "validated_human"
           },
           "pearls": {
-            "summary": { "es": "Estadiaje espirométrico no equivale a severidad clínica. GOLD ABCD (síntomas+exacerbaciones) guía tratamiento. Cesación tabáquica = intervención más eficaz.", "en": null, "pt": null },
-            "details": { "es": "1) GOLD spirometric (1-4) y GOLD ABCD evaluación clínica son complementarios — paciente puede tener FEV1 35% (GOLD 3) pero pocos síntomas y sin exacerbaciones (Grupo A) o viceversa. 2) Cesación tabáquica es la intervención que más impacta mortalidad y progresión — más que cualquier farmacoterapia. 3) Espirometría debe repetirse anual: progresión >50 mL/año en FEV1 indica EPOC progresiva; <50 mL/año estable. 4) Reversibilidad: si FEV1 mejora >12% y >200 mL post-broncodilatador, considerar diagnóstico alternativo (asma o ACO — asthma-COPD overlap). 5) Vacunación: influenza anual y neumococo PCV13+PPSV23 reducen exacerbaciones. 6) ⚠ Nura V2 — reglas epoc_gold_3-4: pacientes con EPOC severa/muy severa requieren control de productos con aditivos pro-inflamatorios; el escáner de etiquetas alerta automáticamente.", "en": null, "pt": null },
-            "citationInline": "[GOLD 2024 Report; Nura V2 epoc_gold_3-4]",
+            "summary": { "es": "Estadiaje espirométrico no equivale a severidad clínica. GOLD ABE (síntomas+exacerbaciones) guía tratamiento. Cesación tabáquica = intervención más eficaz.", "en": null, "pt": null },
+            "details": { "es": "1) GOLD spirometric (1-4) y GOLD ABE evaluación clínica son complementarios — paciente puede tener FEV1 35% (GOLD 3) pero pocos síntomas y sin exacerbaciones (Grupo A) o viceversa. Los grupos ABE (no ABCD) reemplazaron a la clasificación previa desde GOLD 2023, fusionando los grupos C y D en E (Exacerbations). 2) Cesación tabáquica es la intervención que más impacta mortalidad y progresión — más que cualquier farmacoterapia. 3) Espirometría debe repetirse anual: progresión >50 mL/año en FEV1 indica EPOC progresiva; <50 mL/año estable. 4) Reversibilidad: si FEV1 mejora >12% y >200 mL post-broncodilatador, considerar diagnóstico alternativo (asma o ACO — asthma-COPD overlap). 5) Vacunación: influenza anual + neumococo PCV20 dosis única (preferido, ACIP 2024) o PCV21, alternativa PCV15 seguido por PPSV23 ≥1 año después. PCV13 ya no es estándar de cuidado en adultos. En Chile sector privado tiene PCV20 disponible; sector público mantiene PPSV23 según calendario MINSAL. 6) ⚠ Nura V2 — reglas epoc_gold_3-4: pacientes con EPOC severa/muy severa requieren control de productos con aditivos pro-inflamatorios; el escáner de etiquetas alerta automáticamente.", "en": null, "pt": null },
+            "citationInline": "[GOLD 2024 Report; ACIP MMWR 2024; Nura V2 epoc_gold_3-4]",
             "validatedAgainst": ["motor_nura_v2:epoc_gold_3-4", "gold_2024"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           }
         },
         "references": [
@@ -829,10 +829,10 @@
         "sections": {
           "whenToUse": {
             "summary": { "es": "Severidad de neumonía adquirida en la comunidad (NAC) en adultos. NO usar en NAC nosocomial, NAC asociada a ventilación, ni en niños.", "en": null, "pt": null },
-            "details": { "es": "CURB-65 es uno de varios scores de severidad NAC junto con PSI/PORT y SCAP. Apropiado en adultos con diagnóstico clínico-radiográfico de NAC. Score guía decisión de manejo ambulatorio vs hospitalización vs UCI. NO sustituye juicio clínico: comorbilidades (insuficiencia cardíaca, cirrosis, inmunosupresión), saturación O2, hipoxemia o gases arteriales pueden indicar hospitalización aún con CURB-65 bajo. PSI es más sensible en pacientes ambulatorios; CURB-65 es más simple y usado en atención de urgencias.", "en": null, "pt": null },
+            "details": { "es": "CURB-65 es uno de varios scores de severidad NAC junto con PSI/PORT y SCAP. Apropiado en adultos con diagnóstico clínico-radiográfico de NAC. Score guía decisión de manejo ambulatorio vs hospitalización. La decisión de UCI debe basarse en criterios IDSA/ATS 2019 específicos (vasopresores, ventilación mecánica, ≥3 criterios menores), NO en CURB-65. NO sustituye juicio clínico: comorbilidades (insuficiencia cardíaca, cirrosis, inmunosupresión), saturación O2, hipoxemia o gases arteriales pueden indicar hospitalización aún con CURB-65 bajo. PSI es más sensible en pacientes ambulatorios; CURB-65 es más simple y usado en atención de urgencias. Limitaciones adicionales: NO validado en inmunosupresión severa (VIH avanzado, neutropenia, post-trasplante, oncológico activo) — requieren cobertura empírica más amplia independiente del score. NO usar en pacientes con bronquiectasias o fibrosis pulmonar previa que requieren cobertura de Pseudomonas.", "en": null, "pt": null },
             "citationInline": "[IDSA/ATS 2019 §VIII; Lim Thorax 2003]",
             "validatedAgainst": ["idsa_ats_2019_cap", "lim_2003"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           },
           "actionsByResult": {
             "summary": { "es": "Score 0-1 ambulatorio (mortalidad 0.6-2.7%). Score 2 hospitalización (6.8%). Score ≥3 hospitalización + evaluar UCI (14-27.8%). Decisión UCI NO se basa en CURB-65 sino en criterios IDSA/ATS 2019 (vasopresores, ventilación mecánica, ≥3 criterios menores). Antibióticos según severidad: ambulatorio amoxicilina 1g c/8h o doxiciclina; hospitalización beta-lactámico+macrólido; UCI combinación obligatoria (NO levofloxacino monoterapia).", "en": null, "pt": null },
@@ -843,10 +843,10 @@
           },
           "pearls": {
             "summary": { "es": "CURB-65 complementa juicio clínico, no lo reemplaza. Considerar SatO2, comorbilidades y contexto social en decisión final.", "en": null, "pt": null },
-            "details": { "es": "1) CURB-65 NO incluye saturación O2 ni hipoxemia — paciente con CURB-65=1 pero SatO2 88% requiere hospitalización igual. 2) Considerar contexto social en decisión: paciente sin red de apoyo, residente en zona rural lejana, frágil aunque CURB-65 bajo, puede requerir hospitalización por seguridad. 3) Comorbilidades no incluidas (IC descompensada, cirrosis, ERC en diálisis, oncológico activo, inmunosupresión) elevan riesgo independientemente del score. 4) Confusión = AMTS ≤8 (Abbreviated Mental Test Score) o desorientación clara nueva — no preguntar 'está confundido'. 5) Hospitalización temprana en NAC reduce mortalidad — primera dosis de antibiótico dentro de 4 horas en sospecha clínica. 6) PSI/PORT (Pneumonia Severity Index) es más completo (20 variables) — útil para decisión de alta domiciliaria, complementa CURB-65 en urgencias.", "en": null, "pt": null },
-            "citationInline": "[IDSA/ATS 2019 §VIII; Fine NEJM 1997]",
+            "details": { "es": "1) CURB-65 NO incluye saturación O2 ni hipoxemia — paciente con CURB-65=1 pero SatO2 88% requiere hospitalización igual. 2) Considerar contexto social en decisión: paciente sin red de apoyo, residente en zona rural lejana, frágil aunque CURB-65 bajo, puede requerir hospitalización por seguridad. 3) Comorbilidades no incluidas (IC descompensada, cirrosis, ERC en diálisis, oncológico activo, inmunosupresión) elevan riesgo independientemente del score. 4) Confusión = AMTS ≤8 (Abbreviated Mental Test Score) o desorientación clara nueva — no preguntar 'está confundido'. 5) Hospitalización temprana en NAC reduce mortalidad. Iniciar antibiótico tan pronto el diagnóstico de NAC sea razonablemente probable, sin ventana fija arbitraria. La regla histórica de \"primera dosis en 4 horas\" (Joint Commission 2002-2007) fue retirada por inducir sobre-diagnóstico de NAC y abuso antibiótico — IDSA/ATS 2019 NO la mantiene. 6) PSI/PORT (Pneumonia Severity Index) es más completo (20 variables) — útil para decisión de alta domiciliaria, complementa CURB-65 en urgencias.", "en": null, "pt": null },
+            "citationInline": "[IDSA/ATS 2019 §VIII; Fine NEJM 1997; Pines JAMA 2007]",
             "validatedAgainst": ["idsa_ats_2019_cap", "fine_1997_psi"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           }
         },
         "references": [
@@ -928,17 +928,17 @@
         "sections": {
           "whenToUse": {
             "summary": { "es": "Evaluación nivel de conciencia en TEC, encefalopatías agudas, postoperatorio neurológico, intoxicaciones. Reportar como E_V_M_, no solo total.", "en": null, "pt": null },
-            "details": { "es": "GCS estandariza la evaluación neurológica clínica. Apropiado en cualquier alteración del nivel de conciencia (TEC, ACV, encefalopatía metabólica/hepática, intoxicación, postoperatorio). Brain Trauma Foundation 2016 y Teasdale Lancet Neurol 2014 recomiendan reportar componentes individuales (E_V_M_) además del total — total aislado pierde información clínica. En pacientes intubados, V se reporta como 'T' (tubed) y el total no es comparable. En sedados, evaluar antes de sedación si posible. Reevaluar cada 1-4 hrs en agudo según severidad.", "en": null, "pt": null },
+            "details": { "es": "GCS estandariza la evaluación neurológica clínica. Apropiado en cualquier alteración del nivel de conciencia (TEC, ACV, encefalopatía metabólica/hepática, intoxicación, postoperatorio). Brain Trauma Foundation 2016 y Teasdale Lancet Neurol 2014 recomiendan reportar componentes individuales (E_V_M_) además del total — total aislado pierde información clínica. En pacientes intubados, V se reporta como 'T' (tubed) y el total no es comparable. En sedados, evaluar antes de sedación si posible. Reevaluar cada 1-4 hrs en agudo según severidad. Limitación importante: GCS estándar NO se aplica en niños <5 años (preverbales) — usar Pediatric GCS (pGCS) modificado para edad. Otras situaciones donde V no es evaluable: traqueostomía (reportar 'T'), trauma maxilofacial severo que impide apertura ocular (reportar 'C' de Closed), afasia previa, barreras de idioma. Sedación o parálisis neuromuscular invalidan la evaluación hasta retirar.", "en": null, "pt": null },
             "citationInline": "[BTF 2016; Teasdale Lancet Neurol 2014]",
             "validatedAgainst": ["btf_2016", "teasdale_2014"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           },
           "actionsByResult": {
             "summary": { "es": "13-15: TEC leve, vigilancia. 9-12: moderado, hospitalización + TC. 3-8: grave, UCI + considerar intubación + TC + manejo PIC.", "en": null, "pt": null },
-            "details": { "es": "GCS 13-15 (leve): vigilancia neurológica horaria por 4-6 horas, TC cerebral si hay factores de riesgo (edad ≥65, anticoagulación, déficit focal, vómitos persistentes, amnesia >30 min). Alta domiciliaria con instrucciones de retorno si TC normal y observación adecuada. GCS 9-12 (moderado): hospitalización obligatoria + TC cerebral inmediata + neurocirugía consultada. Reevaluación cada 1-2 hrs. GCS 3-8 (grave): UCI obligatoria + considerar intubación orotraqueal (especialmente si GCS ≤8 o pérdida de reflejos protectores), TC cerebral inmediata, monitoreo PIC si signos de hipertensión intracraneal (Cushing, anisocoria, deterioro), manejo agresivo de hipertensión intracraneal (cabeza 30°, manitol/SS hipertónica, sedación, PaCO2 35-40). Brain Trauma Foundation 2016 establece umbrales específicos para craniectomía descompresiva en TEC severo.", "en": null, "pt": null },
-            "citationInline": "[BTF 2016 §3-5]",
+            "details": { "es": "GCS 13-15 (leve): vigilancia neurológica horaria por 4-6 horas, TC cerebral si hay factores de riesgo (edad ≥65, anticoagulación, déficit focal, vómitos persistentes, amnesia >30 min). Alta domiciliaria con instrucciones de retorno si TC normal y observación adecuada. GCS 9-12 (moderado): hospitalización obligatoria + TC cerebral inmediata + neurocirugía consultada. Reevaluación cada 1-2 hrs. GCS 3-8 (grave): UCI obligatoria + considerar intubación orotraqueal (especialmente si GCS ≤8 o pérdida de reflejos protectores), TC cerebral inmediata, monitoreo PIC si signos de hipertensión intracraneal (Cushing, anisocoria, deterioro), manejo agresivo de hipertensión intracraneal (cabecera a 30°, manitol 0.25-1.0 g/kg en bolus o SS hipertónica 3%, sedación, normocapnia objetivo PaCO₂ 35-45 mmHg). Hiperventilación a 30-35 mmHg solo brevemente (<30 min) ante herniación inminente. **Hiperventilación profiláctica con PaCO₂ ≤25 mmHg está contraindicada** (BTF 2016). Brain Trauma Foundation 2016 establece umbrales específicos para craniectomía descompresiva en TEC severo (DECRA NEJM 2011 negativo para temprana; RESCUE-icp NEJM 2016 puede considerarse para PIC refractaria >25 mmHg).", "en": null, "pt": null },
+            "citationInline": "[BTF 2016 §3-5; DECRA NEJM 2011; RESCUE-icp NEJM 2016]",
             "validatedAgainst": ["btf_2016"],
-            "validationStatus": "pending_review"
+            "validationStatus": "validated_human"
           },
           "pearls": {
             "summary": { "es": "Reportar E_V_M_ siempre. En intubados V='T'. Mejor componente motor predice pronóstico. Reevaluar pre y post-sedación.", "en": null, "pt": null },

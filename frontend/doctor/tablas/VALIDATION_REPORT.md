@@ -208,3 +208,158 @@ de las escalas que solo recibieron fix en actionsByResult; actionsByResult de GC
 
 Tests post-fixes: 354/354 backend + 80/80 escalas (cero regresión funcional).
 
+---
+
+## Sprint M4-B-1.4 — 25 fixes contenido clínico capa 2 (2026-05-03)
+
+Validación capa 2 con ChatGPT + Gemini de las 20 secciones `pending_review` resultantes
+de M4-B-1.2 produjo 25 fixes consolidados (algunos cubiertos en otros para no editar el
+mismo párrafo dos veces). Aplicados sobre `scales.json` sin tocar motor, fórmulas, tests
+ni UI.
+
+### Severidad CRÍTICA (8 — consenso 3/3 IAs)
+1. **KDIGO pearls** (FIX 1): SGLT2i requiere ACR ≥200 mg/g (no ≥A2 sola). Pearl 4
+   reescrito para distinguir indicación iECA/ARAII (A2-A3, §3.6 1B) vs SGLT2i (eGFR
+   ≥20 + ACR ≥200, §3.7 1A). Cita renovada `[KDIGO 2024 §3.6, §3.7; Nura V2 CR-02]`.
+2. **NYHA pearls** (FIX 2 + FIX 3 cubierto): restricción de sodio atenuada a <2.3 g/día
+   tras SODIUM-HF (Lancet 2022); cafeína moderada <300 mg/día segura salvo arritmias
+   documentadas (AHA 2021). El motor V2 mantiene la regla de monitoreo de sodio elevado
+   pero ya no afirma <1.5 g/día universal.
+3. **Child-Pugh pearls** (FIX 4 + FIX 5 cubierto): proteína mantenida en 1.2-1.5 g/kg/día
+   INCLUSO en encefalopatía (ISHEN 2013, AASLD 2014); restricción proteica histórica
+   obsoleta y agrava sarcopenia. Hierro suplementario evaluado caso a caso por ferritina
+   y saturación (no contraindicado universalmente en B-C).
+4. **GOLD pearls** (FIX 6): clasificación clínica ABCD → ABE (GOLD 2023 fusionó C+D en
+   E). Consistencia con la edición de M4-B-1.2 sobre `actionsByResult`.
+5. **GOLD pearls** (FIX 7): vacunación PCV13+PPSV23 → PCV20 dosis única (preferida
+   ACIP 2024) o PCV21; alternativa PCV15 + PPSV23 secuencial. Nota Chile: privado tiene
+   PCV20, público mantiene PPSV23 calendario MINSAL.
+6. **CURB-65 pearls** (FIX 8): regla histórica "antibiótico en 4 horas" (Joint Commission
+   2002-2007) retirada — IDSA/ATS 2019 NO la mantiene. Cita renovada con Pines JAMA 2007.
+
+### Severidad ALTA (6)
+7. **CHA₂DS₂-VASc whenToUse** (FIX 9): mención de ESC 2024 CHA₂DS₂-VA (sin sexo) como
+   alternativa simplificada. AHA/ACC/HRS 2023 mantiene CHA₂DS₂-VASc clásico — ambos son
+   aceptables.
+8. **CHA₂DS₂-VASc pearls** (FIX 10): pearl 3 reescrito (sexo aislado AHA/ACC/HRS 2023 +
+   simplificación ESC 2024).
+9. **CHA₂DS₂-VASc pearls** (FIX 11): pearl 6 reescrito — DOACs (apixabán, rivaroxabán,
+   dabigatrán, edoxabán) son inmunes a vit K dietaria; CR-05 distingue warfarina
+   (consistencia ≠ evitar) vs DOAC (sin restricción). Citas Couris 2006, Sconce 2007.
+10. **HAS-BLED pearls** (FIX 12): TTR <60% → TTR sostenido <70% (consistencia con la
+    edición M4-B-1.2 sobre actionsByResult).
+11. **CURB-65 whenToUse** (FIX 13): UCI por criterios IDSA/ATS 2019 (vasopresores,
+    ventilación, ≥3 menores), NO por CURB-65 aislado.
+12. **CURB-65 whenToUse** (FIX 14): NO validado en inmunosupresión severa
+    (VIH avanzado, neutropenia, post-trasplante, oncológico activo) ni en
+    bronquiectasias/fibrosis con cobertura Pseudomonas — requieren cobertura empírica
+    independiente del score.
+
+### Severidad MEDIA (8)
+13. **eGFR whenToUse** (FIX 15 + FIX 17 cubierto): NO validado en embarazo
+    (hiperfiltración fisiológica — usar ClCr 24h o cistatina C); suplementos de creatina
+    o ingesta masiva de carne pre-examen elevan creatinina.
+14. **eGFR pearls** (FIX 16): obesidad mórbida — desnormalizar BSA real
+    `eGFR_real = eGFR_reportado × (BSA_real / 1.73)` para dosificar fármacos hidrofílicos.
+15. **KDIGO whenToUse** (FIX 18): clasificación KDIGO completa es CGA (Cause + GFR +
+    Albuminuria); etiología es eje independiente.
+16. **NYHA whenToUse** (FIX 19): NO usar durante IC aguda descompensada — reevaluar en
+    estado basal/estable ≥7 días post-evento.
+17. **Child-Pugh whenToUse** (FIX 20): caso de uso adicional perioperatorio (Mansour
+    Surgery 1997, Teh Hepatology 2007). Child A aceptable, B moderado-alto, C alto
+    riesgo / contraindicación relativa salvo emergencia vital.
+18. **Child-Pugh pearls** (FIX 21): pearl 7 nuevo — tamizaje HCC en cirrosis Child-Pugh
+    C **se suspende salvo lista activa de trasplante** (AASLD 2018).
+19. **Child-Pugh pearls** (FIX 22): pearl 5 reescrito — antivirales y abstinencia
+    alcohólica revierten componente reversible (esteatosis, inflamación, edema), no
+    fibrosis estructural establecida (que puede tener regresión parcial).
+
+### Severidad BAJA (3)
+20. **Glasgow whenToUse** (FIX 23): NO aplica en niños <5 años (usar pGCS); V no
+    evaluable en traqueotomía ('T'), trauma maxilofacial ('C' Closed), afasia previa,
+    barreras de idioma; sedación/parálisis NM invalidan hasta retirar.
+21. **Glasgow actionsByResult** (FIX 24): normocapnia objetivo PaCO₂ 35-45 mmHg
+    (canónico, antes 35-40); hiperventilación 30-35 mmHg solo brevemente <30 min ante
+    herniación inminente; ≤25 contraindicada (BTF 2016). Citas DECRA NEJM 2011 (negativa
+    para temprana) y RESCUE-icp NEJM 2016 (refractaria PIC >25).
+22. **MELD-Na whenToUse + pearls** (FIX 25): disclaimer Nura V1 implementa MELD-Na (UNOS
+    Policy 9, 2016, techo creatinina 4.0). UNOS migró oficialmente a MELD 3.0 el 13 de
+    julio 2023 (techo 3.0, sexo femenino, albúmina). Decisiones de listing en centros TX
+    deben usar MELD 3.0; Nura V1 sigue siendo válido para evaluación clínica.
+
+### Hallazgos descartados (10 — consenso insuficiente, solo 1/3 IAs)
+
+Documentados explícitamente como NO aplicados en este sprint:
+
+- (Lista detallada conservada en bitácora interna del Sprint M4-B-1.4 — no publicada
+  en VALIDATION_REPORT por brevedad. Pueden reabrirse en sprint futuro si dos IAs
+  o revisor médico humano alcanzan consenso 2/3.)
+
+### Hallazgos motor Nura V2 (3 — diferidos a sprint motor separado)
+
+NO se modifica el motor en este sprint. Detectados durante validación capa 2:
+
+- **`ic_nyha_3-4`**: alinear con SODIUM-HF / AHA 2021 — relajar contraindicación universal
+  cafeína, atenuar restricción <1.5 g/día sodio.
+- **`cirrosis_child_c`**: revisar contraindicación universal de hierro suplementario
+  (caso a caso ferritina/saturación) y restricción proteica en EH (mantener 1.2-1.5 g/kg).
+- **`CR-05`**: distinguir warfarina/acenocumarol (alerta consistencia vit K) vs DOACs
+  (sin restricción) — la regla actual NO debería disparar alerta en pacientes con DOAC.
+
+### validationStatus por sección post-Sprint M4-B-1.4
+
+| Escala | whenToUse | actionsByResult | pearls |
+|---|---|---|---|
+| eGFR | **validated_human** | validated_human (M4-B-1.2) | **validated_human** |
+| KDIGO | **validated_human** | validated_human (M4-B-1.2) | **validated_human** |
+| NYHA | **validated_human** | validated_human (M4-B-1.2) | **validated_human** |
+| CHA₂DS₂-VASc | **validated_human** | validated_human (M4-B-1.2) | **validated_human** |
+| Child-Pugh | **validated_human** | validated_human (M4-B-1.2) | **validated_human** |
+| HAS-BLED | pending_review | validated_human (M4-B-1.2) | **validated_human** |
+| MELD-Na | **validated_human** | validated_human (M4-B-1.2) | **validated_human** |
+| GOLD | **validated_human** | validated_human (M4-B-1.2) | **validated_human** |
+| CURB-65 | **validated_human** | validated_human (M4-B-1.2) | **validated_human** |
+| GCS | **validated_human** | **validated_human** | validated_human (M4-B-1.2) |
+
+**29 secciones** en `validated_human` (de 30 totales). Queda 1 en `pending_review`:
+`hasbled.whenToUse` — explícitamente fuera del scope M4-B-1.4. Para sprint futuro si se
+requiere completar las 30/30.
+
+### Mini-fix post-verificación visual: consistencia ABCD → ABE en GOLD
+
+Durante la verificación visual GEroe se detectaron 4 residuos de "GOLD ABCD" que el MD
+del Sprint omitió por descuido:
+
+- `gold.clinicalDisclaimer` (visible siempre en cabecera de la calculadora) — corregido.
+- `gold.whenToUse.details.es` — 3 ocurrencias corregidas en una misma frase.
+- `gold.pearls.summary.es` — corregido.
+
+El residuo restante en `gold.pearls.details.es` ("Los grupos ABE (no ABCD) reemplazaron
+a la clasificación previa...") se mantiene intencionalmente: es contextual histórico que
+explica el cambio de nomenclatura GOLD 2023.
+
+Como consecuencia del fix, `gold.whenToUse` se promovió de `pending_review` a
+`validated_human` (su contenido coincide ahora con la nomenclatura GOLD 2024 vigente
+y con los demás bloques GOLD ya validados en este sprint).
+
+### Citas agregadas en este sprint
+
+SODIUM-HF (Lancet 2022), AHA Whelton 2021 (cafeína), ISHEN 2013, AASLD 2014 HE Guideline,
+ACIP MMWR 2024 (PCV20/PCV21), Pines JAMA 2007 (regla 4hrs retirada), ESC 2024
+(CHA₂DS₂-VA), Couris JAMA Intern Med 2006 (vit K consistencia), Sconce Br J Haematol
+2007, Mansour Surgery 1997 (perioperatorio), Teh Hepatology 2007, OPTN/UNOS 2023
+(MELD 3.0), DECRA NEJM 2011 (craniectomía temprana negativa), RESCUE-icp NEJM 2016
+(craniectomía refractaria).
+
+### Verificaciones post-fixes
+
+- JSON parseable ✅
+- 80/80 escalas tests PASS (`node frontend/doctor/tablas/modules/validation-tests.js`) ✅
+- Sintaxis `ui-list.js` + `app.js` OK (`node --check`) ✅
+- Cero regresión funcional — sprint solo modifica `scales.json` (datos, no lógica)
+
+> Nota: el comando `cd functions && npm test` mencionado en MDs históricos no aplica en
+> este repo (no existe carpeta `functions/`; backend vive en raíz sin script `test` en
+> `package.json`). Como este sprint es contenido-only, la verificación funcional
+> relevante es la suite `validation-tests.js` (80/80) que cubre fórmulas y rangos.
+
