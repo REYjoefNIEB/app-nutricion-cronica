@@ -63,13 +63,25 @@ const CACHE_TTL_MS = 18 * 24 * 60 * 60 * 1000;
 // Counter de cache para logging mínimo agregado cada hora
 const cacheStats = { hit: 0, stale_hash: 0, stale_ttl: 0, miss: 0 };
 setInterval(() => {
-    const total = cacheStats.hit + cacheStats.stale_hash + cacheStats.stale_ttl + cacheStats.miss;
-    if (total > 0) {
-        console.log(`[cache] hit=${cacheStats.hit} stale_hash=${cacheStats.stale_hash} stale_ttl=${cacheStats.stale_ttl} miss=${cacheStats.miss}`);
+    // Cache precalc legacy (M4-B-1.5) — quedará en cero post-M4-B-1.6
+    const totalOld = cacheStats.hit + cacheStats.stale_hash + cacheStats.stale_ttl + cacheStats.miss;
+    if (totalOld > 0) {
+        console.log(`[cache-precalc] hit=${cacheStats.hit} stale_hash=${cacheStats.stale_hash} stale_ttl=${cacheStats.stale_ttl} miss=${cacheStats.miss}`);
         cacheStats.hit = 0;
         cacheStats.stale_hash = 0;
         cacheStats.stale_ttl = 0;
         cacheStats.miss = 0;
+    }
+
+    // Cache fooddata nuevo (M4-B-1.6)
+    const totalNew = fooddataCacheStats.fooddata_hit + fooddataCacheStats.fooddata_stale_hash + fooddataCacheStats.fooddata_stale_ttl + fooddataCacheStats.fooddata_miss + fooddataCacheStats.fooddata_no_cache_low_quality;
+    if (totalNew > 0) {
+        console.log(`[cache-fooddata] hit=${fooddataCacheStats.fooddata_hit} stale_hash=${fooddataCacheStats.fooddata_stale_hash} stale_ttl=${fooddataCacheStats.fooddata_stale_ttl} miss=${fooddataCacheStats.fooddata_miss} low_quality=${fooddataCacheStats.fooddata_no_cache_low_quality}`);
+        fooddataCacheStats.fooddata_hit = 0;
+        fooddataCacheStats.fooddata_stale_hash = 0;
+        fooddataCacheStats.fooddata_stale_ttl = 0;
+        fooddataCacheStats.fooddata_miss = 0;
+        fooddataCacheStats.fooddata_no_cache_low_quality = 0;
     }
 }, 60 * 60 * 1000);  // 1 hora
 
@@ -78,10 +90,197 @@ console.log(`[motor-v2] CACHE_TTL_MS=${CACHE_TTL_MS}ms (${CACHE_TTL_MS / (24*60*
 console.log(`[motor-v2] Reglas cargadas: ${Object.keys(clinicalRules).filter(k => !k.startsWith('_')).length} patologías`);
 // === FIN Sprint M4-B-1.5 ===
 
-const normalize = (str) => {
+// === SPRINT M4-B-1.6: Cache nura_fooddata_cache ===
+// Cache de datos del producto (foodData) profile-agnostic CORRECTO por construcción.
+// NO cachea evaluación clínica (eso siempre se calcula en vivo con perfil del paciente).
+// Whitelist explícita previene contaminación con inferencias clínicas.
+
+// Hash automático del parser + normalize (auto-invalidación al modificar código)
+const PARSER_HASH = crypto
+    .createHash('sha256')
+    .update(_buildFoodDataFromOffApi.toString() + normalize.toString())
+    .digest('hex')
+    .substring(0, 16);
+console.log(`[fooddata-cache] PARSER_HASH=${PARSER_HASH}`);
+
+// Threshold mínimo de calidad para cachear (0-1)
+const FOODDATA_QUALITY_THRESHOLD = 0.5;
+
+// Whitelist explícita de campos permitidos en el cache (previene inferencias clínicas)
+const ALLOWED_FOOD_DATA_FIELDS = [
+    'productName',
+    'ingredients',
+    'sellos',
+    'nutritionalFacts'
+];
+
+// Counter de cache nuevo (separado de M4-B-1.5)
+const fooddataCacheStats = {
+    fooddata_hit: 0,
+    fooddata_stale_hash: 0,
+    fooddata_stale_ttl: 0,
+    fooddata_miss: 0,
+    fooddata_no_cache_low_quality: 0
+};
+console.log(`[fooddata-cache] CACHE_TTL_MS=${CACHE_TTL_MS}ms (${CACHE_TTL_MS / (24*60*60*1000)}d)`);
+console.log(`[fooddata-cache] QUALITY_THRESHOLD=${FOODDATA_QUALITY_THRESHOLD}`);
+console.log(`[fooddata-cache] WHITELIST_FIELDS=${ALLOWED_FOOD_DATA_FIELDS.length} fields`);
+// === FIN Sprint M4-B-1.6 ===
+
+// === SPRINT M4-B-1.6: Funciones helper de cache foodData ===
+
+/**
+ * Sanitiza foodData para cache aplicando whitelist explícita.
+ * Previene contaminación con inferencias clínicas (global_risk, alertas, etc.)
+ */
+function _sanitizeFoodDataForCache(foodData) {
+    if (!foodData || typeof foodData !== 'object') return null;
+
+    const clean = {};
+    for (const field of ALLOWED_FOOD_DATA_FIELDS) {
+        if (foodData[field] !== undefined && foodData[field] !== null) {
+            clean[field] = foodData[field];
+        }
+    }
+    return clean;
+}
+
+/**
+ * Evalúa calidad de foodData para decidir si vale la pena cachearlo.
+ * Retorna score 0-1. Threshold mínimo: FOODDATA_QUALITY_THRESHOLD.
+ */
+function _evaluarCalidadFoodData(foodData) {
+    if (!foodData) return 0;
+
+    let score = 0;
+    let total = 0;
+
+    // Campos críticos (peso doble)
+    total += 2;
+    if (foodData.productName && typeof foodData.productName === 'string' && foodData.productName.length > 2) {
+        score += 2;
+    }
+
+    total += 2;
+    if (Array.isArray(foodData.ingredients) && foodData.ingredients.length > 0) {
+        score += 2;
+    }
+
+    // Campos importantes (peso normal)
+    total += 1;
+    if (foodData.nutritionalFacts && typeof foodData.nutritionalFacts === 'object' && Object.keys(foodData.nutritionalFacts).length > 0) {
+        score += 1;
+    }
+
+    total += 1;
+    if (Array.isArray(foodData.sellos)) {  // array vacío es OK, null no
+        score += 1;
+    }
+
+    return score / total;
+}
+
+/**
+ * Obtiene foodData de un barcode con cache profile-agnostic correcto.
+ * Flow: cache hit (válido) → cache miss/stale → OFF fetch → AI fallback → save cache
+ *
+ * IMPORTANTE: NUNCA cachea evaluación clínica, solo datos del producto.
+ * La evaluación clínica con perfil del paciente se hace SIEMPRE en vivo
+ * después de obtener el foodData.
+ *
+ * @param {string} barcode - código de barras del producto
+ * @returns {object|null} foodData con campos del producto, o null si no se pudo obtener
+ */
+async function _getOrCacheFoodData(barcode) {
+    if (!barcode) return null;
+
+    // db es local-per-handler en este archivo; obtenemos la instancia singleton aquí
+    const db = admin.firestore();
+
+    // ═══ FASE 1: lookup en cache nuevo ═══
+    const cacheRef = db.collection('nura_fooddata_cache').doc(barcode);
+    const cacheSnap = await cacheRef.get();
+
+    if (cacheSnap.exists) {
+        const data = cacheSnap.data();
+        const isStaleHash = !data.parserHash || data.parserHash !== PARSER_HASH;
+        const isStaleTtl = !data.expiresAt || Date.now() > data.expiresAt;
+
+        if (!isStaleHash && !isStaleTtl) {
+            fooddataCacheStats.fooddata_hit++;
+            console.log(`✅ [fooddata-HIT] ${barcode}`);
+            return data;
+        }
+
+        if (isStaleHash) fooddataCacheStats.fooddata_stale_hash++;
+        else fooddataCacheStats.fooddata_stale_ttl++;
+        console.log(`⏭️  [fooddata-STALE] ${barcode} (hash=${isStaleHash}, ttl=${isStaleTtl})`);
+    } else {
+        fooddataCacheStats.fooddata_miss++;
+        console.log(`❌ [fooddata-MISS] ${barcode}`);
+    }
+
+    // ═══ FASE 2: cache miss/stale → fetch OpenFoodFacts ═══
+    let foodData = null;
+    try {
+        const offResp = await fetch(
+            'https://world.openfoodfacts.org/api/v0/product/' +
+            encodeURIComponent(barcode) + '.json'
+        );
+        if (offResp.ok) {
+            const offData = await offResp.json();
+            foodData = _buildFoodDataFromOffApi(offData, barcode);
+        }
+    } catch (e) {
+        console.log(`⚠️ [fooddata] OFF fetch failed for ${barcode}: ${e.message}`);
+    }
+
+    // ═══ FASE 3: AI fallback si OFF falla ═══
+    if (!foodData) {
+        foodData = await _getAiFallbackFoodData(barcode);
+    }
+
+    if (!foodData) {
+        console.log(`⚠️ [fooddata] No foodData available for ${barcode}`);
+        return null;
+    }
+
+    // ═══ FASE 4: sanitizar (whitelist) y evaluar calidad ═══
+    const cleanedData = _sanitizeFoodDataForCache(foodData);
+    const quality = _evaluarCalidadFoodData(cleanedData);
+
+    // ═══ FASE 5: guardar en cache si calidad ≥ threshold ═══
+    if (quality >= FOODDATA_QUALITY_THRESHOLD) {
+        const docToSave = {
+            ...cleanedData,
+            // Normalizado para matching del motor V2
+            normalizedIngredients: (cleanedData.ingredients || []).map(normalize),
+            normalizedSellos: (cleanedData.sellos || []).map(normalize),
+            // Metadata
+            parserHash: PARSER_HASH,
+            fetchedAt: Date.now(),
+            expiresAt: Date.now() + CACHE_TTL_MS,
+            qualityScore: parseFloat(quality.toFixed(2)),
+            source: 'openfoodfacts'
+        };
+
+        await cacheRef.set(docToSave);
+        console.log(`💾 [fooddata-CACHED] ${barcode} quality=${quality.toFixed(2)}`);
+        return docToSave;
+    } else {
+        fooddataCacheStats.fooddata_no_cache_low_quality++;
+        console.log(`⚠️ [fooddata-NO-CACHE] ${barcode} quality=${quality.toFixed(2)} below threshold ${FOODDATA_QUALITY_THRESHOLD}`);
+        return foodData;  // devolver datos al caller pero sin cachear
+    }
+}
+
+// === FIN Sprint M4-B-1.6 funciones helper ===
+
+// Function declaration (hoisted) \u2014 necesario para uso en PARSER_HASH al startup
+function normalize(str) {
     if (!str) return '';
     return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-};
+}
 
 /**
  * Obtiene las reglas para una patología específica desde el diccionario cargado.
@@ -757,38 +956,11 @@ exports.scanBarcode = onRequest(
 
         console.log(`🔎 Escaneando código: ${barcode}`);
 
-        // ==========================================
-        // FASE 1: BÚSQUEDA RÁPIDA (Costo $0)
-        // ==========================================
-        const docRef = db.collection('nura_precalc').doc(barcode);
-        const docSnap = await docRef.get();
-
-        if (docSnap.exists) {
-            const data = docSnap.data();
-            const isStaleHash = !data.rulesHash || data.rulesHash !== RULES_HASH;
-            const isStaleTtl = !data.expiresAt || Date.now() > data.expiresAt;
-
-            // === MITIGACIÓN TEMPORAL Sprint M4-B-1.5 ===
-            // BUG ARQUITECTURAL: cache es profile-agnostic. Hasta resolver
-            // (Sprint M4-B-1.5 fase final), bypassear cache hit y siempre
-            // re-evaluar con el perfil del request actual.
-            // === FIN mitigación ===
-
-            // Logging para análisis (sin servir cache)
-            if (isStaleHash) {
-                cacheStats.stale_hash++;
-                console.log(`⏭️  [STALE-HASH] ${barcode} (bypass por bug profile-agnostic)`);
-            } else if (isStaleTtl) {
-                cacheStats.stale_ttl++;
-                console.log(`⏭️  [STALE-TTL] ${barcode} (bypass por bug profile-agnostic)`);
-            } else {
-                cacheStats.hit++;
-                console.log(`⏭️  [BYPASS-PROFILE-AGNOSTIC] ${barcode} (cache válido pero ignorado)`);
-            }
-
-            // SIEMPRE caer a FASE 2 (re-evaluación con perfil actual)
-        }
-        // Si no existe doc o cache es stale → continúa a FASE 2 (lógica existente)
+        // === SPRINT M4-B-1.6: lectura nura_precalc eliminada ===
+        // scanBarcode confía en req.body.foodData enviado por el frontend.
+        // Cache foodData ahora vive en nura_fooddata_cache (usado solo por caregiverScan).
+        // Datos legacy de nura_precalc quedan congelados en Firestore (no se leen, no se borran).
+        // === FIN Sprint M4-B-1.6 ===
 
         // ==========================================
         // FASE 2: EVALUACIÓN MOTOR NURA V2 (Costo $0)
@@ -1291,45 +1463,16 @@ exports.caregiverScan = onRequest(
             let productName = barcode || query || '—';
 
             if (barcode) {
-                // === MITIGACIÓN TEMPORAL Sprint M4-B-1.5 ===
-                // BUG ARQUITECTURAL: cache nura_precalc es profile-agnostic.
-                // Bypassear cache hit y siempre re-evaluar con el perfil del cuidador.
-                // Telemetría: leer cache para counters, pero NO servir su contenido.
-                // No se escribe al cache (cache deja de crecer hasta rediseño M4-B-1.6).
-                // === FIN mitigación ===
-                const precalcSnap = await db.collection('nura_precalc').doc(barcode).get();
-                if (precalcSnap.exists) {
-                    const data = precalcSnap.data();
-                    const isStaleHash = !data.rulesHash || data.rulesHash !== RULES_HASH;
-                    const isStaleTtl = !data.expiresAt || Date.now() > data.expiresAt;
-                    if (isStaleHash) {
-                        cacheStats.stale_hash++;
-                        console.log(`⏭️  [STALE-HASH caregiver] ${barcode} (bypass por bug profile-agnostic)`);
-                    } else if (isStaleTtl) {
-                        cacheStats.stale_ttl++;
-                        console.log(`⏭️  [STALE-TTL caregiver] ${barcode} (bypass por bug profile-agnostic)`);
-                    } else {
-                        cacheStats.hit++;
-                        console.log(`⏭️  [BYPASS-PROFILE-AGNOSTIC caregiver] ${barcode} (cache válido pero ignorado)`);
-                    }
-                    // SIEMPRE caer a re-evaluación con perfil actual del cuidador
-                }
+                // === SPRINT M4-B-1.6: usar cache nuevo nura_fooddata_cache ===
+                // Cache profile-agnostic CORRECTO (cachea solo datos del producto)
+                // Evaluación clínica SIEMPRE se calcula con perfil del cuidador
+                foodData = await _getOrCacheFoodData(barcode);
 
-                // Re-evaluación con perfil correcto: fetch OFF + foodData + evaluarProducto (sin cachear)
-                try {
-                    const offResp = await fetch(
-                        'https://world.openfoodfacts.org/api/v0/product/' + encodeURIComponent(barcode) + '.json'
-                    );
-                    if (offResp.ok) {
-                        const offData = await offResp.json();
-                        foodData = _buildFoodDataFromOffApi(offData, barcode);
-                    }
-                } catch (e) { /* continúa con fallback */ }
-                if (!foodData) foodData = await _getAiFallbackFoodData(barcode);
                 if (foodData) {
                     productName = foodData.productName || barcode;
                     motorResult = evaluarProducto(internalProfile, foodData);
                 }
+                // === FIN Sprint M4-B-1.6 ===
             } else {
                 if (esComidaGenerica(query)) {
                     foodData = await _getAiFallbackFoodData(query);
