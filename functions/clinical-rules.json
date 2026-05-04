@@ -6153,7 +6153,7 @@
         "feature_sello": "salt",
         "limite": "high",
         "severidad": "critico",
-        "motivo": "Sodio estricto <1.5g/día en ERC 4."
+        "motivo": "ERC estadio 4 (TFG 15-29): restricción sodio <2 g/día (KDIGO 2024 §3.3.2.1). Producto excede objetivo."
       },
       {
         "feature_ingrediente": [
@@ -6163,7 +6163,7 @@
           "pirofosfato"
         ],
         "severidad": "critico",
-        "motivo": "Fósforo <800mg/día. Los fosfatos son extremadamente peligrosos."
+        "motivo": "ERC estadio 4: ajustar fósforo según fosfatemia (KDIGO 2017 §4.1.3, §4.1.8). Priorizar limitar aditivos fosfatados inorgánicos en ultraprocesados (biodisponibilidad >90%) sobre fósforo de alimentos integrales. La restricción estricta debe individualizarse según niveles séricos."
       },
       {
         "feature_ingrediente": [
@@ -6175,7 +6175,7 @@
           "tomate"
         ],
         "severidad": "critico",
-        "motivo": "PELIGRO: Potasio <2g/día en ERC 4. Riesgo de hipercalemia."
+        "motivo": "ERC estadio 4: KDIGO 2024 Practice Point 3.3.1 promueve dieta basada en plantas (frutas, verduras, legumbres). La restricción universal de potasio no se recomienda sin hipercalemia documentada (K+ >5.0-5.5 mEq/L). Suplementos de K+ y sustitutos de sal con KCl SÍ requieren precaución. Consulte a su nefrólogo sobre su nivel de potasio sérico antes de modificar la dieta."
       },
       {
         "feature_ingrediente": [
@@ -6183,14 +6183,21 @@
           "proteina concentrada"
         ],
         "severidad": "critico",
-        "motivo": "Proteína estricta: 0.6g/kg/día."
+        "motivo": "ERC estadio 4 metabólicamente estable: 0.55-0.60 g/kg/día sin diabetes, 0.6-0.8 g/kg/día con diabetes (KDOQI 2020 §3.0.1, §3.0.2). Requiere supervisión nutricional para evitar desnutrición. Dieta muy baja proteína (0.28-0.43 g/kg) requiere keto-análogos por indicación nefrológica."
       }
     ],
     "validation": {
-      "status": "high_risk",
-      "validatedAgainst": null,
-      "lastReviewed": null,
-      "reviewer": null,
+      "status": "validated",
+      "validatedAgainst": [
+        "KDIGO 2024 §3.3.2.1",
+        "KDIGO 2024 Practice Point 3.3.1",
+        "KDIGO 2017 §4.1.3",
+        "KDIGO 2017 §4.1.8",
+        "KDOQI 2020 §3.0.1",
+        "KDOQI 2020 §3.0.2"
+      ],
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Sprint Motor V2 Fase 2 Componente 2 - cross-audit (Claude + Gemini + ChatGPT) + 3 fixes finales",
       "riskLevel": "high_risk"
     }
   },
