@@ -144,7 +144,13 @@
               expected: { value: 7, category: 'Score 7' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
             { id: 'cha-008', name: 'Caso 8: máximo realista — todos los items con edad ≥75 (score 9)',
               inputs: { chf:'yes', htn:'yes', diabetes:'yes', stroke:'yes', vascular:'yes', ageGroup:'75plus',  sex:'F' },
-              expected: { value: 9, category: 'Score 9' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } }
+              expected: { value: 9, category: 'Score 9' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'cha-009', name: 'Caso 9: hombre 65-74 con HTA + DM (score 3 — perfil común FA en cardiología ambulatoria)',
+              inputs: { chf:'no',  htn:'yes', diabetes:'yes', stroke:'no',  vascular:'no',  ageGroup:'65_74',   sex:'M' },
+              expected: { value: 3, category: 'Score 3' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'cha-010', name: 'Caso 10: mujer 65-74 con IC + HTA + DM (score 5 — multimorbilidad cardiometabólica)',
+              inputs: { chf:'yes', htn:'yes', diabetes:'yes', stroke:'no',  vascular:'no',  ageGroup:'65_74',   sex:'F' },
+              expected: { value: 5, category: 'Score 5' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } }
         ],
 
         child_pugh: [
@@ -249,7 +255,9 @@
             { id: 'curb-005', name: 'Caso 5: + PA baja (score 4)',                inputs: { confusion: 'yes', urea: 'yes', respiratoryRate: 'yes', bloodPressure: 'yes' },                     expected: { value: 4, category: 'Score 4' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
             { id: 'curb-006', name: 'Caso 6: máximo (score 5 — todo positivo)',   inputs: { confusion: 'yes', urea: 'yes', respiratoryRate: 'yes', bloodPressure: 'yes', age65: 'yes' },        expected: { value: 5, category: 'Score 5' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
             { id: 'curb-007', name: 'Caso 7: solo edad ≥65 (score 1)',            inputs: { age65: 'yes' },                                                                                    expected: { value: 1, category: 'Score 1' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
-            { id: 'curb-008', name: 'Caso 8: edad + PA baja (score 2)',           inputs: { age65: 'yes', bloodPressure: 'yes' },                                                              expected: { value: 2, category: 'Score 2' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } }
+            { id: 'curb-008', name: 'Caso 8: edad + PA baja (score 2)',           inputs: { age65: 'yes', bloodPressure: 'yes' },                                                              expected: { value: 2, category: 'Score 2' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'curb-009', name: 'Caso 9: anciano con delirio (score 2 — neumonía + delirio en geriatría)', inputs: { age65: 'yes', confusion: 'yes' },                                          expected: { value: 2, category: 'Score 2' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } },
+            { id: 'curb-010', name: 'Caso 10: paciente joven con neumonía severa, sin urea ni edad (score 3)', inputs: { confusion: 'yes', respiratoryRate: 'yes', bloodPressure: 'yes' },          expected: { value: 3, category: 'Score 3' }, mdcalc: { verified: false, valueObserved: null, verifiedDate: null } }
         ],
 
         gcs: [
