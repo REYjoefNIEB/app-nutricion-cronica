@@ -45,6 +45,39 @@ const MAX_TOKENS = 1024;
 // =================================================================
 const clinicalRules = require('./clinical-rules.json');
 
+// === SPRINT M4-B-1.5: Hash automático del archivo de reglas ===
+// Computa hash SHA-256 truncado del clinical-rules.json al startup.
+// Se usa para invalidar cache nura_precalc cuando cambian las reglas.
+// Cualquier modificación al JSON regenera automáticamente el hash al siguiente deploy.
+const crypto = require('crypto');
+const RULES_HASH = crypto
+    .createHash('sha256')
+    .update(JSON.stringify(clinicalRules))
+    .digest('hex')
+    .substring(0, 16);
+console.log(`[motor-v2] Sprint M4-B-1.5: RULES_HASH=${RULES_HASH}`);
+
+// TTL del cache: 18 días (hardcoded, ajustable solo via deploy)
+const CACHE_TTL_MS = 18 * 24 * 60 * 60 * 1000;
+
+// Counter de cache para logging mínimo agregado cada hora
+const cacheStats = { hit: 0, stale_hash: 0, stale_ttl: 0, miss: 0 };
+setInterval(() => {
+    const total = cacheStats.hit + cacheStats.stale_hash + cacheStats.stale_ttl + cacheStats.miss;
+    if (total > 0) {
+        console.log(`[cache] hit=${cacheStats.hit} stale_hash=${cacheStats.stale_hash} stale_ttl=${cacheStats.stale_ttl} miss=${cacheStats.miss}`);
+        cacheStats.hit = 0;
+        cacheStats.stale_hash = 0;
+        cacheStats.stale_ttl = 0;
+        cacheStats.miss = 0;
+    }
+}, 60 * 60 * 1000);  // 1 hora
+
+// Smoke test al startup
+console.log(`[motor-v2] CACHE_TTL_MS=${CACHE_TTL_MS}ms (${CACHE_TTL_MS / (24*60*60*1000)}d) - reservado para M4-B-1.6`);
+console.log(`[motor-v2] Reglas cargadas: ${Object.keys(clinicalRules).filter(k => !k.startsWith('_')).length} patologías`);
+// === FIN Sprint M4-B-1.5 ===
+
 const normalize = (str) => {
     if (!str) return '';
     return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -731,13 +764,31 @@ exports.scanBarcode = onRequest(
         const docSnap = await docRef.get();
 
         if (docSnap.exists) {
-            console.log(`✅ [HIT] ¡Producto encontrado en bóveda!: ${barcode}`);
-            return res.status(200).json({
-                status: "success",
-                fuente: "nura_db", // Le decimos al frontend que fue instantáneo
-                datos: docSnap.data()
-            });
+            const data = docSnap.data();
+            const isStaleHash = !data.rulesHash || data.rulesHash !== RULES_HASH;
+            const isStaleTtl = !data.expiresAt || Date.now() > data.expiresAt;
+
+            // === MITIGACIÓN TEMPORAL Sprint M4-B-1.5 ===
+            // BUG ARQUITECTURAL: cache es profile-agnostic. Hasta resolver
+            // (Sprint M4-B-1.5 fase final), bypassear cache hit y siempre
+            // re-evaluar con el perfil del request actual.
+            // === FIN mitigación ===
+
+            // Logging para análisis (sin servir cache)
+            if (isStaleHash) {
+                cacheStats.stale_hash++;
+                console.log(`⏭️  [STALE-HASH] ${barcode} (bypass por bug profile-agnostic)`);
+            } else if (isStaleTtl) {
+                cacheStats.stale_ttl++;
+                console.log(`⏭️  [STALE-TTL] ${barcode} (bypass por bug profile-agnostic)`);
+            } else {
+                cacheStats.hit++;
+                console.log(`⏭️  [BYPASS-PROFILE-AGNOSTIC] ${barcode} (cache válido pero ignorado)`);
+            }
+
+            // SIEMPRE caer a FASE 2 (re-evaluación con perfil actual)
         }
+        // Si no existe doc o cache es stale → continúa a FASE 2 (lógica existente)
 
         // ==========================================
         // FASE 2: EVALUACIÓN MOTOR NURA V2 (Costo $0)
@@ -756,9 +807,15 @@ exports.scanBarcode = onRequest(
         // ==========================================
         // FASE 3: AUTO-APRENDIZAJE (Guardar para el futuro)
         // ==========================================
-        console.log(`💾 Guardando análisis de la IA en la bóveda para la próxima vez...`);
-        // Guardamos el JSON de la IA en Firestore usando el código de barras como ID
-        await docRef.set(iaResultJSON);
+        // === CACHE WRITE DESHABILITADO Sprint M4-B-1.5 ===
+        // El cache nura_precalc tiene bug arquitectural profile-agnostic.
+        // Cachear evaluación (output del motor) es contraproducente:
+        // - 10x más lento que recomputar (eval=5ms vs Firestore read=50ms)
+        // - Sirve datos del perfil A a paciente con perfil B
+        // Mientras se rediseña en Sprint M4-B-1.6 (cache foodData only),
+        // no escribimos nuevas entradas a nura_precalc.
+        // === FIN deshabilitación ===
+        console.log(`📊 [eval-only] ${barcode} (cache deshabilitado, M4-B-1.5)`);
 
         // ==========================================
         // FASE 4: RESPONDER AL USUARIO
@@ -1234,24 +1291,44 @@ exports.caregiverScan = onRequest(
             let productName = barcode || query || '—';
 
             if (barcode) {
+                // === MITIGACIÓN TEMPORAL Sprint M4-B-1.5 ===
+                // BUG ARQUITECTURAL: cache nura_precalc es profile-agnostic.
+                // Bypassear cache hit y siempre re-evaluar con el perfil del cuidador.
+                // Telemetría: leer cache para counters, pero NO servir su contenido.
+                // No se escribe al cache (cache deja de crecer hasta rediseño M4-B-1.6).
+                // === FIN mitigación ===
                 const precalcSnap = await db.collection('nura_precalc').doc(barcode).get();
                 if (precalcSnap.exists) {
-                    motorResult = precalcSnap.data();
-                } else {
-                    try {
-                        const offResp = await fetch(
-                            'https://world.openfoodfacts.org/api/v0/product/' + encodeURIComponent(barcode) + '.json'
-                        );
-                        if (offResp.ok) {
-                            const offData = await offResp.json();
-                            foodData = _buildFoodDataFromOffApi(offData, barcode);
-                        }
-                    } catch (e) { /* continúa con fallback */ }
-                    if (!foodData) foodData = await _getAiFallbackFoodData(barcode);
-                    if (foodData) {
-                        productName = foodData.productName || barcode;
-                        motorResult = evaluarProducto(internalProfile, foodData);
+                    const data = precalcSnap.data();
+                    const isStaleHash = !data.rulesHash || data.rulesHash !== RULES_HASH;
+                    const isStaleTtl = !data.expiresAt || Date.now() > data.expiresAt;
+                    if (isStaleHash) {
+                        cacheStats.stale_hash++;
+                        console.log(`⏭️  [STALE-HASH caregiver] ${barcode} (bypass por bug profile-agnostic)`);
+                    } else if (isStaleTtl) {
+                        cacheStats.stale_ttl++;
+                        console.log(`⏭️  [STALE-TTL caregiver] ${barcode} (bypass por bug profile-agnostic)`);
+                    } else {
+                        cacheStats.hit++;
+                        console.log(`⏭️  [BYPASS-PROFILE-AGNOSTIC caregiver] ${barcode} (cache válido pero ignorado)`);
                     }
+                    // SIEMPRE caer a re-evaluación con perfil actual del cuidador
+                }
+
+                // Re-evaluación con perfil correcto: fetch OFF + foodData + evaluarProducto (sin cachear)
+                try {
+                    const offResp = await fetch(
+                        'https://world.openfoodfacts.org/api/v0/product/' + encodeURIComponent(barcode) + '.json'
+                    );
+                    if (offResp.ok) {
+                        const offData = await offResp.json();
+                        foodData = _buildFoodDataFromOffApi(offData, barcode);
+                    }
+                } catch (e) { /* continúa con fallback */ }
+                if (!foodData) foodData = await _getAiFallbackFoodData(barcode);
+                if (foodData) {
+                    productName = foodData.productName || barcode;
+                    motorResult = evaluarProducto(internalProfile, foodData);
                 }
             } else {
                 if (esComidaGenerica(query)) {
