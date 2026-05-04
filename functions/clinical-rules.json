@@ -66,7 +66,14 @@
         "severidad": "moderado",
         "motivo": "Alimento de ALTO ÍNDICE GLUCÉMICO. Puede causar picos de glucosa. Controlar porción."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "diabetes_t1": {
     "nombre": "Diabetes Tipo 1",
@@ -91,7 +98,14 @@
           "sacarosa"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "prediabetes": {
     "nombre": "Prediabetes / Resistencia a la Insulina",
@@ -122,7 +136,14 @@
           "harina de trigo"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "obesidad": {
     "nombre": "Obesidad",
@@ -173,7 +194,14 @@
         "severidad": "moderado",
         "motivo": "Alimento de alta densidad calórica. Control de porciones."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "sobrepeso": {
     "nombre": "Sobrepeso",
@@ -191,7 +219,14 @@
         "feature_sello": "fat",
         "limite": "high"
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "sindrome_metabolico": {
     "nombre": "Síndrome Metabólico",
@@ -223,7 +258,14 @@
           "fructosa"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "hiperuricemia": {
     "nombre": "Hiperuricemia / Gota",
@@ -313,7 +355,14 @@
         "severidad": "moderado",
         "motivo": "Alimento con contenido moderado de purinas. Limitar frecuencia."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "hipotiroidismo": {
     "nombre": "Hipotiroidismo",
@@ -359,7 +408,14 @@
         "severidad": "moderado",
         "motivo": "Alimento con goitrógenos. Puede interferir con función tiroidea si se consume en exceso."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "hipertiroidismo": {
     "nombre": "Hipertiroidismo",
@@ -386,7 +442,14 @@
           "mate"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "sop": {
     "nombre": "Síndrome de Ovario Poliquístico (SOP)",
@@ -417,7 +480,14 @@
           "suero"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "fenilcetonuria": {
     "nombre": "Fenilcetonuria (PKU)",
@@ -441,7 +511,14 @@
           "gelatina"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "galactosemia": {
     "nombre": "Galactosemia",
@@ -462,7 +539,14 @@
         "severidad": "critico",
         "motivo": "Contiene lácteos. Contraindicado en galactosemia."
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "hipertension": {
     "nombre": "Hipertensión Arterial",
@@ -508,7 +592,14 @@
         "severidad": "moderado",
         "motivo": "Alimento procesado con alto contenido de sodio oculto."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "dislipidemia": {
     "nombre": "Dislipidemia / Colesterol Alto",
@@ -536,7 +627,14 @@
           "aceite de coco"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "hipertrigliceridemia": {
     "nombre": "Hipertrigliceridemia",
@@ -566,7 +664,14 @@
           "vino"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "insuficiencia_cardiaca": {
     "nombre": "Insuficiencia Cardíaca",
@@ -594,7 +699,14 @@
           "taurina"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "arritmia": {
     "nombre": "Arritmia Cardíaca",
@@ -618,7 +730,14 @@
         "feature_sello": "salt",
         "limite": "high"
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "aterosclerosis": {
     "nombre": "Aterosclerosis",
@@ -645,7 +764,14 @@
         "feature_sello": "salt",
         "limite": "high"
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "enfermedad_coronaria": {
     "nombre": "Enfermedad Coronaria",
@@ -671,7 +797,14 @@
           "nitrato"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "trombosis": {
     "nombre": "Trombosis / Anticoagulados (Warfarina)",
@@ -718,7 +851,14 @@
         "severidad": "moderado",
         "motivo": "Alimento ALTO EN VITAMINA K. Mantener ingesta constante con anticoagulantes."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "enfermedad_vascular_periferica": {
     "nombre": "Enfermedad Vascular Periférica",
@@ -736,7 +876,14 @@
         "feature_sello": "salt",
         "limite": "high"
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "enfermedad_poliquistica_renal": {
     "nombre": "Enfermedad Poliquística Renal (EPR)",
@@ -842,7 +989,14 @@
         "severidad": "moderado",
         "motivo": "Alimento con alto contenido de fósforo. Control en EPR."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "insuficiencia_renal_cronica": {
     "nombre": "Insuficiencia Renal Crónica (ERC)",
@@ -1060,7 +1214,14 @@
         "severidad": "critico",
         "motivo": "Alimento ALTO EN FÓSFORO. Control estricto en ERC."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "litiasis_renal_calcio": {
     "nombre": "Cálculos Renales de Calcio/Oxalato",
@@ -1183,7 +1344,14 @@
         "severidad": "moderado",
         "motivo": "Alimento con contenido moderado de oxalatos. Controlar porción y consumir con calcio."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "litiasis_renal_urato": {
     "nombre": "Cálculos Renales de Ácido Úrico",
@@ -1206,7 +1374,14 @@
           "alcohol"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "sindrome_nefrotico": {
     "nombre": "Síndrome Nefrótico",
@@ -1224,7 +1399,14 @@
         "feature_sello": "saturated-fat",
         "limite": "high"
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "dialisis": {
     "nombre": "Paciente en Diálisis",
@@ -1373,7 +1555,14 @@
         "severidad": "critico",
         "motivo": "Alimento ALTO EN FÓSFORO. Control estricto en diálisis."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "nefropatia_diabetica": {
     "nombre": "Nefropatía Diabética",
@@ -1399,7 +1588,14 @@
           "acido fosforico"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "transplante_renal": {
     "nombre": "Trasplante Renal",
@@ -1420,7 +1616,14 @@
           "grapefruit"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "celiaquia": {
     "nombre": "Enfermedad Celíaca",
@@ -1448,7 +1651,14 @@
           "avena"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "sensibilidad_gluten": {
     "nombre": "Sensibilidad al Gluten No Celíaca",
@@ -1467,7 +1677,14 @@
           "centeno"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "intolerancia_lactosa": {
     "nombre": "Intolerancia a la Lactosa",
@@ -1489,7 +1706,14 @@
           "crema"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "alergia_leche": {
     "nombre": "Alergia a Proteína de Leche de Vaca (APLV)",
@@ -1512,7 +1736,14 @@
           "whey"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "colon_irritable": {
     "nombre": "Síndrome de Intestino Irritable (SII)",
@@ -1571,7 +1802,14 @@
         "severidad": "moderado",
         "motivo": "Alimento alto en FODMAPs. Puede agravar síntomas del SII. Evaluar tolerancia individual."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "crohn": {
     "nombre": "Enfermedad de Crohn",
@@ -1603,7 +1841,14 @@
           "leche"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "colitis_ulcerosa": {
     "nombre": "Colitis Ulcerosa",
@@ -1634,7 +1879,14 @@
           "salvado"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "gastritis": {
     "nombre": "Gastritis Crónica",
@@ -1671,7 +1923,14 @@
           "vino"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "reflujo_gastroesofagico": {
     "nombre": "Reflujo Gastroesofágico (ERGE)",
@@ -1702,7 +1961,14 @@
           "vinagre"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "ulcera_peptica": {
     "nombre": "Úlcera Péptica",
@@ -1727,7 +1993,14 @@
           "vinagre"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "diverticulosis": {
     "nombre": "Diverticulosis / Diverticulitis",
@@ -1748,7 +2021,14 @@
         "feature_sello": "fat",
         "limite": "high"
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "pancreatitis": {
     "nombre": "Pancreatitis",
@@ -1775,7 +2055,14 @@
           "vino"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "esofago_barrett": {
     "nombre": "Esófago de Barrett",
@@ -1798,7 +2085,14 @@
         "feature_sello": "fat",
         "limite": "high"
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "gastroparesia": {
     "nombre": "Gastroparesia",
@@ -1819,7 +2113,14 @@
           "semilla"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "fructosa_malabsorcion": {
     "nombre": "Malabsorción de Fructosa",
@@ -1870,7 +2171,14 @@
         "severidad": "critico",
         "motivo": "Alimento con alto contenido de fructosa libre o polioles. Causa síntomas GI severos."
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "histaminosis": {
     "nombre": "Intolerancia a la Histamina",
@@ -1930,7 +2238,14 @@
         "severidad": "critico",
         "motivo": "Alimento ALTO EN HISTAMINA o liberador de histamina. Riesgo de reacción."
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "favismo": {
     "nombre": "Déficit de G6PD (Favismo)",
@@ -1953,7 +2268,14 @@
           "vitamina c"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "higado_graso": {
     "nombre": "Hígado Graso No Alcohólico (NAFLD)",
@@ -1982,7 +2304,14 @@
           "grasa trans"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "cirrosis": {
     "nombre": "Cirrosis Hepática",
@@ -2011,7 +2340,14 @@
           "suplemento de hierro"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "hepatitis": {
     "nombre": "Hepatitis (Crónica)",
@@ -2032,7 +2368,14 @@
         "feature_sello": "fat",
         "limite": "high"
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "hemocromatosis": {
     "nombre": "Hemocromatosis",
@@ -2091,7 +2434,14 @@
         "severidad": "critico",
         "motivo": "Alimento ALTO EN HIERRO. Control estricto en hemocromatosis."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "wilson": {
     "nombre": "Enfermedad de Wilson",
@@ -2127,7 +2477,14 @@
         "severidad": "critico",
         "motivo": "Alimento ALTO EN COBRE. Contraindicado en Enfermedad de Wilson."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "porfiria": {
     "nombre": "Porfiria",
@@ -2148,7 +2505,14 @@
         "feature_sello": "sugars",
         "limite": "high"
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "colestasis": {
     "nombre": "Colestasis / Problemas Biliares",
@@ -2166,7 +2530,14 @@
         "feature_sello": "saturated-fat",
         "limite": "high"
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "alergia_huevo": {
     "nombre": "Alergia al Huevo",
@@ -2188,7 +2559,14 @@
           "ovomucina"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "alergia_soja": {
     "nombre": "Alergia a la Soja",
@@ -2210,7 +2588,14 @@
           "edamame"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "alergia_frutos_secos": {
     "nombre": "Alergia a Frutos Secos",
@@ -2234,7 +2619,14 @@
           "cacahuate"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "alergia_mani": {
     "nombre": "Alergia al Maní",
@@ -2254,7 +2646,14 @@
           "mantequilla de mani"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "alergia_pescado": {
     "nombre": "Alergia al Pescado",
@@ -2277,7 +2676,14 @@
           "salsa de pescado"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "alergia_mariscos": {
     "nombre": "Alergia a Mariscos/Crustáceos",
@@ -2299,7 +2705,14 @@
           "quitosano"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "alergia_sesamo": {
     "nombre": "Alergia al Sésamo",
@@ -2319,7 +2732,14 @@
           "tahina"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "alergia_mostaza": {
     "nombre": "Alergia a la Mostaza",
@@ -2337,7 +2757,14 @@
           "semilla de mostaza"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "alergia_apio": {
     "nombre": "Alergia al Apio",
@@ -2355,7 +2782,14 @@
           "celeriac"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "alergia_sulfitos": {
     "nombre": "Sensibilidad a Sulfitos",
@@ -2375,7 +2809,14 @@
           "bisulfito"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "alergia_latex_frutas": {
     "nombre": "Síndrome Látex-Frutas",
@@ -2393,7 +2834,14 @@
           "castana"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "timeless",
+      "validatedAgainst": null,
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Triage automático Componente 1",
+      "riskLevel": "timeless"
+    }
   },
   "mastocitosis": {
     "nombre": "Mastocitosis",
@@ -2453,7 +2901,14 @@
         "severidad": "critico",
         "motivo": "Alimento liberador de histamina. Riesgo de degranulación mastocitaria."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "esofagitis_eosinofilica": {
     "nombre": "Esofagitis Eosinofílica",
@@ -2473,7 +2928,14 @@
           "soja"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "artritis_reumatoide": {
     "nombre": "Artritis Reumatoide",
@@ -2499,7 +2961,14 @@
           "grasa hidrogenada"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "lupus": {
     "nombre": "Lupus Eritematoso Sistémico",
@@ -2527,7 +2996,14 @@
           "grasa trans"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "fibromialgia": {
     "nombre": "Fibromialgia",
@@ -2550,7 +3026,14 @@
           "jarabe"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "esclerosis_multiple": {
     "nombre": "Esclerosis Múltiple",
@@ -2570,7 +3053,14 @@
           "grasa hidrogenada"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "psoriasis": {
     "nombre": "Psoriasis",
@@ -2600,7 +3090,14 @@
           "grasa trans"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "tiroiditis_hashimoto": {
     "nombre": "Tiroiditis de Hashimoto",
@@ -2630,7 +3127,14 @@
           "kelp"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "dermatitis_atopica": {
     "nombre": "Dermatitis Atópica / Eccema",
@@ -2655,7 +3159,14 @@
           "sorbato"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "enfermedad_celiaca_refractaria": {
     "nombre": "Enfermedad Celíaca Refractaria",
@@ -2677,7 +3188,14 @@
           "seitan"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "epilepsia_keto": {
     "nombre": "Epilepsia (Dieta Cetogénica)",
@@ -2700,7 +3218,14 @@
           "almidon"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "migrana": {
     "nombre": "Migraña",
@@ -2759,7 +3284,14 @@
         "severidad": "moderado",
         "motivo": "Alimento rico en tiramina. Disparador común de migraña."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "parkinson": {
     "nombre": "Enfermedad de Parkinson",
@@ -2774,7 +3306,14 @@
           "whey"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "alzheimer": {
     "nombre": "Enfermedad de Alzheimer",
@@ -2801,7 +3340,14 @@
           "aluminio"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "tdah": {
     "nombre": "TDAH (Trastorno por Déficit de Atención)",
@@ -2826,7 +3372,14 @@
           "benzoato de sodio"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "autismo_dieta": {
     "nombre": "Trastorno del Espectro Autista (Dieta de exclusión)",
@@ -2851,7 +3404,14 @@
           "benzoato"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "cancer_tratamiento": {
     "nombre": "Paciente Oncológico en Tratamiento",
@@ -2875,7 +3435,14 @@
           "equinacea"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "cancer_inmunosuprimido": {
     "nombre": "Paciente Inmunosuprimido",
@@ -2899,7 +3466,14 @@
           "ceviche"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "cancer_colon": {
     "nombre": "Cáncer de Colon (Prevención/Post)",
@@ -2922,7 +3496,14 @@
           "tartrazina"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "cancer_mama_hormonodep": {
     "nombre": "Cáncer de Mama Hormonodependiente",
@@ -2947,7 +3528,14 @@
           "vino"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "nutricion_infantil": {
     "nombre": "Nutrición Infantil (<6 años)",
@@ -2985,7 +3573,14 @@
           "stevia"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "alergia_proteina_leche_infantil": {
     "nombre": "APLV Infantil",
@@ -3007,7 +3602,14 @@
           "whey"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "selectividad_alimentaria": {
     "nombre": "Selectividad Alimentaria Infantil",
@@ -3028,7 +3630,14 @@
         "feature_sello": "sugars",
         "limite": "high"
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "bajo_peso_infantil": {
     "nombre": "Desnutrición / Bajo Peso Infantil",
@@ -3053,7 +3662,14 @@
           "guarana"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "diabetes_infantil": {
     "nombre": "Diabetes Tipo 1 Infantil",
@@ -3084,7 +3700,14 @@
           "taurina"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "embarazo_pediatrico": {
     "nombre": "Embarazo Adolescente",
@@ -3117,7 +3740,14 @@
           "sacarina"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "control_peso_general": {
     "nombre": "Control de Peso General",
@@ -3135,7 +3765,14 @@
         "feature_sello": "fat",
         "limite": "high"
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "obesidad_morbida": {
     "nombre": "Obesidad Mórbida",
@@ -3159,7 +3796,14 @@
         "feature_sello": "saturated-fat",
         "limite": "high"
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "post_bariatrica": {
     "nombre": "Post Cirugía Bariátrica",
@@ -3187,7 +3831,14 @@
         "feature_sello": "fat",
         "limite": "high"
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "trastorno_alimentario": {
     "nombre": "Recuperación de Trastorno Alimentario",
@@ -3204,7 +3855,14 @@
           "bajo en calorias"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "lactancia": {
     "nombre": "Lactancia Materna",
@@ -3228,7 +3886,14 @@
           "guarana"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "diabetes_gestacional": {
     "nombre": "Diabetes Gestacional",
@@ -3259,7 +3924,14 @@
           "sucralosa"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "preeclampsia": {
     "nombre": "Preeclampsia",
@@ -3277,7 +3949,14 @@
         "feature_sello": "salt",
         "limite": "moderate"
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "anemia_ferropenica": {
     "nombre": "Anemia Ferropénica",
@@ -3301,7 +3980,14 @@
           "leche"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "osteoporosis": {
     "nombre": "Osteoporosis",
@@ -3329,7 +4015,14 @@
           "fosfato"
         ]
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "interacciones_farmacologicas": {
     "atorvastatina": {
@@ -3947,6 +4640,13 @@
           "motivo": "NOTA: El ácido fólico se suplementa habitualmente con metotrexato. Consultar dosis con médico."
         }
       ]
+    },
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
     }
   },
   "asma": {
@@ -3990,7 +4690,14 @@
         "severidad": "moderado",
         "motivo": "El alcohol, especialmente vino tinto, puede desencadenar broncoespasmo."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "epoc": {
     "nombre": "EPOC (Enfermedad Pulmonar Obstructiva Crónica)",
@@ -4020,7 +4727,14 @@
         "severidad": "moderado",
         "motivo": "Las bebidas carbonatadas generan distensión abdominal que dificulta la respiración."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "apnea_sueno": {
     "nombre": "Apnea Obstructiva del Sueño",
@@ -4050,7 +4764,14 @@
         "severidad": "moderado",
         "motivo": "La cafeína altera la calidad del sueño ya comprometido en apnea."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "fibrosis_quistica": {
     "nombre": "Fibrosis Quística",
@@ -4070,7 +4791,14 @@
         "severidad": "moderado",
         "motivo": "Se requiere alta ingesta calórica. Tomar enzimas pancreáticas con las grasas."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "depresion": {
     "nombre": "Depresión Mayor",
@@ -4106,7 +4834,14 @@
         "severidad": "moderado",
         "motivo": "Picos de glucosa alteran el estado de ánimo y empeoran síntomas depresivos."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "ansiedad_generalizada": {
     "nombre": "Trastorno de Ansiedad Generalizada",
@@ -4139,7 +4874,14 @@
         "severidad": "moderado",
         "motivo": "Picos glucémicos pueden simular o amplificar síntomas de ansiedad."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "trastorno_bipolar": {
     "nombre": "Trastorno Bipolar",
@@ -4171,7 +4913,14 @@
         "severidad": "critico",
         "motivo": "El alcohol desestabiliza el ánimo y altera niveles de estabilizadores."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "insomnio_cronico": {
     "nombre": "Insomnio Crónico",
@@ -4204,7 +4953,14 @@
         "severidad": "moderado",
         "motivo": "Azúcares antes de dormir causan despertares nocturnos."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "adiccion_alcohol": {
     "nombre": "Alcoholismo / Recuperación",
@@ -4235,7 +4991,14 @@
         "severidad": "moderado",
         "motivo": "Si toma disulfiram o naltrexona, evitar trazas de alcohol y fermentados."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "menopausia": {
     "nombre": "Menopausia / Perimenopausia",
@@ -4266,7 +5029,14 @@
         "severidad": "moderado",
         "motivo": "Agravan inestabilidad emocional y aumento de peso en menopausia."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "sobrecrecimiento_bacteriano_sibo": {
     "nombre": "SIBO (Sobrecrecimiento Bacteriano)",
@@ -4315,7 +5085,14 @@
         "severidad": "moderado",
         "motivo": "Los probióticos pueden empeorar SIBO. Consulte a su gastroenterólogo."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "helicobacter_pylori": {
     "nombre": "Infección por H. Pylori",
@@ -4357,7 +5134,14 @@
         "severidad": "critico",
         "motivo": "Los AINEs junto a H. pylori causan úlcera severa."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "deficit_enzima_dao": {
     "nombre": "Déficit de DAO (Diaminooxidasa)",
@@ -4398,7 +5182,14 @@
         "severidad": "critico",
         "motivo": "El alcohol bloquea la enzima DAO empeorando síntomas."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "vih_sida": {
     "nombre": "VIH / SIDA",
@@ -4440,7 +5231,14 @@
         "severidad": "critico",
         "motivo": "Riesgo de listeria y otras infecciones."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "hepatitis_b_cronica": {
     "nombre": "Hepatitis B Crónica",
@@ -4469,7 +5267,14 @@
         "severidad": "moderado",
         "motivo": "Las grasas saturadas sobrecargan el hígado inflamado."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "hepatitis_c_cronica": {
     "nombre": "Hepatitis C Crónica",
@@ -4501,7 +5306,14 @@
         "severidad": "moderado",
         "motivo": "El hierro acumulado es hepatotóxico."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "osteoartritis": {
     "nombre": "Osteoartritis / Artrosis",
@@ -4522,7 +5334,14 @@
         "severidad": "moderado",
         "motivo": "Grasas proinflamatorias empeoran el dolor de la artrosis."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "sarcopenia": {
     "nombre": "Sarcopenia",
@@ -4539,7 +5358,14 @@
         "severidad": "moderado",
         "motivo": "Las dietas hipocalóricas empeoran la pérdida muscular. Se requiere aporte proteico."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "acne_severo": {
     "nombre": "Acné Severo / Quístico",
@@ -4569,7 +5395,14 @@
         "severidad": "moderado",
         "motivo": "El chocolate (especialmente con leche) se asocia a brotes de acné."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "urticaria_cronica": {
     "nombre": "Urticaria Crónica",
@@ -4604,7 +5437,14 @@
         "severidad": "moderado",
         "motivo": "Los salicilatos pueden desencadenar brotes."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "hiperplasia_prostatica": {
     "nombre": "Hiperplasia Prostática Benigna",
@@ -4637,7 +5477,14 @@
         "severidad": "moderado",
         "motivo": "Los picantes pueden irritar la uretra y aumentar síntomas."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "anemia_megaloblastica": {
     "nombre": "Anemia Megaloblástica (déficit B12/Folato)",
@@ -4652,7 +5499,14 @@
         "severidad": "critico",
         "motivo": "El alcohol reduce absorción de B12 y folato, agravando la anemia."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "anemia_hemolitica": {
     "nombre": "Anemia Hemolítica",
@@ -4674,7 +5528,14 @@
         "severidad": "moderado",
         "motivo": "Los sulfitos pueden desencadenar hemólisis en G6PD."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "policitemia_vera": {
     "nombre": "Policitemia Vera",
@@ -4698,7 +5559,14 @@
         "severidad": "moderado",
         "motivo": "La vitamina C aumenta absorción de hierro."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "resistencia_insulinica": {
     "nombre": "Resistencia a la Insulina",
@@ -4727,7 +5595,14 @@
         "severidad": "critico",
         "motivo": "La fructosa es el driver principal de resistencia insulínica hepática."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "hipoglucemia_reactiva": {
     "nombre": "Hipoglucemia Reactiva",
@@ -4748,7 +5623,14 @@
         "severidad": "critico",
         "motivo": "Azúcares simples generan el ciclo hiperglucemia-hipoglucemia."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "deficiencia_vitamina_d": {
     "nombre": "Déficit de Vitamina D",
@@ -4763,7 +5645,14 @@
         "severidad": "moderado",
         "motivo": "El alcohol interfiere con el metabolismo hepático de vitamina D."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "hiponatremia": {
     "nombre": "Hiponatremia Crónica",
@@ -4777,7 +5666,14 @@
         "severidad": "critico",
         "motivo": "El consumo excesivo de líquidos hipotónicos empeora la hiponatremia."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "hipercalcemia": {
     "nombre": "Hipercalcemia",
@@ -4802,7 +5698,14 @@
         "severidad": "critico",
         "motivo": "La vitamina D aumenta absorción de calcio, empeorando hipercalcemia."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "hipocalcemia": {
     "nombre": "Hipocalcemia",
@@ -4817,7 +5720,14 @@
         "severidad": "moderado",
         "motivo": "El exceso de fósforo desbalancea el calcio, agravando hipocalcemia."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "caquexia_oncologica": {
     "nombre": "Caquexia Oncológica",
@@ -4834,7 +5744,14 @@
         "severidad": "critico",
         "motivo": "Se requiere ingesta calórica ALTA. Productos hipocalóricos están contraindicados."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "quimioterapia_nauseas": {
     "nombre": "Náuseas por Quimioterapia",
@@ -4864,7 +5781,14 @@
         "severidad": "moderado",
         "motivo": "Aromas fuertes y frituras empeoran las náuseas."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "sindrome_dumping": {
     "nombre": "Síndrome de Dumping (Post-Bariátrica)",
@@ -4894,7 +5818,14 @@
         "severidad": "moderado",
         "motivo": "Líquidos con azúcar empeoran el dumping."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "insuficiencia_pancreatica_exocrina": {
     "nombre": "Insuficiencia Pancreática Exocrina",
@@ -4915,7 +5846,14 @@
         "severidad": "critico",
         "motivo": "El alcohol empeora la función pancreática."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "colestasis_gestacional": {
     "nombre": "Colestasis Intrahepática del Embarazo",
@@ -4935,7 +5873,14 @@
         "severidad": "moderado",
         "motivo": "Alta carga hepática. Evitar en colestasis."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "anemia_gestacional": {
     "nombre": "Anemia Gestacional",
@@ -4959,7 +5904,14 @@
         "severidad": "moderado",
         "motivo": "El calcio inhibe absorción de hierro. Separar de la suplementación."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "hiperemesis_gravidica": {
     "nombre": "Hiperemesis Gravídica",
@@ -4980,7 +5932,14 @@
         "severidad": "moderado",
         "motivo": "Disparadores de náusea. Evitar en hiperemesis."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "deportista_alto_rendimiento": {
     "nombre": "Deportista de Alto Rendimiento",
@@ -5003,7 +5962,14 @@
         "severidad": "moderado",
         "motivo": "El alcohol afecta recuperación muscular y rendimiento."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "deficit_energetico_relativo": {
     "nombre": "Déficit Energético Relativo del Deporte (RED-S)",
@@ -5020,7 +5986,14 @@
         "severidad": "critico",
         "motivo": "RED-S requiere aumentar ingesta calórica. Productos hipocalóricos contraindicados."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "erc_estadio_1": {
     "nombre": "ERC Estadio 1 (TFG >90, daño renal leve)",
@@ -5043,7 +6016,14 @@
         "severidad": "moderado",
         "motivo": "Limitar aditivos con fósforo como prevención."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "erc_estadio_2": {
     "nombre": "ERC Estadio 2 (TFG 60-89)",
@@ -5067,7 +6047,14 @@
         "severidad": "moderado",
         "motivo": "Los aditivos con fósforo aceleran la progresión renal."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "erc_estadio_3a": {
     "nombre": "ERC Estadio 3a (TFG 45-59)",
@@ -5100,7 +6087,14 @@
         "severidad": "moderado",
         "motivo": "Moderar proteínas. Consultar nefrólogo para ajuste (0.8g/kg/día)."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "erc_estadio_3b": {
     "nombre": "ERC Estadio 3b (TFG 30-44)",
@@ -5140,7 +6134,14 @@
         "severidad": "critico",
         "motivo": "Restricción proteica: 0.6-0.8g/kg/día."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "erc_estadio_4": {
     "nombre": "ERC Estadio 4 (TFG 15-29)",
@@ -5184,7 +6185,14 @@
         "severidad": "critico",
         "motivo": "Proteína estricta: 0.6g/kg/día."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "erc_estadio_5": {
     "nombre": "ERC Estadio 5 Prediálisis (TFG <15)",
@@ -5239,7 +6247,14 @@
         "severidad": "moderado",
         "motivo": "Control de líquidos puede ser necesario. Consultar nefrólogo."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "ic_nyha_1": {
     "nombre": "Insuficiencia Cardíaca NYHA Clase I (sin síntomas)",
@@ -5253,7 +6268,14 @@
         "severidad": "moderado",
         "motivo": "Control de sodio preventivo en IC clase I. Máximo 2g/día."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "ic_nyha_2": {
     "nombre": "Insuficiencia Cardíaca NYHA Clase II (síntomas con esfuerzo ordinario)",
@@ -5277,7 +6299,14 @@
         "severidad": "moderado",
         "motivo": "Los estimulantes pueden agravar arritmias."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "ic_nyha_3": {
     "nombre": "Insuficiencia Cardíaca NYHA Clase III (síntomas con esfuerzo mínimo)",
@@ -5307,7 +6336,17 @@
         "severidad": "moderado",
         "motivo": "Cafeína moderada (<300 mg/día, ~3 cafés) generalmente segura en IC compensada (AHA 2021), salvo arritmias documentadas. Consultar cardiólogo si dudas."
       }
-    ]
+    ],
+    "validation": {
+      "status": "validated",
+      "validatedAgainst": [
+        "AHA/ACC/HFSA 2022",
+        "SODIUM-HF Lancet 2022"
+      ],
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Sprint Motor V2 Fase 1 (8ad18d4)",
+      "riskLevel": "high_risk"
+    }
   },
   "ic_nyha_4": {
     "nombre": "Insuficiencia Cardíaca NYHA Clase IV (síntomas en reposo)",
@@ -5347,7 +6386,16 @@
         "severidad": "moderado",
         "motivo": "Restricción de líquidos <1.5 L/día durante descompensación. Manejo individualizado por cardiólogo."
       }
-    ]
+    ],
+    "validation": {
+      "status": "validated",
+      "validatedAgainst": [
+        "AHA/ACC/HFSA 2022"
+      ],
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Sprint Motor V2 Fase 1 (8ad18d4)",
+      "riskLevel": "high_risk"
+    }
   },
   "cirrosis_child_a": {
     "nombre": "Cirrosis Child-Pugh A (compensada)",
@@ -5390,7 +6438,14 @@
         "severidad": "critico",
         "motivo": "Alcohol ABSOLUTAMENTE contraindicado en cirrosis."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "cirrosis_child_b": {
     "nombre": "Cirrosis Child-Pugh B (moderada)",
@@ -5441,7 +6496,17 @@
         "severidad": "moderado",
         "motivo": "Hierro suplementario requiere evaluación caso a caso (ferritina, saturación de transferrina). Contraindicado solo en sobrecarga férrica documentada (hemocromatosis, ferritina elevada con saturación >45%). Apropiado si hay anemia ferropénica documentada por sangrado variceal o gastropatía. Consultar hepatólogo."
       }
-    ]
+    ],
+    "validation": {
+      "status": "validated",
+      "validatedAgainst": [
+        "AASLD 2014",
+        "EASL 2019"
+      ],
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Sprint Motor V2 Fase 1 (8ad18d4)",
+      "riskLevel": "high_risk"
+    }
   },
   "cirrosis_child_c": {
     "nombre": "Cirrosis Child-Pugh C (severa/descompensada)",
@@ -5502,7 +6567,17 @@
         "severidad": "moderado",
         "motivo": "Hierro suplementario requiere evaluación caso a caso (ferritina, saturación). Contraindicado solo en sobrecarga férrica documentada. Apropiado en anemia ferropénica documentada. Consultar hepatólogo antes de iniciar."
       }
-    ]
+    ],
+    "validation": {
+      "status": "validated",
+      "validatedAgainst": [
+        "ISHEN 2013",
+        "AASLD 2014"
+      ],
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Sprint Motor V2 Fase 1 (8ad18d4)",
+      "riskLevel": "high_risk"
+    }
   },
   "diabetes_t2_con_nefropatia": {
     "nombre": "Diabetes T2 con Nefropatía Diabética",
@@ -5546,7 +6621,14 @@
         "severidad": "moderado",
         "motivo": "Restricción proteica (0.8g/kg/día) en nefropatía diabética."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "diabetes_t2_con_neuropatia": {
     "nombre": "Diabetes T2 con Neuropatía Diabética",
@@ -5579,7 +6661,14 @@
         "severidad": "critico",
         "motivo": "Azúcares simples causan picos glucémicos que dañan nervios."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "diabetes_t2_con_retinopatia": {
     "nombre": "Diabetes T2 con Retinopatía Diabética",
@@ -5608,7 +6697,14 @@
         "severidad": "moderado",
         "motivo": "Controlar PA para proteger microvasculatura retiniana."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "diabetes_t2_con_gastroparesia": {
     "nombre": "Diabetes T2 con Gastroparesia",
@@ -5637,7 +6733,14 @@
         "severidad": "moderado",
         "motivo": "La fibra insoluble puede formar bezoares en gastroparesia."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "diabetes_t2_descompensada": {
     "nombre": "Diabetes T2 Descompensada (HbA1c >9%)",
@@ -5704,7 +6807,14 @@
         "severidad": "critico",
         "motivo": "El alcohol desestabiliza glucemia en diabetes descompensada."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "epoc_gold_1": {
     "nombre": "EPOC GOLD 1 (Leve, FEV1 ≥80%)",
@@ -5718,7 +6828,14 @@
         "severidad": "moderado",
         "motivo": "Control de sodio preventivo en EPOC."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "epoc_gold_2": {
     "nombre": "EPOC GOLD 2 (Moderado, FEV1 50-79%)",
@@ -5740,7 +6857,14 @@
         "severidad": "moderado",
         "motivo": "La carbonatación genera distensión que dificulta respiración."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "epoc_gold_3": {
     "nombre": "EPOC GOLD 3 (Grave, FEV1 30-49%)",
@@ -5768,7 +6892,14 @@
         "severidad": "critico",
         "motivo": "Contraindicadas en EPOC grave."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "epoc_gold_4": {
     "nombre": "EPOC GOLD 4 (Muy grave, FEV1 <30%)",
@@ -5797,7 +6928,14 @@
         "severidad": "moderado",
         "motivo": "Caquexia frecuente en GOLD 4. Se necesita alta ingesta calórica."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "crohn_remision": {
     "nombre": "Enfermedad de Crohn en Remisión",
@@ -5815,7 +6953,14 @@
         "severidad": "moderado",
         "motivo": "Los emulsionantes pueden mantener inflamación subclínica. Evitar como prevención."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "crohn_brote_leve": {
     "nombre": "Enfermedad de Crohn — Brote Leve",
@@ -5849,7 +6994,14 @@
         "severidad": "moderado",
         "motivo": "La lactosa se tolera mal durante brotes de Crohn."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "crohn_brote_severo": {
     "nombre": "Enfermedad de Crohn — Brote Severo",
@@ -5922,7 +7074,14 @@
         "severidad": "critico",
         "motivo": "Alcohol contraindicado en brote severo."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "crohn_posquirurgico": {
     "nombre": "Enfermedad de Crohn — Post-Quirúrgico",
@@ -5957,7 +7116,14 @@
         "severidad": "moderado",
         "motivo": "Riesgo de cálculos de oxalato por malabsorción de grasas."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "cu_remision": {
     "nombre": "Colitis Ulcerosa en Remisión",
@@ -5974,7 +7140,14 @@
         "severidad": "moderado",
         "motivo": "Evitar emulsionantes como prevención de recaída."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "cu_brote_leve_moderado": {
     "nombre": "Colitis Ulcerosa — Brote Leve/Moderado",
@@ -6007,7 +7180,14 @@
         "severidad": "moderado",
         "motivo": "Fibra insoluble irrita el colon inflamado."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "cu_brote_severo": {
     "nombre": "Colitis Ulcerosa — Brote Severo",
@@ -6078,7 +7258,14 @@
         "severidad": "critico",
         "motivo": "Alcohol irrita directamente el colon inflamado."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "cancer_tratamiento_temprano": {
     "nombre": "Cáncer en Tratamiento — Estadio Temprano",
@@ -6113,7 +7300,14 @@
         "severidad": "moderado",
         "motivo": "Riesgo de infección por neutropenia. Cocinar bien los alimentos."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "cancer_metastasico": {
     "nombre": "Cáncer Metastásico en Tratamiento",
@@ -6157,7 +7351,14 @@
         "severidad": "moderado",
         "motivo": "Se necesita alta ingesta calórica. Riesgo de caquexia."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "cancer_remision_vigilancia": {
     "nombre": "Cáncer en Remisión / Vigilancia",
@@ -6183,7 +7384,14 @@
         "severidad": "moderado",
         "motivo": "El alcohol aumenta riesgo de recurrencia en varios tipos de cáncer."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "cancer_cuidados_paliativos": {
     "nombre": "Cáncer — Cuidados Paliativos",
@@ -6199,7 +7407,14 @@
         "severidad": "moderado",
         "motivo": "Verificar interacciones con medicación paliativa."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "embarazo_t1": {
     "nombre": "Embarazo — Primer Trimestre",
@@ -6266,7 +7481,14 @@
         "severidad": "critico",
         "motivo": "El mercurio es neurotóxico para el embrión en formación."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "embarazo_t2": {
     "nombre": "Embarazo — Segundo Trimestre",
@@ -6327,7 +7549,14 @@
         "severidad": "moderado",
         "motivo": "Screening de diabetes gestacional en T2. Controlar azúcares."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "embarazo_t3": {
     "nombre": "Embarazo — Tercer Trimestre",
@@ -6398,7 +7627,14 @@
         "severidad": "critico",
         "motivo": "El mercurio es neurotóxico para el feto. Máximo 170g de atún al mes."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "puerperio_lactancia": {
     "nombre": "Puerperio / Lactancia",
@@ -6456,7 +7692,14 @@
         "severidad": "critico",
         "motivo": "El mercurio es neurotóxico para el feto. Máximo 170g de atún al mes."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "ar_remision": {
     "nombre": "Artritis Reumatoide en Remisión",
@@ -6472,7 +7715,14 @@
         "severidad": "moderado",
         "motivo": "Grasas trans promueven inflamación subclínica. Prevención de brote."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "ar_actividad_moderada_alta": {
     "nombre": "Artritis Reumatoide — Actividad Moderada/Alta",
@@ -6529,7 +7779,14 @@
         "severidad": "moderado",
         "motivo": "El alcohol interactúa con metotrexato (hepatotóxico)."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "lupus_remision": {
     "nombre": "Lupus en Remisión",
@@ -6545,7 +7802,14 @@
         "severidad": "critico",
         "motivo": "La alfalfa puede desencadenar brotes incluso en remisión."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "lupus_brote": {
     "nombre": "Lupus — Brote Activo",
@@ -6604,7 +7868,14 @@
         "severidad": "critico",
         "motivo": "El alcohol interactúa con inmunosupresores del lupus."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "lupus_con_nefritis": {
     "nombre": "Lupus con Nefritis Lúpica",
@@ -6641,7 +7912,14 @@
         "severidad": "moderado",
         "motivo": "Vigilar potasio si TFG disminuida por nefritis."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "dialisis_hemodialisis": {
     "nombre": "Hemodiálisis",
@@ -6684,7 +7962,14 @@
         "severidad": "moderado",
         "motivo": "Restricción de líquidos entre sesiones (500ml + diuresis residual)."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "dialisis_peritoneal": {
     "nombre": "Diálisis Peritoneal",
@@ -6721,7 +8006,14 @@
         "severidad": "moderado",
         "motivo": "Potasio menos restrictivo que en hemodiálisis, pero vigilar."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "trasplante_post_inmediato": {
     "nombre": "Trasplante Renal — Post-Operatorio (<3 meses)",
@@ -6763,7 +8055,14 @@
         "severidad": "critico",
         "motivo": "Suplementos herbales interfieren con inmunosupresores."
       }
-    ]
+    ],
+    "validation": {
+      "status": "high_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "high_risk"
+    }
   },
   "trasplante_estable": {
     "nombre": "Trasplante Renal — Estable (3-12 meses)",
@@ -6794,7 +8093,14 @@
         "severidad": "moderado",
         "motivo": "Precaución con alimentos crudos mientras dure inmunosupresión alta."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   },
   "trasplante_mantenimiento": {
     "nombre": "Trasplante Renal — Mantenimiento (>12 meses)",
@@ -6817,6 +8123,13 @@
         "severidad": "moderado",
         "motivo": "Mantener control de sodio para cuidar el injerto."
       }
-    ]
+    ],
+    "validation": {
+      "status": "medium_risk",
+      "validatedAgainst": null,
+      "lastReviewed": null,
+      "reviewer": null,
+      "riskLevel": "medium_risk"
+    }
   }
 }
