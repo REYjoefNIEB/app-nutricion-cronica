@@ -20,9 +20,6 @@
 //   CR-04 — Fenilalanina/Aspartamo + Fenilcetonuria: daño neurológico
 //            irreversible por acumulación de fenilalanina.
 //            Fuente: NIH PKU Guidelines 2023.
-//   CR-05 — Vitamina K (alta) + Anticoagulación oral: antagonismo de
-//            warfarina/acenocumarol → tromboembolismo.
-//            Fuente: ESC Guidelines on Anticoagulation 2021.
 //
 // Aprobado Auditor Médico — pendiente revisión v1.3.0
 // =================================================================
@@ -84,7 +81,7 @@ const CriticalShield = (() => {
                              'grave. No consuma este producto.',
             ingredientMatch: /queso\s+(?:curado|maduro|añejo|azul|parmesano|roquefort|gorgonzola)|embutido|salami|pepperoni|miso|tempeh|salsa\s+de\s+soja|extracto\s+de\s+levadura/i,
             check(profile, ingredients) {
-                const hasMAOI = (profile.medications || profile.medicamentos || []).some(m =>
+                const hasMAOI = (profile.medications || []).some(m =>
                     /fenelzina|tranilcipromina|isocarboxazida|selegilina|rasagilina|IMAO/i.test(m)
                 );
                 const hasTyramine = ingredients.some(i => this.ingredientMatch.test(i));
@@ -104,24 +101,6 @@ const CriticalShield = (() => {
                 const hasPathology = /fenilcetonuria|pku/i.test(profile.pathology || '');
                 const hasPhe = ingredients.some(i => this.ingredientMatch.test(i));
                 return hasPathology && hasPhe;
-            }
-        },
-        {
-            id:              'CR-05',
-            level:           'CRITICAL',
-            title:           'BLOQUEO — Vitamina K alta (Anticoagulación oral)',
-            message:         'Se detectó un alimento MUY RICO EN VITAMINA K (espinaca, ' +
-                             'kale, brócoli en grandes cantidades). Su medicación ' +
-                             'anticoagulante (warfarina/acenocumarol) es antagonizada por ' +
-                             'la Vitamina K, aumentando el riesgo de tromboembolismo. ' +
-                             'Consulte a su médico antes de consumir.',
-            ingredientMatch: /espinaca|kale|col\s+rizada|brócoli|brocoli|acelga|perejil|albahaca|col\s+de\s+bruselas|vitamina\s+k(?:\s+\d+\s*(?:mcg|µg|mg))?/i,
-            check(profile, ingredients) {
-                const hasAnticoag = (profile.medications || []).some(m =>
-                    /warfarina|acenocumarol|sintrom/i.test(m)
-                );
-                const hasHighVitK = ingredients.some(i => this.ingredientMatch.test(i));
-                return hasAnticoag && hasHighVitK;
             }
         }
     ];

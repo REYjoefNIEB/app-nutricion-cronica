@@ -40,12 +40,26 @@ var AIMedicalAgent = (() => {
     function _augmentProfileForShield(profile) {
         if (!profile || typeof profile !== 'object') return profile;
         var copy = Object.assign({}, profile);
+
+        // Normalizar pathology desde enfermedades[] (existente)
         var pathology = copy.pathology ? String(copy.pathology) : '';
         var ids = Array.isArray(copy.enfermedades) ? copy.enfermedades : [];
         var extra = ids.filter(function (id) { return id && id !== 'none'; })
             .map(function (id) { return String(id).replace(/_/g, ' '); })
             .join(' ');
         copy.pathology = [pathology, extra].filter(Boolean).join(' ').trim();
+
+        // === SPRINT M4-B-1.8: centralizar medications/medicamentos ===
+        // Single source of truth: las reglas downstream (CR-03 etc) leen
+        // copy.medications sin necesitar fallback inline.
+        // El campo medicamentos (español) es el que escribe la app real;
+        // medications (inglés) era lo que esperaba el código original
+        // (bug 30 días resuelto en d3b5e45).
+        var meds = Array.isArray(copy.medications) ? copy.medications : [];
+        var medsEs = Array.isArray(copy.medicamentos) ? copy.medicamentos : [];
+        copy.medications = meds.length > 0 ? meds : medsEs;
+        // === FIN Sprint M4-B-1.8 ===
+
         return copy;
     }
 
