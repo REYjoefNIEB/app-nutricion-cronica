@@ -6211,7 +6211,7 @@
         "feature_sello": "salt",
         "limite": "high",
         "severidad": "critico",
-        "motivo": "Sodio estrictísimo en ERC 5. Riesgo vital."
+        "motivo": "ERC estadio 5 prediálisis (TFG <15): restricción sodio <2 g/día (KDIGO 2024 §3.3.2.1). En oliguria, vigilancia estricta del balance hídrico-sodio. Producto excede objetivo. Consulte a su nefrólogo."
       },
       {
         "feature_ingrediente": [
@@ -6220,7 +6220,7 @@
           "polifosfato"
         ],
         "severidad": "critico",
-        "motivo": "Fósforo debe estar controlado. Peligro de calcificaciones."
+        "motivo": "ERC estadio 5 prediálisis: ajustar fósforo según fosfatemia (KDIGO 2017 §4.1.3, §4.1.8). La hiperfosfatemia es frecuente en este estadio y suele requerir restricción activa, pero debe confirmarse según fosfatemia. Priorizar limitar aditivos fosfatados inorgánicos en ultraprocesados (biodisponibilidad >90%) sobre fósforo de alimentos integrales. Consulte a su nefrólogo."
       },
       {
         "feature_ingrediente": [
@@ -6234,7 +6234,7 @@
           "legumbre"
         ],
         "severidad": "critico",
-        "motivo": "PELIGRO VITAL: Potasio estrictamente limitado. Riesgo de arritmia cardíaca."
+        "motivo": "ERC estadio 5 prediálisis: KDIGO 2024 Practice Point 3.11.5.1 recomienda enfoque individualizado para hipercalemia emergente en G3-G5. La restricción de potasio se individualiza según kalemia y diuresis residual. Priorizar limitar potasio BIODISPONIBLE de alimentos procesados (Practice Point 3.11.5.2). Frutas, verduras y legumbres tienen K+ menos biodisponible y aportan beneficios cardiovasculares. CONTRAINDICADOS: suplementos farmacológicos de K+ y sustitutos de sal con KCl (causa frecuente de hipercalemia letal). Consulte a su nefrólogo sobre su nivel de potasio sérico."
       },
       {
         "feature_ingrediente": [
@@ -6242,7 +6242,7 @@
           "proteina concentrada"
         ],
         "severidad": "critico",
-        "motivo": "Proteína muy restringida: 0.6g/kg/día o menos."
+        "motivo": "ERC estadio 5 prediálisis metabólicamente estable: 0.55-0.60 g/kg/día sin diabetes (KDOQI 2020 §3.0.1, evidencia 1A), 0.6-0.8 g/kg/día con diabetes (§3.0.2). Como alternativa para retrasar inicio de diálisis, dieta muy baja proteína (VLPD: 0.28-0.43 g/kg/día) con keto-análogos puede considerarse bajo indicación nefrológica (también §3.0.1). Requiere supervisión nutricional especializada para evitar desnutrición proteico-energética."
       },
       {
         "feature_ingrediente": [
@@ -6251,15 +6251,23 @@
           "jugo",
           "leche"
         ],
-        "severidad": "moderado",
-        "motivo": "Control de líquidos puede ser necesario. Consultar nefrólogo."
+        "severidad": "critico",
+        "motivo": "ERC estadio 5 prediálisis: control de líquidos estrictamente individualizado para mantener euvolemia. KDIGO 2024 maneja la sobrecarga hídrica principalmente a través del control de sodio (§3.3.2.1). La aparición de oliguria (<400 ml/día) exige restricción hídrica severa para prevenir edema agudo de pulmón. Vigilar peso diario, edemas y dificultad respiratoria. Consulte a su nefrólogo para establecer su límite de líquidos personalizado."
       }
     ],
     "validation": {
-      "status": "high_risk",
-      "validatedAgainst": null,
-      "lastReviewed": null,
-      "reviewer": null,
+      "status": "validated",
+      "validatedAgainst": [
+        "KDIGO 2024 §3.3.2.1",
+        "KDIGO 2024 Practice Point 3.11.5.1",
+        "KDIGO 2024 Practice Point 3.11.5.2",
+        "KDIGO 2017 §4.1.3",
+        "KDIGO 2017 §4.1.8",
+        "KDOQI 2020 §3.0.1",
+        "KDOQI 2020 §3.0.2"
+      ],
+      "lastReviewed": "2026-05-04",
+      "reviewer": "Sprint Motor V2 Fase 2 Componente 2 - cross-audit (Claude + Gemini + ChatGPT) con corrección de citas",
       "riskLevel": "high_risk"
     }
   },
