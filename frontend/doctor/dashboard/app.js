@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const trialBadge          = document.getElementById('trial-badge');
     const trialDaysRemaining  = document.getElementById('trial-days-remaining');
     const welcomeMessage      = document.getElementById('welcome-message');
-    const btnSwitchToPerson   = document.getElementById('btn-switch-to-person');
+    // Bridge eliminado: cuentas separadas (Sprint Cleanup)
 
     // ── Guard de sesión ────────────────────────────────────────────
     const auth = window.NuraFirebase.auth;
@@ -70,10 +70,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // No bloqueamos la UI, mostramos placeholders genéricos
     }
 
-    // ── Listener para cambiar a modo paciente ─────────────────────
-    btnSwitchToPerson.addEventListener('click', () => {
-        window.location.href = '../../dashboard/index.html';
-    });
+    // Bridge eliminado: cuentas separadas (Sprint Cleanup)
 
     // ── [Sprint M4-B-1] Card "Tablas clínicas" → abre modal ───────
     const cardTablas = document.getElementById('card-tablas-clinicas');

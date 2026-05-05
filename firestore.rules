@@ -32,11 +32,31 @@ service cloud.firestore {
       // Actualización: el usuario puede actualizar su propio documento
       // EXCEPTO el campo legal_consent, que es inmutable desde el cliente
       // una vez creado. Esto protege la huella de auditoría del consentimiento.
+      //
+      // [Sprint Cleanup Cuentas Separadas]
+      // profileType + doctorProfile inmutables post-asignación desde cliente.
+      // Cambios legítimos (trial→paid, founder# assign) van por Cloud Function/Admin SDK.
       allow update: if request.auth != null
                     && request.auth.uid == userId
                     && !request.resource.data.diff(resource.data)
                                            .affectedKeys()
-                                           .hasAny(['legal_consent']);
+                                           .hasAny(['legal_consent'])
+                    // profileType inmutable post-asignación (permite primera asignación)
+                    && (
+                        !('profileType' in resource.data)
+                        || resource.data.profileType == request.resource.data.profileType
+                    )
+                    // doctorProfile solo en cuentas doctor (invariante de schema)
+                    // .get() retorna '' si profileType no existe (legacy users protegidos)
+                    && (
+                        request.resource.data.get('profileType', '') == 'doctor'
+                        || !('doctorProfile' in request.resource.data)
+                    )
+                    // doctorProfile inmutable post-asignación desde cliente
+                    && (
+                        !('doctorProfile' in resource.data)
+                        || resource.data.doctorProfile == request.resource.data.doctorProfile
+                    );
 
       // Eliminación: no permitida desde el cliente.
       // La baja de cuenta se gestiona desde el backend (Admin SDK).

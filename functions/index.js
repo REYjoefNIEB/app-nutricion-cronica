@@ -3400,3 +3400,6 @@ function _generateLongTermRecommendations(risks, air) {
 
     return recs;
 }
+
+// ── [Sprint Cleanup Cuentas Separadas] Audit log para /users/{uid} ──
+exports.auditUserDocChanges = require('./auditUserDocChanges').auditUserDocChanges;

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/REYjoefNIEB/app-nutricion-cronica#readme",
   "devDependencies": {
+    "@firebase/rules-unit-testing": "^5.0.0",
     "dotenv": "^16.6.1",
     "firebase-admin": "^12.7.0",
     "js-yaml": "^4.1.1",

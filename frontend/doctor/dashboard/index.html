@@ -16,6 +16,25 @@
         ⚠️ Apoyo clínico — no reemplaza juicio profesional. Datos sensibles tratados según Ley 19.628 y 21.719.
     </div>
 
+    <!-- [Sprint Cleanup Cuentas Separadas] Banner informativo cuenta profesional -->
+    <div class="info-banner-cuenta" style="background:#FFF3CD; border-left:4px solid #FFC107; padding:12px 16px; margin-bottom:16px; font-size:14px; border-radius:4px; display:flex; align-items:center; gap:8px;">
+      <strong>ℹ️ Cuenta profesional</strong>
+      <span style="flex:1;">
+        Esta cuenta es exclusivamente para uso clínico.
+        Si querés usar Nura para tu propio cuidado de salud,
+        <a href="/signup?type=person" style="color:#856404; text-decoration:underline;">crea una cuenta separada como paciente</a>.
+      </span>
+      <button onclick="this.parentElement.style.display='none'; localStorage.setItem('infoBannerCuentaDismissed', 'true');"
+              style="background:none; border:none; cursor:pointer; font-size:18px; color:#856404; padding:0 4px;"
+              aria-label="Cerrar">×</button>
+    </div>
+    <script>
+      // Banner persistente: si fue dismissed antes, no mostrar
+      if (localStorage.getItem('infoBannerCuentaDismissed') === 'true') {
+        document.querySelector('.info-banner-cuenta')?.remove();
+      }
+    </script>
+
     <div class="doctor-container">
         <!-- Header del dashboard -->
         <header class="doctor-header">
@@ -26,7 +45,7 @@
             <div class="doctor-account">
                 <span id="trial-badge" class="trial-badge">Trial</span>
                 <span id="trial-days-remaining" class="trial-days"></span>
-                <button id="btn-switch-to-person" class="btn-link">Modo paciente</button>
+                <!-- Bridge eliminado: cuentas separadas según decisión arquitectural Sprint Cleanup -->
             </div>
         </header>
 
